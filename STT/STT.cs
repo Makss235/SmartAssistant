@@ -26,7 +26,7 @@ namespace STT
         public void Start() { Init(); STTProcess.Start(); }
         public void Stop() { STTProcess.Kill(); }
 
-        public void Init()
+        private void Init()
         {
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = exePythonPath;
