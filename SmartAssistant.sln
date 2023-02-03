@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartAssistant", "SmartAssistant\SmartAssistant.csproj", "{F380564A-F125-4C0A-AA14-7B68155328D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAssistant", "SmartAssistant\SmartAssistant.csproj", "{F380564A-F125-4C0A-AA14-7B68155328D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ED75FD62-6097-4C7F-9340-65A0B1275FB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "Tests\TestConsole\TestConsole.csproj", "{784B1C44-C851-4B3C-9615-AAA772E82B4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsole", "Tests\TestConsole\TestConsole.csproj", "{784B1C44-C851-4B3C-9615-AAA772E82B4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STT", "STT\STT.csproj", "{EA1AAF7E-CD22-4456-BF52-CF2EF0793D24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{784B1C44-C851-4B3C-9615-AAA772E82B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{784B1C44-C851-4B3C-9615-AAA772E82B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{784B1C44-C851-4B3C-9615-AAA772E82B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA1AAF7E-CD22-4456-BF52-CF2EF0793D24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA1AAF7E-CD22-4456-BF52-CF2EF0793D24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA1AAF7E-CD22-4456-BF52-CF2EF0793D24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA1AAF7E-CD22-4456-BF52-CF2EF0793D24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
