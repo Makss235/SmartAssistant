@@ -11,4 +11,10 @@
     <ProjectReference Include="..\STT\STT.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Data\" />
+    <Folder Include="UserControls\" />
+  </ItemGroup>
+
 </Project>
