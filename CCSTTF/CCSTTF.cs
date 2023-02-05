@@ -9,7 +9,7 @@ namespace CCSTTF
     public class CCSTTF : INotifyPropertyChanged
     {
         private string STTF;
-        private Thread CCSTTF_Tread;
+        private Thread CCSTTF_Thread;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -36,11 +36,11 @@ namespace CCSTTF
         public CCSTTF()
         {
             STTF = "STTF.txt";
-            CCSTTF_Tread = new Thread(() => ChangeDateSTTF());
+            CCSTTF_Thread = new Thread(() => ChangeDateSTTF());
         }
 
-        public void Start() => CCSTTF_Tread.Start();
-        public void Stop() => CCSTTF_Tread.Abort();
+        public void Start() => CCSTTF_Thread.Start();
+        public void Stop() => CCSTTF_Thread.Abort();
 
         public void ChangeDateSTTF()
         {
