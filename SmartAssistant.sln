@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STT", "STT\STT.csproj", "{E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CCSTTF", "CCSTTF\CCSTTF.csproj", "{1EC26057-B9DC-42BD-89ED-06A2AD4E98A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWPF", "Tests\TestWPF\TestWPF.csproj", "{E394CA38-C82B-462B-AC7D-9D6D4003C339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWPF", "Tests\TestWPF\TestWPF.csproj", "{E394CA38-C82B-462B-AC7D-9D6D4003C339}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleWPF", "Tests\TestConsoleWPF\TestConsoleWPF.csproj", "{585ACCE0-AA64-4EBF-A649-C874B57C20AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{E394CA38-C82B-462B-AC7D-9D6D4003C339}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E394CA38-C82B-462B-AC7D-9D6D4003C339}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E394CA38-C82B-462B-AC7D-9D6D4003C339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585ACCE0-AA64-4EBF-A649-C874B57C20AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585ACCE0-AA64-4EBF-A649-C874B57C20AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585ACCE0-AA64-4EBF-A649-C874B57C20AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585ACCE0-AA64-4EBF-A649-C874B57C20AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{784B1C44-C851-4B3C-9615-AAA772E82B4C} = {ED75FD62-6097-4C7F-9340-65A0B1275FB3}
 		{E394CA38-C82B-462B-AC7D-9D6D4003C339} = {ED75FD62-6097-4C7F-9340-65A0B1275FB3}
+		{585ACCE0-AA64-4EBF-A649-C874B57C20AF} = {ED75FD62-6097-4C7F-9340-65A0B1275FB3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C503429-D993-4C2D-A414-D8F2B138AC15}
