@@ -49,9 +49,7 @@ namespace SmartAssistant.Views.MainWindow
             headingMenuGrid.Children.Add(title);
 
 
-            Grid grid = new Grid();
-            Settings_Tab settings_Tab = new Settings_Tab();
-            grid.Children.Add(settings_Tab);
+            SettingsTab settings_Tab = new SettingsTab();
 
 
             Grid mainGrid = new Grid();
@@ -67,6 +65,7 @@ namespace SmartAssistant.Views.MainWindow
             ColumnDefinition mainFieldColumnDefinition = new ColumnDefinition()
             { Width = new GridLength(535, GridUnitType.Pixel) };
             mainGrid.ColumnDefinitions.Add(mainFieldColumnDefinition);
+
 
             Content = mainGrid;
 
@@ -86,7 +85,7 @@ namespace SmartAssistant.Views.MainWindow
             mainFieldBorder.Background = BackgroundLightBrush;
             mainFieldBorder.CornerRadius = new CornerRadius(0, 20, 20, 0);
             mainFieldBorder.Margin = new Thickness(-20, 0, 0, 0);
-            mainFieldBorder.Child = grid;
+            mainFieldBorder.Child = settings_Tab;
             Grid.SetColumn(mainFieldBorder, 2);
 
             mainGrid.Children.Add(mainFieldBorder);

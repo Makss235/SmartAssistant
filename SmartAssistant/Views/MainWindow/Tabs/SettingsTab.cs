@@ -1,33 +1,37 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace SmartAssistant.Views.MainWindow.Tabs
 {
-    public class Settings_Tab : UserControl
+    public class SettingsTab : UserControl
     {
-        public Settings_Tab()
+        public SettingsTab()
         {
             TextBlock textBlock = new TextBlock()
             {
-                Text = "gggggggggggggggggggggggggg",
+                Text = "asdfghjkl",
                 FontSize = 20,
-                Foreground = MainWindow.BackgroundLightBrush
+                Foreground = new SolidColorBrush(Colors.Black),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top
             };
 
             Grid grid = new Grid();
-            grid.Children.Add(textBlock);
             grid.Margin = new Thickness(20, 0, 0, 0);
+            grid.Children.Add(textBlock);
 
             Border mainBorder = new Border()
             {
                 CornerRadius = new CornerRadius(0, 20, 20, 0),
                 Background = MainWindow.BackgroundDarkBrush,
-                Margin = new Thickness(-25, 0, 0, 0),
-                Height = 500,
-                Width = 535
+                Margin = new Thickness(0, 0, 0, 0),
+                Width = 555,
+                Height = 500
             };
             mainBorder.Child = grid;
+            Content = mainBorder;
         }
     }
 }
