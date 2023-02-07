@@ -1,4 +1,4 @@
-﻿using SmartAssistant.Views.MainWindow;
+﻿using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
 

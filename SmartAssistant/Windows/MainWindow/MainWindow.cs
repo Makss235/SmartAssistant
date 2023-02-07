@@ -3,9 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Threading;
-using SmartAssistant.Views.MainWindow.Tabs;
+using SmartAssistant.UserControls.MainWindow.Tabs;
 
-namespace SmartAssistant.Views.MainWindow
+namespace SmartAssistant.Windows.MainWindow
 {
     public class MainWindow : Window
     {
@@ -31,6 +31,21 @@ namespace SmartAssistant.Views.MainWindow
 
             STT.CCSTTF.ChangingTextSTTF += ChangeTextRequest;
 
+            Grid mainGrid = new Grid();
+
+            ColumnDefinition headingMenuColumnDefinition = new ColumnDefinition()
+            { Width = new GridLength(45, GridUnitType.Pixel) };
+            mainGrid.ColumnDefinitions.Add(headingMenuColumnDefinition);
+
+            ColumnDefinition leftMenuColumnDefinition = new ColumnDefinition()
+            { Width = new GridLength(220, GridUnitType.Pixel) };
+            mainGrid.ColumnDefinitions.Add(leftMenuColumnDefinition);
+
+            ColumnDefinition mainFieldColumnDefinition = new ColumnDefinition()
+            { Width = new GridLength(535, GridUnitType.Pixel) };
+            mainGrid.ColumnDefinitions.Add(mainFieldColumnDefinition);
+
+
             title = new TextBlock()
             {
                 Text = Title,
@@ -48,32 +63,12 @@ namespace SmartAssistant.Views.MainWindow
             Grid headingMenuGrid = new Grid();
             headingMenuGrid.Children.Add(title);
 
-
-            SettingsTab settings_Tab = new SettingsTab();
-
-
-            Grid mainGrid = new Grid();
-
-            ColumnDefinition headingMenuColumnDefinition = new ColumnDefinition()
-            { Width = new GridLength(45, GridUnitType.Pixel) };
-            mainGrid.ColumnDefinitions.Add(headingMenuColumnDefinition);
-
-            ColumnDefinition leftMenuColumnDefinition = new ColumnDefinition()
-            { Width = new GridLength(220, GridUnitType.Pixel) };
-            mainGrid.ColumnDefinitions.Add(leftMenuColumnDefinition);
-
-            ColumnDefinition mainFieldColumnDefinition = new ColumnDefinition()
-            { Width = new GridLength(535, GridUnitType.Pixel) };
-            mainGrid.ColumnDefinitions.Add(mainFieldColumnDefinition);
-
-
-            Content = mainGrid;
-
             Border headingMenuBorder = new Border();
             headingMenuBorder.Background = BackgroundDarkBrush;
             headingMenuBorder.CornerRadius = new CornerRadius(20);
             headingMenuBorder.Child = headingMenuGrid;
             Grid.SetColumn(headingMenuBorder, 0);
+
 
             Border leftMenuBorder = new Border();
             leftMenuBorder.Background = BackgroundMediumBrush;
@@ -81,16 +76,24 @@ namespace SmartAssistant.Views.MainWindow
             leftMenuBorder.Margin = new Thickness(-20, 0, 0, 0);
             Grid.SetColumn(leftMenuBorder, 1);
 
+
+            Grid mainFieldGrid = new Grid();
+            SettingsTab settings_Tab = new SettingsTab();
+            mainFieldGrid.Children.Add(settings_Tab);
+
             Border mainFieldBorder = new Border();
             mainFieldBorder.Background = BackgroundLightBrush;
             mainFieldBorder.CornerRadius = new CornerRadius(0, 20, 20, 0);
             mainFieldBorder.Margin = new Thickness(-20, 0, 0, 0);
-            mainFieldBorder.Child = settings_Tab;
+            mainFieldBorder.Child = mainFieldGrid;
             Grid.SetColumn(mainFieldBorder, 2);
+
 
             mainGrid.Children.Add(mainFieldBorder);
             mainGrid.Children.Add(leftMenuBorder);
             mainGrid.Children.Add(headingMenuBorder);
+
+            Content = mainGrid;
         }
 
         public void ChangeTextRequest(string text)
