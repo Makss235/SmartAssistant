@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Threading;
 using SmartAssistant.Views.MainWindow.Tabs;
 
 namespace SmartAssistant.Views.MainWindow
@@ -12,6 +13,8 @@ namespace SmartAssistant.Views.MainWindow
         public static SolidColorBrush BackgroundMediumBrush = new SolidColorBrush(Color.FromRgb(51, 146, 255));
         public static SolidColorBrush BackgroundDarkBrush = new SolidColorBrush(Color.FromRgb(0, 119, 255));
         public static SolidColorBrush ForegroundWhiteColor = new SolidColorBrush(Colors.White);
+
+        TextBlock title;
 
         public MainWindow()
         {
@@ -26,9 +29,9 @@ namespace SmartAssistant.Views.MainWindow
             Background = new SolidColorBrush(Colors.Transparent);
             AllowsTransparency = true;
 
+            STT.CCSTTF.ChangingTextSTTF += ChangeTextRequest;
 
-
-            TextBlock title = new TextBlock()
+            title = new TextBlock()
             {
                 Text = Title,
                 Foreground = ForegroundWhiteColor,
@@ -89,6 +92,11 @@ namespace SmartAssistant.Views.MainWindow
             mainGrid.Children.Add(mainFieldBorder);
             mainGrid.Children.Add(leftMenuBorder);
             mainGrid.Children.Add(headingMenuBorder);
+        }
+
+        public void ChangeTextRequest(string text)
+        {
+            Dispatcher.Invoke(() => title.Text = text);
         }
     }
 }

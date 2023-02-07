@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CCSTTF
+namespace STT
 {
     /// <summary>
     /// CCSTTF - catching changes STT (speech to text) file
@@ -31,13 +31,13 @@ namespace CCSTTF
         public CCSTTF()
         {
             STTF = "STTF.txt";
-            CCSTTF_Thread = new Thread(() => ChangeDateSTTF());
+            CCSTTF_Thread = new Thread(() => CChangeDateSTTF());
         }
 
         public void Start() => CCSTTF_Thread.Start();
         public void Stop() => CCSTTF_Thread.Abort();
 
-        public void ChangeDateSTTF()
+        public void CChangeDateSTTF()
         {
             DateTime currentWritingTime = File.GetLastWriteTime(STTF);
             DateTime previousWritingTime = File.GetLastWriteTime(STTF);
