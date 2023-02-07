@@ -3,7 +3,8 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Threading;
-using SmartAssistant.UserControls.MainWindow.Tabs;
+using SmartAssistant.UserControls.MainWindow;
+using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
 
 namespace SmartAssistant.Windows.MainWindow
 {
@@ -70,10 +71,15 @@ namespace SmartAssistant.Windows.MainWindow
             Grid.SetColumn(headingMenuBorder, 0);
 
 
+            Grid leftMenuGrid = new Grid();
+            MenuButtonUC menuButtonUC = new MenuButtonUC();
+            leftMenuGrid.Children.Add(menuButtonUC);
+
             Border leftMenuBorder = new Border();
             leftMenuBorder.Background = BackgroundMediumBrush;
             leftMenuBorder.CornerRadius = new CornerRadius(0, 20, 20, 0);
             leftMenuBorder.Margin = new Thickness(-20, 0, 0, 0);
+            leftMenuBorder.Child = leftMenuGrid;
             Grid.SetColumn(leftMenuBorder, 1);
 
 
