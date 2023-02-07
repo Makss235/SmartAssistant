@@ -6,23 +6,18 @@ namespace CCSTTF
     /// <summary>
     /// CCSTTF - catching changes STT (speech to text) file
     /// </summary>
-    public class CCSTTF : INotifyPropertyChanged
+    public class CCSTTF
     {
         private string STTF;
         private Thread CCSTTF_Thread;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public static Action<string> ChangingTextSTTF;
 
-        protected void OnPropertyChanged([CallerMemberName] string PropertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-        }
-
-        protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
+        protected bool SetProperty<T>(ref T field, T value)
         {
             if (Equals(field, value)) return false;
             field = value;
-            OnPropertyChanged(PropertyName);
+            ChangingTextSTTF?.Invoke(TextSTT);
             return true;
         }
 
@@ -69,13 +64,13 @@ namespace CCSTTF
             }
         }
 
-        public string OpenSTT(string STT)
+        public string OpenSTT(string STTF)
         {
             while (true)
             {
                 try
                 {
-                    return File.ReadAllText(STT);
+                    return File.ReadAllText(STTF);
                 }
                 catch (IOException)
                 {
