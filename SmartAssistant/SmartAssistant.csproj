@@ -14,7 +14,6 @@
   <ItemGroup>
     <Folder Include="Data\Localization\" />
     <Folder Include="Data\Settings\" />
-    <Folder Include="Data\Speech\" />
     <Folder Include="UserControls\MainWindow\Tabs\AboutTab\" />
   </ItemGroup>
 
