@@ -1,9 +1,15 @@
-﻿using System.Windows.Controls;
+﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace SmartAssistant.UserControls.MainWindow
 {
@@ -51,11 +57,34 @@ namespace SmartAssistant.UserControls.MainWindow
 
         #endregion
 
-        public MenuButtonUC(string title, bool isActive, byte id)
+        private List<Tab> tabsList;
+
+        public ICommand HandlerClickCommand;
+        private bool CanHandlerClickCommandExecute(object sender) => true;
+        private void OnHandlerClickCommandExecuted(object sender)
+        {
+            for (int i = 0; i < tabsList.Count; i++)
+            {
+                if (ID == tabsList[i].ID)
+                {
+                    tabsList[i].Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    tabsList[i].Visibility = Visibility.Hidden;
+                }
+            }
+        }
+
+        public MenuButtonUC(string title, bool isActive, byte id, List<Tab> tabsList)
         {
             Title = title;
             IsActive = isActive;
             ID = id;
+            this.tabsList = tabsList;
+            HandlerClickCommand = new LambdaCommand(
+                OnHandlerClickCommandExecuted, 
+                CanHandlerClickCommandExecute);
 
             TextBlock textBlock = new TextBlock()
             {
@@ -70,16 +99,19 @@ namespace SmartAssistant.UserControls.MainWindow
             };
             stackPanel.Children.Add(textBlock);
 
-            Button button = new Button() { Height = 45 };
+            Button button = new Button()
+            {
+                Height = 45,
+                Command = HandlerClickCommand
+            };
             IAddChild addChild = button;
             addChild.AddChild(stackPanel);
 
             
-
             Path path = new Path()
             {
                 Fill = Windows.MainWindow.MainWindow.BackgroundLightBrush,
-                Stretch = System.Windows.Media.Stretch.Fill
+                Stretch = System.Windows.Media.Stretch.Fill,
             };
 
             Grid grid = new Grid()

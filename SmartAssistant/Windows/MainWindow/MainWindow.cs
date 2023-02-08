@@ -1,10 +1,14 @@
-﻿using System.Windows;
+﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.UserControls.MainWindow;
+using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
+using SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using SmartAssistant.UserControls.MainWindow;
-using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
 
 namespace SmartAssistant.Windows.MainWindow
 {
@@ -15,10 +19,16 @@ namespace SmartAssistant.Windows.MainWindow
         public static SolidColorBrush BackgroundDarkBrush = new SolidColorBrush(Color.FromRgb(0, 119, 255));
         public static SolidColorBrush ForegroundWhiteColor = new SolidColorBrush(Colors.White);
 
-        TextBlock title;
+        private TextBlock title;
+        private List<Tab> tabsList;
 
         public MainWindow()
         {
+            tabsList = new List<Tab>();
+            MouseMoveCommand = new LambdaCommand(
+                OnMouseMoveCommandExecuted,
+                CanMouseMoveCommandExecute);
+
             Width = 800;
             Height = 500;
             Title = "Привет, Иван!";
@@ -64,10 +74,16 @@ namespace SmartAssistant.Windows.MainWindow
             Grid headingMenuGrid = new Grid();
             headingMenuGrid.Children.Add(title);
 
+            InputBinding MouseMoveIB = new InputBinding(MouseMoveCommand, new MouseGesture()
+            {
+                MouseAction = MouseAction.LeftClick
+            });
+
             Border headingMenuBorder = new Border();
             headingMenuBorder.Background = BackgroundDarkBrush;
             headingMenuBorder.CornerRadius = new CornerRadius(20);
             headingMenuBorder.Child = headingMenuGrid;
+            headingMenuBorder.InputBindings.Add(MouseMoveIB);
             Grid.SetColumn(headingMenuBorder, 0);
 
 
@@ -77,9 +93,11 @@ namespace SmartAssistant.Windows.MainWindow
                 Margin = new Thickness(0, 175, 0, 0)
             };
             MenuButtonUC vAChatMenuButton = new MenuButtonUC(
-                title: "Главная", isActive: true, id: 0);
+                title: "Главная", isActive: true, id: 0, 
+                tabsList: tabsList);
             MenuButtonUC settingsMenuButton = new MenuButtonUC(
-                title: "Настройки", isActive: false, id: 1);
+                title: "Настройки", isActive: false, id: 1,
+                tabsList: tabsList);
             menuButtonsStackPanel.Children.Add(vAChatMenuButton);
             menuButtonsStackPanel.Children.Add(settingsMenuButton);
 
@@ -95,8 +113,52 @@ namespace SmartAssistant.Windows.MainWindow
 
 
             Grid mainFieldGrid = new Grid();
-            SettingsTab settings_Tab = new SettingsTab();
-            mainFieldGrid.Children.Add(settings_Tab);
+            VAChatTab vAChatTab = new VAChatTab()
+            {
+                ID = 0,
+                Width = mainFieldColumnDefinition.Width.Value + 20,
+                Height = Height,
+                Visibility = Visibility.Visible
+            };
+            SettingsTab settingsTab = new SettingsTab()
+            {
+                ID = 1,
+                Width = mainFieldColumnDefinition.Width.Value + 20,
+                Height = Height,
+                Visibility = Visibility.Hidden
+            };
+
+            Button wrapProgramButton = new Button()
+            {
+                Content = "-",
+                VerticalAlignment = VerticalAlignment.Top,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Width = 40,
+                Height = 36,
+                Margin = new Thickness(0, 0, 40, 0),
+                BorderThickness = new Thickness(0, 0, 0, 0),
+                Command = new CloseApplicationCommand(),
+                CommandParameter = false
+            };
+
+            Button collapseProgramButton = new Button()
+            {
+                Content = "X",
+                VerticalAlignment = VerticalAlignment.Top,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Width = 40,
+                Height = 36,
+                BorderThickness = new Thickness(0, 0, 0, 0),
+                Command = new CloseApplicationCommand(),
+                CommandParameter = true
+            };
+
+            mainFieldGrid.Children.Add(vAChatTab);
+            tabsList.Add(vAChatTab);
+            mainFieldGrid.Children.Add(settingsTab);
+            tabsList.Add(settingsTab);
+            mainFieldGrid.Children.Add(collapseProgramButton);
+            mainFieldGrid.Children.Add(wrapProgramButton);
 
             Border mainFieldBorder = new Border();
             mainFieldBorder.Background = BackgroundLightBrush;
@@ -113,7 +175,14 @@ namespace SmartAssistant.Windows.MainWindow
             Content = mainGrid;
         }
 
-        public void ChangeTextRequest(string text)
+        public ICommand MouseMoveCommand { get; }
+        private bool CanMouseMoveCommandExecute(object sender) => true;
+        private void OnMouseMoveCommandExecuted(object sender)
+        {
+            DragMove();
+        }
+
+        private void ChangeTextRequest(string text)
         {
             Dispatcher.Invoke(() => title.Text = text);
         }

@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\" />
-    <Folder Include="Data\" />
-    <Folder Include="UserControls\MainWindow\Tabs\VAChatTab\" />
+    <Folder Include="Data\Localization\" />
+    <Folder Include="Data\Settings\" />
+    <Folder Include="Data\Speech\" />
     <Folder Include="UserControls\MainWindow\Tabs\AboutTab\" />
   </ItemGroup>
 

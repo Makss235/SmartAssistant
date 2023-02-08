@@ -1,11 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Windows;
-using System.Windows.Markup;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
-    public class SettingsTab : UserControl
+    public class SettingsTab : Tab
     {
         public SettingsTab()
         {
@@ -65,9 +65,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             Border mainBorder = new Border()
             {
-                Background = new SolidColorBrush(Colors.Transparent),
-                Width = 555,
-                Height = 500
+                Background = new SolidColorBrush(Colors.Transparent)
             };
             mainBorder.Child = mainGrid;
             Content = mainBorder;
