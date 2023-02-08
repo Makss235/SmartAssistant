@@ -71,9 +71,20 @@ namespace SmartAssistant.Windows.MainWindow
             Grid.SetColumn(headingMenuBorder, 0);
 
 
+            StackPanel menuButtonsStackPanel = new StackPanel()
+            {
+                Orientation = Orientation.Vertical,
+                Margin = new Thickness(0, 175, 0, 0)
+            };
+            MenuButtonUC vAChatMenuButton = new MenuButtonUC(
+                title: "Главная", isActive: true, id: 0);
+            MenuButtonUC settingsMenuButton = new MenuButtonUC(
+                title: "Настройки", isActive: false, id: 1);
+            menuButtonsStackPanel.Children.Add(vAChatMenuButton);
+            menuButtonsStackPanel.Children.Add(settingsMenuButton);
+
             Grid leftMenuGrid = new Grid();
-            MenuButtonUC menuButtonUC = new MenuButtonUC();
-            leftMenuGrid.Children.Add(menuButtonUC);
+            leftMenuGrid.Children.Add(menuButtonsStackPanel);
 
             Border leftMenuBorder = new Border();
             leftMenuBorder.Background = BackgroundMediumBrush;
