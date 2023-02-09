@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SmartAssistant.Data.Speech.JsonObjects
+namespace SmartAssistant.Data
 {
     public class ProgramNamesObj
     {
