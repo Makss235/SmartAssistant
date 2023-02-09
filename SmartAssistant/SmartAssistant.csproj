@@ -12,8 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Greetings\" />
     <Folder Include="Data\Localization\" />
+    <Folder Include="Data\Programs\" />
     <Folder Include="Data\Settings\" />
+    <Folder Include="Data\Sites\" />
+    <Folder Include="Data\Triggers\" />
+    <Folder Include="Data\Words\" />
     <Folder Include="UserControls\MainWindow\Tabs\AboutTab\" />
   </ItemGroup>
 

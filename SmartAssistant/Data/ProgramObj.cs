@@ -2,7 +2,7 @@
 
 namespace SmartAssistant.Data
 {
-    public class ProgramNamesObj
+    public class ProgramObj
     {
         public string Name { get; set; }
         public List<string> CallingName { get; set; }

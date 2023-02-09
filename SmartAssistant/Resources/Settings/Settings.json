@@ -1,0 +1,12 @@
+{
+    "Language": "Ru",
+    "MainWindow": {
+        "Size_MW": {
+            "Width": 800,
+            "Height": 500,
+            "MainFieldWidth": 535,
+            "BorderWidth": 45,
+            "LeftMenuWidth": 220
+        }
+    }
+}
