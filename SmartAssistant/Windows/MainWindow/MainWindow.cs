@@ -19,7 +19,7 @@ namespace SmartAssistant.Windows.MainWindow
         public static SolidColorBrush BackgroundDarkBrush = new SolidColorBrush(Color.FromRgb(0, 119, 255));
         public static SolidColorBrush ForegroundWhiteColor = new SolidColorBrush(Colors.White);
 
-        private TextBlock title;
+        public static TextBlock title;
         private List<Tab> tabsList;
 
         public MainWindow()
@@ -39,8 +39,6 @@ namespace SmartAssistant.Windows.MainWindow
             WindowStyle = WindowStyle.None;
             Background = new SolidColorBrush(Colors.Transparent);
             AllowsTransparency = true;
-
-            STT.CCSTTF.ChangingTextSTTFEvent += ChangeTextRequest;
 
             Grid mainGrid = new Grid();
 

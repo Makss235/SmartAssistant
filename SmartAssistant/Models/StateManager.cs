@@ -1,9 +1,13 @@
 ﻿using SmartAssistant.Data;
+using SmartAssistant.Windows.MainWindow;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 
 namespace SmartAssistant.Models
 {
-    public static class StateManager
+    public class StateManager
     {
         public enum AppSpeechStates
         {
@@ -18,19 +22,20 @@ namespace SmartAssistant.Models
         public static event Action<AppSpeechStates> SpeechStateChangedEvent;
         public static event Action SpeechStateVerifiedEvent;
 
+        private static AppSpeechStates _CurrentSpeechState = AppSpeechStates.Opened;
         public static AppSpeechStates CurrentSpeechState
         {
-            get => CurrentSpeechState;
+            get => _CurrentSpeechState;
             set
             {
-                CurrentSpeechState = value;
-                SpeechStateChangedEvent?.Invoke(CurrentSpeechState);
+                _CurrentSpeechState = value;
+                SpeechStateChangedEvent?.Invoke(_CurrentSpeechState);
             }
         }
 
         private static string text;
 
-        static StateManager()
+        public StateManager()
         {
             STT.CCSTTF.ChangingTextSTTFEvent += ChangingRequest;
         }
@@ -47,13 +52,64 @@ namespace SmartAssistant.Models
         private static void CheckStates()
         {
             var triggerWords = TriggerWords.TriggersObj;
-            var greetongWords = GreetingWords.GreetingsObj;
+            var greetingWords = GreetingWords.GreetingsObj;
 
             if (CurrentSpeechState == AppSpeechStates.PressedButton) 
                 SpeechStateVerifiedEvent?.Invoke();
             else if (CurrentSpeechState == AppSpeechStates.Opened)
             {
+                for (int i = 0; i < triggerWords.Count; i++)
+                {
+                    var fuzzyString = new FuzzyString.FuzzyString();
+                    if (fuzzyString.FuzzySentence(text, triggerWords[i]).Length
+                        == triggerWords[i].Length)
+                    {
+                        SpeechStateVerifiedEvent?.Invoke();
+                        break;
+                    }
+                }
+            }
+            else if (CurrentSpeechState == AppSpeechStates.Collapsed)
+            {
+                int quantity = 0;
+                for (int i = 0; i < triggerWords.Count; i++)
+                {
+                    var fuzzyString = new FuzzyString.FuzzyString();
+                    if (fuzzyString.FuzzySentence(text, triggerWords[i]).Length
+                        == triggerWords[i].Length)
+                    {
+                        quantity += triggerWords[i].Split(' ').Length;
+                        break;
+                    }
+                    else
+                    {
+                        if (i == triggerWords.Count - 1) return;
+                        else continue;
+                    }
+                }
+                for (int i = 0; i < greetingWords.Count; i++)
+                {
+                    var fuzzyString = new FuzzyString.FuzzyString();
+                    if (fuzzyString.FuzzySentence(text, greetingWords[i]).Length
+                        == greetingWords[i].Length)
+                    {
+                        quantity += greetingWords[i].Split(' ').Length;
+                        break;
+                    }
+                    else
+                    {
+                        if (i == greetingWords.Count - 1) return;
+                        else continue;
+                    }
+                }
 
+                //if (quantity == textRequest.Split(' ').Length)
+                //{
+                //    dataSpeech.TextAnswer = "Я Вас внимательно слушаю";
+                //    ServiceTTS.SpeechSynthesizer.SpeakAsync(dataSpeech.TextAnswer);
+                //}
+                //else
+                SpeechStateVerifiedEvent?.Invoke();
             }
         }
     }

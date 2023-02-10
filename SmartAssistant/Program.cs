@@ -17,6 +17,8 @@ namespace SmartAssistant
             //STT.CCSTTF cCSTTF = new STT.CCSTTF();
             //cCSTTF.Start();
 
+            //var a = new StateManager();
+
             Window mainWin = new MainWindow();
             mainWin.Show();
             Application app = new Application();
