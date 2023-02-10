@@ -1,7 +1,6 @@
-﻿using System.Text.Json;
-using System;
+﻿using System;
 using System.IO;
-using System.Collections.Generic;
+using System.Text.Json;
 
 namespace SmartAssistant.Data.Localization
 {
@@ -21,6 +20,8 @@ namespace SmartAssistant.Data.Localization
                 "SmartAssistant\\Resources\\Localization");
             fileName = $"Loc_{language.ToUpper()}.json";
             fullPathFileName = Path.Combine(localizationDirectory, fileName);
+
+            Deserialize();
         }
 
         public static void Deserialize()

@@ -1,50 +1,50 @@
 {
-    "Loc_MainWindow": {
-        "Loc_Title": "Привет, Иван!",
-        "Loc_Tabs": {
-            "Loc_VAChat_Tab": {
-                "Loc_LabelWriting": "Написать сообщение..."
+    "MainWindowLoc": {
+        "TitleLoc": "Привет, Иван!",
+        "TabsLoc": {
+            "VAChatTabLoc": {
+                "LabelWritingLoc": "Написать сообщение..."
             },
-            "Loc_Settings_Tab": {
-                "Loc_Title": "Настройки",
-                "Loc_OpenProgram": {
-                    "Loc_Title": "Открытие программ",
-                    "Loc_DataGrid": {
-                        "Loc_Name": "Название программы",
-                        "Loc_CallingName": "Как будете звать?",
-                        "Loc_Path": "Путь"
+            "SettingsTabLoc": {
+                "TitleLoc": "Настройки",
+                "OpenProgramLoc": {
+                    "TitleLoc": "Открытие программ",
+                    "DataGridLoc": {
+                        "NameLoc": "Название программы",
+                        "CallingNamesLoc": "Как будете звать?",
+                        "PathLoc": "Путь"
                     }
                 },
-                "Loc_Warning": "Редактировать настройки открытия программ в данной версии нельзя. В следующих версиях (патчах) добавится данная возможность."
+                "WarningLoc": "Редактировать настройки открытия программ в данной версии нельзя. В следующих версиях (патчах) добавится данная возможность."
             },
-            "Loc_AboutProgram_Tab": {
-                "Loc_Title": "О программе",
-                "Loc_NameProgram": "Название программы:",
-                "Loc_NameBuild": "Название сборки:",
-                "Loc_Version": "Версия:",
-                "Loc_Authors": {
-                    "Loc_Title": "Авторы:",
-                    "Loc_Makss": "Makss (Широков Максим),",
-                    "Loc_MrVeser": "Mr.Veser (Кузнецов Виктор),",
-                    "Loc_Floweny": "Floweny (Шестаков Кирилл)"
+            "AboutProgramTabLoc": {
+                "TitleLoc": "О программе",
+                "NameProgramLoc": "Название программы:",
+                "NameBuildLoc": "Название сборки:",
+                "VersionLoc": "Версия:",
+                "AuthorsLoc": {
+                    "TitleLoc": "Авторы:",
+                    "MakssLoc": "Makss (Широков Максим),",
+                    "MrVeserLoc": "Mr.Veser (Кузнецов Виктор),",
+                    "FlowenyLoc": "Floweny (Шестаков Кирилл)"
                 },
-                "Loc_DownloadLink": "Ссылка для скачивания:",
-                "Loc_GitHubLink": "Ссылка на репозиторий GitHub с исходным кодом программы появится вместе с бета-версией (февраль-март 2023г.)",
-                "Loc_Warning": "Программа находиться на стадии альфа-версии, поэтому большая часть функционала недоступна. С будущими обновлениями мы добавим новые фишки."
+                "DownloadLinkLoc": "Ссылка для скачивания:",
+                "GitHubLinkLoc": "Ссылка на репозиторий GitHub с исходным кодом программы появится вместе с бета-версией (февраль-март 2023г.)",
+                "WarningLoc": "Программа находиться на стадии альфа-версии, поэтому большая часть функционала недоступна. С будущими обновлениями мы добавим новые фишки."
             }
         },
-        "Loc_MenuButtons": {
-            "Loc_VAChat_ButtonTitle": "Главная",
-            "Loc_Settings_ButtonTitle": "Настройки",
-            "Loc_AboutProgram_ButtonTitle": "О программе"
+        "MenuButtonsLoc": {
+            "VAChatButtonTitleLoc": "Главная",
+            "SettingsButtonTitleLoc": "Настройки",
+            "AboutProgramButtonTitleLoc": "О программе"
         }
     },
-    "Loc_TrayMenu": {
-        "Loc_Text": "Скажите \"Привет, Иван!\"",
-        "Loc_State": {
-            "Loc_Show": "Показать",
-            "Loc_Hide": "Скрыть"
+    "TrayMenuLoc": {
+        "TextLoc": "Скажите \"Привет, Иван!\"",
+        "StateLoc": {
+            "ShowLoc": "Показать",
+            "HideLoc": "Скрыть"
         },
-        "Loc_Close": "Закрыть"
+        "CloseLoc": "Закрыть"
     }
 }

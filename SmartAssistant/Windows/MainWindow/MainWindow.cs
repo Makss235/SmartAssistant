@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Infrastructure.Commands;
+﻿using SmartAssistant.Data.Localization;
+using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.UserControls.MainWindow;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
@@ -31,7 +32,7 @@ namespace SmartAssistant.Windows.MainWindow
 
             Width = 800;
             Height = 500;
-            Title = "Привет, Иван!";
+            Title = Localize.LocObj.MainWindowLoc.TitleLoc;
 
             ResizeMode = ResizeMode.NoResize;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;

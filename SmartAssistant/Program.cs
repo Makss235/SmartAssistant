@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Data;
+using SmartAssistant.Data.Localization;
 using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
@@ -11,6 +12,7 @@ namespace SmartAssistant
         static void Main(string[] args)
         {
             TriggerWords.Init("ru");
+            Localize.Init("ru");
 
             //STT.STT sTT = new STT.STT("ru");
             //sTT.Start();
