@@ -7,8 +7,13 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 {
     public class VAChatTab : Tab
     {
-        public VAChatTab()
+        public VAChatTab(byte id, double width, double height, Visibility visibility)
         {
+            ID = id;
+            Width = width;
+            Height = height;
+            Visibility = visibility;
+
             TextBlock textBlock = new TextBlock();
             textBlock.Text = "jjjjjjjjjjj";
             textBlock.FontSize = 20;

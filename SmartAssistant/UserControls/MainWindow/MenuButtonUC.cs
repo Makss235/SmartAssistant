@@ -1,5 +1,7 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using SmartAssistant.Windows;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -55,31 +57,32 @@ namespace SmartAssistant.UserControls.MainWindow
 
         #endregion
 
-        private List<Tab> tabsList;
+        public static event Action<byte> MenuButtonPressedEvent;
 
         public ICommand HandlerClickCommand;
         private bool CanHandlerClickCommandExecute(object sender) => true;
         private void OnHandlerClickCommandExecuted(object sender)
         {
-            for (int i = 0; i < tabsList.Count; i++)
-            {
-                if (ID == tabsList[i].ID)
-                {
-                    tabsList[i].Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    tabsList[i].Visibility = Visibility.Hidden;
-                }
-            }
+            MenuButtonPressedEvent.Invoke(ID);
+
+            //for (int i = 0; i < tabsList.Count; i++)
+            //{
+            //    if (ID == tabsList[i].ID)
+            //    {
+            //        tabsList[i].Visibility = Visibility.Visible;
+            //    }
+            //    else
+            //    {
+            //        tabsList[i].Visibility = Visibility.Hidden;
+            //    }
+            //}
         }
 
-        public MenuButtonUC(string title, bool isActive, byte id, List<Tab> tabsList)
+        public MenuButtonUC(string title, bool isActive, byte id)
         {
             Title = title;
             IsActive = isActive;
             ID = id;
-            this.tabsList = tabsList;
             HandlerClickCommand = new LambdaCommand(
                 OnHandlerClickCommandExecuted, 
                 CanHandlerClickCommandExecute);
@@ -108,7 +111,7 @@ namespace SmartAssistant.UserControls.MainWindow
             
             Path path = new Path()
             {
-                Fill = Windows.MainWindow.MainWindow.BackgroundLightBrush,
+                Fill = BasicColors.BackgroundLightBrush,
                 Stretch = System.Windows.Media.Stretch.Fill,
             };
 

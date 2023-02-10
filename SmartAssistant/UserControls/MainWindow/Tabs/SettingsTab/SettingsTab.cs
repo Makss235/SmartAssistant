@@ -7,8 +7,13 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
     public class SettingsTab : Tab
     {
-        public SettingsTab()
+        public SettingsTab(byte id, double width, double height, Visibility visibility)
         {
+            ID = id;
+            Width = width;
+            Height = height;
+            Visibility = visibility;
+
             TextBlock title = new TextBlock()
             {
                 Text = "Настройки",
@@ -18,7 +23,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            TextBlock titleProgram = new TextBlock()
+            TextBlock titlePrograms = new TextBlock()
             {
                 Text = "Программы",
                 FontFamily = new FontFamily("Segoe UI Semibold"),
@@ -41,7 +46,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             {
                 Orientation = Orientation.Vertical
             };
-            stackPanel1.Children.Add(titleProgram);
+            stackPanel1.Children.Add(titlePrograms);
             stackPanel1.Children.Add(programDataGrid);
 
             StackPanel stackPanel = new StackPanel()
