@@ -1,8 +1,8 @@
 {
   "DataDictionaries": {
     "DataWeather": {
-      "какая погода": "Weather/Какая_погода",
-      "сколько градусов": "Weather/Сколько_градусов"
+      "какая погода": "Weather/WhatKindWeather",
+      "сколько градусов": "Weather/HowManyDegrees"
     },
 
     "DataOpenProgram": {
@@ -60,7 +60,7 @@
     },
 
     "Weather": {
-      "Какая_погода": {
+      "WhatKindWeather": {
         "Parameters": {
           "MethodName": "Weather",
           "Args": [
@@ -98,12 +98,12 @@
       }
     },
 
-    "OpenProgram": {
-      "Открой_программу": {
+    "Programs": {
+      "OpenProgram": {
         "Parameters": {
-          "MethodName": "OpenProgram",
+          "MethodName": "Programs",
           "Args": [
-            "null"
+            "OpenProgram"
           ]
         },
         "Answers": {
