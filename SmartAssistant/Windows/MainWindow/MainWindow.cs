@@ -40,7 +40,7 @@ namespace SmartAssistant.Windows.MainWindow
             Background = new SolidColorBrush(Colors.Transparent);
             AllowsTransparency = true;
 
-            STT.CCSTTF.ChangingTextSTTF += ChangeTextRequest;
+            STT.CCSTTF.ChangingTextSTTFEvent += ChangeTextRequest;
 
             Grid mainGrid = new Grid();
 

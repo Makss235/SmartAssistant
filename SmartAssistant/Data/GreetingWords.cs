@@ -6,14 +6,14 @@ using System;
 
 namespace SmartAssistant.Data
 {
-    public static class Greetings
+    public static class GreetingWords
     {
         private static string language;
         private static string jsonsDirectory;
         private static string fileName;
         private static string fullPathFileName;
 
-        public static List<string> GreetingsObjs { get; set; }
+        public static List<string> GreetingsObj { get; set; }
 
         public static void Init(string Language)
         {
@@ -29,10 +29,10 @@ namespace SmartAssistant.Data
         public static void Deserialize()
         {
             string allTextFronJson = File.ReadAllText(fullPathFileName);
-            GreetingsObjs = JsonSerializer.Deserialize<List<string>>(allTextFronJson);
+            GreetingsObj = JsonSerializer.Deserialize<List<string>>(allTextFronJson);
         }
 
-        public static async void Serialize(List<string> greetingsObjs = null)
+        public static async void Serialize(List<string> greetingsObj = null)
         {
             File.WriteAllText(fullPathFileName, string.Empty);
             using (FileStream fs = new FileStream(fullPathFileName, FileMode.OpenOrCreate))
@@ -43,14 +43,14 @@ namespace SmartAssistant.Data
                     WriteIndented = true
                 };
 
-                if (greetingsObjs == null)
+                if (greetingsObj == null)
                 {
-                    if (GreetingsObjs != null)
-                        greetingsObjs = GreetingsObjs;
+                    if (GreetingsObj != null)
+                        greetingsObj = GreetingsObj;
                     else
                         throw new Exception();
                 }
-                await JsonSerializer.SerializeAsync(fs, greetingsObjs, options);
+                await JsonSerializer.SerializeAsync(fs, greetingsObj, options);
             }
         }
     }

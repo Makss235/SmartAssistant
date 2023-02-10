@@ -11,13 +11,13 @@ namespace STT
         private string STTF;
         private Thread CCSTTF_Thread;
 
-        public static Action<string> ChangingTextSTTF;
+        public static Action<string> ChangingTextSTTFEvent;
 
         protected bool SetProperty<T>(ref T field, T value)
         {
             if (Equals(field, value)) return false;
             field = value;
-            ChangingTextSTTF?.Invoke(TextSTT);
+            ChangingTextSTTFEvent?.Invoke(TextSTT);
             return true;
         }
 

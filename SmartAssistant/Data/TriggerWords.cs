@@ -6,14 +6,14 @@ using System;
 
 namespace SmartAssistant.Data
 {
-    public static class Triggers
+    public static class TriggerWords
     {
         private static string language;
         private static string jsonsDirectory;
         private static string fileName;
         private static string fullPathFileName;
 
-        public static List<string> TriggersObjs { get; set; }
+        public static List<string> TriggersObj { get; set; }
 
         public static void Init(string Language)
         {
@@ -29,10 +29,10 @@ namespace SmartAssistant.Data
         public static void Deserialize()
         {
             string allTextFronJson = File.ReadAllText(fullPathFileName);
-            TriggersObjs = JsonSerializer.Deserialize<List<string>>(allTextFronJson);
+            TriggersObj = JsonSerializer.Deserialize<List<string>>(allTextFronJson);
         }
 
-        public static async void Serialize(List<string> triggersObjs = null)
+        public static async void Serialize(List<string> triggersObj = null)
         {
             File.WriteAllText(fullPathFileName, string.Empty);
             using (FileStream fs = new FileStream(fullPathFileName, FileMode.OpenOrCreate))
@@ -43,14 +43,14 @@ namespace SmartAssistant.Data
                     WriteIndented = true
                 };
 
-                if (triggersObjs == null)
+                if (triggersObj == null)
                 {
-                    if (TriggersObjs != null)
-                        triggersObjs = TriggersObjs;
+                    if (TriggersObj != null)
+                        triggersObj = TriggersObj;
                     else
                         throw new Exception();
                 }
-                await JsonSerializer.SerializeAsync(fs, triggersObjs, options);
+                await JsonSerializer.SerializeAsync(fs, triggersObj, options);
             }
         }
     }

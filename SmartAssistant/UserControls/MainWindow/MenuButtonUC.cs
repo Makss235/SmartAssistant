@@ -1,9 +1,7 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
