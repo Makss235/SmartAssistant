@@ -12,6 +12,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
     {
         private ObservableCollection<MessageChat> messagesChat { get; set; }
         private TextBox typingMessageTextBox;
+        private ScrollViewer scrollViewer;
 
         private ICommand SendMessageByMeCommand { get; }
         private bool CanSendMessageByMeCommandExecute(object sender) => true;
@@ -22,6 +23,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 messagesChat.Add(new MessageChat(HorizontalAlignment.Right, typingMessageTextBox.Text));
                 typingMessageTextBox.Text = string.Empty;
                 typingMessageTextBox.Focus();
+                scrollViewer.ScrollToEnd();
             }
         }
 
@@ -42,10 +44,14 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 
             messagesChat = new ObservableCollection<MessageChat>();
 
-            ItemsControl itemsControl = new ItemsControl();
+            ItemsControl itemsControl = new ItemsControl()
+            {
+                Margin = new Thickness(10, 0, 10, 0),
+                FontFamily = new FontFamily("Segoe UI Semibold")
+            };
             itemsControl.ItemsSource = messagesChat;
 
-            ScrollViewer scrollViewer = new ScrollViewer()
+            scrollViewer = new ScrollViewer()
             {
                 Margin = new Thickness(0, 40, 0, 100),
             };
