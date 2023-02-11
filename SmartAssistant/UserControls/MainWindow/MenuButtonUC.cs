@@ -78,23 +78,25 @@ namespace SmartAssistant.UserControls.MainWindow
             TextBlock textBlock = new TextBlock()
             {
                 Text = Title,
-                Width = 175,
-                Height = 100
+                //Width = 175,
+                //Height = 100
             };
 
-            StackPanel stackPanel = new StackPanel()
-            {
-                Orientation = Orientation.Horizontal
-            };
-            stackPanel.Children.Add(textBlock);
+            //StackPanel stackPanel = new StackPanel()
+            //{
+            //    Orientation = Orientation.Horizontal
+            //};
+            //stackPanel.Children.Add(textBlock);
 
+            MenuButtonStyle menuButtonStyle = new MenuButtonStyle();
             Button button = new Button()
             {
                 Height = 45,
-                Command = HandlerClickCommand
+                Command = HandlerClickCommand,
+                Style = menuButtonStyle
             };
             IAddChild addChild = button;
-            addChild.AddChild(stackPanel);
+            addChild.AddChild(textBlock);
 
             
             Path path = new Path()
