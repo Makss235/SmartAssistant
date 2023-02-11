@@ -64,18 +64,6 @@ namespace SmartAssistant.UserControls.MainWindow
         private void OnHandlerClickCommandExecuted(object sender)
         {
             MenuButtonPressedEvent.Invoke(ID);
-
-            //for (int i = 0; i < tabsList.Count; i++)
-            //{
-            //    if (ID == tabsList[i].ID)
-            //    {
-            //        tabsList[i].Visibility = Visibility.Visible;
-            //    }
-            //    else
-            //    {
-            //        tabsList[i].Visibility = Visibility.Hidden;
-            //    }
-            //}
         }
 
         public MenuButtonUC(string title, bool isActive, byte id)

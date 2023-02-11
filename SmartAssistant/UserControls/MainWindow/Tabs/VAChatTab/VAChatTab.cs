@@ -1,12 +1,30 @@
-﻿using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 {
     public class VAChatTab : Tab
     {
+        private ObservableCollection<MessageChat> messagesChat { get; set; }
+        private TextBox typingMessageTextBox;
+
+        private ICommand SendMessageByMeCommand { get; }
+        private bool CanSendMessageByMeCommandExecute(object sender) => true;
+        private void OnSendMessageByMeCommandExecuted(object sender)
+        {
+            if (typingMessageTextBox.Text != string.Empty)
+            {
+                messagesChat.Add(new MessageChat(HorizontalAlignment.Right, typingMessageTextBox.Text));
+                typingMessageTextBox.Text = string.Empty;
+                typingMessageTextBox.Focus();
+            }
+        }
+
         public VAChatTab(byte id, double width, double height, Visibility visibility)
         {
             ID = id;
@@ -14,12 +32,26 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             Height = height;
             Visibility = visibility;
 
+            SendMessageByMeCommand = new LambdaCommand(
+                OnSendMessageByMeCommandExecuted,
+                CanSendMessageByMeCommandExecute);
+
+            InputBinding sendMessageEnter = new InputBinding(SendMessageByMeCommand,
+                new KeyGesture(Key.Enter));
+            InputBindings.Add(sendMessageEnter);
+
+            messagesChat = new ObservableCollection<MessageChat>();
+
+            ItemsControl itemsControl = new ItemsControl();
+            itemsControl.ItemsSource = messagesChat;
+
             ScrollViewer scrollViewer = new ScrollViewer()
             {
                 Margin = new Thickness(0, 40, 0, 100),
             };
+            scrollViewer.Content = itemsControl;
 
-            TextBox typingMessageTextBox = new TextBox()
+            typingMessageTextBox = new TextBox()
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -32,6 +64,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Width = Width - 150,
                 Height = 50
             };
+            typingMessageTextBox.Focus();
 
             Button sendMessageButton = new Button()
             {
@@ -41,7 +74,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Width = 50,
                 Margin = new Thickness(20, 20, 30, 20),
                 BorderBrush = new SolidColorBrush(Colors.Black),
-                BorderThickness = new Thickness(1)
+                BorderThickness = new Thickness(1),
+                Command = SendMessageByMeCommand
             };
 
             Grid mainGrid = new Grid()
