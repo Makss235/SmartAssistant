@@ -1,4 +1,5 @@
-﻿using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+﻿using SmartAssistant.Data.Localization;
+using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -16,7 +17,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             TextBlock title = new TextBlock()
             {
-                Text = "Настройки",
+                Text = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 20,
                 Margin = new Thickness(0, 10, 0, 0),
@@ -25,7 +26,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             TextBlock titlePrograms = new TextBlock()
             {
-                Text = "Программы",
+                Text = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 16,
                 Margin = new Thickness(20, 10, 0, 10),

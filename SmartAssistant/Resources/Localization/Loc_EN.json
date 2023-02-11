@@ -1,0 +1,50 @@
+{
+    "MainWindowLoc": {
+        "TitleLoc": "Hello, Ivan!",
+        "TabsLoc": {
+            "VAChatTabLoc": {
+                "LabelWritingLoc": "Type message..."
+            },
+            "SettingsTabLoc": {
+                "TitleLoc": "Settings",
+                "OpenProgramLoc": {
+                    "TitleLoc": "Opening programs",
+                    "DataGridLoc": {
+                        "NameLoc": "Program name",
+                        "CallingNameLoc": "How to call program?",
+                        "PathLoc": "Path"
+                    }
+                },
+                "WarningLoc": "You cannot edit the settings for opening programs in this version. In future versions (patches) this feature will be added."
+            },
+            "AboutProgramTabLoc": {
+                "TitleLoc": "About programm",
+                "NameProgramLoc": "Programm name:",
+                "NameBuildLoc": "Build name:",
+                "VersionLoc": "Version:",
+                "AuthorsLoc": {
+                    "TitleLoc": "Authors:",
+                    "MakssLoc": "Makss (Shirokov Maksim),",
+                    "MrVeserLoc": "Mr.Veser (Kuznetsov Viktor),",
+                    "FlowenyLoc": "Floweny (Shestakov Kirill)"
+                },
+                "DownloadLinkLoc": "Download link:",
+                "GitHubLinkLoc": "A link to the GitHub repository with the source code of the program will appear along with the beta version (February-March 2023)",
+                "WarningLoc": "The program is at the alpha stage, so most of the functionality is not available. With future updates we will add new features."
+            }
+        },
+        "MenuButtonsLoc": {
+            "VAChatButtonLoc": "Main",
+            "SettingsButtonLoc": "Settings",
+            "AboutProgramButtonLoc": "About program"
+        }
+    },
+    "TrayMenuLoc": {
+        "TextLoc": "Say \"Hello, Ivan!\"",
+        "StateLoc": {
+            "ShowLoc": "Show",
+            "HideLoc": "Hide"
+        },
+        "CloseLoc": "Close"
+    }
+}

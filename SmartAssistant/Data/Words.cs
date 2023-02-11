@@ -16,8 +16,7 @@ namespace SmartAssistant.Data
         private static string fileName;
         private static string fullPathFileName;
 
-        public static WordsObj WordsObj { get; set; }
-        public static MultiAnswersObj MultiAnswersObj { get; set; }
+        public static List<WordsObj> WordsObjs { get; set; }
 
         public static void Init(string Language)
         {
@@ -33,12 +32,10 @@ namespace SmartAssistant.Data
         public static void Deserialize()
         {
             string allTextFronJson = File.ReadAllText(fullPathFileName);
-            WordsObj = JsonSerializer.Deserialize<WordsObj>(allTextFronJson);
-            MultiAnswersObj = JsonSerializer.Deserialize<MultiAnswersObj>(
-                WordsObj.Data["MultiAnswers"].ToString());
+            WordsObjs = JsonSerializer.Deserialize<List<WordsObj>>(allTextFronJson);
         }
 
-        public static async void Serialize(WordsObj wordsObj = null)
+        public static async void Serialize(List<WordsObj> wordsObjs = null)
         {
             File.WriteAllText(fullPathFileName, string.Empty);
             using (FileStream fs = new FileStream(fullPathFileName, FileMode.OpenOrCreate))
@@ -49,14 +46,14 @@ namespace SmartAssistant.Data
                     WriteIndented = true
                 };
 
-                if (wordsObj == null)
+                if (wordsObjs == null)
                 {
-                    if (WordsObj != null)
-                        wordsObj = WordsObj;
+                    if (WordsObjs != null)
+                        wordsObjs = WordsObjs;
                     else
                         throw new Exception();
                 }
-                await JsonSerializer.SerializeAsync(fs, wordsObj, options);
+                await JsonSerializer.SerializeAsync(fs, wordsObjs, options);
             }
         }
     }

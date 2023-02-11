@@ -1,6 +1,10 @@
 ﻿namespace SmartAssistant.Models.Skills
 {
-    internal class Programs
+    public class Programs
     {
+        public bool OpenProgram()
+        {
+            return true;
+        }
     }
 }

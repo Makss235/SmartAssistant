@@ -20,7 +20,7 @@ namespace SmartAssistant.Models
         }
 
         public static event Action<AppSpeechStates> SpeechStateChangedEvent;
-        public static event Action SpeechStateVerifiedEvent;
+        public static event Action<string> SpeechStateVerifiedEvent;
 
         private static AppSpeechStates _CurrentSpeechState = AppSpeechStates.Opened;
         public static AppSpeechStates CurrentSpeechState
@@ -55,7 +55,7 @@ namespace SmartAssistant.Models
             var greetingWords = GreetingWords.GreetingsObj;
 
             if (CurrentSpeechState == AppSpeechStates.PressedButton) 
-                SpeechStateVerifiedEvent?.Invoke();
+                SpeechStateVerifiedEvent?.Invoke(text);
             else if (CurrentSpeechState == AppSpeechStates.Opened)
             {
                 for (int i = 0; i < triggerWords.Count; i++)
@@ -64,7 +64,7 @@ namespace SmartAssistant.Models
                     if (fuzzyString.FuzzySentence(text, triggerWords[i]).Length
                         == triggerWords[i].Length)
                     {
-                        SpeechStateVerifiedEvent?.Invoke();
+                        SpeechStateVerifiedEvent?.Invoke(text);
                         break;
                     }
                 }
@@ -109,7 +109,7 @@ namespace SmartAssistant.Models
                 //    ServiceTTS.SpeechSynthesizer.SpeakAsync(dataSpeech.TextAnswer);
                 //}
                 //else
-                SpeechStateVerifiedEvent?.Invoke();
+                SpeechStateVerifiedEvent?.Invoke(text);
             }
         }
     }
