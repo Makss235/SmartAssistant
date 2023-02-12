@@ -1,4 +1,4 @@
-﻿namespace SmartAssistant.Data.Localization
+﻿namespace SmartAssistant.Data.LocalizationData
 {
     public class LocObj
     {

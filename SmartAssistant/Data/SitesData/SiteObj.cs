@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SmartAssistant.Data
+namespace SmartAssistant.Data.SitesData
 {
     public class SiteObj
     {

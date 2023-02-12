@@ -1,25 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
-namespace SmartAssistant.Data
+namespace SmartAssistant.Data.WordsData
 {
-    public static class MultiAnswers
+    public static class Words
     {
         private static string language;
         private static string jsonsDirectory;
         private static string fileName;
         private static string fullPathFileName;
 
-        public static MultiAnswersObj MultiAnswersObj { get; set; }
+        public static List<WordsObj> WordsObjs { get; set; }
 
         public static void Init(string Language)
         {
             language = Language;
             jsonsDirectory = Path.Combine(string.Format($"c:\\users\\{Environment.UserName}\\"),
-                "SmartAssistant\\Resources\\MultiAnswers");
-            fileName = $"MultiAnswers_{language.ToUpper()}.json";
+                "SmartAssistant\\Resources\\Words");
+            fileName = $"Words_{language.ToUpper()}.json";
             fullPathFileName = Path.Combine(jsonsDirectory, fileName);
 
             Deserialize();
@@ -28,10 +29,10 @@ namespace SmartAssistant.Data
         public static void Deserialize()
         {
             string allTextFronJson = File.ReadAllText(fullPathFileName);
-            MultiAnswersObj = JsonSerializer.Deserialize<MultiAnswersObj>(allTextFronJson);
+            WordsObjs = JsonSerializer.Deserialize<List<WordsObj>>(allTextFronJson);
         }
 
-        public static async void Serialize(MultiAnswersObj multiAnswersObj = null)
+        public static async void Serialize(List<WordsObj> wordsObjs = null)
         {
             File.WriteAllText(fullPathFileName, string.Empty);
             using (FileStream fs = new FileStream(fullPathFileName, FileMode.OpenOrCreate))
@@ -42,14 +43,14 @@ namespace SmartAssistant.Data
                     WriteIndented = true
                 };
 
-                if (multiAnswersObj == null)
+                if (wordsObjs == null)
                 {
-                    if (MultiAnswersObj != null)
-                        multiAnswersObj = MultiAnswersObj;
+                    if (WordsObjs != null)
+                        wordsObjs = WordsObjs;
                     else
                         throw new Exception();
                 }
-                await JsonSerializer.SerializeAsync(fs, multiAnswersObj, options);
+                await JsonSerializer.SerializeAsync(fs, wordsObjs, options);
             }
         }
     }

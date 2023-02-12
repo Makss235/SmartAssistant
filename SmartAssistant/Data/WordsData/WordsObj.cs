@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SmartAssistant.Data
+namespace SmartAssistant.Data.WordsData
 {
     public class WordsObj
     {

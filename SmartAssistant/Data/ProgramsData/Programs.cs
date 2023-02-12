@@ -4,23 +4,23 @@ using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
-namespace SmartAssistant.Data
+namespace SmartAssistant.Data.ProgramsData
 {
-    public static class Sites
+    public static class Programs
     {
         private static string language;
         private static string jsonsDirectory;
         private static string fileName;
         private static string fullPathFileName;
 
-        public static List<SiteObj> SiteObjs { get; set; }
+        public static List<ProgramObj> ProgramObjs { get; set; }
 
         public static void Init(string Language)
         {
             language = Language;
             jsonsDirectory = Path.Combine(string.Format($"c:\\users\\{Environment.UserName}\\"),
-                "SmartAssistant\\Resources\\Sites");
-            fileName = $"Sites_{language.ToUpper()}.json";
+                "SmartAssistant\\Resources\\Programs");
+            fileName = $"Programs_{language.ToUpper()}.json";
             fullPathFileName = Path.Combine(jsonsDirectory, fileName);
 
             Deserialize();
@@ -29,10 +29,10 @@ namespace SmartAssistant.Data
         public static void Deserialize()
         {
             string allTextFronJson = File.ReadAllText(fullPathFileName);
-            SiteObjs = JsonSerializer.Deserialize<List<SiteObj>>(allTextFronJson);
+            ProgramObjs = JsonSerializer.Deserialize<List<ProgramObj>>(allTextFronJson);
         }
 
-        public static async void Serialize(List<SiteObj> siteObjs = null)
+        public static async void Serialize(List<ProgramObj> programObjs = null)
         {
             File.WriteAllText(fullPathFileName, string.Empty);
             using (FileStream fs = new FileStream(fullPathFileName, FileMode.OpenOrCreate))
@@ -43,14 +43,14 @@ namespace SmartAssistant.Data
                     WriteIndented = true
                 };
 
-                if (siteObjs == null)
+                if (programObjs == null)
                 {
-                    if (SiteObjs != null)
-                        siteObjs = SiteObjs;
+                    if (ProgramObjs != null)
+                        programObjs = ProgramObjs;
                     else
                         throw new Exception();
                 }
-                await JsonSerializer.SerializeAsync(fs, siteObjs, options);
+                await JsonSerializer.SerializeAsync(fs, programObjs, options);
             }
         }
     }

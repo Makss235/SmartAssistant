@@ -1,5 +1,5 @@
-﻿using SmartAssistant.Data;
-using SmartAssistant.Data.Localization;
+﻿using SmartAssistant.Data.LocalizationData;
+using SmartAssistant.Data.ProgramsData;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Collections.ObjectModel;
 using System.Windows;

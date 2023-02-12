@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text.Json;
 
-namespace SmartAssistant.Data.Localization
+namespace SmartAssistant.Data.LocalizationData
 {
     public static class Localize
     {

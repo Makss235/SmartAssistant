@@ -1,4 +1,4 @@
-﻿using SmartAssistant.Data.Localization;
+﻿using SmartAssistant.Data.LocalizationData;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

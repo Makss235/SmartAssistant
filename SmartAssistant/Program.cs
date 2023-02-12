@@ -1,6 +1,8 @@
-﻿using SmartAssistant.Data;
-using SmartAssistant.Data.Localization;
-using SmartAssistant.Infrastructure.Commands;
+﻿using SmartAssistant.Data.LocalizationData;
+using SmartAssistant.Data.MultiAnswersData;
+using SmartAssistant.Data.ProgramsData;
+using SmartAssistant.Data.WordsData;
+using SmartAssistant.Data.TriggersData;
 using SmartAssistant.Models;
 using SmartAssistant.Windows.MainWindow;
 using System;
@@ -19,12 +21,12 @@ namespace SmartAssistant
             Programs.Init("ru");
             MultiAnswers.Init("ru");
 
-            STT.STT sTT = new STT.STT("ru");
-            sTT.Start();
-            CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
-            STT.CCSTTF cCSTTF = new STT.CCSTTF();
-            cCSTTF.Start();
-            CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
+            //STT.STT sTT = new STT.STT("ru");
+            //sTT.Start();
+            //CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
+            //STT.CCSTTF cCSTTF = new STT.CCSTTF();
+            //cCSTTF.Start();
+            //CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
 
             StateManager.Initialize();
             SkillManager.Initialize();

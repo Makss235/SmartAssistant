@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Data;
+﻿using SmartAssistant.Data.MultiAnswersData;
+using SmartAssistant.Data.WordsData;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -64,7 +65,6 @@ namespace SmartAssistant.Models
                     var negativeAnswers = MultiAnswers.MultiAnswersObj.Negative;
                     string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
                     AnswerChangedEvent?.Invoke(resultNegativeAnswer);
-                    MessageBox.Show(resultNegativeAnswer);
                     return;
                 }
             } 
@@ -72,7 +72,6 @@ namespace SmartAssistant.Models
             var positiveAnswers = MultiAnswers.MultiAnswersObj.Positive;
             string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
             AnswerChangedEvent?.Invoke(resultPositiveAnswer);
-            MessageBox.Show(resultPositiveAnswer);
         }
 
         private static void DefineAnswerAndCallingSkill(WordsObj wordsObj, string text)
@@ -83,14 +82,12 @@ namespace SmartAssistant.Models
                 var positiveAnswers = wordsObj.Answers.Positive;
                 string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
                 AnswerChangedEvent?.Invoke(resultPositiveAnswer);
-                MessageBox.Show(resultPositiveAnswer);
             }
             else
             {
                 var negativeAnswers = wordsObj.Answers.Negative;
                 string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
                 AnswerChangedEvent?.Invoke(resultNegativeAnswer);
-                MessageBox.Show(resultNegativeAnswer);
             }
         }
 

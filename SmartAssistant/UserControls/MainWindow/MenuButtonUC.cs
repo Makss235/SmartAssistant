@@ -76,9 +76,7 @@ namespace SmartAssistant.UserControls.MainWindow
 
             TextBlock textBlock = new TextBlock()
             {
-                Text = Title,
-                //Width = 200,
-                //Height = 100
+                Text = Title
             };
 
             StackPanel stackPanel = new StackPanel()
