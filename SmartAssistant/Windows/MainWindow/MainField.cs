@@ -35,7 +35,7 @@ namespace SmartAssistant.Windows.MainWindow
 
             Button collapseProgramButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(20, 0, 0, BasicColors.BackgroundDarkBrush),
+                Style = new WarpAndCollapseProgramButtonStyle(20, 0, 0, BasicColors.RedBrush),
                 Content = "X",
                 Command = new CloseApplicationCommand(),
                 CommandParameter = true

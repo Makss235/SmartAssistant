@@ -1,13 +1,7 @@
 ﻿using SmartAssistant.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 
 namespace SmartAssistant
 {
@@ -20,9 +14,9 @@ namespace SmartAssistant
             contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
-            borderFactory.SetBinding(Border.BackgroundProperty, new Binding 
-            { 
-                RelativeSource = RelativeSource.TemplatedParent, Path = new PropertyPath("Background") 
+            borderFactory.SetBinding(Border.BackgroundProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent, Path = new PropertyPath("Background")
             });
             borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(20, 0, 0, 20));
 

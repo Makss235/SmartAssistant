@@ -27,7 +27,10 @@ namespace SmartAssistant.Windows.MainWindow
             menuButtonsStackPanel.Children.Add(vAChatMenuButton);
             menuButtonsStackPanel.Children.Add(settingsMenuButton);
 
-            Grid leftMenuGrid = new Grid();
+            Grid leftMenuGrid = new Grid()
+            {
+                Margin = new Thickness(20, 0, 0, 0)
+            };
             leftMenuGrid.Children.Add(menuButtonsStackPanel);
 
             LeftMenuBorder = new Border()
