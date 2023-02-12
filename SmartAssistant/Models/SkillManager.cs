@@ -10,6 +10,8 @@ namespace SmartAssistant.Models
         private static string namespaceSkills = "SmartAssistant.Models.Skills.";
         private static string nameMethodCallingDefault = "Calling";
 
+        public static event Action<string> AnswerChangedEvent;
+
         static SkillManager()
         {
             StateManager.SpeechStateVerifiedEvent += DefineSkills;
@@ -37,44 +39,81 @@ namespace SmartAssistant.Models
                 }
             }
 
-            if (wordsList.Count > 1) MessageBox.Show(wordsList[0].Answers.Positive[0]);
-            else if (wordsList.Count == 1) CallingSkill(wordsList[0], text);
-            // TODO: Сделать проверку на 0 
+            if (wordsList.Count > 1) DefineAnswersAndCallingSkills(wordsList, text);
+            else if (wordsList.Count == 1) DefineAnswerAndCallingSkill(wordsList[0], text);
+            else NoDefinedAnswer();
         }
 
-        private static bool CallingSkill(WordsObj words, string text)
+        private static void NoDefinedAnswer()
         {
-            Type type = Type.GetType(namespaceSkills + words.Parameters.ClassName);
+            var noDefinedAnswers = MultiAnswers.MultiAnswersObj.NoDefined;
+            string resultNoDefinedAnswer = noDefinedAnswers[new Random().Next(noDefinedAnswers.Count)];
+            AnswerChangedEvent?.Invoke(resultNoDefinedAnswer);
+            MessageBox.Show(resultNoDefinedAnswer);
+        }
+
+        private static void DefineAnswersAndCallingSkills(List<WordsObj> wordsObjs, string text)
+        {
+            List<bool> results = new List<bool>();
+            for (int i = 0; i < wordsObjs.Count; i++)
+                results.Add(CallingSkill(wordsObjs[i], text));
+            foreach (bool result in results)
+            {
+                if (!result)
+                {
+                    var negativeAnswers = MultiAnswers.MultiAnswersObj.Negative;
+                    string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
+                    AnswerChangedEvent?.Invoke(resultNegativeAnswer);
+                    MessageBox.Show(resultNegativeAnswer);
+                    return;
+                }
+            } 
+
+            var positiveAnswers = MultiAnswers.MultiAnswersObj.Positive;
+            string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
+            AnswerChangedEvent?.Invoke(resultPositiveAnswer);
+            MessageBox.Show(resultPositiveAnswer);
+        }
+
+        private static void DefineAnswerAndCallingSkill(WordsObj wordsObj, string text)
+        {
+            bool result = CallingSkill(wordsObj, text);
+            if (result)
+            {
+                var positiveAnswers = wordsObj.Answers.Positive;
+                string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
+                AnswerChangedEvent?.Invoke(resultPositiveAnswer);
+                MessageBox.Show(resultPositiveAnswer);
+            }
+            else
+            {
+                var negativeAnswers = wordsObj.Answers.Negative;
+                string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
+                AnswerChangedEvent?.Invoke(resultNegativeAnswer);
+                MessageBox.Show(resultNegativeAnswer);
+            }
+        }
+
+        private static bool CallingSkill(WordsObj wordsObj, string text)
+        {
+            Type type = Type.GetType(namespaceSkills + wordsObj.Parameters.ClassName);
             object instance = Activator.CreateInstance(type);
 
-            if (words.Parameters.MethodName == null)
-                words.Parameters.MethodName = nameMethodCallingDefault;
+            if (wordsObj.Parameters.MethodName == null)
+                wordsObj.Parameters.MethodName = nameMethodCallingDefault;
 
             try
             {
-                var methodInfo = type.GetMethod(words.Parameters.MethodName);
+                var methodInfo = type.GetMethod(wordsObj.Parameters.MethodName);
                 return (bool)methodInfo.Invoke(instance, new object[]
                 {
                     text,
-                    words.Parameters.Args
+                    wordsObj.Parameters.Args
                 });
             }
             catch
             {
                 return false;
-            }
-        }
-
-        private static void CallingSkills(List<WordsObj> wordsList, string text)
-        {
-            List<bool> results = new List<bool>();
-            for (int i = 0; i < wordsList.Count; i++)
-            {
-                results.Add(CallingSkill(wordsList[i], text));
-            }
-            foreach (bool result in results)
-            {
-                if (!result) return;
             }
         }
     }

@@ -17,6 +17,7 @@ namespace SmartAssistant
             Localize.Init("ru");
             Words.Init("ru");
             Programs.Init("ru");
+            MultiAnswers.Init("ru");
 
             STT.STT sTT = new STT.STT("ru");
             sTT.Start();

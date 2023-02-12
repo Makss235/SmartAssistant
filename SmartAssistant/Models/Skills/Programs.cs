@@ -7,7 +7,6 @@ namespace SmartAssistant.Models.Skills
     {
         public bool OpenProgram(string text, List<string> args)
         {
-            MessageBox.Show(text);
             return true;
         }
     }
