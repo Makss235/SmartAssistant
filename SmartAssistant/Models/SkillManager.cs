@@ -5,12 +5,12 @@ using System.Windows;
 
 namespace SmartAssistant.Models
 {
-    public static class SetSkills
+    public static class SkillManager
     {
         private static string namespaceSkills = "SmartAssistant.Models.Skills.";
         private static string nameMethodCallingDefault = "Calling";
 
-        static SetSkills()
+        static SkillManager()
         {
             StateManager.SpeechStateVerifiedEvent += DefineSkills;
         }
@@ -48,17 +48,16 @@ namespace SmartAssistant.Models
             object instance = Activator.CreateInstance(type);
 
             if (words.Parameters.MethodName == null)
-                words.Parameters.MethodName = "Calling";
+                words.Parameters.MethodName = nameMethodCallingDefault;
 
             try
             {
                 var methodInfo = type.GetMethod(words.Parameters.MethodName);
-                bool result = (bool)methodInfo.Invoke(instance, new object[]
+                return (bool)methodInfo.Invoke(instance, new object[]
                 {
                     text,
                     words.Parameters.Args
                 });
-                return result;
             }
             catch
             {

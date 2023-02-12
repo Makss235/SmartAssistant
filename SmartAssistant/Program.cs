@@ -26,8 +26,7 @@ namespace SmartAssistant
             CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
 
             StateManager.Initialize();
-            SpeechManager.Initialize();
-            SetSkills.Initialize();
+            SkillManager.Initialize();
 
             Window mainWin = new MainWindow();
             mainWin.Show();
