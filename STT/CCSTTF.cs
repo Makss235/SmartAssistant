@@ -10,6 +10,7 @@ namespace STT
     {
         private string STTF;
         private Thread CCSTTF_Thread;
+        private bool canClose = false;
 
         public static Action<string> ChangingTextSTTFEvent;
 
@@ -35,14 +36,14 @@ namespace STT
         }
 
         public void Start() => CCSTTF_Thread.Start();
-        public void Stop() => CCSTTF_Thread.Abort();
+        public void Stop() => canClose = true;
 
         public void CChangeDateSTTF()
         {
             DateTime currentWritingTime = File.GetLastWriteTime(STTF);
             DateTime previousWritingTime = File.GetLastWriteTime(STTF);
 
-            while (true)
+            while (!canClose)
             {
                 string text = "";
                 currentWritingTime = File.GetLastWriteTime(STTF);
