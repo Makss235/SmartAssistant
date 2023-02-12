@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SmartAssistant.Windows;
+﻿using SmartAssistant.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;

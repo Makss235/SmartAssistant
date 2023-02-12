@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
@@ -13,6 +14,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         private ObservableCollection<MessageChat> messagesChat { get; set; }
         private TextBox typingMessageTextBox;
         private ScrollViewer scrollViewer;
+        private Border typingMessageBorder;
 
         private ICommand SendMessageByMeCommand { get; }
         private bool CanSendMessageByMeCommandExecute(object sender) => true;
@@ -57,20 +59,20 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             };
             scrollViewer.Content = itemsControl;
 
+            
+
             typingMessageTextBox = new TextBox()
             {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                Margin = new Thickness(20),
-                TextWrapping = TextWrapping.Wrap,
-                VerticalContentAlignment = VerticalAlignment.Center,
-                Padding = new Thickness(15, 0, 15, 0),
-                FontSize = 16,
-                FontFamily = new FontFamily("Segoe UI Semibold"),
-                Width = Width - 150,
-                Height = 50
+                Style = new TypingMessageTextBoxStyle(Width),
             };
             typingMessageTextBox.Focus();
+
+            typingMessageBorder = new Border()
+            {
+                Child = typingMessageTextBox,
+                Style = new TypingChatMessageBorderStyle(Width),
+            };
+            
 
             Button sendMessageButton = new Button()
             {
@@ -89,7 +91,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Margin = new Thickness(20, 0, 0, 0)
             };
             mainGrid.Children.Add(scrollViewer);
-            mainGrid.Children.Add(typingMessageTextBox);
+            mainGrid.Children.Add(typingMessageBorder);
             mainGrid.Children.Add(sendMessageButton);
 
             Border mainBorder = new Border()

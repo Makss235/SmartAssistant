@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace SmartAssistant.UserControls.MainWindow
@@ -93,17 +94,33 @@ namespace SmartAssistant.UserControls.MainWindow
             {
                 Height = 45,
                 Command = HandlerClickCommand,
+                Width = 220,
                 Style = menuButtonStyle
             };
             IAddChild addChild = button;
             addChild.AddChild(stackPanel);
 
-            
+            StreamGeometry geometry = new StreamGeometry();
+
+            using (StreamGeometryContext ctx = geometry.Open())
+            {
+                ctx.BeginFigure(new Point(0, 20.7), true, true);
+                ctx.BezierTo(new Point(15, 20), new Point(26.5, 12), new Point(27, 0), true, true);
+                ctx.LineTo(new Point(27, 87.6), true, true);
+                ctx.BezierTo(new Point(26, 75), new Point(15.1, 67.5), new Point(0, 67), true, true);
+                ctx.LineTo(new Point(0, 24), true, true);
+            }
+            geometry.Freeze();
+
             Path path = new Path()
             {
                 Fill = BasicColors.BackgroundLightBrush,
                 Stretch = System.Windows.Media.Stretch.Fill,
+                Data = geometry,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Margin = new Thickness(0, 0, -1, 0)
             };
+            
 
             Grid grid = new Grid()
             {
@@ -117,7 +134,7 @@ namespace SmartAssistant.UserControls.MainWindow
             Grid mainGrid = new Grid()
             {
                 Margin = new Thickness(0, -17, 0, -17),
-                Width = 200
+                Width = 220
             };
             mainGrid.Children.Add(button);
             mainGrid.Children.Add(grid);
