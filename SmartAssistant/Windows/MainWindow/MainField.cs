@@ -28,25 +28,16 @@ namespace SmartAssistant.Windows.MainWindow
 
             Button wrapProgramButton = new Button()
             {
+                Style = new WarpAndCollapseProgramButtonStyle(0, 20, 40, BasicColors.BackgroundDarkBrush),
                 Content = "-",
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Right,
-                Width = 40,
-                Height = 36,
-                Margin = new Thickness(0, 0, 40, 0),
-                BorderThickness = new Thickness(0, 0, 0, 0),
                 Command = new CloseApplicationCommand(),
                 CommandParameter = false
             };
 
             Button collapseProgramButton = new Button()
             {
+                Style = new WarpAndCollapseProgramButtonStyle(20, 0, 0, BasicColors.RedBackground),
                 Content = "X",
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Right,
-                Width = 40,
-                Height = 36,
-                BorderThickness = new Thickness(0, 0, 0, 0),
                 Command = new CloseApplicationCommand(),
                 CommandParameter = true
             };
