@@ -1,8 +1,6 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
-using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using SmartAssistant.Windows;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -79,7 +77,7 @@ namespace SmartAssistant.UserControls.MainWindow
             TextBlock textBlock = new TextBlock()
             {
                 Text = Title,
-                //Width = 175,
+                //Width = 200,
                 //Height = 100
             };
 

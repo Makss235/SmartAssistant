@@ -9,6 +9,8 @@ namespace SmartAssistant.Models
             StateManager.SpeechStateVerifiedEvent += ChangingRequest;
         }
 
+        public static void Initialize() { }
+
         private static void ChangingRequest(string text)
         {
             
