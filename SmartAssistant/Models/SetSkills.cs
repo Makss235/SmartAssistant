@@ -1,20 +1,23 @@
 ﻿using SmartAssistant.Data;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace SmartAssistant.Models
 {
-    public class SetSkills
+    public static class SetSkills
     {
-        private string namespaceCalling = "SmartAssistant.Models.Skills.";
-        private string nameMethodCallingDefault = "Calling";
+        private static string namespaceSkills = "SmartAssistant.Models.Skills.";
+        private static string nameMethodCallingDefault = "Calling";
 
-        public SetSkills()
+        static SetSkills()
         {
             StateManager.SpeechStateVerifiedEvent += DefineSkills;
         }
 
-        private void DefineSkills(string text)
+        public static void Initialize() { }
+
+        private static void DefineSkills(string text)
         {
             List<WordsObj> wordsList = new List<WordsObj>();
             for (int i = 0; i < Words.WordsObjs.Count; i++)
@@ -34,14 +37,14 @@ namespace SmartAssistant.Models
                 }
             }
 
-            if (wordsList.Count > 1) CallingSkills(wordsList, text);
+            if (wordsList.Count > 1) MessageBox.Show(wordsList[0].Answers.Positive[0]);
             else if (wordsList.Count == 1) CallingSkill(wordsList[0], text);
             // TODO: Сделать проверку на 0 
         }
 
-        private void CallingSkill(WordsObj words, string text)
+        private static bool CallingSkill(WordsObj words, string text)
         {
-            Type type = Type.GetType(namespaceCalling + words.Parameters.ClassName);
+            Type type = Type.GetType(namespaceSkills + words.Parameters.ClassName);
             object instance = Activator.CreateInstance(type);
 
             if (words.Parameters.MethodName == null)
@@ -52,18 +55,28 @@ namespace SmartAssistant.Models
                 var methodInfo = type.GetMethod(words.Parameters.MethodName);
                 bool result = (bool)methodInfo.Invoke(instance, new object[]
                 {
-                    text
+                    text,
+                    words.Parameters.Args
                 });
+                return result;
             }
             catch
             {
-
+                return false;
             }
         }
 
-        private void CallingSkills(List<WordsObj> wordsList, string text)
+        private static void CallingSkills(List<WordsObj> wordsList, string text)
         {
-
+            List<bool> results = new List<bool>();
+            for (int i = 0; i < wordsList.Count; i++)
+            {
+                results.Add(CallingSkill(wordsList[i], text));
+            }
+            foreach (bool result in results)
+            {
+                if (!result) return;
+            }
         }
     }
 }

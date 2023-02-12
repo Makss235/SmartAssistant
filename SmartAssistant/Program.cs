@@ -2,7 +2,6 @@
 using SmartAssistant.Data.Localization;
 using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Models;
-using SmartAssistant.Properties;
 using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;

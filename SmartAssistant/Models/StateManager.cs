@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace SmartAssistant.Models
 {
-    public class StateManager
+    public static class StateManager
     {
         public enum AppSpeechStates
         {
@@ -22,7 +22,7 @@ namespace SmartAssistant.Models
         public static event Action<AppSpeechStates> SpeechStateChangedEvent;
         public static event Action<string> SpeechStateVerifiedEvent;
 
-        private static AppSpeechStates _CurrentSpeechState = AppSpeechStates.Opened;
+        private static AppSpeechStates _CurrentSpeechState = AppSpeechStates.PressedButton;
         public static AppSpeechStates CurrentSpeechState
         {
             get => _CurrentSpeechState;
@@ -35,10 +35,12 @@ namespace SmartAssistant.Models
 
         private static string text;
 
-        public StateManager()
+        static StateManager()
         {
             STT.CCSTTF.ChangingTextSTTFEvent += ChangingRequest;
         }
+
+        public static void Initialize() { }
 
         private static void ChangingRequest(string Text)
         {
