@@ -93,7 +93,7 @@ namespace SmartAssistant.Models
 
         private static bool CallingSkill(WordsObj wordsObj, string text)
         {
-            Type type = Type.GetType(namespaceSkills + wordsObj.Parameters.ClassName);
+            Type type = Type.GetType(namespaceSkills + wordsObj.Parameters.ClassName + "Skill");
             object instance = Activator.CreateInstance(type);
 
             if (wordsObj.Parameters.MethodName == null)

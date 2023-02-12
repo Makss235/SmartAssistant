@@ -7,6 +7,7 @@ using SmartAssistant.Models;
 using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
+using SmartAssistant.Infrastructure.Commands;
 
 namespace SmartAssistant
 {
@@ -21,12 +22,12 @@ namespace SmartAssistant
             Programs.Init("ru");
             MultiAnswers.Init("ru");
 
-            //STT.STT sTT = new STT.STT("ru");
-            //sTT.Start();
-            //CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
-            //STT.CCSTTF cCSTTF = new STT.CCSTTF();
-            //cCSTTF.Start();
-            //CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
+            STT.STT sTT = new STT.STT("ru");
+            sTT.Start();
+            CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
+            STT.CCSTTF cCSTTF = new STT.CCSTTF();
+            cCSTTF.Start();
+            CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
 
             StateManager.Initialize();
             SkillManager.Initialize();
