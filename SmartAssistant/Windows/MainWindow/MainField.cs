@@ -20,10 +20,9 @@ namespace SmartAssistant.Windows.MainWindow
             MenuButtonUC.MenuButtonPressedEvent += ChangeVisibilityTabs;
             tabs = new List<Tab>();
 
-            Grid mainFieldGrid = new Grid();
-            VAChatTab vAChatTab = new VAChatTab(id: 0, width: 555, 
+            VAChatTab vAChatTab = new VAChatTab(id: 0, width: 535,
                 height: 500, visibility: Visibility.Visible);
-            SettingsTab settingsTab = new SettingsTab(id: 1, width: 555,
+            SettingsTab settingsTab = new SettingsTab(id: 1, width: 535,
                 height: 500, visibility: Visibility.Hidden);
 
             Button wrapProgramButton = new Button()
@@ -36,10 +35,15 @@ namespace SmartAssistant.Windows.MainWindow
 
             Button collapseProgramButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(20, 0, 0, BasicColors.RedBackground),
+                Style = new WarpAndCollapseProgramButtonStyle(20, 0, 0, BasicColors.BackgroundDarkBrush),
                 Content = "X",
                 Command = new CloseApplicationCommand(),
                 CommandParameter = true
+            };
+
+            Grid mainFieldGrid = new Grid()
+            {
+                Margin = new Thickness(20, 0, 0, 0)
             };
 
             mainFieldGrid.Children.Add(vAChatTab);

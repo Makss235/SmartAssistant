@@ -1,9 +1,5 @@
 ﻿using SmartAssistant.Data;
-using SmartAssistant.Windows.MainWindow;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 
 namespace SmartAssistant.Models
 {

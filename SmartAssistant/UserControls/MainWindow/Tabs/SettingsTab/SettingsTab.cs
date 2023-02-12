@@ -1,13 +1,18 @@
-﻿using SmartAssistant.Data.Localization;
+﻿using SmartAssistant.Data;
+using SmartAssistant.Data.Localization;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
     public class SettingsTab : Tab
     {
+        public ObservableCollection<ProgramObj> ProgramObjects { get; set; }
+
         public SettingsTab(byte id, double width, double height, Visibility visibility)
         {
             ID = id;
@@ -15,7 +20,9 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             Height = height;
             Visibility = visibility;
 
-            TextBlock title = new TextBlock()
+            ProgramObjects = new ObservableCollection<ProgramObj>(Programs.ProgramObjs);
+
+            TextBlock titleSettings = new TextBlock()
             {
                 Text = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
@@ -24,36 +31,60 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            TextBlock titlePrograms = new TextBlock()
+            TextBlock titleOpenProgram = new TextBlock()
             {
                 Text = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 16,
                 Margin = new Thickness(20, 10, 0, 10),
             };
+            ProgramObj forTitleProgramObj = new ProgramObj();
+
+            #region Columns
+
             DataGridTextColumn nameDataGridColumn = new DataGridTextColumn()
             {
-                Header = "Имя программы"
+                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.NameLoc,
+                Binding = new Binding(nameof(forTitleProgramObj.Name)),
+                Width = new DataGridLength(1, DataGridLengthUnitType.Star)
+            };
+            DataGridTextColumn callingNamesDataGridColumn = new DataGridTextColumn()
+            {
+                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.CallingNamesLoc,
+                Binding = new Binding(nameof(forTitleProgramObj.CallingNames)),
+                Width = new DataGridLength(1, DataGridLengthUnitType.Star)
+            };
+            DataGridTextColumn pathDataGridColumn = new DataGridTextColumn()
+            {
+                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
+                Binding = new Binding(nameof(forTitleProgramObj.Path)),
+                Width = new DataGridLength(1, DataGridLengthUnitType.Auto)
             };
 
-            DataGrid programDataGrid = new DataGrid()
+            #endregion
+
+            DataGrid programsDataGrid = new DataGrid()
             {
                 AutoGenerateColumns = false,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Margin = new Thickness(10, 0, 15, 0),
+                ItemsSource = ProgramObjects
             };
+            programsDataGrid.Columns.Add(nameDataGridColumn);
+            programsDataGrid.Columns.Add(callingNamesDataGridColumn);
+            programsDataGrid.Columns.Add(pathDataGridColumn);
 
             StackPanel stackPanel1 = new StackPanel()
             {
                 Orientation = Orientation.Vertical
             };
-            stackPanel1.Children.Add(titlePrograms);
-            stackPanel1.Children.Add(programDataGrid);
+            stackPanel1.Children.Add(titleOpenProgram);
+            stackPanel1.Children.Add(programsDataGrid);
 
             StackPanel stackPanel = new StackPanel()
             {
                 Orientation = Orientation.Vertical,
-                Margin = new Thickness(30, 0, 0, 0)
+                Margin = new Thickness(10, 0, 0, 0)
             };
             stackPanel.Children.Add(stackPanel1);
 
@@ -65,16 +96,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             scrollViewer.Content = stackPanel;
 
             Grid mainGrid = new Grid();
-            mainGrid.Margin = new Thickness(20, 0, 0, 0);
-            mainGrid.Children.Add(title);
+            mainGrid.Children.Add(titleSettings);
             mainGrid.Children.Add(scrollViewer);
 
-            Border mainBorder = new Border()
-            {
-                Background = new SolidColorBrush(Colors.Transparent)
-            };
-            mainBorder.Child = mainGrid;
-            Content = mainBorder;
+            Content = mainGrid;
         }
     }
 }

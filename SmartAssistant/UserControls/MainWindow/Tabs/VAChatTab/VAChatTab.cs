@@ -84,20 +84,12 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Command = SendMessageByMeCommand
             };
 
-            Grid mainGrid = new Grid()
-            {
-                Margin = new Thickness(20, 0, 0, 0)
-            };
+            Grid mainGrid = new Grid();
             mainGrid.Children.Add(scrollViewer);
             mainGrid.Children.Add(typingMessageTextBox);
             mainGrid.Children.Add(sendMessageButton);
 
-            Border mainBorder = new Border()
-            {
-                Background = new SolidColorBrush(Colors.Transparent)
-            };
-            mainBorder.Child = mainGrid;
-            Content = mainBorder;
+            Content = mainGrid;
         }
     }
 }

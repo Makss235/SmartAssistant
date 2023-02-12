@@ -16,6 +16,7 @@ namespace SmartAssistant
             TriggerWords.Init("ru");
             Localize.Init("ru");
             Words.Init("ru");
+            Programs.Init("ru");
 
             STT.STT sTT = new STT.STT("ru");
             sTT.Start();

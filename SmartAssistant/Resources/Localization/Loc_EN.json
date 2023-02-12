@@ -9,7 +9,7 @@
                 "TitleLoc": "Settings",
                 "OpenProgramLoc": {
                     "TitleLoc": "Opening programs",
-                    "DataGridLoc": {
+                    "DataGridColumnsLoc": {
                         "NameLoc": "Program name",
                         "CallingNameLoc": "How to call program?",
                         "PathLoc": "Path"
