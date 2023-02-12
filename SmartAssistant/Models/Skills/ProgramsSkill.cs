@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Data.ProgramsData;
+using SmartAssistant.Data.WordsData;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -6,7 +7,7 @@ namespace SmartAssistant.Models.Skills
 {
     public class ProgramsSkill
     {
-        public bool OpenProgram(string text, List<string> args)
+        public bool OpenProgram(string text, WordsObj wordsObj)
         {
             List<bool> results = new List<bool>();
 

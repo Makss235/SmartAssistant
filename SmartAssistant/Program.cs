@@ -8,6 +8,7 @@ using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
 using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Data.SitesData;
 
 namespace SmartAssistant
 {
@@ -21,6 +22,7 @@ namespace SmartAssistant
             Words.Init("ru");
             Programs.Init("ru");
             MultiAnswers.Init("ru");
+            Sites.Init("ru");
 
             STT.STT sTT = new STT.STT("ru");
             sTT.Start();

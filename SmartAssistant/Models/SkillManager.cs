@@ -105,7 +105,7 @@ namespace SmartAssistant.Models
                 return (bool)methodInfo.Invoke(instance, new object[]
                 {
                     text,
-                    wordsObj.Parameters.Args
+                    wordsObj
                 });
             }
             catch
