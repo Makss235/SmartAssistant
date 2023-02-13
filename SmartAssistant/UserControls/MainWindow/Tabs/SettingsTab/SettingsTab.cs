@@ -58,7 +58,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             {
                 Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
                 Binding = new Binding(nameof(forTitleProgramObj.Path)),
-                Width = new DataGridLength(1, DataGridLengthUnitType.Auto)
+                Width = new DataGridLength(1, DataGridLengthUnitType.Star)
             };
 
             #endregion
@@ -71,6 +71,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 ItemsSource = ProgramObjects,
                 CellStyle = new DataGridCellStyle(),
                 ColumnHeaderStyle = new DataGridColumnHeaderStyle(),
+                
             };
             programsDataGrid.Columns.Add(nameDataGridColumn);
             programsDataGrid.Columns.Add(callingNamesDataGridColumn);
