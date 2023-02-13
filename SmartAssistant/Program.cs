@@ -9,6 +9,7 @@ using System;
 using System.Windows;
 using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Data.SitesData;
+using SmartAssistant.Data.GreetingsData;
 
 namespace SmartAssistant
 {
@@ -23,6 +24,7 @@ namespace SmartAssistant
             Programs.Init("ru");
             MultiAnswers.Init("ru");
             Sites.Init("ru");
+            GreetingWords.Init("ru");
 
             //STT.STT sTT = new STT.STT("ru");
             //sTT.Start();

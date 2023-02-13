@@ -19,7 +19,7 @@ namespace SmartAssistant.Models
         public static event Action<AppSpeechStates> SpeechStateChangedEvent;
         public static event Action<string> SpeechStateVerifiedEvent;
 
-        private static AppSpeechStates _CurrentSpeechState = AppSpeechStates.PressedButton;
+        private static AppSpeechStates _CurrentSpeechState = AppSpeechStates.Collapsed;
         public static AppSpeechStates CurrentSpeechState
         {
             get => _CurrentSpeechState;
