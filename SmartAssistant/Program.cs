@@ -18,16 +18,16 @@ namespace SmartAssistant
             Words.Init("ru");
             Programs.Init("ru");
 
-            STT.STT sTT = new STT.STT("ru");
-            sTT.Start();
-            CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
-            STT.CCSTTF cCSTTF = new STT.CCSTTF();
-            cCSTTF.Start();
-            CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
+            //STT.STT sTT = new STT.STT("ru");
+            //sTT.Start();
+            //CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
+            //STT.CCSTTF cCSTTF = new STT.CCSTTF();
+            //cCSTTF.Start();
+            //CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
 
-            StateManager.Initialize();
-            SpeechManager.Initialize();
-            SetSkills.Initialize();
+            //StateManager.Initialize();
+            //SpeechManager.Initialize();
+            //SetSkills.Initialize();
 
             Window mainWin = new MainWindow();
             mainWin.Show();

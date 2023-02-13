@@ -68,7 +68,9 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 AutoGenerateColumns = false,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Margin = new Thickness(10, 0, 15, 0),
-                ItemsSource = ProgramObjects
+                ItemsSource = ProgramObjects,
+                CellStyle = new DataGridCellStyle(),
+                ColumnHeaderStyle = new DataGridColumnHeaderStyle(),
             };
             programsDataGrid.Columns.Add(nameDataGridColumn);
             programsDataGrid.Columns.Add(callingNamesDataGridColumn);
