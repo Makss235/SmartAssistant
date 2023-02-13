@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Data;
+﻿using SmartAssistant.Data.GreetingsData;
+using SmartAssistant.Data.TriggersData;
 using System;
 
 namespace SmartAssistant.Models

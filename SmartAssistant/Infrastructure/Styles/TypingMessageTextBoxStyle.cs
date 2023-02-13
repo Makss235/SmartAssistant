@@ -12,7 +12,7 @@ namespace SmartAssistant
         {
             const double TextBoxFontSize = 16;
             const double TextBoxHeight = 50;
-            double TextBoxWidth = Width - 150;
+            double TextBoxWidth = Width - 120;
 
             Setters.Add(new Setter(TextBox.BackgroundProperty, BasicColors.TransparentBrush));
             Setters.Add(new Setter(TextBox.BorderBrushProperty, BasicColors.TransparentBrush));

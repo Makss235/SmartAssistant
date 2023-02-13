@@ -1,4 +1,4 @@
-﻿using SmartAssistant.Data.Localization;
+﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Collections.Generic;

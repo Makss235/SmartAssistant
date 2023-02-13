@@ -4,23 +4,23 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System;
 
-namespace SmartAssistant.Data
+namespace SmartAssistant.Data.GreetingsData
 {
-    public static class TriggerWords
+    public static class GreetingWords
     {
         private static string language;
         private static string jsonsDirectory;
         private static string fileName;
         private static string fullPathFileName;
 
-        public static List<string> TriggersObj { get; set; }
+        public static List<string> GreetingsObj { get; set; }
 
         public static void Init(string Language)
         {
             language = Language;
             jsonsDirectory = Path.Combine(string.Format($"c:\\users\\{Environment.UserName}\\"),
-                "SmartAssistant\\Resources\\Triggers");
-            fileName = $"Triggers_{language.ToUpper()}.json";
+                "SmartAssistant\\Resources\\Greetings");
+            fileName = $"Greetings_{language.ToUpper()}.json";
             fullPathFileName = Path.Combine(jsonsDirectory, fileName);
 
             Deserialize();
@@ -29,10 +29,10 @@ namespace SmartAssistant.Data
         public static void Deserialize()
         {
             string allTextFronJson = File.ReadAllText(fullPathFileName);
-            TriggersObj = JsonSerializer.Deserialize<List<string>>(allTextFronJson);
+            GreetingsObj = JsonSerializer.Deserialize<List<string>>(allTextFronJson);
         }
 
-        public static async void Serialize(List<string> triggersObj = null)
+        public static async void Serialize(List<string> greetingsObj = null)
         {
             File.WriteAllText(fullPathFileName, string.Empty);
             using (FileStream fs = new FileStream(fullPathFileName, FileMode.OpenOrCreate))
@@ -43,14 +43,14 @@ namespace SmartAssistant.Data
                     WriteIndented = true
                 };
 
-                if (triggersObj == null)
+                if (greetingsObj == null)
                 {
-                    if (TriggersObj != null)
-                        triggersObj = TriggersObj;
+                    if (GreetingsObj != null)
+                        greetingsObj = GreetingsObj;
                     else
                         throw new Exception();
                 }
-                await JsonSerializer.SerializeAsync(fs, triggersObj, options);
+                await JsonSerializer.SerializeAsync(fs, greetingsObj, options);
             }
         }
     }

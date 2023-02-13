@@ -11,7 +11,7 @@ namespace SmartAssistant
         public TypingChatMessageBorderStyle(double Width) 
         {
             const double BorderHeight = 50;
-            double BorderWidth = Width - 150;
+            double BorderWidth = Width - 120;
 
             Trigger MouseOverTrigger = new Trigger
             {

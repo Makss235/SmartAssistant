@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SmartAssistant.Data
+namespace SmartAssistant.Data.ProgramsData
 {
     public class ProgramObj
     {
