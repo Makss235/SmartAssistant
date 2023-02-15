@@ -12,6 +12,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
     public class SettingsTab : Tab
     {
         public ObservableCollection<ProgramObj> ProgramObjects { get; set; }
+        private XamlStyles style = new XamlStyles();
 
         public SettingsTab(byte id, double width, double height, Visibility visibility)
         {
@@ -70,8 +71,9 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 Margin = new Thickness(10, 0, 15, 0),
                 ItemsSource = ProgramObjects,
                 CellStyle = new DataGridCellStyle(),
-                ColumnHeaderStyle = new DataGridColumnHeaderStyle(),
-                
+                ColumnHeaderStyle = (Style)style.Resources["DataGridColumnHeaderStyle"],
+                RowStyle = (Style)style.Resources["DataGridRowStyle"],
+                Style = (Style)style.Resources["DataGridStyle"]
             };
             programsDataGrid.Columns.Add(nameDataGridColumn);
             programsDataGrid.Columns.Add(callingNamesDataGridColumn);

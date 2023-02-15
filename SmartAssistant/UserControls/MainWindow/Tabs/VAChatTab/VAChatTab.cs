@@ -16,6 +16,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         private TextBox typingMessageTextBox;
         private ScrollViewer scrollViewer;
         private Border typingMessageBorder;
+        //private XamlStyles style = new XamlStyles();
 
         private ICommand SendMessageByMeCommand { get; }
         private bool CanSendMessageByMeCommandExecute(object sender) => true;
@@ -94,7 +95,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Child = typingMessageTextBox,
                 Style = new TypingChatMessageBorderStyle(Width),
             };
-            
 
             Button sendMessageButton = new Button()
             {
@@ -105,7 +105,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Margin = new Thickness(20, 20, 30, 20),
                 BorderBrush = new SolidColorBrush(Colors.Black),
                 BorderThickness = new Thickness(1),
-                Command = SendMessageByMeCommand
+                Command = SendMessageByMeCommand,
+                //Style = (Style)style.Resources["BtSt"]
             };
 
             Grid mainGrid = new Grid();

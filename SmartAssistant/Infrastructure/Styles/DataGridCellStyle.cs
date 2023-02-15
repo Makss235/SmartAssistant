@@ -20,7 +20,7 @@ namespace SmartAssistant
             borderFactory.SetValue(Border.PaddingProperty, new Thickness(5, 0, 5, 3));
 
             borderFactory.AppendChild(contentPresenterFactory);
-
+            Setters.Add(new Setter(DataGridCell.ForegroundProperty, BasicColors.BackgroundMediumBrush));
             Setters.Add(new Setter(DataGridCell.TemplateProperty, new ControlTemplate(typeof(DataGridCell))
             {
                 VisualTree = borderFactory
