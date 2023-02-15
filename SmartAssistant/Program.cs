@@ -10,6 +10,7 @@ using System.Windows;
 using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Data.SitesData;
 using SmartAssistant.Data.GreetingsData;
+using SmartAssistant.Properties;
 
 namespace SmartAssistant
 {
