@@ -11,7 +11,7 @@ namespace SmartAssistant.Models.Skills
         {
             List<bool> results = new List<bool>();
 
-            foreach (var programObj in Programs.ProgramObjs)
+            foreach (var programObj in Programs.JsonObject)
             {
                 foreach (var callingNameProgram in programObj.CallingNames)
                 {

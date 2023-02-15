@@ -14,7 +14,7 @@ namespace SmartAssistant.Windows.MainWindow
         {
             TextBlock title = new TextBlock()
             {
-                Text = Localize.LocObj.MainWindowLoc.TitleLoc,
+                Text = Localize.JsonObject.MainWindowLoc.TitleLoc,
                 Foreground = BasicColors.ForegroundWhiteColor,
                 Background = new SolidColorBrush(Colors.Transparent),
                 VerticalAlignment = VerticalAlignment.Top,

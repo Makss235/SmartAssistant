@@ -36,9 +36,9 @@ namespace SmartAssistant.Models.Skills
         {
             List<bool> results = new List<bool>();
 
-            for (int i = 0; i < Sites.SiteObjs.Count; i++)
+            for (int i = 0; i < Sites.JsonObject.Count; i++)
             {
-                var siteObj = Sites.SiteObjs[i];
+                var siteObj = Sites.JsonObject[i];
                 for (int j = 0; j < siteObj.Names.Count; j++)
                 {
                     FuzzyString.FuzzyString fuzzyString = new FuzzyString.FuzzyString();

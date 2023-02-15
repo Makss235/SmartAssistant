@@ -17,10 +17,10 @@ namespace SmartAssistant.Windows.MainWindow
                 Margin = new Thickness(0, 175, 0, 0)
             };
             MenuButtonUC vAChatMenuButton = new MenuButtonUC(
-                title: Localize.LocObj.MainWindowLoc.MenuButtonsLoc.VAChatButtonTitleLoc, 
+                title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.VAChatButtonTitleLoc, 
                 isActive: true, id: 0);
             MenuButtonUC settingsMenuButton = new MenuButtonUC(
-                title: Localize.LocObj.MainWindowLoc.MenuButtonsLoc.SettingsButtonTitleLoc, 
+                title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.SettingsButtonTitleLoc, 
                 isActive: false, id: 1);
             menuButtonsStackPanel.Children.Add(vAChatMenuButton);
             menuButtonsStackPanel.Children.Add(settingsMenuButton);

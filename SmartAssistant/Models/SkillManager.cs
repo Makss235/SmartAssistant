@@ -25,18 +25,18 @@ namespace SmartAssistant.Models
         {
             Thread.Sleep(10);
             List<WordsObj> wordsList = new List<WordsObj>();
-            for (int i = 0; i < Words.WordsObjs.Count; i++)
+            for (int i = 0; i < Words.JsonObject.Count; i++)
             {
-                for (int j = 0; j < Words.WordsObjs[i].TriggerWords.Count; j++)
+                for (int j = 0; j < Words.JsonObject[i].TriggerWords.Count; j++)
                 {
-                    var triggerWord = Words.WordsObjs[i].TriggerWords[j];
+                    var triggerWord = Words.JsonObject[i].TriggerWords[j];
                     FuzzyString.FuzzyString fuzzyString = new FuzzyString.FuzzyString();
                     var fuzzy = fuzzyString.FuzzySentence(triggerWord, text);
 
                     if (Equals(fuzzy, triggerWord))
                     {
                         text = fuzzyString.ReplaceFuzzyWord(triggerWord, text);
-                        wordsList.Add(Words.WordsObjs[i]);
+                        wordsList.Add(Words.JsonObject[i]);
                         break;
                     }
                 }
@@ -49,7 +49,7 @@ namespace SmartAssistant.Models
 
         private static void NoDefinedAnswer()
         {
-            var noDefinedAnswers = MultiAnswers.MultiAnswersObj.NoDefined;
+            var noDefinedAnswers = MultiAnswers.JsonObject.NoDefined;
             string resultNoDefinedAnswer = noDefinedAnswers[new Random().Next(noDefinedAnswers.Count)];
             AnswerChangedEvent?.Invoke(resultNoDefinedAnswer);
             MessageBox.Show(resultNoDefinedAnswer);
@@ -64,14 +64,14 @@ namespace SmartAssistant.Models
             {
                 if (!result)
                 {
-                    var negativeAnswers = MultiAnswers.MultiAnswersObj.Negative;
+                    var negativeAnswers = MultiAnswers.JsonObject.Negative;
                     string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
                     AnswerChangedEvent?.Invoke(resultNegativeAnswer);
                     return;
                 }
             } 
 
-            var positiveAnswers = MultiAnswers.MultiAnswersObj.Positive;
+            var positiveAnswers = MultiAnswers.JsonObject.Positive;
             string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
             AnswerChangedEvent?.Invoke(resultPositiveAnswer);
         }

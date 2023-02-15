@@ -47,8 +47,8 @@ namespace SmartAssistant.Models
 
         private static void CheckStates(string text)
         {
-            var triggerWords = TriggerWords.TriggersObj;
-            var greetingWords = GreetingWords.GreetingsObj;
+            var triggerWords = TriggerWords.JsonObject;
+            var greetingWords = GreetingWords.JsonObject;
 
             if (CurrentSpeechState == AppSpeechStates.PressedButton) 
                 SpeechStateVerifiedEvent?.Invoke(text);

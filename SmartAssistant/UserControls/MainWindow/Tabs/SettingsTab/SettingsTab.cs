@@ -4,7 +4,6 @@ using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
@@ -21,11 +20,11 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             Height = height;
             Visibility = visibility;
 
-            ProgramObjects = new ObservableCollection<ProgramObj>(Programs.ProgramObjs);
+            ProgramObjects = new ObservableCollection<ProgramObj>(Programs.JsonObject);
 
             TextBlock titleSettings = new TextBlock()
             {
-                Text = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.TitleLoc,
+                Text = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 20,
                 Margin = new Thickness(0, 10, 0, 0),
@@ -34,7 +33,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             TextBlock titleOpenProgram = new TextBlock()
             {
-                Text = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.TitleLoc,
+                Text = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 16,
                 Margin = new Thickness(20, 10, 0, 10),
@@ -45,19 +44,19 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             DataGridTemplateColumn nameDataGridColumn = new DataGridTemplateColumn()
             {
-                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.NameLoc,
+                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.NameLoc,
                 CellTemplate = new NameDGTemplate(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
             };
             DataGridTemplateColumn callingNamesDataGridColumn = new DataGridTemplateColumn() 
             {
-                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.CallingNamesLoc,
+                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.CallingNamesLoc,
                 CellTemplate = new CallingNameDGTemplate(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star)
             };
             DataGridTemplateColumn pathDataGridColumn = new DataGridTemplateColumn()
             {
-                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
+                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
                 CellTemplate = new PathDGTemplate(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
             };
