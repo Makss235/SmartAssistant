@@ -11,7 +11,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
     public class SettingsTab : Tab
     {
         public ObservableCollection<ProgramObj> ProgramObjects { get; set; }
-        private XamlStyles style = new XamlStyles();
 
         public SettingsTab(byte id, double width, double height, Visibility visibility)
         {
@@ -69,10 +68,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Margin = new Thickness(10, 0, 15, 0),
                 ItemsSource = ProgramObjects,
-                CellStyle = new DataGridCellStyle(),
-                ColumnHeaderStyle = (Style)style.Resources["DataGridColumnHeaderStyle"],
-                RowStyle = (Style)style.Resources["DataGridRowStyle"],
-                Style = (Style)style.Resources["DataGridStyle"]
+                CellStyle = Application.Current.Resources["DGCellStyle1"] as Style,
+                ColumnHeaderStyle = Application.Current.Resources["DGColumnHeaderStyle"] as Style,
+                RowStyle = Application.Current.Resources["DGRowStyle"] as Style,
+                Style = Application.Current.Resources["DGStyle"] as Style
             };
             programsDataGrid.Columns.Add(nameDataGridColumn);
             programsDataGrid.Columns.Add(callingNamesDataGridColumn);

@@ -25,6 +25,7 @@ namespace SmartAssistant
             new TriggerWords().Deserialize();
             new Words().Deserialize();
 
+
             //STT.STT sTT = new STT.STT("ru");
             //sTT.Start();
             //CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
@@ -32,13 +33,21 @@ namespace SmartAssistant
             //cCSTTF.Start();
             //CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
 
-            Window mainWin = new MainWindow();
-            mainWin.Show();
 
+            Application app = new Application();
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary()
+            { 
+                Source = new Uri("pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/XamlStyles.xaml", 
+                    UriKind.RelativeOrAbsolute)
+            });
+
+
+            Window mainWin = new MainWindow();
             StateManager.Initialize();
             SkillManager.Initialize();
 
-            Application app = new Application();
+
+            mainWin.Show();
             app.Run();
         }
     }

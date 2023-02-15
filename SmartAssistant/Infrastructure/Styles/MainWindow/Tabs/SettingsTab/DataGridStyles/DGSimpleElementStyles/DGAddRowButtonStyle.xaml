@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="DGAddRowButtonStyle" TargetType="{x:Type Button}">
-        <!--<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundMediumBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource BackgroundLightBrush}"/>-->
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundMediumBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundDarkBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource BackgroundLightBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="FontFamily" Value="Segoe UI Semibold"/>

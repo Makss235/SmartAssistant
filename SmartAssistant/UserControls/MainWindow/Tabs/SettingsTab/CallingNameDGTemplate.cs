@@ -10,7 +10,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         public CallingNameDGTemplate()
         {
             ProgramObj forTitleProgramObj = new ProgramObj();
-            XamlStyles style = new XamlStyles();
 
             FrameworkElementFactory callingNameDGListBoxFactory = new FrameworkElementFactory(typeof(ListBox));
             callingNameDGListBoxFactory.SetBinding(ListBox.ItemsSourceProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
@@ -29,7 +28,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             callingNameDGDeleteButton.SetValue(Button.WidthProperty, (double)25);
             callingNameDGDeleteButton.SetValue(Button.HeightProperty, (double)25);
             callingNameDGDeleteButton.SetValue(Button.ContentProperty, "-");
-            callingNameDGDeleteButton.SetValue(Button.StyleProperty, (Style)style.Resources["DataGridAddRowButtonStyle"]);
+            callingNameDGDeleteButton.SetValue(Button.StyleProperty, Application.Current.Resources["DGAddRowButtonStyle"]);
             FrameworkElementFactory callingNameDGVerticalStackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
             callingNameDGVerticalStackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
             callingNameDGVerticalStackPanelFactory.SetValue(StackPanel.MarginProperty, new Thickness(0, 5, 0, 5));
