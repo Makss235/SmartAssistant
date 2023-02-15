@@ -2,6 +2,7 @@
 using SmartAssistant.Data.WordsData;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
 
 namespace SmartAssistant.Models
@@ -22,6 +23,7 @@ namespace SmartAssistant.Models
 
         private static void DefineSkills(string text)
         {
+            Thread.Sleep(10);
             List<WordsObj> wordsList = new List<WordsObj>();
             for (int i = 0; i < Words.WordsObjs.Count; i++)
             {

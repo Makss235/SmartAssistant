@@ -1,6 +1,8 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Models;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -28,6 +30,24 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             }
         }
 
+        private void SendMessageByMe(string text)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                messagesChat.Add(new MessageChat(HorizontalAlignment.Right, text));
+                scrollViewer.ScrollToEnd();
+            });
+        }
+
+        private void SendMessageByBot(string text)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                messagesChat.Add(new MessageChat(HorizontalAlignment.Left, text));
+                scrollViewer.ScrollToEnd();
+            });
+        }
+
         public VAChatTab(byte id, double width, double height, Visibility visibility)
         {
             ID = id;
@@ -38,6 +58,9 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             SendMessageByMeCommand = new LambdaCommand(
                 OnSendMessageByMeCommandExecuted,
                 CanSendMessageByMeCommandExecute);
+
+            StateManager.SpeechStateVerifiedEvent += SendMessageByMe;
+            SkillManager.AnswerChangedEvent += SendMessageByBot;
 
             InputBinding sendMessageEnter = new InputBinding(SendMessageByMeCommand,
                 new KeyGesture(Key.Enter));

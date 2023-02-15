@@ -19,7 +19,7 @@ namespace SmartAssistant.Models
         public static event Action<AppSpeechStates> SpeechStateChangedEvent;
         public static event Action<string> SpeechStateVerifiedEvent;
 
-        private static AppSpeechStates _CurrentSpeechState = AppSpeechStates.Collapsed;
+        private static AppSpeechStates _CurrentSpeechState = AppSpeechStates.PressedButton;
         public static AppSpeechStates CurrentSpeechState
         {
             get => _CurrentSpeechState;
@@ -30,8 +30,6 @@ namespace SmartAssistant.Models
             }
         }
 
-        private static string text;
-
         static StateManager()
         {
             STT.CCSTTF.ChangingTextSTTFEvent += ChangingRequest;
@@ -41,14 +39,13 @@ namespace SmartAssistant.Models
 
         private static void ChangingRequest(string Text)
         {
-            if (!Equals(Text, string.Empty) && !Equals(Text, null) && !Equals(Text, text))
+            if (!Equals(Text, string.Empty) && !Equals(Text, null))
             {
-                text = Text;
-                CheckStates();
+                CheckStates(Text);
             }
         }
 
-        private static void CheckStates()
+        private static void CheckStates(string text)
         {
             var triggerWords = TriggerWords.TriggersObj;
             var greetingWords = GreetingWords.GreetingsObj;

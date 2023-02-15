@@ -26,18 +26,19 @@ namespace SmartAssistant
             Sites.Init("ru");
             GreetingWords.Init("ru");
 
-            //STT.STT sTT = new STT.STT("ru");
-            //sTT.Start();
-            //CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
-            //STT.CCSTTF cCSTTF = new STT.CCSTTF();
-            //cCSTTF.Start();
-            //CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
-
-            //StateManager.Initialize();
-            //SkillManager.Initialize();
+            STT.STT sTT = new STT.STT("ru");
+            sTT.Start();
+            CloseApplicationCommand.CloseApplicationEvent += sTT.Stop;
+            STT.CCSTTF cCSTTF = new STT.CCSTTF();
+            cCSTTF.Start();
+            CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
 
             Window mainWin = new MainWindow();
             mainWin.Show();
+
+            StateManager.Initialize();
+            SkillManager.Initialize();
+
             Application app = new Application();
             app.Run();
         }
