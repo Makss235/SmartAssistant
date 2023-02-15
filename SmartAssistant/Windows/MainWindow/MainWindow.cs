@@ -30,7 +30,7 @@ namespace SmartAssistant.Windows.MainWindow
 
             Width = 800;
             Height = 500;
-            Title = Localize.LocObj.MainWindowLoc.TitleLoc;
+            Title = Localize.JsonObject.MainWindowLoc.TitleLoc;
 
             ResizeMode = ResizeMode.NoResize;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;

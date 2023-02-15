@@ -5,33 +5,37 @@ using System.Text.Json;
 
 namespace SmartAssistant.Data.Base
 {
-    public abstract class BaseData<T> where T : class
+    public class BaseData<T> where T : class
     {
-        protected static string language;
-        protected static string jsonsDirectory;
-        protected static string fileName;
-        protected static string fullPathFileName;
+        protected string resourcesDirectory;
+        protected string fullPathFileName;
+        protected string fullFileName;
+        protected string folderName;
+        protected string partFileName;
+        protected string language;
 
         public static T JsonObject { get; set; }
 
-        public static void Init(string Language)
+        public BaseData(string language, string folderName, string partFileName = null)
         {
-            language = Language;
-            jsonsDirectory = Path.Combine(string.Format($"c:\\users\\{Environment.UserName}\\"),
-                "SmartAssistant\\Resources\\Programs");
-            fileName = $"Programs_{language.ToUpper()}.json";
-            fullPathFileName = Path.Combine(jsonsDirectory, fileName);
+            this.language = language;
+            this.folderName = folderName;
+            if (partFileName != null) this.partFileName = partFileName;
+            else this.partFileName = folderName;
 
-            Deserialize();
+            resourcesDirectory = Path.Combine(string.Format($"c:\\users\\{Environment.UserName}\\"),
+                "SmartAssistant\\Resources");
+            fullFileName = $"{this.partFileName}_{this.language.ToUpper()}.json";
+            fullPathFileName = Path.Combine(resourcesDirectory, this.folderName, fullFileName);
         }
 
-        public static void Deserialize()
+        public virtual void Deserialize()
         {
             string allTextFronJson = File.ReadAllText(fullPathFileName);
             JsonObject = JsonSerializer.Deserialize<T>(allTextFronJson);
         }
 
-        public static async void Serialize()
+        public virtual async void Serialize()
         {
             File.WriteAllText(fullPathFileName, string.Empty);
             using (FileStream fs = new FileStream(fullPathFileName, FileMode.OpenOrCreate))

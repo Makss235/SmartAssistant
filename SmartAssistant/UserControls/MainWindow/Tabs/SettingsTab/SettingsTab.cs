@@ -4,7 +4,6 @@ using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
@@ -21,11 +20,11 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             Height = height;
             Visibility = visibility;
 
-            ProgramObjects = new ObservableCollection<ProgramObj>(Programs.ProgramObjs);
+            ProgramObjects = new ObservableCollection<ProgramObj>(Programs.JsonObject);
 
             TextBlock titleSettings = new TextBlock()
             {
-                Text = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.TitleLoc,
+                Text = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 20,
                 Margin = new Thickness(0, 10, 0, 0),
@@ -34,7 +33,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             TextBlock titleOpenProgram = new TextBlock()
             {
-                Text = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.TitleLoc,
+                Text = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 16,
                 Margin = new Thickness(20, 10, 0, 10),
@@ -43,93 +42,24 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             #region Columns
 
-            FrameworkElementFactory nameDGFactory = new FrameworkElementFactory(typeof(TextBox));
-            nameDGFactory.SetBinding(TextBox.TextProperty, new Binding(nameof(forTitleProgramObj.Name)));
-            nameDGFactory.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
-            nameDGFactory.SetValue(TextBox.WidthProperty, (double)100);
-            DataTemplate nameDGTemplate = new DataTemplate() 
-            {
-                VisualTree = nameDGFactory,
-            };
-            
-
-            FrameworkElementFactory callingNameDGListBoxFactory = new FrameworkElementFactory(typeof(ListBox));
-            callingNameDGListBoxFactory.SetBinding(ListBox.ItemsSourceProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
-            //TODO: Максим SelectedCallingName
-            //callingNameDGListBoxFactory.SetBinding(ListBox.SelectedItemProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
-            FrameworkElementFactory callingNameDGAddButtonFactory = new FrameworkElementFactory(typeof(Button));
-            callingNameDGAddButtonFactory.SetValue(Button.WidthProperty, (double)25);
-            callingNameDGAddButtonFactory.SetValue(Button.ContentProperty, "+");
-
-            FrameworkElementFactory callingNameDGHorizontalStackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
-            callingNameDGHorizontalStackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
-            callingNameDGHorizontalStackPanelFactory.AppendChild(callingNameDGListBoxFactory);
-            callingNameDGHorizontalStackPanelFactory.AppendChild(callingNameDGAddButtonFactory);
-
-            FrameworkElementFactory callingNameDGDeleteButton = new FrameworkElementFactory(typeof(Button));
-            callingNameDGDeleteButton.SetValue(Button.WidthProperty, (double)25);
-            callingNameDGDeleteButton.SetValue(Button.HeightProperty, (double)25);
-            callingNameDGDeleteButton.SetValue(Button.ContentProperty, "-");
-            callingNameDGDeleteButton.SetValue(Button.StyleProperty, (Style)style.Resources["DataGridAddRowButtonStyle"]);
-            FrameworkElementFactory callingNameDGVerticalStackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
-            callingNameDGVerticalStackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
-            callingNameDGVerticalStackPanelFactory.SetValue(StackPanel.MarginProperty, new Thickness(0, 5, 0, 5));
-            callingNameDGVerticalStackPanelFactory.AppendChild(callingNameDGHorizontalStackPanelFactory);
-            callingNameDGVerticalStackPanelFactory.AppendChild(callingNameDGDeleteButton);
-
-            DataTemplate callingNameDGTemplate = new DataTemplate()
-            {
-                VisualTree = callingNameDGVerticalStackPanelFactory,
-            };
-
-            FrameworkElementFactory pathDGFactory = new FrameworkElementFactory(typeof(TextBox));
-            pathDGFactory.SetBinding(TextBox.TextProperty, new Binding(nameof(forTitleProgramObj.Path)));
-            pathDGFactory.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
-            pathDGFactory.SetValue(TextBox.WidthProperty, (double)100);
-            pathDGFactory.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
-            DataTemplate pathDGTemplate = new DataTemplate()
-            {
-                VisualTree = pathDGFactory,
-            };
-
-
             DataGridTemplateColumn nameDataGridColumn = new DataGridTemplateColumn()
             {
-                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.NameLoc,
-                CellTemplate = nameDGTemplate,
+                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.NameLoc,
+                CellTemplate = new NameDGTemplate(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
             };
             DataGridTemplateColumn callingNamesDataGridColumn = new DataGridTemplateColumn() 
             {
-                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.CallingNamesLoc,
-                CellTemplate = callingNameDGTemplate,
+                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.CallingNamesLoc,
+                CellTemplate = new CallingNameDGTemplate(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star)
             };
             DataGridTemplateColumn pathDataGridColumn = new DataGridTemplateColumn()
             {
-                Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
-                CellTemplate = pathDGTemplate,
+                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
+                CellTemplate = new PathDGTemplate(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
             };
-
-            //DataGridTextColumn nameDataGridColumn = new DataGridTextColumn()
-            //{
-            //    Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.NameLoc,
-            //    Binding = new Binding(nameof(forTitleProgramObj.Name)),
-            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-            //};
-            //DataGridTextColumn callingNamesDataGridColumn = new DataGridTextColumn()
-            //{
-            //    Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.CallingNamesLoc,
-            //    Binding = new Binding(nameof(forTitleProgramObj.CallingNames)),
-            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-            //};
-            //DataGridTextColumn pathDataGridColumn = new DataGridTextColumn()
-            //{
-            //    Header = Localize.LocObj.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
-            //    Binding = new Binding(nameof(forTitleProgramObj.Path)),
-            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-            //};
 
             #endregion
 
