@@ -52,20 +52,25 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 VisualTree = nameDGFactory,
             };
             
-            FrameworkElementFactory callingNameDGTextBoxFactory = new FrameworkElementFactory(typeof(TextBox));
-            callingNameDGTextBoxFactory.SetBinding(TextBox.TextProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
-            callingNameDGTextBoxFactory.SetValue(TextBox.WidthProperty, (double)100);
+
+            FrameworkElementFactory callingNameDGListBoxFactory = new FrameworkElementFactory(typeof(ListBox));
+            callingNameDGListBoxFactory.SetBinding(ListBox.ItemsSourceProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
+            //TODO: Максим SelectedCallingName
+            //callingNameDGListBoxFactory.SetBinding(ListBox.SelectedItemProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
             FrameworkElementFactory callingNameDGAddButtonFactory = new FrameworkElementFactory(typeof(Button));
             callingNameDGAddButtonFactory.SetValue(Button.WidthProperty, (double)25);
+            callingNameDGAddButtonFactory.SetValue(Button.ContentProperty, "+");
 
             FrameworkElementFactory callingNameDGHorizontalStackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
             callingNameDGHorizontalStackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
-            callingNameDGHorizontalStackPanelFactory.AppendChild(callingNameDGTextBoxFactory);
+            callingNameDGHorizontalStackPanelFactory.AppendChild(callingNameDGListBoxFactory);
             callingNameDGHorizontalStackPanelFactory.AppendChild(callingNameDGAddButtonFactory);
 
             FrameworkElementFactory callingNameDGDeleteButton = new FrameworkElementFactory(typeof(Button));
             callingNameDGDeleteButton.SetValue(Button.WidthProperty, (double)25);
             callingNameDGDeleteButton.SetValue(Button.HeightProperty, (double)25);
+            callingNameDGDeleteButton.SetValue(Button.ContentProperty, "-");
+            callingNameDGDeleteButton.SetValue(Button.StyleProperty, (Style)style.Resources["DataGridAddRowButtonStyle"]);
             FrameworkElementFactory callingNameDGVerticalStackPanelFactory = new FrameworkElementFactory(typeof(StackPanel));
             callingNameDGVerticalStackPanelFactory.SetValue(StackPanel.OrientationProperty, Orientation.Vertical);
             callingNameDGVerticalStackPanelFactory.SetValue(StackPanel.MarginProperty, new Thickness(0, 5, 0, 5));
