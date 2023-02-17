@@ -1,5 +1,4 @@
 ﻿using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
-using SmartAssistant.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;

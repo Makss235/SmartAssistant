@@ -1,7 +1,9 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Data.ProgramsData;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -10,7 +12,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
     public class SettingsTab : Tab
     {
-        public ObservableCollection<ProgramObj> ProgramObjects { get; set; }
+        public ObservableCollection<ProgramElement> ProgramElements { get; set; }
 
         public SettingsTab(byte id, double width, double height, Visibility visibility)
         {
@@ -19,8 +21,14 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             Height = height;
             Visibility = visibility;
 
-            ProgramObjects = new ObservableCollection<ProgramObj>(Programs.JsonObject);
+            ProgramElements = new ObservableCollection<ProgramElement>();
 
+            InitializeCollection();
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
             TextBlock titleSettings = new TextBlock()
             {
                 Text = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.TitleLoc,
@@ -30,14 +38,13 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            TextBlock titleOpenProgram = new TextBlock()
+            TextBlock titlePrograms = new TextBlock()
             {
                 Text = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 16,
                 Margin = new Thickness(20, 10, 0, 10),
             };
-            ProgramObj forTitleProgramObj = new ProgramObj();
 
             #region Columns
 
@@ -47,7 +54,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 CellTemplate = new NameDGTemplate(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
             };
-            DataGridTemplateColumn callingNamesDataGridColumn = new DataGridTemplateColumn() 
+            DataGridTemplateColumn callingNamesDataGridColumn = new DataGridTemplateColumn()
             {
                 Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.CallingNamesLoc,
                 CellTemplate = new CallingNameDGTemplate(),
@@ -67,7 +74,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 AutoGenerateColumns = false,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Margin = new Thickness(10, 0, 15, 0),
-                ItemsSource = ProgramObjects,
+                ItemsSource = ProgramElements,
                 CellStyle = Application.Current.Resources["DGCellStyle1"] as Style,
                 ColumnHeaderStyle = Application.Current.Resources["DGColumnHeaderStyle"] as Style /*new DataGridColumnHeaderStyle()*/,
                 RowStyle = Application.Current.Resources["DGRowStyle"] as Style,
@@ -77,32 +84,70 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             programsDataGrid.Columns.Add(callingNamesDataGridColumn);
             programsDataGrid.Columns.Add(pathDataGridColumn);
 
-            StackPanel stackPanel1 = new StackPanel()
+            StackPanel programsSP = new StackPanel()
             {
                 Orientation = Orientation.Vertical
             };
-            stackPanel1.Children.Add(titleOpenProgram);
-            stackPanel1.Children.Add(programsDataGrid);
+            programsSP.Children.Add(titlePrograms);
+            programsSP.Children.Add(programsDataGrid);
 
-            StackPanel stackPanel = new StackPanel()
+            StackPanel settingsSP = new StackPanel()
             {
                 Orientation = Orientation.Vertical,
                 Margin = new Thickness(10, 0, 0, 0)
             };
-            stackPanel.Children.Add(stackPanel1);
+            settingsSP.Children.Add(programsSP);
 
             ScrollViewer scrollViewer = new ScrollViewer()
             {
                 Margin = new Thickness(0, 45, 0, 20),
                 Visibility = Visibility.Visible
             };
-            scrollViewer.Content = stackPanel;
+            scrollViewer.Content = settingsSP;
 
             Grid mainGrid = new Grid();
             mainGrid.Children.Add(titleSettings);
             mainGrid.Children.Add(scrollViewer);
 
             Content = mainGrid;
+        }
+
+        private void InitializeCollection()
+        {
+            foreach (var programObj in Programs.JsonObject)
+            {
+                var programElement = new ProgramElement(programObj);
+                programElement.PropertyChanged += ProgramElement_PropertyChanged;
+                programElement.CallingNames.CollectionChanged += CallingNames_CollectionChanged;
+                ProgramElements.Add(programElement);
+            }
+        }
+
+        private void CallingNames_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Serialize();
+        }
+
+        private void ProgramElement_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            MessageBox.Show("Serialize ProgramElement_PropertyChanged");
+            Serialize();
+        }
+
+        private void Serialize()
+        {
+            var programObjs = new List<ProgramObj>();
+            foreach (var programElement in ProgramElements)
+            {
+                programObjs.Add(new ProgramObj()
+                {
+                    Name = programElement.Name,
+                    CallingNames = programElement.CallingNames.ToList(),
+                    Path = programElement.Path,
+                });
+            }
+            Programs.JsonObject = programObjs;
+            new Programs().Serialize();
         }
     }
 }

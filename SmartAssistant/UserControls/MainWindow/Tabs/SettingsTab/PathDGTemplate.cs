@@ -9,7 +9,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
     {
         public PathDGTemplate()
         {
-            ProgramObj forTitleProgramObj = new ProgramObj();
+            ProgramElement forTitleProgramObj = new ProgramElement();
 
             FrameworkElementFactory pathDGFactory = new FrameworkElementFactory(typeof(TextBox));
             pathDGFactory.SetBinding(TextBox.TextProperty, new Binding(nameof(forTitleProgramObj.Path)));
