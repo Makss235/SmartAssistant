@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using static SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab.VAChatTab;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 {
@@ -10,9 +11,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         public HorizontalAlignment MessageAlignment { get; set; }
         public string Message { get; set; }
 
-        public MessageChat(HorizontalAlignment messageAlignment, string message)
+        public MessageChat(string message, SendMessageBy sendMessageBy)
         {
-            MessageAlignment = messageAlignment;
+            if (sendMessageBy == SendMessageBy.ByMe) MessageAlignment = HorizontalAlignment.Right;
+            else MessageAlignment = HorizontalAlignment.Left;
             Message = message;
 
             TextBox messageTextBlock = new TextBox()

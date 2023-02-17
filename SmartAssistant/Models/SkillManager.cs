@@ -21,7 +21,7 @@ namespace SmartAssistant.Models
 
         public static void Initialize() { }
 
-        private static void DefineSkills(string text)
+        public static void DefineSkills(string text)
         {
             Thread.Sleep(10);
             List<WordsObj> wordsList = new List<WordsObj>();

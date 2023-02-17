@@ -16,7 +16,12 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         private TextBox typingMessageTextBox;
         private ScrollViewer scrollViewer;
         private Border typingMessageBorder;
-        //private XamlStyles style = new XamlStyles();
+
+        public enum SendMessageBy
+        {
+            ByMe,
+            ByBot
+        }
 
         private ICommand SendMessageByMeCommand { get; }
         private bool CanSendMessageByMeCommandExecute(object sender) => true;
@@ -24,27 +29,28 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         {
             if (typingMessageTextBox.Text != string.Empty)
             {
-                messagesChat.Add(new MessageChat(HorizontalAlignment.Right, typingMessageTextBox.Text));
+                SendMessage(typingMessageTextBox.Text, SendMessageBy.ByMe);
+                SkillManager.DefineSkills(typingMessageTextBox.Text);
                 typingMessageTextBox.Text = string.Empty;
                 typingMessageTextBox.Focus();
-                scrollViewer.ScrollToEnd();
             }
         }
 
-        private void SendMessageByMe(string text)
+        private void SendMessageByMeVoice(string text)
         {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                messagesChat.Add(new MessageChat(HorizontalAlignment.Right, text));
-                scrollViewer.ScrollToEnd();
-            });
+            SendMessage(text, SendMessageBy.ByMe);
         }
 
         private void SendMessageByBot(string text)
         {
+            SendMessage(text, SendMessageBy.ByBot);
+        }
+
+        private void SendMessage(string text, SendMessageBy sendMessageBy) 
+        {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                messagesChat.Add(new MessageChat(HorizontalAlignment.Left, text));
+                messagesChat.Add(new MessageChat(text, sendMessageBy));
                 scrollViewer.ScrollToEnd();
             });
         }
@@ -60,7 +66,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 OnSendMessageByMeCommandExecuted,
                 CanSendMessageByMeCommandExecute);
 
-            StateManager.SpeechStateVerifiedEvent += SendMessageByMe;
+            StateManager.SpeechStateVerifiedEvent += SendMessageByMeVoice;
             SkillManager.AnswerChangedEvent += SendMessageByBot;
 
             InputBinding sendMessageEnter = new InputBinding(SendMessageByMeCommand,
@@ -81,8 +87,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Margin = new Thickness(0, 40, 0, 100),
             };
             scrollViewer.Content = itemsControl;
-
-            
 
             typingMessageTextBox = new TextBox()
             {

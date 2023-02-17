@@ -14,19 +14,15 @@ namespace STT
 
         public static Action<string> ChangingTextSTTFEvent;
 
-        protected bool SetProperty<T>(ref T field, T value)
-        {
-            if (Equals(field, value)) return false;
-            field = value;
-            ChangingTextSTTFEvent?.Invoke(TextSTT);
-            return true;
-        }
-
         private string _TextSTT = "";
 
         public string TextSTT { 
             get => _TextSTT;
-            set => SetProperty(ref _TextSTT, value);
+            set 
+            {
+                _TextSTT = value;
+                ChangingTextSTTFEvent?.Invoke(TextSTT);
+            }
         }
 
         public CCSTTF()
