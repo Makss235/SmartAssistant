@@ -6,7 +6,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
     {
         public MessageChatStyle()
         {
-
+            
         }
     }
 }
