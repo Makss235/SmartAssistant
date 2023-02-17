@@ -12,5 +12,6 @@ namespace SmartAssistant.Windows
         public static SolidColorBrush TransparentBrush = new SolidColorBrush(Colors.Transparent);
         public static SolidColorBrush ButtonMouseOverBrush = new SolidColorBrush(Color.FromRgb(0, 83, 179));
         public static SolidColorBrush SelectionLightBrush = new SolidColorBrush(Color.FromRgb(218, 234, 253));
+        public static SolidColorBrush ButtonPressedBrush = new SolidColorBrush(Color.FromRgb(0, 59, 128));
     }
 }

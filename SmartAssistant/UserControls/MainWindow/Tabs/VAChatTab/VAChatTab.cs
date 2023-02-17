@@ -107,9 +107,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Height = 50,
                 Width = 50,
                 Margin = new Thickness(20, 20, 30, 20),
-                BorderBrush = new SolidColorBrush(Colors.Black),
-                BorderThickness = new Thickness(1),
                 Command = SendMessageByMeCommand,
+                Style = new SendButtonStyle(),
             };
 
             Grid mainGrid = new Grid();
