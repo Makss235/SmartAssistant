@@ -12,6 +12,12 @@ using System.Windows;
 
 namespace SmartAssistant
 {
+    //TODO: Виктор стили mainWindow и других окон
+    //TODO: Максим окно добавления программы
+    //TODO: Максим сериализация при изменении таблицы
+    //TODO: Максим выполнение команд в чате
+    //TODO: Виктор настриить стиль menuButton
+
     internal class Program
     {
         [STAThread]
@@ -43,6 +49,7 @@ namespace SmartAssistant
 
 
             Window mainWin = new MainWindow();
+            app.MainWindow = mainWin;
             StateManager.Initialize();
             SkillManager.Initialize();
 

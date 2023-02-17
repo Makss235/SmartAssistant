@@ -3,15 +3,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace SmartAssistant
+namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataGrid.DGMainElement
 {
     public class DataGridCellStyle : Style
     {
-        public DataGridCellStyle() 
+        public DataGridCellStyle()
         {
             FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
-            contentPresenterFactory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenterFactory.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+            contentPresenterFactory.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetValue(Border.BackgroundProperty, BasicColors.TransparentBrush);
@@ -20,12 +20,12 @@ namespace SmartAssistant
             borderFactory.SetValue(Border.PaddingProperty, new Thickness(5, 0, 5, 3));
 
             borderFactory.AppendChild(contentPresenterFactory);
-            Setters.Add(new Setter(DataGridCell.ForegroundProperty, BasicColors.BackgroundMediumBrush));
-            Setters.Add(new Setter(DataGridCell.TemplateProperty, new ControlTemplate(typeof(DataGridCell))
+            Setters.Add(new Setter(Control.ForegroundProperty, BasicColors.BackgroundMediumBrush));
+            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(DataGridCell))
             {
                 VisualTree = borderFactory
             }));
-            
+
         }
     }
 }

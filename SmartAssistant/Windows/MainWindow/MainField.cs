@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Infrastructure.Styles.MainWindow;
 using SmartAssistant.UserControls.MainWindow;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;

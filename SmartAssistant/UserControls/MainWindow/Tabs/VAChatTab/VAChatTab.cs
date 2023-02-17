@@ -1,8 +1,8 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
 using SmartAssistant.Models;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Collections.ObjectModel;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

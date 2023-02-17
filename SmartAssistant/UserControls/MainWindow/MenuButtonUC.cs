@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Infrastructure.Styles.MainWindow;
 using SmartAssistant.Windows;
 using System;
 using System.ComponentModel;

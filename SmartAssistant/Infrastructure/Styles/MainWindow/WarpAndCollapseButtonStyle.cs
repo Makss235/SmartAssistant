@@ -4,18 +4,18 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace SmartAssistant
+namespace SmartAssistant.Infrastructure.Styles.MainWindow
 {
     public class WarpAndCollapseProgramButtonStyle : Style
     {
-        public WarpAndCollapseProgramButtonStyle(double TopRight, double BottomLeft, double RightMargin, SolidColorBrush TriggerBackGroundColor) 
+        public WarpAndCollapseProgramButtonStyle(double TopRight, double BottomLeft, double RightMargin, SolidColorBrush TriggerBackGroundColor)
         {
             const double ButtonWidth = 40;
             const double ButtonHeight = 36;
 
             FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
-            contentPresenterFactory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenterFactory.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+            contentPresenterFactory.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(0, TopRight, 0, BottomLeft));
@@ -34,20 +34,20 @@ namespace SmartAssistant
 
             Trigger MouseOverTrigger = new Trigger
             {
-                Property = Button.IsMouseOverProperty,
+                Property = UIElement.IsMouseOverProperty,
                 Value = true
             };
-            MouseOverTrigger.Setters.Add(new Setter(Button.BackgroundProperty, TriggerBackGroundColor));
+            MouseOverTrigger.Setters.Add(new Setter(Control.BackgroundProperty, TriggerBackGroundColor));
 
             Triggers.Add(MouseOverTrigger);
-            Setters.Add(new Setter(Button.BackgroundProperty, BasicColors.BackgroundMediumBrush));
-            Setters.Add(new Setter(Button.WidthProperty, ButtonWidth));
-            Setters.Add(new Setter(Button.HeightProperty, ButtonHeight));
-            Setters.Add(new Setter(Button.VerticalAlignmentProperty, VerticalAlignment.Top));
-            Setters.Add(new Setter(Button.HorizontalAlignmentProperty, HorizontalAlignment.Right));
-            Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0)));
-            Setters.Add(new Setter(Button.MarginProperty, new Thickness(0, 0, RightMargin, 0)));
-            Setters.Add(new Setter(Button.TemplateProperty, new ControlTemplate(typeof(Button))
+            Setters.Add(new Setter(Control.BackgroundProperty, BasicColors.BackgroundMediumBrush));
+            Setters.Add(new Setter(FrameworkElement.WidthProperty, ButtonWidth));
+            Setters.Add(new Setter(FrameworkElement.HeightProperty, ButtonHeight));
+            Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top));
+            Setters.Add(new Setter(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right));
+            Setters.Add(new Setter(Control.BorderThicknessProperty, new Thickness(0)));
+            Setters.Add(new Setter(FrameworkElement.MarginProperty, new Thickness(0, 0, RightMargin, 0)));
+            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(Button))
             {
                 VisualTree = borderFactory
             }));
