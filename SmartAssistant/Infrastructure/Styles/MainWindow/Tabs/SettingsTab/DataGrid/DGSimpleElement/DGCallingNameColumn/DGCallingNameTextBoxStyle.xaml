@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="DGCallingNameTextBoxStyle" TargetType="{x:Type TextBox}">
-        <!--<Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Black}"/>
-        <Setter Property="Foreground" Value="{StaticResource Black}"/>-->
+        <Setter Property="Background" Value="{DynamicResource BackgroundLightBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Black}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Black}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -27,10 +27,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <!--<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Black}"/>-->
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Black}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <!--<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Black}"/>-->
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Black}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

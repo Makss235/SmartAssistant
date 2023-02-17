@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="DGRowStyle" TargetType="{x:Type DataGridRow}">
-        <!--<Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonMouseOverBrush}"/>-->
+        <Setter Property="Background" Value="{DynamicResource BackgroundLightBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonMouseOverBrush}"/>
         <Setter Property="BorderThickness" Value="0 0 1 0"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="MinHeight" Value="30"/>

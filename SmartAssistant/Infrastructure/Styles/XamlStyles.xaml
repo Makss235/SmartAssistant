@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/FocusVisualStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/BasicColors.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGMainElement/DGStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGMainElement/DGCellStyle.xaml"/>
@@ -9,5 +10,10 @@
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGAddRowButtonStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGAddRowTextBoxStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGNameAndPathTextBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGCallingNameColumn/DGAddCallingNameButtonStyle2.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGCallingNameColumn/DGAddCallingNameButtonStyle1.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGCallingNameColumn/DGAddCallingNameListBoxItemStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGCallingNameColumn/DGAddCallingNameListBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGCallingNameColumn/DGCallingNameTextBoxStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
