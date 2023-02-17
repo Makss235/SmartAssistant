@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Data\SettingsData\" />
-    <Folder Include="Infrastructure\Styles\MainWindow\Tabs\VAChatTab\" />
     <Folder Include="UserControls\MainWindow\Tabs\AboutTab\" />
   </ItemGroup>
 
