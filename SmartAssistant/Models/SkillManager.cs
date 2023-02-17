@@ -52,7 +52,6 @@ namespace SmartAssistant.Models
             var noDefinedAnswers = MultiAnswers.JsonObject.NoDefined;
             string resultNoDefinedAnswer = noDefinedAnswers[new Random().Next(noDefinedAnswers.Count)];
             AnswerChangedEvent?.Invoke(resultNoDefinedAnswer);
-            MessageBox.Show(resultNoDefinedAnswer);
         }
 
         private static void DefineAnswersAndCallingSkills(List<WordsObj> wordsObjs, string text)
