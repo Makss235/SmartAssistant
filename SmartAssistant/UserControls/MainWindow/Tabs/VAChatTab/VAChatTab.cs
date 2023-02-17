@@ -1,6 +1,7 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Models;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using SmartAssistant.Windows.MainWindow;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows;
@@ -106,7 +107,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 BorderBrush = new SolidColorBrush(Colors.Black),
                 BorderThickness = new Thickness(1),
                 Command = SendMessageByMeCommand,
-                //Style = (Style)style.Resources["BtSt"]
             };
 
             Grid mainGrid = new Grid();

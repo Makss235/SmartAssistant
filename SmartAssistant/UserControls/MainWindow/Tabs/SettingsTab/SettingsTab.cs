@@ -4,6 +4,7 @@ using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
@@ -69,11 +70,11 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 Margin = new Thickness(10, 0, 15, 0),
                 ItemsSource = ProgramObjects,
                 CellStyle = Application.Current.Resources["DGCellStyle1"] as Style,
-                ColumnHeaderStyle = Application.Current.Resources["DGColumnHeaderStyle"] as Style,
+                ColumnHeaderStyle = Application.Current.Resources["DGColumnHeaderStyle"] as Style /*new DataGridColumnHeaderStyle()*/,
                 RowStyle = Application.Current.Resources["DGRowStyle"] as Style,
                 Style = Application.Current.Resources["DGStyle"] as Style
             };
-            programsDataGrid.Columns.Add(nameDataGridColumn);
+            //programsDataGrid.Columns.Add(nameDataGridColumn);
             programsDataGrid.Columns.Add(callingNamesDataGridColumn);
             programsDataGrid.Columns.Add(pathDataGridColumn);
 

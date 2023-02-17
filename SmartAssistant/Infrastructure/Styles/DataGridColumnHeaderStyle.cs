@@ -7,6 +7,8 @@ using System.Windows.Input;
 
 namespace SmartAssistant
 {
+    [TemplatePart(Name = "PART_LeftHeaderGripper", Type = typeof(Thumb))]
+    [TemplatePart(Name = "PART_RightHeaderGripper", Type = typeof(Thumb))]
     public class DataGridColumnHeaderStyle : Style
     {
         public DataGridColumnHeaderStyle()
@@ -36,12 +38,12 @@ namespace SmartAssistant
 
             FrameworkElementFactory ThumbFactory1 = new FrameworkElementFactory(typeof(Thumb));
             ThumbFactory1.SetValue(Thumb.HorizontalAlignmentProperty, HorizontalAlignment.Left);
-            ThumbFactory1.SetValue(Thumb.StyleProperty, new ColumnHeaderGripperStyle());
-            ThumbFactory1.SetValue(Thumb.NameProperty, LeftThumbName);
+            ThumbFactory1.SetValue(Thumb.StyleProperty, Application.Current.Resources["ColumnHeaderGripperStyle"]);
+            ThumbFactory1.SetValue(Thumb.NameProperty, "PART_LeftHeaderGripper");
 
             FrameworkElementFactory ThumbFactory2 = new FrameworkElementFactory(typeof(Thumb));
             ThumbFactory2.SetValue(Thumb.HorizontalAlignmentProperty, HorizontalAlignment.Right);
-            ThumbFactory2.SetValue(Thumb.StyleProperty, new ColumnHeaderGripperStyle());
+            ThumbFactory2.SetValue(Thumb.StyleProperty, Application.Current.Resources["ColumnHeaderGripperStyle"]);
             ThumbFactory2.SetValue(Thumb.NameProperty, RightThumbName);
 
             FrameworkElementFactory mainGridFactory = new FrameworkElementFactory(typeof(Grid));
@@ -65,12 +67,15 @@ namespace SmartAssistant
     {
         public ColumnHeaderGripperStyle()
         {
+            var a = new Style() { TargetType = typeof(Thumb) };
+
             double ThumbWidth = 8;
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetValue(Border.BackgroundProperty, BasicColors.TransparentBrush);
             borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(0));
 
+            BasedOn = a;
             Setters.Add(new Setter(Thumb.CursorProperty, Cursors.SizeWE));
             Setters.Add(new Setter(Thumb.WidthProperty, ThumbWidth));
             Setters.Add(new Setter(Thumb.TemplateProperty, new ControlTemplate(typeof(Thumb))

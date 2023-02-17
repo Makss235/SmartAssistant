@@ -26,8 +26,8 @@
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                     <Grid>
                         <Border Background="{TemplateBinding Background}" 
-                                     
-                                    BorderThickness="2 3 2 3"><!--BorderBrush="{StaticResource ButtonMouseOverBrush}"-->
+                            BorderBrush="{DynamicResource ButtonMouseOverBrush}"       
+                            BorderThickness="2 3 2 3">
                             <Grid Margin="{TemplateBinding Padding}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
