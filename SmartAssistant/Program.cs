@@ -2,6 +2,7 @@
 using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Data.MultiAnswersData;
 using SmartAssistant.Data.ProgramsData;
+using SmartAssistant.Data.SettingsData;
 using SmartAssistant.Data.SitesData;
 using SmartAssistant.Data.TriggersData;
 using SmartAssistant.Data.WordsData;
@@ -23,6 +24,7 @@ namespace SmartAssistant
         [STAThread]
         static void Main(string[] args)
         {
+            Settings.Initialization();
             new GreetingWords().Deserialize();
             new Localize().Deserialize();
             new MultiAnswers().Deserialize();
