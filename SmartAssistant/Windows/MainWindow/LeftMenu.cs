@@ -1,5 +1,7 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.UserControls.MainWindow;
+using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,10 +9,14 @@ namespace SmartAssistant.Windows.MainWindow
 {
     public class LeftMenu
     {
+        private List<MenuButtonUC> _menuButtons;
+
         public Border LeftMenuBorder { get; set; }
 
         public LeftMenu()
         {
+            _menuButtons = new List<MenuButtonUC>();
+
             StackPanel menuButtonsStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Vertical,
@@ -19,11 +25,15 @@ namespace SmartAssistant.Windows.MainWindow
             MenuButtonUC vAChatMenuButton = new MenuButtonUC(
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.VAChatButtonTitleLoc, 
                 isActive: true, id: 0);
+            _menuButtons.Add(vAChatMenuButton);
             MenuButtonUC settingsMenuButton = new MenuButtonUC(
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.SettingsButtonTitleLoc, 
                 isActive: false, id: 1);
+            _menuButtons.Add(settingsMenuButton);
             menuButtonsStackPanel.Children.Add(vAChatMenuButton);
             menuButtonsStackPanel.Children.Add(settingsMenuButton);
+
+            MenuButtonUC.MenuButtonPressedEvent += ass;
 
             Grid leftMenuGrid = new Grid()
             {
@@ -38,6 +48,21 @@ namespace SmartAssistant.Windows.MainWindow
                 Margin = new Thickness(-20, 0, 0, 0)
             };
             LeftMenuBorder.Child = leftMenuGrid;
+        }
+
+        private void ass(byte id)
+        {
+            for (int i = 0; i < _menuButtons.Count; i++)
+            {
+                if (id == _menuButtons[i].ID)
+                {
+                    _menuButtons[i].IsActive = true;
+                }
+                else
+                {
+                    _menuButtons[i].IsActive = false;
+                }
+            }
         }
     }
 }

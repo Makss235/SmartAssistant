@@ -141,6 +141,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         }
 
         // TODO: Veser анимация
+        // TODO: Veser иконки
         private void SendButtonImageChange(object sender, TextChangedEventArgs e)
         {
             if (typingMessageTextBox.Text == string.Empty)

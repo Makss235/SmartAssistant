@@ -15,6 +15,29 @@ namespace SmartAssistant.UserControls.MainWindow
 {
     public class MenuButtonUC : UserControl, INotifyPropertyChanged
     {
+        #region NPC
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
+        protected virtual bool SetProperty<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
+        {
+            if (Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(PropertyName);
+            return true;
+        }
+
+        #endregion
+
+        private Path path;
+        private TextBlock textBlock;
+        private Button button;
+
         #region Title : string - Заголовок кнопки
 
         /// <summary>Заголовок кнопки</summary>
@@ -75,7 +98,7 @@ namespace SmartAssistant.UserControls.MainWindow
                 OnHandlerClickCommandExecuted, 
                 CanHandlerClickCommandExecute);
 
-            TextBlock textBlock = new TextBlock()
+            textBlock = new TextBlock()
             {
                 Text = Title
             };
@@ -87,7 +110,7 @@ namespace SmartAssistant.UserControls.MainWindow
             stackPanel.Children.Add(textBlock);
 
             MenuButtonStyle menuButtonStyle = new MenuButtonStyle();
-            Button button = new Button()
+            button = new Button()
             {
                 Height = 45,
                 Command = HandlerClickCommand,
@@ -109,10 +132,10 @@ namespace SmartAssistant.UserControls.MainWindow
             }
             geometry.Freeze();
 
-            Path path = new Path()
+            path = new Path()
             {
                 Fill = BasicColors.BackgroundLightBrush,
-                Stretch = System.Windows.Media.Stretch.Fill,
+                Stretch = Stretch.Fill,
                 Data = geometry,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Margin = new Thickness(0, 0, -1, 0)
@@ -136,21 +159,34 @@ namespace SmartAssistant.UserControls.MainWindow
             mainGrid.Children.Add(button);
             mainGrid.Children.Add(grid);
             Content = mainGrid;
+
+            PropertyChanged += MenuButtonUC_PropertyChanged;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+        private void MenuButtonUC_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            switch (e.PropertyName)
+            {
+                case nameof(IsActive):
+                    ActiveStateChange();
+                    break;
+            }
         }
 
-        protected virtual bool SetProperty<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
+        private void ActiveStateChange()
         {
-            if (Equals(field, value)) return false;
-            field = value;
-            OnPropertyChanged(PropertyName);
-            return true;
+            if (IsActive == true)
+            {
+                path.Visibility = Visibility.Visible;
+                button.Background = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
+                textBlock.Foreground = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
+            }
+            else
+            {
+                path.Visibility = Visibility.Hidden;
+                button.Background = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
+                textBlock.Foreground = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
+            }
         }
     }
 }
