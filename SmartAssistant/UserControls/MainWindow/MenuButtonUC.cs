@@ -117,8 +117,11 @@ namespace SmartAssistant.UserControls.MainWindow
                 Width = 220,
                 Style = menuButtonStyle
             };
+            button.MouseEnter += Button_MouseEnter;
+            button.MouseLeave += Button_MouseLeave;
             IAddChild addChild = button;
             addChild.AddChild(stackPanel);
+            Panel.SetZIndex(button, 1);
 
             StreamGeometry geometry = new StreamGeometry();
 
@@ -140,6 +143,7 @@ namespace SmartAssistant.UserControls.MainWindow
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Margin = new Thickness(0, 0, -1, 0)
             };
+            Panel.SetZIndex(path, 10);
             
 
             Grid grid = new Grid()
@@ -161,6 +165,17 @@ namespace SmartAssistant.UserControls.MainWindow
             Content = mainGrid;
 
             PropertyChanged += MenuButtonUC_PropertyChanged;
+            StateChange();
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (!IsActive) InactiveState();
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (!IsActive) ActiveState();
         }
 
         private void MenuButtonUC_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -168,25 +183,35 @@ namespace SmartAssistant.UserControls.MainWindow
             switch (e.PropertyName)
             {
                 case nameof(IsActive):
-                    ActiveStateChange();
+                    StateChange();
                     break;
             }
         }
 
-        private void ActiveStateChange()
+        private void StateChange()
         {
-            if (IsActive == true)
+            if (IsActive)
             {
-                path.Visibility = Visibility.Visible;
-                button.Background = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
-                textBlock.Foreground = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
+                ActiveState();
             }
             else
             {
-                path.Visibility = Visibility.Hidden;
-                button.Background = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
-                textBlock.Foreground = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
+                InactiveState();
             }
+        }
+
+        private void ActiveState()
+        {
+            path.Visibility = Visibility.Visible;
+            button.Background = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
+            textBlock.Foreground = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
+        }
+
+        private void InactiveState()
+        {
+            path.Visibility = Visibility.Hidden;
+            button.Background = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
+            textBlock.Foreground = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
         }
     }
 }
