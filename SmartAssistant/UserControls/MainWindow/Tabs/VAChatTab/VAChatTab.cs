@@ -16,6 +16,21 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         private TextBox typingMessageTextBox;
         private ScrollViewer scrollViewer;
         private Border typingMessageBorder;
+        private Button sendMessageButton;
+
+        //#region TextTypingMessageTextBox : string - Имя программы
+
+        ///// <summary>Имя программы</summary>
+        //private string _TextTypingMessageTextBox = string.Empty;
+
+        ///// <summary>Имя программы</summary>
+        //public string TextTypingMessageTextBox
+        //{
+        //    get => _TextTypingMessageTextBox;
+        //    set => SetProperty(ref _TextTypingMessageTextBox, value);
+        //}
+
+        //#endregion
 
         public enum SendMessageBy
         {
@@ -90,9 +105,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 
             typingMessageTextBox = new TextBox()
             {
-                Style = new TypingMessageTextBoxStyle(Width),
+                Style = new TypingMessageTextBoxStyle(Width)
             };
             typingMessageTextBox.Focus();
+            typingMessageTextBox.TextChanged += TypingMessageTextBox_TextChanged;
 
             typingMessageBorder = new Border()
             {
@@ -100,7 +116,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Style = new TypingChatMessageBorderStyle(Width),
             };
 
-            Button sendMessageButton = new Button()
+            sendMessageButton = new Button()
             {
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Right,
@@ -117,6 +133,24 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             mainGrid.Children.Add(sendMessageButton);
 
             Content = mainGrid;
+        }
+
+        private void TypingMessageTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SendButtonImageChange(sender, e);
+        }
+
+        // TODO: Veser анимация
+        private void SendButtonImageChange(object sender, TextChangedEventArgs e)
+        {
+            if (typingMessageTextBox.Text == string.Empty)
+            {
+                sendMessageButton.Background = new SolidColorBrush(Colors.Black);
+            }
+            else
+            {
+                sendMessageButton.Background = new SolidColorBrush(Colors.Yellow);
+            }
         }
     }
 }
