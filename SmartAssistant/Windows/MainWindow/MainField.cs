@@ -1,6 +1,7 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.MainWindow;
 using SmartAssistant.UserControls.MainWindow;
+using SmartAssistant.UserControls.MainWindow.Tabs.AboutTab;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
 using SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab;
@@ -24,6 +25,8 @@ namespace SmartAssistant.Windows.MainWindow
             VAChatTab vAChatTab = new VAChatTab(id: 0, width: 535,
                 height: 500, visibility: Visibility.Visible);
             SettingsTab settingsTab = new SettingsTab(id: 1, width: 535,
+                height: 500, visibility: Visibility.Hidden);
+            AboutTab aboutTab = new AboutTab(id: 2, width: 535,
                 height: 500, visibility: Visibility.Hidden);
 
             Button wrapProgramButton = new Button()
@@ -51,6 +54,8 @@ namespace SmartAssistant.Windows.MainWindow
             tabs.Add(vAChatTab);
             mainFieldGrid.Children.Add(settingsTab);
             tabs.Add(settingsTab);
+            mainFieldGrid.Children.Add(aboutTab);
+            tabs.Add(aboutTab);
             mainFieldGrid.Children.Add(collapseProgramButton);
             mainFieldGrid.Children.Add(wrapProgramButton);
 

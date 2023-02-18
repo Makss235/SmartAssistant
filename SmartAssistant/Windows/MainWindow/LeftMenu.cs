@@ -29,8 +29,13 @@ namespace SmartAssistant.Windows.MainWindow
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.SettingsButtonTitleLoc, 
                 isActive: false, id: 1);
             _menuButtons.Add(settingsMenuButton);
+            MenuButtonUC aboutMenuButton = new MenuButtonUC(
+                title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.AboutProgramButtonTitleLoc,
+                isActive: false, id: 2);
+            _menuButtons.Add(aboutMenuButton);
             menuButtonsStackPanel.Children.Add(vAChatMenuButton);
             menuButtonsStackPanel.Children.Add(settingsMenuButton);
+            menuButtonsStackPanel.Children.Add(aboutMenuButton);
 
             MenuButtonUC.MenuButtonPressedEvent += ass;
 

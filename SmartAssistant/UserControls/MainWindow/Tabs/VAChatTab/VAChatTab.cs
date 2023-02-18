@@ -18,20 +18,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         private Border typingMessageBorder;
         private Button sendMessageButton;
 
-        //#region TextTypingMessageTextBox : string - Имя программы
-
-        ///// <summary>Имя программы</summary>
-        //private string _TextTypingMessageTextBox = string.Empty;
-
-        ///// <summary>Имя программы</summary>
-        //public string TextTypingMessageTextBox
-        //{
-        //    get => _TextTypingMessageTextBox;
-        //    set => SetProperty(ref _TextTypingMessageTextBox, value);
-        //}
-
-        //#endregion
-
         public enum SendMessageBy
         {
             ByMe,
