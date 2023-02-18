@@ -24,7 +24,7 @@ namespace SmartAssistant
                 RelativeSource = RelativeSource.TemplatedParent,
                 Path = new PropertyPath("Background")
             });
-            borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(20, 20, 20, 20));
+            borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(25));
             borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
             borderFactory.AppendChild(contentPresenterFactory);
 
