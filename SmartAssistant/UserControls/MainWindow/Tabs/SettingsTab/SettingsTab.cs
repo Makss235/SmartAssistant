@@ -64,7 +64,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             {
                 Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
                 CellTemplate = new PathDGTemplate(),
-                Width = new DataGridLength(1, DataGridLengthUnitType.Star),
+                Width = new DataGridLength(1, DataGridLengthUnitType.Star)
             };
 
             #endregion

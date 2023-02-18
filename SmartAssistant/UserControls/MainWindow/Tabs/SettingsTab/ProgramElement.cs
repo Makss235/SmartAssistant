@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
-    public class ProgramElement : NTC
+    public class ProgramElement : NPC
     {
         #region Колонки в таблице
 

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace SmartAssistant.Infrastructure
 {
-    public class NTC : INotifyPropertyChanged
+    public class NPC : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
