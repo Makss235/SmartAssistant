@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using SmartAssistant.Windows;
 
 namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
 {
@@ -10,9 +11,11 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
                                 SolidColorBrush messageForeground,
                                 string message)
         {
-            FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenterFactory.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
-            contentPresenterFactory.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            FrameworkElementFactory textBoxFactory = new FrameworkElementFactory(typeof(TextBox));
+            textBoxFactory.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
+            textBoxFactory.SetValue(TextBox.BackgroundProperty, BasicColors.TransparentBrush);
+            textBoxFactory.SetValue(TextBox.TextProperty, message);
+            textBoxFactory.SetValue(TextBox.MarginProperty, new Thickness(5, 5, 5, 7));
 
             FrameworkElementFactory messageTextBoxFactory = new FrameworkElementFactory(typeof(Border));
             messageTextBoxFactory.SetValue(Border.BackgroundProperty, messageBackground);
@@ -22,9 +25,17 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
             messageTextBoxFactory.SetValue(Border.MinWidthProperty, (double)15);
             messageTextBoxFactory.SetValue(Border.MaxWidthProperty, (double)450);
             messageTextBoxFactory.SetValue(Border.RenderTransformOriginProperty, new Point(1, 1));
-            messageTextBoxFactory.AppendChild(contentPresenterFactory);
+            messageTextBoxFactory.AppendChild(textBoxFactory);
+
+            Trigger isEnabledTrigger = new Trigger
+            {
+                Property = TextBox.IsEnabledProperty,
+                Value = false
+            };
+            isEnabledTrigger.Setters.Add(new Setter(TextBox.OpacityProperty, (double)1));
 
             TargetType = typeof(TextBox);
+            Triggers.Add(isEnabledTrigger);
             Setters.Add(new Setter(TextBox.BackgroundProperty, Application.Current.Resources["Transparent"]));
             Setters.Add(new Setter(TextBox.ForegroundProperty, messageForeground));
             Setters.Add(new Setter(TextBox.BorderThicknessProperty, new Thickness(0)));
