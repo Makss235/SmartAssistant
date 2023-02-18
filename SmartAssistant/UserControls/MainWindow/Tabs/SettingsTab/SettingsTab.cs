@@ -80,7 +80,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 RowStyle = Application.Current.Resources["DGRowStyle"] as Style,
                 Style = Application.Current.Resources["DGStyle"] as Style
             };
-            //programsDataGrid.Columns.Add(nameDataGridColumn);
+            programsDataGrid.Columns.Add(nameDataGridColumn);
             programsDataGrid.Columns.Add(callingNamesDataGridColumn);
             programsDataGrid.Columns.Add(pathDataGridColumn);
 

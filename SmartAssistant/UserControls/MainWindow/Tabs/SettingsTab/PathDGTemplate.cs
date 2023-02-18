@@ -9,8 +9,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         public PathDGTemplate()
         {
             ProgramElement programElement = new ProgramElement();
-
-            var pathBinding = new Binding(nameof(programElement.Path));
+            Binding pathBinding = new Binding(nameof(programElement.Path));
             pathBinding.UpdateSourceTrigger = UpdateSourceTrigger.LostFocus;
 
             FrameworkElementFactory pathDGFactory = new FrameworkElementFactory(typeof(TextBox));

@@ -9,10 +9,12 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
     {
         public NameDGTemplate()
         {
-            ProgramObj forTitleProgramObj = new ProgramObj();
+            ProgramElement programElement = new ProgramElement();
+            Binding nameBinding = new Binding(nameof(programElement.Name));
+            nameBinding.UpdateSourceTrigger = UpdateSourceTrigger.LostFocus;
 
             FrameworkElementFactory nameDGFactory = new FrameworkElementFactory(typeof(TextBox));
-            nameDGFactory.SetBinding(TextBox.TextProperty, new Binding(nameof(forTitleProgramObj.Name)));
+            nameDGFactory.SetBinding(TextBox.TextProperty, nameBinding);
             nameDGFactory.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
             nameDGFactory.SetValue(TextBox.WidthProperty, (double)100);
 
