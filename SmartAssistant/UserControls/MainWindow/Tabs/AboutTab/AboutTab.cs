@@ -1,12 +1,10 @@
 ﻿using SmartAssistant.Data.LocalizationData;
-using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -21,164 +19,204 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
             Height = height;
             Visibility = visibility;
 
-            Style style = new Style();
-            //style.TargetType = typeof(TextBlock);
-            style.Setters.Add(new Setter(TextBlock.FontSizeProperty, (double)15));
-            style.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
-            style.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
-            Style = style;
+            Style styleTextBlock = new Style();
+            styleTextBlock.Setters.Add(new Setter(TextBlock.FontSizeProperty, (double)15));
+            styleTextBlock.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
+            styleTextBlock.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
+            Style = styleTextBlock;
 
             var loc = Localize.JsonObject.MainWindowLoc.TabsLoc.AboutProgramTabLoc;
 
-            #region a1
-            TextBlock textBlock11 = new TextBlock()
+            #region NameProgram
+
+            TextBlock nameProgramLocTextBlock = new TextBlock()
             {
-                Text = loc.NameProgramLoc,
-                Margin = new Thickness(0, 0, 10, 0)
+                Text = loc.NameProgramLoc
             };
-            TextBlock textBlock12 = new TextBlock()
+            TextBlock nameProgramTextBlock = new TextBlock()
             {
-                Text = "Привет, Иван!"
+                Text = "Привет, Иван!",
+                Margin = new Thickness(10, 0, 0, 0)
             };
 
-            StackPanel stackPanel1 = new StackPanel()
+            StackPanel nameProgramStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
-                Margin = new Thickness(15, 10, 0, 0),
+                Margin = new Thickness(0, 10, 0, 0),
             };
-            stackPanel1.Children.Add(textBlock11);
-            stackPanel1.Children.Add(textBlock12);
+            nameProgramStackPanel.Children.Add(nameProgramLocTextBlock);
+            nameProgramStackPanel.Children.Add(nameProgramTextBlock);
+
             #endregion
 
-            #region a2
-            TextBlock textBlock21 = new TextBlock()
+            #region NameBuild
+
+            TextBlock nameBuildLocTextBlock = new TextBlock()
             {
-                Text = loc.NameBuildLoc,
-                Margin = new Thickness(0, 0, 10, 0)
+                Text = loc.NameBuildLoc
             };
-            TextBlock textBlock22 = new TextBlock()
+            TextBlock nameBuildTextBlock = new TextBlock()
             {
-                Text = "SmartAssistant"
+                Text = "SmartAssistant",
+                Margin = new Thickness(10, 0, 0, 0)
             };
 
-            StackPanel stackPanel2 = new StackPanel()
+            StackPanel nameBuildStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
-                Margin = new Thickness(15, 10, 0, 0),
+                Margin = new Thickness(0, 10, 0, 0),
             };
-            stackPanel2.Children.Add(textBlock21);
-            stackPanel2.Children.Add(textBlock22);
+            nameBuildStackPanel.Children.Add(nameBuildLocTextBlock);
+            nameBuildStackPanel.Children.Add(nameBuildTextBlock);
+
             #endregion
 
-            #region a3
-            TextBlock textBlock31 = new TextBlock()
+            #region Version
+
+            TextBlock versionLocTextBlock = new TextBlock()
             {
-                Text = loc.VersionLoc,
-                Margin = new Thickness(0, 0, 10, 0)
+                Text = loc.VersionLoc
             };
-            TextBlock textBlock32 = new TextBlock()
+            TextBlock versionTextBlock = new TextBlock()
             {
-                Text = "0.0.2.1"
+                Text = "0.0.2.1",
+                Margin = new Thickness(10, 0, 0, 0)
             };
 
-            StackPanel stackPanel3 = new StackPanel()
+            StackPanel versionStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
-                Margin = new Thickness(15, 10, 0, 0),
+                Margin = new Thickness(0, 10, 0, 0),
             };
-            stackPanel3.Children.Add(textBlock31);
-            stackPanel3.Children.Add(textBlock32);
+            versionStackPanel.Children.Add(versionLocTextBlock);
+            versionStackPanel.Children.Add(versionTextBlock);
+
             #endregion
 
-            #region a4
-            TextBlock textBlock41 = new TextBlock()
+            #region Authors
+
+            TextBlock authorsLocTextBlock = new TextBlock()
             {
-                Text = loc.AuthorsLoc.TitleLoc,
-                Margin = new Thickness(0, 0, 10, 0)
+                Text = loc.AuthorsLoc.TitleLoc
             };
 
-            TextBlock textBlock42 = new TextBlock()
+            TextBlock makssAuthorTextBlock = new TextBlock()
             { Text = loc.AuthorsLoc.MakssLoc };
-            TextBlock textBlock43 = new TextBlock()
+            TextBlock mrVeserAuthorTextBlock = new TextBlock()
             { Text = loc.AuthorsLoc.MrVeserLoc };
-            TextBlock textBlock44 = new TextBlock()
+            TextBlock flowenyAuthorTextBlock = new TextBlock()
             { Text = loc.AuthorsLoc.FlowenyLoc };
 
-            StackPanel stackPanel41 = new StackPanel() { Orientation = Orientation.Vertical };
-            stackPanel41.Children.Add(textBlock42);
-            stackPanel41.Children.Add(textBlock43);
-            stackPanel41.Children.Add(textBlock44);
+            StackPanel authorsStackPanel1 = new StackPanel() 
+            { 
+                Orientation = Orientation.Vertical,
+                Margin = new Thickness(10, 0, 0, 0),
+            };
+            authorsStackPanel1.Children.Add(makssAuthorTextBlock);
+            authorsStackPanel1.Children.Add(mrVeserAuthorTextBlock);
+            authorsStackPanel1.Children.Add(flowenyAuthorTextBlock);
 
-            StackPanel stackPanel4 = new StackPanel()
+            StackPanel authorsStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
-                Margin = new Thickness(15, 10, 0, 0),
+                Margin = new Thickness(0, 10, 0, 0),
             };
-            stackPanel4.Children.Add(textBlock41);
-            stackPanel4.Children.Add(stackPanel41);
+            authorsStackPanel.Children.Add(authorsLocTextBlock);
+            authorsStackPanel.Children.Add(authorsStackPanel1);
+
             #endregion
 
-            #region a5
-            TextBlock textBlock51 = new TextBlock()
+            #region Links
+
+            TextBlock downloadLinkLocTextBlock = new TextBlock()
             {
-                Text = loc.DownloadLinkLoc,
-                Margin = new Thickness(0, 0, 10, 0)
+                Text = loc.DownloadLinkLoc
             };
-            Hyperlink hyperlink = new Hyperlink()
+            Hyperlink downloadHyperlink = new Hyperlink()
             {
                 NavigateUri = new Uri("https://goo.su/YCMpX2")
             };
-            hyperlink.RequestNavigate += Hyperlink_RequestNavigate;
-            hyperlink.Inlines.Add("https://goo.su/YCMpX2");
+            downloadHyperlink.RequestNavigate += DownloadHyperlink_RequestNavigate;
+            downloadHyperlink.Inlines.Add("https://goo.su/YCMpX2");
 
-            TextBlock textBlock52 = new TextBlock();
-            textBlock52.Inlines.Add(hyperlink);
+            TextBlock downloadHyperlinkTextBlock = new TextBlock();
+            downloadHyperlinkTextBlock.Inlines.Add(downloadHyperlink);
 
-            //Uri qr = new Uri("pack://application:,,,/SmartAssistant;component/Resources/QR.png", UriKind.RelativeOrAbsolute);
-
-            //var b = new BitmapImage(qr);
-            //Image image = new Image() { Source = b };
-            Label label = new Label()
+            Label downloadQRLabel = new Label()
             {
-                //Content = image,
+                Content = new Image() { Source = new BitmapImage(
+                    new Uri("pack://application:,,,/Resources/QR.png", 
+                    UriKind.RelativeOrAbsolute)) },
                 Width = 150,
                 Height = 150,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Thickness(20, 10, 10, 0)
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Margin = new Thickness(0, 5, 0, 0)
             };
 
-            StackPanel stackPanel5 = new StackPanel()
+            StackPanel downloadHyperlinkStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Vertical,
-                Margin = new Thickness(15, 10, 0, 0),
+                Margin = new Thickness(0, 10, 0, 0),
             };
-            stackPanel5.Children.Add(textBlock51);
-            stackPanel5.Children.Add(textBlock52);
-            stackPanel5.Children.Add(label);
+            downloadHyperlinkStackPanel.Children.Add(downloadLinkLocTextBlock);
+            downloadHyperlinkStackPanel.Children.Add(downloadHyperlinkTextBlock);
+            downloadHyperlinkStackPanel.Children.Add(downloadQRLabel);
+
+            TextBlock GitHubLinkLocTextBlock = new TextBlock()
+            {
+                Text = loc.GitHubLinkLoc,
+                TextAlignment = TextAlignment.Left,
+                Margin = new Thickness(25, 10, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Width = 300,
+                TextWrapping = TextWrapping.Wrap
+            };
+
+            StackPanel linksStackPanel = new StackPanel() 
+            { Orientation = Orientation.Horizontal };
+            linksStackPanel.Children.Add(downloadHyperlinkStackPanel);
+            linksStackPanel.Children.Add(GitHubLinkLocTextBlock);
+
             #endregion
 
-            TextBlock textBlock = new TextBlock()
+            TextBlock warningTextBlock = new TextBlock() 
+            { 
+                Text = loc.WarningLoc,
+                TextAlignment = TextAlignment.Center,
+                Margin = new Thickness(0, 10, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                TextWrapping = TextWrapping.Wrap
+
+            };
+
+            TextBlock titleTextBlock = new TextBlock()
             {
-                Text = Localize.JsonObject.MainWindowLoc.TabsLoc.AboutProgramTabLoc.TitleLoc,
+                Text = loc.TitleLoc,
                 FontSize = 20,
                 Margin = new Thickness(0, 15, 0, 0),
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            StackPanel stackPanel = new StackPanel() { Orientation = Orientation.Vertical };
-            stackPanel.Children.Add(textBlock);
-            stackPanel.Children.Add(stackPanel1);
-            stackPanel.Children.Add(stackPanel2);
-            stackPanel.Children.Add(stackPanel3);
-            stackPanel.Children.Add(stackPanel4);
-            stackPanel.Children.Add(stackPanel5);
+            StackPanel mainStackPanel = new StackPanel() 
+            { 
+                Orientation = Orientation.Vertical,
+                Margin = new Thickness(20, 0, 20, 10)
+            };
+            mainStackPanel.Children.Add(titleTextBlock);
+            mainStackPanel.Children.Add(nameProgramStackPanel);
+            mainStackPanel.Children.Add(nameBuildStackPanel);
+            mainStackPanel.Children.Add(versionStackPanel);
+            mainStackPanel.Children.Add(authorsStackPanel);
+            mainStackPanel.Children.Add(linksStackPanel);
+            mainStackPanel.Children.Add(warningTextBlock);
 
             Grid mainGrid = new Grid();
-            mainGrid.Children.Add(stackPanel);
+            mainGrid.Children.Add(mainStackPanel);
             Content = mainGrid;
         }
 
-        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        private void DownloadHyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             Process.Start(new ProcessStartInfo("https://goo.su/YCMpX2") { UseShellExecute = true });
         }

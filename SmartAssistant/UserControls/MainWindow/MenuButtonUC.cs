@@ -109,13 +109,12 @@ namespace SmartAssistant.UserControls.MainWindow
             };
             stackPanel.Children.Add(textBlock);
 
-            MenuButtonStyle menuButtonStyle = new MenuButtonStyle();
             button = new Button()
             {
                 Height = 45,
                 Command = HandlerClickCommand,
                 Width = 220,
-                Style = menuButtonStyle
+                Style = new MenuButtonStyle()
             };
             button.MouseEnter += Button_MouseEnter;
             button.MouseLeave += Button_MouseLeave;
@@ -143,7 +142,7 @@ namespace SmartAssistant.UserControls.MainWindow
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Margin = new Thickness(0, 0, -1, 0)
             };
-            Panel.SetZIndex(path, 10);
+            Panel.SetZIndex(path, 2);
             
 
             Grid grid = new Grid()
