@@ -7,18 +7,15 @@ using SmartAssistant.Data.SitesData;
 using SmartAssistant.Data.TriggersData;
 using SmartAssistant.Data.WordsData;
 using SmartAssistant.Models;
+using SmartAssistant.Windows.AddPE;
 using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
-using System.Windows.Media.Media3D;
 
 namespace SmartAssistant
 {
     //TODO: Виктор стили mainWindow и других окон
     //TODO: Максим окно добавления программы
-    //TODO: Максим сериализация при изменении таблицы
-    //TODO: Максим выполнение команд в чате
-    //TODO: Виктор настриить стиль menuButton
 
     internal class Program
     {
@@ -57,6 +54,8 @@ namespace SmartAssistant
             SkillManager.Initialize();
 
 
+            AddPEWindow addPEWindow = new AddPEWindow();
+            addPEWindow.Show();
             mainWin.Show();
             app.Run();
         }

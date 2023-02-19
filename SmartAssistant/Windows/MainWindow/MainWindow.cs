@@ -11,8 +11,6 @@ namespace SmartAssistant.Windows.MainWindow
 {
     public class MainWindow : Window
     {
-        private List<Tab> tabsList;
-
         public ICommand MouseMoveCommand { get; }
         private bool CanMouseMoveCommandExecute(object sender) => true;
         private void OnMouseMoveCommandExecuted(object sender)
@@ -25,8 +23,6 @@ namespace SmartAssistant.Windows.MainWindow
             MouseMoveCommand = new LambdaCommand(
                 OnMouseMoveCommandExecuted,
                 CanMouseMoveCommandExecute);
-
-            tabsList = new List<Tab>();
 
             Width = 800;
             Height = 500;
