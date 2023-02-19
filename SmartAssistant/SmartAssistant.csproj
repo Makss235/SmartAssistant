@@ -9,12 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\QR.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Resources\Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FuzzyString\FuzzyString.csproj" />
     <ProjectReference Include="..\STT\STT.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\QR.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
