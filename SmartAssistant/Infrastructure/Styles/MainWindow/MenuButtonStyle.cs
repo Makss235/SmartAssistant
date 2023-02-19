@@ -19,7 +19,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
                 RelativeSource = RelativeSource.TemplatedParent,
                 Path = new PropertyPath("Background")
             });
-            borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(20, 0, 0, 20));
+            borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(20, 10, 10, 20));
 
             borderFactory.AppendChild(contentPresenterFactory);
 
