@@ -134,13 +134,13 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
             TextBlock textBlock52 = new TextBlock();
             textBlock52.Inlines.Add(hyperlink);
 
-            //Uri qr = new Uri("pack://application:,,,/SmartAssistant;component/Resources/QR.png", UriKind.RelativeOrAbsolute);
+            Uri qr = new Uri("pack://application:,,,/Resources/QR.png", UriKind.RelativeOrAbsolute);
 
-            //var b = new BitmapImage(qr);
-            //Image image = new Image() { Source = b };
+            var b = new BitmapImage(qr);
+            Image image = new Image() { Source = b };
             Label label = new Label()
             {
-                //Content = image,
+                Content = image,
                 Width = 150,
                 Height = 150,
                 HorizontalAlignment = HorizontalAlignment.Left,
