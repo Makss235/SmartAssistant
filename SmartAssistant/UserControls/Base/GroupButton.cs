@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace SmartAssistant.UserControls.Base
 {
-    public class GroupButton : UserControl, INotifyPropertyChanged
+    public abstract class GroupButton : UserControl, INotifyPropertyChanged
     {
         #region NPC
 
@@ -70,14 +70,9 @@ namespace SmartAssistant.UserControls.Base
 
         #endregion
 
-        public static event Action<byte> GroupButtonPressedEvent;
-
         public ICommand ClickCommand;
         protected virtual bool CanClickCommandExecute(object sender) => true;
-        protected virtual void OnClickCommandExecuted(object sender)
-        {
-            GroupButtonPressedEvent.Invoke(ID);
-        }
+        protected abstract void OnClickCommandExecuted(object sender);
 
         public GroupButton(string title, bool isActive, byte id)
         {

@@ -11,15 +11,15 @@ namespace SmartAssistant.Windows.AddPEWindow
             Orientation = Orientation.Horizontal;
             Margin = new Thickness(20);
 
-            MenuButtonUC addNameMB = new MenuButtonUC("1", true, 0)
+            AddPEButton addNameMB = new AddPEButton("1", true, 0)
             {
                 Margin = new Thickness(0, 0, 20, 0)
             };
-            MenuButtonUC addCallingNamesMB = new MenuButtonUC("1", true, 1)
+            AddPEButton addCallingNamesMB = new AddPEButton("1", true, 1)
             {
                 Margin = new Thickness(0, 0, 20, 0)
             };
-            MenuButtonUC addPathMB = new MenuButtonUC("1", true, 2)
+            AddPEButton addPathMB = new AddPEButton("1", true, 2)
             {
                 Margin = new Thickness(0, 0, 20, 0)
             };

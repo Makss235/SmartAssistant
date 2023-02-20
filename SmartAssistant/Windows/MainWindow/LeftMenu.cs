@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Data.LocalizationData;
+using SmartAssistant.UserControls.Base;
 using SmartAssistant.UserControls.MainWindow;
 using System.Collections.Generic;
 using System.Windows;
@@ -8,28 +9,28 @@ namespace SmartAssistant.Windows.MainWindow
 {
     public class LeftMenu
     {
-        private List<MenuButtonUC> _menuButtons;
+        private List<MenuButton> _menuButtons;
 
         public Border LeftMenuBorder { get; set; }
 
         public LeftMenu()
         {
-            _menuButtons = new List<MenuButtonUC>();
+            _menuButtons = new List<MenuButton>();
 
             StackPanel menuButtonsStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Vertical,
                 Margin = new Thickness(0, 175, 0, 0)
             };
-            MenuButtonUC vAChatMenuButton = new MenuButtonUC(
+            MenuButton vAChatMenuButton = new MenuButton(
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.VAChatButtonTitleLoc, 
                 isActive: true, id: 0);
             _menuButtons.Add(vAChatMenuButton);
-            MenuButtonUC settingsMenuButton = new MenuButtonUC(
+            MenuButton settingsMenuButton = new MenuButton(
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.SettingsButtonTitleLoc, 
                 isActive: false, id: 1);
             _menuButtons.Add(settingsMenuButton);
-            MenuButtonUC aboutMenuButton = new MenuButtonUC(
+            MenuButton aboutMenuButton = new MenuButton(
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.AboutProgramButtonTitleLoc,
                 isActive: false, id: 2);
             _menuButtons.Add(aboutMenuButton);
@@ -37,7 +38,7 @@ namespace SmartAssistant.Windows.MainWindow
             menuButtonsStackPanel.Children.Add(settingsMenuButton);
             menuButtonsStackPanel.Children.Add(aboutMenuButton);
 
-            MenuButtonUC.MenuButtonPressedEvent += ass;
+            MenuButton.MenuButtonPressedEvent += ass;
 
             Grid leftMenuGrid = new Grid()
             {

@@ -20,7 +20,7 @@ namespace SmartAssistant.Windows.MainWindow
 
         public MainField()
         {
-            MenuButtonUC.MenuButtonPressedEvent += ChangeVisibilityTabs;
+            MenuButton.MenuButtonPressedEvent += ChangeVisibilityTabs;
             tabs = new List<Tab>();
 
             VAChatTab vAChatTab = new VAChatTab(id: 0, width: 535,

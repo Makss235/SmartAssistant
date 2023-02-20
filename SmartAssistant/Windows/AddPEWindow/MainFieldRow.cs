@@ -15,7 +15,7 @@ namespace SmartAssistant.Windows.AddPEWindow
 
         public MainFieldRow()
         {
-            MenuButtonUC.MenuButtonPressedEvent += ChangeVisibilityTabs;
+            AddPEButton.AddPEButtonPressedEvent += ChangeVisibilityTabs;
             tabs = new List<Tab>();
 
             // TODO: Makss width and height dependent from Settings
