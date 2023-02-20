@@ -1,5 +1,5 @@
 ﻿using SmartAssistant.Data.LocalizationData;
-using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using SmartAssistant.UserControls.Base;
 using System;
 using System.Diagnostics;
 using System.Windows;

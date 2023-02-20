@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
-namespace SmartAssistant.UserControls.MainWindow.Tabs.Base
+namespace SmartAssistant.UserControls.Base
 {
     public class Tab : UserControl, INotifyPropertyChanged
     {

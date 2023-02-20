@@ -1,6 +1,6 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Data.ProgramsData;
-using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using SmartAssistant.UserControls.Base;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -100,7 +100,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             ScrollViewer scrollViewer = new ScrollViewer()
             {
-                Margin = new Thickness(0, 45, 0, 20),
+                Margin = new Thickness(0, 45, 8, 25),
                 Visibility = Visibility.Visible
             };
             scrollViewer.Content = settingsSP;

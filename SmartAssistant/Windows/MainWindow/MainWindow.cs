@@ -1,29 +1,15 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Infrastructure.Commands;
-using SmartAssistant.UserControls.MainWindow.Tabs.Base;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace SmartAssistant.Windows.MainWindow
 {
     public class MainWindow : Window
     {
-        public ICommand MouseMoveCommand { get; }
-        private bool CanMouseMoveCommandExecute(object sender) => true;
-        private void OnMouseMoveCommandExecuted(object sender)
-        {
-            DragMove();
-        }
-
         public MainWindow()
         {
-            MouseMoveCommand = new LambdaCommand(
-                OnMouseMoveCommandExecuted,
-                CanMouseMoveCommandExecute);
-
             Width = 800;
             Height = 500;
             Title = Localize.JsonObject.MainWindowLoc.TitleLoc;
@@ -49,7 +35,7 @@ namespace SmartAssistant.Windows.MainWindow
             { Width = new GridLength(535, GridUnitType.Pixel) };
             mainGrid.ColumnDefinitions.Add(mainFieldColumnDefinition);
 
-            HeadingMenu headingMenu = new HeadingMenu(MouseMoveCommand);
+            HeadingMenu headingMenu = new HeadingMenu(new DragMoveCommand(this));
             Grid.SetColumn(headingMenu.HeadingMenuBorder, 0);
 
             LeftMenu leftMenu = new LeftMenu();

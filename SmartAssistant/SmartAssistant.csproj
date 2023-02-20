@@ -42,4 +42,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infrastructure\Styles\AddPEWindow\Tabs\" />
+  </ItemGroup>
+
 </Project>

@@ -7,7 +7,7 @@ using SmartAssistant.Data.SitesData;
 using SmartAssistant.Data.TriggersData;
 using SmartAssistant.Data.WordsData;
 using SmartAssistant.Models;
-using SmartAssistant.Windows.AddPE;
+using SmartAssistant.Windows.AddPEWindow;
 using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
@@ -55,8 +55,8 @@ namespace SmartAssistant
 
 
             AddPEWindow addPEWindow = new AddPEWindow();
-            addPEWindow.Show();
             mainWin.Show();
+            addPEWindow.Show();
             app.Run();
         }
     }

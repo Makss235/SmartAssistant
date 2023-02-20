@@ -1,13 +1,14 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.MainWindow;
+using SmartAssistant.UserControls.Base;
 using SmartAssistant.UserControls.MainWindow;
 using SmartAssistant.UserControls.MainWindow.Tabs.AboutTab;
-using SmartAssistant.UserControls.MainWindow.Tabs.Base;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
 using SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SmartAssistant.Windows.MainWindow
 {
@@ -39,7 +40,7 @@ namespace SmartAssistant.Windows.MainWindow
 
             Button collapseProgramButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(20, 0, 0, BasicColors.RedBrush),
+                Style = new WarpAndCollapseProgramButtonStyle(15, 0, 0, BasicColors.RedBrush),
                 Content = "X",
                 Command = new CloseApplicationCommand(),
                 CommandParameter = true
@@ -63,7 +64,9 @@ namespace SmartAssistant.Windows.MainWindow
             {
                 Background = BasicColors.BackgroundLightBrush,
                 CornerRadius = new CornerRadius(0, 20, 20, 0),
-                Margin = new Thickness(-20, 0, 0, 0)
+                Margin = new Thickness(-20, 0, 0, 0),
+                BorderThickness = new Thickness(4),
+                BorderBrush = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush
             };
             MainFieldBorder.Child = mainFieldGrid;
         }

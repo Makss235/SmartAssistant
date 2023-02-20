@@ -1,7 +1,7 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
 using SmartAssistant.Models;
-using SmartAssistant.UserControls.MainWindow.Tabs.Base;
+using SmartAssistant.UserControls.Base;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -85,7 +85,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 
             scrollViewer = new ScrollViewer()
             {
-                Margin = new Thickness(0, 40, 0, 100),
+                Margin = new Thickness(0, 40, 8, 100),
             };
             scrollViewer.Content = itemsControl;
 
