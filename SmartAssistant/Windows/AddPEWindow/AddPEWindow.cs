@@ -39,7 +39,7 @@ namespace SmartAssistant.Windows.AddPEWindow
             { Height = new GridLength(260, GridUnitType.Pixel) };
             mainGrid.RowDefinitions.Add(mainFieldRowDefinition);
 
-            MenuButtonsRow menuButtonsRow = new MenuButtonsRow();
+            AddPEButtonsRow menuButtonsRow = new AddPEButtonsRow();
             Grid.SetRow(menuButtonsRow, 0);
             mainGrid.Children.Add(menuButtonsRow);
 
