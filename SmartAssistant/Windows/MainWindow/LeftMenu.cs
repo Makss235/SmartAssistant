@@ -1,5 +1,4 @@
 ﻿using SmartAssistant.Data.LocalizationData;
-using SmartAssistant.UserControls.Base;
 using SmartAssistant.UserControls.MainWindow;
 using System.Collections.Generic;
 using System.Windows;

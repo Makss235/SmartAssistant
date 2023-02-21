@@ -6,6 +6,7 @@ using SmartAssistant.Data.SettingsData;
 using SmartAssistant.Data.SitesData;
 using SmartAssistant.Data.TriggersData;
 using SmartAssistant.Data.WordsData;
+using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Models;
 using SmartAssistant.Windows.AddPEWindow;
 using SmartAssistant.Windows.MainWindow;
