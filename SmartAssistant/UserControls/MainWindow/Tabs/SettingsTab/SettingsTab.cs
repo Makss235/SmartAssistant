@@ -72,13 +72,14 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             DataGrid programsDataGrid = new DataGrid()
             {
                 AutoGenerateColumns = false,
+                CanUserAddRows = false,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Margin = new Thickness(10, 0, 15, 0),
                 ItemsSource = ProgramElements,
                 CellStyle = Application.Current.Resources["DGCellStyle1"] as Style,
                 ColumnHeaderStyle = Application.Current.Resources["DGColumnHeaderStyle"] as Style /*new DataGridColumnHeaderStyle()*/,
                 RowStyle = Application.Current.Resources["DGRowStyle"] as Style,
-                Style = Application.Current.Resources["DGStyle"] as Style
+                Style = Application.Current.Resources["DGStyle"] as Style,
             };
             programsDataGrid.Columns.Add(nameDataGridColumn);
             programsDataGrid.Columns.Add(callingNamesDataGridColumn);
