@@ -3,6 +3,7 @@ using SmartAssistant.Infrastructure.Commands;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace SmartAssistant.Windows.MainWindow
 {
@@ -10,8 +11,8 @@ namespace SmartAssistant.Windows.MainWindow
     {
         public MainWindow()
         {
-            Width = 800;
-            Height = 500;
+            Width = 850;
+            Height = 550;
             Title = Localize.JsonObject.MainWindowLoc.TitleLoc;
 
             ResizeMode = ResizeMode.NoResize;
@@ -21,7 +22,11 @@ namespace SmartAssistant.Windows.MainWindow
             Background = new SolidColorBrush(Colors.Transparent);
             AllowsTransparency = true;
 
-            Grid mainGrid = new Grid();
+            Grid mainGrid = new Grid()
+            {
+                Width = 800,
+                Height = 500
+            };
 
             ColumnDefinition headingMenuColumnDefinition = new ColumnDefinition()
             { Width = new GridLength(45, GridUnitType.Pixel) };
@@ -48,7 +53,15 @@ namespace SmartAssistant.Windows.MainWindow
             mainGrid.Children.Add(leftMenu.LeftMenuBorder);
             mainGrid.Children.Add(headingMenu.HeadingMenuBorder);
 
+            DropShadowEffect dropShadowEffect = new DropShadowEffect()
+            {
+                ShadowDepth = 5,
+                BlurRadius = 15,
+                Opacity = 0.5
+            };
+
             Content = mainGrid;
+            Effect = dropShadowEffect;
         }
     }
 }
