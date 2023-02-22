@@ -55,15 +55,14 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             };
             Grid.SetRow(textBox, 1);
 
-            Button button2 = new Button()
-            {
-                Width = 80,
-                Height = 50,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                Margin = new Thickness(20, 5, 28, 28),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Content = "Назад",
-            };
+            TabNavigationButton previousTabButton = 
+                new TabNavigationButton("Назад", NavigateButton.TypeButton.Previous, ID)
+                {
+                    Margin = new Thickness(20, 0, 0, 28),
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    HorizontalAlignment = HorizontalAlignment.Left
+                };
+
             Button button3 = new Button()
             {
                 Width = 80,
@@ -73,9 +72,9 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Content = "Готово",
             };
-            Grid.SetRow(button2, 1);
+            Grid.SetRow(previousTabButton, 1);
             Grid.SetRow(button3, 1);
-            mainGrid.Children.Add(button2);
+            mainGrid.Children.Add(previousTabButton);
             mainGrid.Children.Add(button3);
 
             mainGrid.Children.Add(textBlock);

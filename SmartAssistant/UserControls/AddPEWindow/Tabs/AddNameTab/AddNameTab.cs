@@ -76,21 +76,25 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 new Binding(nameof(typpingNameTextBox.Text)) 
             { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
             Grid.SetRow(typpingNameTextBox, 1);
-            Button button3 = new Button()
+
+            TabNavigationButton nextTabButton =
+            new TabNavigationButton("Далее", NavigateButton.TypeButton.Next, ID)
             {
-                Width = 80,
-                Height = 50,
+                Margin = new Thickness(0, 0, 28, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
-                Margin = new Thickness(10, 5, 28, 28),
-                HorizontalAlignment = HorizontalAlignment.Right,
-                Content = "Далее",
+                HorizontalAlignment = HorizontalAlignment.Right
             };
-            Grid.SetRow(button3, 1);
-            mainGrid.Children.Add(button3);
+            Grid.SetRow(nextTabButton, 1);
+            mainGrid.Children.Add(nextTabButton);
 
             mainGrid.Children.Add(textBlock);
             mainGrid.Children.Add(typpingNameTextBox);
             Content = mainGrid;
+        }
+
+        private void NextTabButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         private void AddNameTab_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

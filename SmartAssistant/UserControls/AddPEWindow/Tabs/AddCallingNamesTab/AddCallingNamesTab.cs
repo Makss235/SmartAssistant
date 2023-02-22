@@ -84,28 +84,26 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             grid.Children.Add(textBox2);
             grid.Children.Add(button);
 
-            Button button2 = new Button()
+            TabNavigationButton previousTabButton =
+            new TabNavigationButton("Назад", NavigateButton.TypeButton.Previous, ID)
             {
-                Width = 80,
-                Height = 50,
+                Margin = new Thickness(10, 0, 0, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
-                Margin = new Thickness(10, 5, 28, 28),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Content = "Назад",
+                HorizontalAlignment = HorizontalAlignment.Left
             };
-            Button button3 = new Button()
+
+            TabNavigationButton nextTabButton =
+            new TabNavigationButton("Далее", NavigateButton.TypeButton.Next, ID)
             {
-                Width = 80,
-                Height = 50,
+                Margin = new Thickness(0, 0, 28, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
-                Margin = new Thickness(10, 5, 28, 28),
-                HorizontalAlignment = HorizontalAlignment.Right,
-                Content = "Далее",
+                HorizontalAlignment = HorizontalAlignment.Right
             };
-            Grid.SetRow(button2 , 1);
-            Grid.SetRow(button3 , 1);
-            grid.Children.Add(button2);
-            grid.Children.Add(button3);
+
+            Grid.SetRow(previousTabButton, 1);
+            Grid.SetRow(nextTabButton, 1);
+            grid.Children.Add(previousTabButton);
+            grid.Children.Add(nextTabButton);
 
             mainGrid.Children.Add(listBox);
             mainGrid.Children.Add(grid);

@@ -12,11 +12,11 @@ namespace SmartAssistant.Windows.AddPEWindow
             Margin = new Thickness(20);
 
             // TODO: Makss localize
-            AddPEButton addNameButton = new AddPEButton("Название", true, 0)
+            AddPEGroupButton addNameButton = new AddPEGroupButton("Название", true, 0)
             { Margin = new Thickness(0, 0, 20, 0) };
-            AddPEButton addCallingNamesButton = new AddPEButton("Как будете звать?", false, 1)
+            AddPEGroupButton addCallingNamesButton = new AddPEGroupButton("Как будете звать?", false, 1)
             { Margin = new Thickness(0, 0, 20, 0) };
-            AddPEButton addPathButton = new AddPEButton("Путь", false, 2)
+            AddPEGroupButton addPathButton = new AddPEGroupButton("Путь", false, 2)
             { Margin = new Thickness(0, 0, 20, 0) };
 
             Children.Add(addNameButton);
