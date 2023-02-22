@@ -29,7 +29,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             {
                 Text = "Путь программы:",
                 FontSize = 15,
-                Margin = new Thickness(30, 0, 0, 0),
+                Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
@@ -39,7 +39,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
 
             TextBox textBox = new TextBox()
             {
-                Margin = new Thickness(30, 10, 0, 0),
+                Margin = new Thickness(50, 10, 0, 0),
                 BorderThickness = new Thickness(0, 0, 0, 3),
                 BorderBrush = Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush,
                 FontSize = 15,
@@ -54,6 +54,29 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 HorizontalAlignment = HorizontalAlignment.Left
             };
             Grid.SetRow(textBox, 1);
+
+            Button button2 = new Button()
+            {
+                Width = 80,
+                Height = 50,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(20, 5, 28, 28),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Content = "Назад",
+            };
+            Button button3 = new Button()
+            {
+                Width = 80,
+                Height = 50,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(10, 5, 28, 28),
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Content = "Готово",
+            };
+            Grid.SetRow(button2, 1);
+            Grid.SetRow(button3, 1);
+            mainGrid.Children.Add(button2);
+            mainGrid.Children.Add(button3);
 
             mainGrid.Children.Add(textBlock);
             mainGrid.Children.Add(textBox);

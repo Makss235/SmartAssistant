@@ -84,6 +84,29 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             grid.Children.Add(textBox2);
             grid.Children.Add(button);
 
+            Button button2 = new Button()
+            {
+                Width = 80,
+                Height = 50,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(10, 5, 28, 28),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Content = "Назад",
+            };
+            Button button3 = new Button()
+            {
+                Width = 80,
+                Height = 50,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(10, 5, 28, 28),
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Content = "Далее",
+            };
+            Grid.SetRow(button2 , 1);
+            Grid.SetRow(button3 , 1);
+            grid.Children.Add(button2);
+            grid.Children.Add(button3);
+
             mainGrid.Children.Add(listBox);
             mainGrid.Children.Add(grid);
             Content = mainGrid;

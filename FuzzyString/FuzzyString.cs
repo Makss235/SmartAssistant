@@ -76,7 +76,7 @@ namespace FuzzyString
         /// Возвращает признак подходящего символа.
         /// </summary>
         /// <param name="c">Символ.</param>
-        /// <returns>True - если символ буква или цифра, False - иначе.</returns>
+        /// <returns>True - если символ - буква или цифра, False - иначе.</returns>
         private bool IsNormalChar(char c)
         {
             return char.IsLetterOrDigit(c);

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 {
@@ -114,7 +115,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Width = 50,
                 Margin = new Thickness(20, 20, 30, 20),
                 Command = SendMessageByMeCommand,
-                Style = new SendButtonStyle(),
+                Style = new SendButtonStyle()
             };
 
             Grid mainGrid = new Grid();

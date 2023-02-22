@@ -1,25 +1,19 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Infrastructure.Commands;
-using SmartAssistant.UserControls.AddPEWindow;
-using SmartAssistant.UserControls.Base;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace SmartAssistant.Windows.AddPEWindow
 {
     public class AddPEWindow : Window
     {
-        private List<Tab> tabs;
-
         public AddPEWindow()
         {
-            tabs = new List<Tab>();
-
-            Width = 500;
-            Height = 350;
+            Width = 550;
+            Height = 400;
             Title = Localize.JsonObject.MainWindowLoc.TitleLoc;
 
             ResizeMode = ResizeMode.NoResize;
@@ -55,12 +49,22 @@ namespace SmartAssistant.Windows.AddPEWindow
                 Background = new SolidColorBrush(Colors.AliceBlue),
                 CornerRadius = new CornerRadius(20, 20, 20, 20),
                 BorderThickness = new Thickness(4),
-                BorderBrush = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush
+                BorderBrush = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush,
+                Width = 500,
+                Height = 350
             };
             mainBorder.InputBindings.Add(mouseMoveIB);
             mainBorder.Child = mainGrid;
 
+            DropShadowEffect dropShadowEffect = new DropShadowEffect()
+            {
+                ShadowDepth = 5,
+                BlurRadius = 20,
+                Opacity = 0.65
+            };
+
             Content = mainBorder;
+            Effect = dropShadowEffect;
         }
     }
 }
