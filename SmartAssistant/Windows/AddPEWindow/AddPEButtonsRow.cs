@@ -1,6 +1,8 @@
 ﻿using SmartAssistant.UserControls.AddPEWindow;
 using System.Windows;
 using System.Windows.Controls;
+using SmartAssistant.Infrastructure.Styles;
+using System.Windows.Media;
 
 namespace SmartAssistant.Windows.AddPEWindow
 {

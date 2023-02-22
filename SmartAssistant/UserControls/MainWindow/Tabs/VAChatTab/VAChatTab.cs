@@ -91,6 +91,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 
             typingMessageTextBox = new TextBox()
             {
+                MinHeight = 0,
+                MaxHeight = 250,
                 Style = new TypingMessageTextBoxStyle(Width)
             };
             typingMessageTextBox.Focus();
@@ -99,6 +101,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             typingMessageBorder = new Border()
             {
                 Child = typingMessageTextBox,
+                MinHeight = 0,
+                MaxHeight = 250,
                 Style = new TypingChatMessageBorderStyle(Width),
             };
 
