@@ -10,20 +10,78 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
     {
         public TypingMessageTextBoxStyle(double Width)
         {
-            const double TextBoxFontSize = 16;
-            const double TextBoxHeight = 50;
-            double TextBoxWidth = Width - 120;
+            FrameworkElementFactory textBoxF = new FrameworkElementFactory(typeof(TextBox));
+            textBoxF.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
+            textBoxF.SetValue(TextBox.BackgroundProperty, Application.Current.Resources["Transparent"]);
+            textBoxF.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
+            textBoxF.SetValue(TextBox.PaddingProperty, new Thickness(15, 0, 15, 4));
+            textBoxF.SetValue(TextBox.VerticalContentAlignmentProperty, VerticalAlignment.Center);
+            textBoxF.SetValue(TextBox.FontSizeProperty, (double)16);
+            textBoxF.SetValue(TextBox.FontFamilyProperty, new FontFamily("Segoe UI Semibold"));
+            textBoxF.SetBinding(TextBox.TextProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("Text")
+            });
+            //textBoxF.SetBinding(Border.HeightProperty, new Binding
+            //{
+            //    RelativeSource = RelativeSource.TemplatedParent,
+            //    Path = new PropertyPath("Height")
+            //});
+            //textBoxF.SetBinding(Border.MinHeightProperty, new Binding
+            //{
+            //    RelativeSource = RelativeSource.TemplatedParent,
+            //    Path = new PropertyPath("MinHeight")
+            //});
+            //textBoxF.SetBinding(Border.MaxHeightProperty, new Binding
+            //{
+            //    RelativeSource = RelativeSource.TemplatedParent,
+            //    Path = new PropertyPath("MaxHeight")
+            //});
 
-            Setters.Add(new Setter(Control.BackgroundProperty, BasicColors.TransparentBrush));
-            Setters.Add(new Setter(Control.BorderBrushProperty, BasicColors.TransparentBrush));
-            Setters.Add(new Setter(Control.BorderThicknessProperty, new Thickness(0)));
-            Setters.Add(new Setter(Control.VerticalContentAlignmentProperty, VerticalAlignment.Center));
-            Setters.Add(new Setter(TextBox.TextWrappingProperty, TextWrapping.Wrap));
-            Setters.Add(new Setter(Control.PaddingProperty, new Thickness(15, 0, 15, 4)));
-            Setters.Add(new Setter(Control.FontSizeProperty, TextBoxFontSize));
-            Setters.Add(new Setter(FrameworkElement.HeightProperty, TextBoxHeight));
-            Setters.Add(new Setter(FrameworkElement.WidthProperty, TextBoxWidth));
-            Setters.Add(new Setter(Control.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
+            FrameworkElementFactory borderF = new FrameworkElementFactory(typeof(Border));
+            borderF.SetValue(Border.BackgroundProperty, Application.Current.Resources["BackgroundLightBrush"]);
+            borderF.SetValue(Border.BorderThicknessProperty, new Thickness(2));
+            //borderF.SetValue(Border.HeightProperty, (double)50);
+            borderF.SetValue(Border.WidthProperty, (double)Width - 120);
+            borderF.SetValue(Border.CornerRadiusProperty, new CornerRadius(20));
+            borderF.SetBinding(Border.BorderBrushProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("BorderBrush")
+            });
+            borderF.SetBinding(Border.HeightProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("Height")
+            });
+            borderF.SetBinding(Border.MinHeightProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("MinHeight")
+            });
+            borderF.SetBinding(Border.MaxHeightProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("MaxHeight")
+            });
+
+            borderF.AppendChild(textBoxF);
+
+            Trigger mouseOverT = new Trigger
+            {
+                Property = TextBox.IsMouseOverProperty,
+                Value = true
+            };
+            mouseOverT.Setters.Add(new Setter(TextBox.BorderBrushProperty, Application.Current.Resources["BackgroundDarkBrush"]));
+
+            Setters.Add(new Setter(Control.BorderBrushProperty, Application.Current.Resources["BackgroundMediumBrush"]));
+            Setters.Add(new Setter(Control.MinHeightProperty, (double)50));
+            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(TextBox))
+            {
+                VisualTree = borderF
+            }));
+            
         }
     }
 }

@@ -92,20 +92,23 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 
             typingMessageTextBox = new TextBox()
             {
-                MinHeight = 0,
+                //MinHeight = 50,
                 MaxHeight = 250,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Margin = new Thickness(20),
                 Style = new TypingMessageTextBoxStyle(Width)
             };
             typingMessageTextBox.Focus();
             typingMessageTextBox.TextChanged += TypingMessageTextBox_TextChanged;
 
-            typingMessageBorder = new Border()
-            {
-                Child = typingMessageTextBox,
-                MinHeight = 0,
-                MaxHeight = 250,
-                Style = new TypingChatMessageBorderStyle(Width),
-            };
+            //typingMessageBorder = new Border()
+            //{
+            //    Child = typingMessageTextBox,
+            //    MinHeight = 0,
+            //    MaxHeight = 250,
+            //    Style = new TypingChatMessageBorderStyle(Width),
+            //};
 
             sendMessageButton = new Button()
             {
@@ -120,7 +123,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 
             Grid mainGrid = new Grid();
             mainGrid.Children.Add(scrollViewer);
-            mainGrid.Children.Add(typingMessageBorder);
+            mainGrid.Children.Add(typingMessageTextBox);
             mainGrid.Children.Add(sendMessageButton);
 
             Content = mainGrid;
