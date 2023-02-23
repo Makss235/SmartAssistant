@@ -1,8 +1,7 @@
-﻿using SmartAssistant.Data.ProgramsData;
+﻿using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataGrid.DGSimpleElement;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataGrid.DGSimpleElement;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {

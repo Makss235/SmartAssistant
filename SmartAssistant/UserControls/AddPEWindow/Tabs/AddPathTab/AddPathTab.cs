@@ -1,12 +1,41 @@
 ﻿using SmartAssistant.UserControls.Base;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
 {
     public class AddPathTab : Tab
     {
+        //#region IsNormalName : bool - Нормальное имя
+
+        ///// <summary>Содержаться ли в имени только буквы и цифры</summary>
+        //private bool _IsNormalName;
+
+        ///// <summary>Содержаться ли в имени только буквы и цифры</summary>
+        //public bool IsNormalName
+        //{
+        //    get => _IsNormalName;
+        //    set => SetProperty(ref _IsNormalName, value);
+        //}
+
+        //#endregion
+
+        #region EnteredPath : string - Введенный путь
+
+        /// <summary>Введенный путь</summary>
+        private string _EnteredPath = string.Empty;
+
+        /// <summary>Введенный путь</summary>
+        public string EnteredPath
+        {
+            get => _EnteredPath;
+            set => SetProperty(ref _EnteredPath, value);
+        }
+
+        #endregion
+
         public AddPathTab(byte id, double width, double height, Visibility visibility)
         {
             ID = id;
@@ -37,6 +66,13 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             };
             Grid.SetRow(textBlock, 0);
 
+            Binding enteredPathBinding = new Binding(nameof(EnteredPath))
+            {
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                Mode = BindingMode.TwoWay,
+                Source = this
+            };
+
             TextBox textBox = new TextBox()
             {
                 Margin = new Thickness(50, 10, 0, 0),
@@ -53,6 +89,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Left
             };
+            textBox.SetBinding(TextBox.TextProperty, enteredPathBinding);
             Grid.SetRow(textBox, 1);
 
             TabNavigationButton previousTabButton = 

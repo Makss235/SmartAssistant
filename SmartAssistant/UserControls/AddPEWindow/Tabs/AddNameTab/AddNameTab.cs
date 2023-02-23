@@ -9,16 +9,30 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 {
     public class AddNameTab : Tab
     {
-        #region IsNormalText : bool - Нормальный текст
+        #region IsNormalName : bool - Нормальное имя
 
-        /// <summary>Содержаться ли в тексте только буквы и цифры</summary>
-        private bool _IsNormalText;
+        /// <summary>Содержаться ли в имени только буквы и цифры</summary>
+        private bool _IsNormalName;
 
-        /// <summary>Содержаться ли в тексте только буквы и цифры</summary>
-        public bool IsNormalText
+        /// <summary>Содержаться ли в имени только буквы и цифры</summary>
+        public bool IsNormalName
         {
-            get => _IsNormalText;
-            set => SetProperty(ref _IsNormalText, value);
+            get => _IsNormalName;
+            set => SetProperty(ref _IsNormalName, value);
+        }
+
+        #endregion
+
+        #region EnteredName : string - Введенное имя
+
+        /// <summary>Введенное имя</summary>
+        private string _EnteredName = string.Empty;
+
+        /// <summary>Введенное имя</summary>
+        public string EnteredName
+        {
+            get => _EnteredName;
+            set => SetProperty(ref _EnteredName, value);
         }
 
         #endregion
@@ -43,7 +57,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             mainGrid.RowDefinitions.Add(mainFieldRowDefinition);
 
             // TODO: Makss localize
-            TextBlock textBlock = new TextBlock()
+            // TODO: Veser styles
+            TextBlock indicatorNameTextBlock = new TextBlock()
             {
                 Text = "Название программы:",
                 FontSize = 15,
@@ -53,9 +68,16 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 ToolTip = new ToolTip() { Content = "Введите название программы\nлатиницей и без спец. символов" }
             };
-            Grid.SetRow(textBlock, 0);
+            Grid.SetRow(indicatorNameTextBlock, 0);
 
-            TextBox typpingNameTextBox = new TextBox()
+            Binding enteredNameBinding = new Binding(nameof(EnteredName))
+            {
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                Mode = BindingMode.TwoWay,
+                Source = this
+            };
+
+            TextBox enterNameTextBox = new TextBox()
             {
                 Margin = new Thickness(50, 10, 0, 0),
                 BorderThickness = new Thickness(0, 0, 0, 3),
@@ -71,11 +93,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Left
             };
-            typpingNameTextBox.TextChanged += TyppingNameTextBox_TextChanged;
-            typpingNameTextBox.SetBinding(TextBox.TextProperty, 
-                new Binding(nameof(typpingNameTextBox.Text)) 
-            { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
-            Grid.SetRow(typpingNameTextBox, 1);
+            enterNameTextBox.SetBinding(TextBox.TextProperty, enteredNameBinding);
+            Grid.SetRow(enterNameTextBox, 1);
 
             TabNavigationButton nextTabButton =
             new TabNavigationButton("Далее", NavigateButton.TypeButton.Next, ID)
@@ -87,22 +106,20 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             Grid.SetRow(nextTabButton, 1);
             mainGrid.Children.Add(nextTabButton);
 
-            mainGrid.Children.Add(textBlock);
-            mainGrid.Children.Add(typpingNameTextBox);
+            mainGrid.Children.Add(indicatorNameTextBlock);
+            mainGrid.Children.Add(enterNameTextBox);
             Content = mainGrid;
-        }
-
-        private void NextTabButton_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void AddNameTab_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
-                case nameof(IsNormalText):
+                case nameof(IsNormalName):
                     CheckIsNormalText();
+                    break;
+                case nameof(EnteredName):
+                    EnteredNameChanged();
                     break;
             }
         }
@@ -110,7 +127,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
         private void CheckIsNormalText()
         {
             // TODO: Veser изменение цвета
-            if (IsNormalText)
+            if (IsNormalName)
             {
 
             }
@@ -120,12 +137,11 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             }
         }
 
-        private void TyppingNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void EnteredNameChanged()
         {
-            var textBoxObject = (TextBox)sender;
-            if (!Regex.IsMatch(textBoxObject.Text, @"^[a-zA-Z0-9_]+$"))
+            if (!Regex.IsMatch(EnteredName, @"^[a-zA-Z0-9_]+$"))
             {
-                IsNormalText = false;
+                IsNormalName = false;
                 return;
             }
         }
