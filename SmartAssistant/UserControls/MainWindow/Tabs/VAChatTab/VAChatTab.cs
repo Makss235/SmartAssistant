@@ -7,17 +7,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 {
     public class VAChatTab : Tab
     {
         private ObservableCollection<MessageChat> messagesChat { get; set; }
+        
+        private InputBinding sendMessageEnterIB;
+        private ItemsControl chatItemsControl;
+        private ScrollViewer chatScrollViewer;
         private TextBox typingMessageTextBox;
-        private ScrollViewer scrollViewer;
-        private Border typingMessageBorder;
         private Button sendMessageButton;
+        private Grid mainGrid;
 
         public enum SendMessageBy
         {
@@ -29,6 +31,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         private bool CanSendMessageByMeCommandExecute(object sender) => true;
         private void OnSendMessageByMeCommandExecuted(object sender)
         {
+            // TODO: RE можно сделать binding к typingMessageTextBox.Text
             if (typingMessageTextBox.Text != string.Empty)
             {
                 SendMessage(typingMessageTextBox.Text, SendMessageBy.ByMe);
@@ -36,6 +39,68 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 typingMessageTextBox.Text = string.Empty;
                 typingMessageTextBox.Focus();
             }
+        }
+
+        public VAChatTab(byte id, double width, double height, Visibility visibility)
+            : base(id, width, height, visibility)
+        {
+            messagesChat = new ObservableCollection<MessageChat>();
+
+            SendMessageByMeCommand = new LambdaCommand(
+                OnSendMessageByMeCommandExecuted,
+                CanSendMessageByMeCommandExecute);
+
+            StateManager.SpeechStateVerifiedEvent += SendMessageByMeVoice;
+            SkillManager.AnswerChangedEvent += SendMessageByBot;
+
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            sendMessageEnterIB = new InputBinding(SendMessageByMeCommand,
+                new KeyGesture(Key.Enter));
+            InputBindings.Add(sendMessageEnterIB);
+
+            chatItemsControl = new ItemsControl()
+            {
+                Margin = new Thickness(10, 0, 10, 0),
+                FontFamily = new FontFamily("Segoe UI Semibold")
+            };
+            chatItemsControl.ItemsSource = messagesChat;
+
+            chatScrollViewer = new ScrollViewer()
+            { Margin = new Thickness(0, 40, 8, 100) };
+            chatScrollViewer.Content = chatItemsControl;
+
+            typingMessageTextBox = new TextBox()
+            {
+                MaxHeight = 70,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Margin = new Thickness(20),
+                Style = new TypingMessageTextBoxStyle(Width)
+            };
+            typingMessageTextBox.Focus();
+            typingMessageTextBox.TextChanged += TypingMessageTextBox_TextChanged;
+
+            sendMessageButton = new Button()
+            {
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Height = 50,
+                Width = 50,
+                Margin = new Thickness(20, 20, 30, 20),
+                Command = SendMessageByMeCommand,
+                Style = new SendButtonStyle()
+            };
+
+            mainGrid = new Grid();
+            mainGrid.Children.Add(chatScrollViewer);
+            mainGrid.Children.Add(typingMessageTextBox);
+            mainGrid.Children.Add(sendMessageButton);
+
+            Content = mainGrid;
         }
 
         private void SendMessageByMeVoice(string text)
@@ -53,80 +118,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             Application.Current.Dispatcher.Invoke(() =>
             {
                 messagesChat.Add(new MessageChat(text, sendMessageBy));
-                scrollViewer.ScrollToEnd();
+                chatScrollViewer.ScrollToEnd();
             });
-        }
-
-        public VAChatTab(byte id, double width, double height, Visibility visibility)
-        {
-            ID = id;
-            Width = width;
-            Height = height;
-            Visibility = visibility;
-
-            SendMessageByMeCommand = new LambdaCommand(
-                OnSendMessageByMeCommandExecuted,
-                CanSendMessageByMeCommandExecute);
-
-            StateManager.SpeechStateVerifiedEvent += SendMessageByMeVoice;
-            SkillManager.AnswerChangedEvent += SendMessageByBot;
-
-            InputBinding sendMessageEnter = new InputBinding(SendMessageByMeCommand,
-                new KeyGesture(Key.Enter));
-            InputBindings.Add(sendMessageEnter);
-
-            messagesChat = new ObservableCollection<MessageChat>();
-
-            ItemsControl itemsControl = new ItemsControl()
-            {
-                Margin = new Thickness(10, 0, 10, 0),
-                FontFamily = new FontFamily("Segoe UI Semibold")
-            };
-            itemsControl.ItemsSource = messagesChat;
-
-            scrollViewer = new ScrollViewer()
-            {
-                Margin = new Thickness(0, 40, 8, 100),
-            };
-            scrollViewer.Content = itemsControl;
-
-            typingMessageTextBox = new TextBox()
-            {
-                //MinHeight = 50,
-                MaxHeight = 250,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Thickness(20),
-                Style = new TypingMessageTextBoxStyle(Width)
-            };
-            typingMessageTextBox.Focus();
-            typingMessageTextBox.TextChanged += TypingMessageTextBox_TextChanged;
-
-            //typingMessageBorder = new Border()
-            //{
-            //    Child = typingMessageTextBox,
-            //    MinHeight = 0,
-            //    MaxHeight = 250,
-            //    Style = new TypingChatMessageBorderStyle(Width),
-            //};
-
-            sendMessageButton = new Button()
-            {
-                VerticalAlignment = VerticalAlignment.Bottom,
-                HorizontalAlignment = HorizontalAlignment.Right,
-                Height = 50,
-                Width = 50,
-                Margin = new Thickness(20, 20, 30, 20),
-                Command = SendMessageByMeCommand,
-                Style = new SendButtonStyle()
-            };
-
-            Grid mainGrid = new Grid();
-            mainGrid.Children.Add(scrollViewer);
-            mainGrid.Children.Add(typingMessageTextBox);
-            mainGrid.Children.Add(sendMessageButton);
-
-            Content = mainGrid;
         }
 
         private void TypingMessageTextBox_TextChanged(object sender, TextChangedEventArgs e)

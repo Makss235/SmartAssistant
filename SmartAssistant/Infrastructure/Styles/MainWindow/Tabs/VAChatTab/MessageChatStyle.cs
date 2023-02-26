@@ -17,6 +17,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
             textBoxFactory.SetValue(TextBlock.BackgroundProperty, BasicColors.TransparentBrush);
             textBoxFactory.SetValue(TextBlock.TextProperty, message);
             textBoxFactory.SetValue(TextBlock.MarginProperty, new Thickness(10, 5, 10, 7));
+            textBoxFactory.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
             
 
             FrameworkElementFactory messageTextBoxFactory = new FrameworkElementFactory(typeof(Border));
@@ -25,7 +26,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
             messageTextBoxFactory.SetValue(Border.BorderBrushProperty, messageBorderBrush);
             messageTextBoxFactory.SetValue(Border.BorderThicknessProperty, new Thickness(2));
             messageTextBoxFactory.SetValue(Border.MinWidthProperty, (double)15);
-            messageTextBoxFactory.SetValue(Border.MaxWidthProperty, (double)450);
+            messageTextBoxFactory.SetValue(Border.MaxWidthProperty, (double)320);
             messageTextBoxFactory.SetValue(Border.RenderTransformOriginProperty, new Point(1, 1));
             messageTextBoxFactory.AppendChild(textBoxFactory);
 

@@ -27,12 +27,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
         #endregion
 
         public AddPathTab(byte id, double width, double height, Visibility visibility)
+            : base(id, width, height, visibility)
         {
-            ID = id;
-            Width = width;
-            Height = height;
-            Visibility = visibility;
-
             Grid mainGrid = new Grid();
 
             RowDefinition menuButtonsRowDefinition = new RowDefinition()

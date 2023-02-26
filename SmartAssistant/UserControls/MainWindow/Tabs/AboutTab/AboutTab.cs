@@ -13,12 +13,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
     public class AboutTab : Tab
     {
         public AboutTab(byte id, double width, double height, Visibility visibility)
+            : base(id, width, height, visibility)
         {
-            ID = id;
-            Width = width;
-            Height = height;
-            Visibility = visibility;
-
             Style styleTextBlock = new Style();
             styleTextBlock.Setters.Add(new Setter(TextBlock.FontSizeProperty, (double)15));
             styleTextBlock.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));

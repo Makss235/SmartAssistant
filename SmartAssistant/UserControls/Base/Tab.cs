@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SmartAssistant.UserControls.Base
@@ -33,6 +34,14 @@ namespace SmartAssistant.UserControls.Base
             field = value;
             OnPropertyChanged(PropertyName);
             return true;
+        }
+
+        public Tab(byte id, double width, double height, Visibility visibility)
+        {
+            ID = id;
+            Width = width;
+            Height = height;
+            Visibility = visibility;
         }
     }
 }

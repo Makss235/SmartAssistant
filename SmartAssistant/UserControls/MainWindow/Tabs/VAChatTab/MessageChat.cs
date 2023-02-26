@@ -8,6 +8,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 {
     public class MessageChat : TextBox
     {
+        private SendMessageBy sendMessageBy;
+
         public HorizontalAlignment MessageAlignment { get; set; }
         public SolidColorBrush MessageBackground { get; set; }
         public SolidColorBrush MessageForeground { get; set; }
@@ -16,13 +18,15 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 
         public MessageChat(string message, SendMessageBy sendMessageBy)
         {
+            Message = message;
+            this.sendMessageBy = sendMessageBy;
+
             if (sendMessageBy == SendMessageBy.ByMe)
             {
                 MessageAlignment = HorizontalAlignment.Right;
                 MessageBackground = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
                 MessageForeground = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
                 MessageBorderBrush = Application.Current.Resources["Transparent"] as SolidColorBrush;
-                
             }
             else
             {
@@ -31,7 +35,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 MessageForeground = Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush;
                 MessageBorderBrush = Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush;
             }
-            Message = message;
             
             Text = Message;
             Style = new MessageChatStyle(MessageBackground, MessageForeground, MessageBorderBrush, Message);

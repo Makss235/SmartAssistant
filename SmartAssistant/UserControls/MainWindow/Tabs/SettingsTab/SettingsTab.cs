@@ -18,12 +18,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         public ObservableCollection<ProgramElement> ProgramElements { get; set; }
 
         public SettingsTab(byte id, double width, double height, Visibility visibility)
+            : base(id, width, height, visibility)
         {
-            ID = id;
-            Width = width;
-            Height = height;
-            Visibility = visibility;
-
             ProgramElements = new ObservableCollection<ProgramElement>();
             MainFieldRow.privet += MainFieldRow_privet;
             CollectionChanged += SettingsTab_CollectionChanged;

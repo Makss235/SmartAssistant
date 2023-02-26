@@ -46,12 +46,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
         #endregion
 
         public AddCallingNamesTab(byte id, double width, double height, Visibility visibility)
+            : base(id, width, height, visibility)
         {
-            ID = id;
-            Width = width;
-            Height = height;
-            Visibility = visibility;
-
             CallingNames = new ObservableCollection<string>();
             PropertyChanged += AddCallingNamesTab_PropertyChanged;
             CollectionChanged += AddCallingNamesTab_CollectionChanged;

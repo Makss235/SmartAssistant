@@ -38,12 +38,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
         #endregion
 
         public AddNameTab(byte id, double width, double height, Visibility visibility)
+            : base(id, width, height, visibility)
         {
-            ID = id;
-            Width = width;
-            Height = height;
-            Visibility = visibility;
-
             PropertyChanged += AddNameTab_PropertyChanged;
 
             Grid mainGrid = new Grid();
