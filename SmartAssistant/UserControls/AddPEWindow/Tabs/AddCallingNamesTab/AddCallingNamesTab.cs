@@ -1,7 +1,9 @@
-﻿using SmartAssistant.UserControls.Base;
+﻿using SmartAssistant.Infrastructure.Styles;
+using SmartAssistant.UserControls.Base;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -68,7 +70,25 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             ListBox = new ListBox()
             {
                 Margin = new Thickness(20, 10, 10, 28),
-                ItemsSource = CallingNames
+                ItemsSource = CallingNames,
+                Style = new CommonListBoxStyle(
+                    new CornerRadius(10),
+                    new Thickness(2),
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"]
+                    ),
+                ItemContainerStyle = new CommonListBoxItemStyle(
+                    new CornerRadius(10),
+                    new Thickness(2),
+                    (SolidColorBrush)Application.Current.Resources["Transparent"],
+                    (SolidColorBrush)Application.Current.Resources["Transparent"],
+                    (SolidColorBrush)Application.Current.Resources["Transparent"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    //(SolidColorBrush)Application.Current.Resources["Transparent"],
+                    //(SolidColorBrush)Application.Current.Resources["Transparent"],
+                    (SolidColorBrush)Application.Current.Resources["SelectionLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"]
+                    )
             };
             Grid.SetColumn(ListBox, 0);
 
@@ -109,12 +129,22 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Width = 260,
-                VerticalContentAlignment = VerticalAlignment.Center,
                 Height = 60,
-                Padding = new Thickness(0, 0, 60, 0),
-                TextWrapping = TextWrapping.Wrap,
-                FontSize = 15, 
-                FontFamily = new FontFamily("Segoe UI Semibold")
+                //VerticalContentAlignment = VerticalAlignment.Center,
+                //Padding = new Thickness(0, 0, 60, 0),
+                //TextWrapping = TextWrapping.Wrap,
+                //FontSize = 15, 
+                //FontFamily = new FontFamily("Segoe UI Semibold"),
+                Style = new RoundedTextBox(
+                    (double)15,
+                    new CornerRadius(10),
+                    new Thickness(1),
+                    new Thickness(0, 0, 60, 0),
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"]
+                    )
             };
             textBox2.SetBinding(TextBox.TextProperty, enteredCallingNameBinding);
             Grid.SetRow(textBox2, 1);
@@ -128,8 +158,17 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Width = 60,
                 Height = 60,
-                Background = Application.Current.Resources["Transparent"] as SolidColorBrush,
-                BorderThickness = new Thickness(0)
+                Style = new RoundedButton(
+                    new CornerRadius(10), 
+                    new Thickness(0),
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["Transparent"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["Transparent"])
+                //Background = Application.Current.Resources["Transparent"] as SolidColorBrush,
+                //BorderThickness = new Thickness(0)
             };
             button.Click += Button_Click;
             Panel.SetZIndex(button, 10);

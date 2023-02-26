@@ -1,4 +1,5 @@
-﻿using SmartAssistant.UserControls.Base;
+﻿using SmartAssistant.Infrastructure.Styles;
+using SmartAssistant.UserControls.Base;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -99,6 +100,15 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 Margin = new Thickness(10, 5, 28, 28),
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Content = "Готово",
+                Style = new RoundedButton(
+                    new CornerRadius(10),
+                    new Thickness(1),
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"])
             };
             button3.Click += Button3_Click;
             Grid.SetRow(button3, 1);

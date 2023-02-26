@@ -1,7 +1,9 @@
-﻿using SmartAssistant.UserControls.Base;
+﻿using SmartAssistant.Infrastructure.Styles;
+using SmartAssistant.UserControls.Base;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.AddPEWindow
 {
@@ -17,7 +19,16 @@ namespace SmartAssistant.UserControls.AddPEWindow
                 Width = 80,
                 Height = 50,
                 Content = Title,
-                Command = ClickCommand
+                Command = ClickCommand,
+                Style = new RoundedButton(
+                    new CornerRadius(10),
+                    new Thickness(1),
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"])
             };
 
             Content = tabNavigateButton;
