@@ -2,14 +2,28 @@
 using SmartAssistant.Infrastructure.Commands;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
 namespace SmartAssistant.Windows.MainWindow
 {
-    public class MainWindow : Window
+    public partial class MainWindow : Window
     {
+        private InputBinding dragMoveIB;
+        private DropShadowEffect dropShadowEffect;
+
+        private ColumnDefinition headingMenuColumnDefinition;
+        private ColumnDefinition leftMenuColumnDefinition;
+        private ColumnDefinition mainFieldColumnDefinition;
+        private Grid mainGrid;
+
         public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
         {
             Width = 850;
             Height = 550;
@@ -22,46 +36,41 @@ namespace SmartAssistant.Windows.MainWindow
             Background = new SolidColorBrush(Colors.Transparent);
             AllowsTransparency = true;
 
-            Grid mainGrid = new Grid()
-            {
-                Width = 800,
-                Height = 500
-            };
-
-            ColumnDefinition headingMenuColumnDefinition = new ColumnDefinition()
-            { Width = new GridLength(45, GridUnitType.Pixel) };
-            mainGrid.ColumnDefinitions.Add(headingMenuColumnDefinition);
-
-            ColumnDefinition leftMenuColumnDefinition = new ColumnDefinition()
-            { Width = new GridLength(220, GridUnitType.Pixel) };
-            mainGrid.ColumnDefinitions.Add(leftMenuColumnDefinition);
-
-            ColumnDefinition mainFieldColumnDefinition = new ColumnDefinition()
-            { Width = new GridLength(535, GridUnitType.Pixel) };
-            mainGrid.ColumnDefinitions.Add(mainFieldColumnDefinition);
-
-            HeadingMenu headingMenu = new HeadingMenu(new DragMoveCommand(this));
-            Grid.SetColumn(headingMenu.HeadingMenuBorder, 0);
-
-            LeftMenu leftMenu = new LeftMenu();
-            Grid.SetColumn(leftMenu.LeftMenuBorder, 1);
-
-            MainField mainField = new MainField();
-            Grid.SetColumn(mainField.MainFieldBorder, 2);
-
-            mainGrid.Children.Add(mainField.MainFieldBorder);
-            mainGrid.Children.Add(leftMenu.LeftMenuBorder);
-            mainGrid.Children.Add(headingMenu.HeadingMenuBorder);
-
-            DropShadowEffect dropShadowEffect = new DropShadowEffect()
+            dropShadowEffect = new DropShadowEffect()
             {
                 ShadowDepth = 5,
                 BlurRadius = 15,
                 Opacity = 0.5
             };
+            Effect = dropShadowEffect;
+
+            headingMenuColumnDefinition = new ColumnDefinition()
+            { Width = new GridLength(45, GridUnitType.Pixel) };
+
+            leftMenuColumnDefinition = new ColumnDefinition()
+            { Width = new GridLength(220, GridUnitType.Pixel) };
+
+            mainFieldColumnDefinition = new ColumnDefinition()
+            { Width = new GridLength(535, GridUnitType.Pixel) };
+
+            Grid.SetColumn(ICHeadingMenuCol(), 0);
+            Grid.SetColumn(ICLeftMenuCol(), 1);
+            Grid.SetColumn(ICMainFieldCol(), 2);
+
+            mainGrid = new Grid()
+            {
+                Width = 800,
+                Height = 500
+            };
+            mainGrid.ColumnDefinitions.Add(headingMenuColumnDefinition);
+            mainGrid.ColumnDefinitions.Add(leftMenuColumnDefinition);
+            mainGrid.ColumnDefinitions.Add(mainFieldColumnDefinition);
+
+            mainGrid.Children.Add(mainFieldColBorder);
+            mainGrid.Children.Add(leftMenuColBorder);
+            mainGrid.Children.Add(headingMenuColBorder);
 
             Content = mainGrid;
-            Effect = dropShadowEffect;
         }
     }
 }

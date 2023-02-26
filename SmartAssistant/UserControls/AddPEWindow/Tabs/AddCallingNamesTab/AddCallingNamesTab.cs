@@ -3,7 +3,6 @@ using SmartAssistant.UserControls.Base;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Security.Cryptography.Xml;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -209,7 +208,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
         {
             var enteredCallingNameArray = new string[1] { EnteredCallingName };
             if (enteredCallingNameArray.Intersect(CallingNames.ToList()).ToArray().Count() == 0 
-                && EnteredCallingName.Count() != 0)
+                && !Equals(EnteredCallingName, string.IsNullOrEmpty))
             {
                 Application.Current.Dispatcher.Invoke(() => 
                     CallingNames.Add(EnteredCallingName));
