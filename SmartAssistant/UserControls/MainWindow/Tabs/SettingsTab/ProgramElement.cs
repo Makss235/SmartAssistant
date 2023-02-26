@@ -1,6 +1,7 @@
 ﻿using SmartAssistant.Data.ProgramsData;
 using SmartAssistant.Infrastructure;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -22,10 +23,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
         #endregion
 
-        #region CallingName : AsyncObservableCollection<string> - Как будете звать?
+        #region CallingName : ObservableCollection<string> - Как будете звать?
 
         /// <summary>Как будете звать?</summary>
-        public AsyncObservableCollection<string> CallingNames { get; private set; }
+        public ObservableCollection<string> CallingNames { get; private set; }
 
         #endregion
 
@@ -48,17 +49,24 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         #region Constructors
 
         // TODO: Makss может стоит убрать первую колонку
+        public ProgramElement(string name, ObservableCollection<string> callingName, string path)
+        {
+            Name = name;
+            CallingNames = callingName;
+            Path = path;
+        }
+
         public ProgramElement(string name, List<string> callingName, string path)
         {
             Name = name;
-            CallingNames = new AsyncObservableCollection<string>(callingName);
+            CallingNames = new ObservableCollection<string>(callingName);
             Path = path;
         }
 
         public ProgramElement(ProgramObj programObj)
         {
             Name = programObj.Name;
-            CallingNames = new AsyncObservableCollection<string>(programObj.CallingNames);
+            CallingNames = new ObservableCollection<string>(programObj.CallingNames);
             Path = programObj.Path;
         }
 

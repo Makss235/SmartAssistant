@@ -1,12 +1,8 @@
-﻿using SmartAssistant.Infrastructure.Commands;
-using SmartAssistant.Infrastructure.Styles;
+﻿using SmartAssistant.Infrastructure.Styles;
 using SmartAssistant.UserControls.Base;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.AddPEWindow

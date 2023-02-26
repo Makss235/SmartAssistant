@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace SmartAssistant.Infrastructure
 {
-    public class AsyncObservableCollection<T> : ObservableCollection<T>
+    public class AsyncObservableCollection<T> : System.Collections.ObjectModel.ObservableCollection<T>
     {
         private AsyncOperation asyncOp = null;
 

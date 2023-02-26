@@ -129,7 +129,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             // TODO: Veser изменение цвета
             if (IsNormalName)
             {
-
+                //MessageBox.Show("correct");
             }
             else
             {
@@ -143,6 +143,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             {
                 IsNormalName = false;
                 return;
+            }
+            else
+            {
+                IsNormalName = true;
             }
         }
     }

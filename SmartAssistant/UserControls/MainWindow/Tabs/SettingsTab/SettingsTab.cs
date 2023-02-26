@@ -1,8 +1,10 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Data.ProgramsData;
 using SmartAssistant.UserControls.Base;
+using SmartAssistant.Windows.AddPEWindow;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,8 +12,9 @@ using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
-    public class SettingsTab : Tab
+    public class SettingsTab : Tab, INotifyCollectionChanged
     {
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
         public ObservableCollection<ProgramElement> ProgramElements { get; set; }
 
         public SettingsTab(byte id, double width, double height, Visibility visibility)
@@ -22,9 +25,22 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             Visibility = visibility;
 
             ProgramElements = new ObservableCollection<ProgramElement>();
+            MainFieldRow.privet += MainFieldRow_privet;
+            CollectionChanged += SettingsTab_CollectionChanged;
 
             InitializeCollection();
             InitializeComponent();
+        }
+
+        private void SettingsTab_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            Serialize();
+        }
+
+        private void MainFieldRow_privet(ProgramElement obj)
+        {
+            ProgramElements.Add(obj);
+            Serialize();
         }
 
         private void InitializeComponent()

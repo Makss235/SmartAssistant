@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.UserControls.Base;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,19 +9,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
 {
     public class AddPathTab : Tab
     {
-        //#region IsNormalName : bool - Нормальное имя
-
-        ///// <summary>Содержаться ли в имени только буквы и цифры</summary>
-        //private bool _IsNormalName;
-
-        ///// <summary>Содержаться ли в имени только буквы и цифры</summary>
-        //public bool IsNormalName
-        //{
-        //    get => _IsNormalName;
-        //    set => SetProperty(ref _IsNormalName, value);
-        //}
-
-        //#endregion
+        public event Action DoneButtonPressed;
 
         #region EnteredPath : string - Введенный путь
 
@@ -93,12 +82,14 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             Grid.SetRow(textBox, 1);
 
             TabNavigationButton previousTabButton = 
-                new TabNavigationButton("Назад", NavigateButton.TypeButton.Previous, ID)
-                {
-                    Margin = new Thickness(20, 0, 0, 28),
-                    VerticalAlignment = VerticalAlignment.Bottom,
-                    HorizontalAlignment = HorizontalAlignment.Left
-                };
+            new TabNavigationButton("Назад", NavigateButton.TypeButton.Previous, ID)
+            {
+                Margin = new Thickness(20, 0, 0, 28),
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+            Grid.SetRow(previousTabButton, 1);
+            mainGrid.Children.Add(previousTabButton);
 
             Button button3 = new Button()
             {
@@ -109,15 +100,19 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Content = "Готово",
             };
-            Grid.SetRow(previousTabButton, 1);
+            button3.Click += Button3_Click;
             Grid.SetRow(button3, 1);
-            mainGrid.Children.Add(previousTabButton);
             mainGrid.Children.Add(button3);
 
             mainGrid.Children.Add(textBlock);
             mainGrid.Children.Add(textBox);
 
             Content = mainGrid;
+        }
+
+        private void Button3_Click(object sender, RoutedEventArgs e)
+        {
+            DoneButtonPressed?.Invoke();
         }
     }
 }
