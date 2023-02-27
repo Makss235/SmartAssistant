@@ -5,17 +5,17 @@ using System.Windows.Data;
 using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataGrid.DGSimpleElement;
 using SmartAssistant.UserControls.Base;
 
-namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
+namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates
 {
-    public class CallingNameDGTemplate : DataTemplate
+    public class CallingNamesDGTemplateColumn : DataTemplate
     {
-        public CallingNameDGTemplate()
+        public CallingNamesDGTemplateColumn()
         {
             ProgramElement forTitleProgramObj = new ProgramElement();
 
             FrameworkElementFactory callingNameDGListBoxFactory = new FrameworkElementFactory(typeof(ListBox));
-            callingNameDGListBoxFactory.SetBinding(ListBox.ItemsSourceProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
-            
+            callingNameDGListBoxFactory.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
+
             // TODO: Veser слишком длинные названия переменных
             //TODO: Максим SelectedCallingName
             //callingNameDGListBoxFactory.SetBinding(ListBox.SelectedItemProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
@@ -46,34 +46,34 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             //callingNameDGVerticalStackPanelFactory.AppendChild(callingNameDGDeleteButton);
 
             FrameworkElementFactory textBoxF = new FrameworkElementFactory(typeof(TextBox));
-            textBoxF.SetValue(TextBox.BackgroundProperty, Application.Current.Resources["Transparent"]);
-            textBoxF.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
-            textBoxF.SetValue(TextBox.WidthProperty, (double)115);
-            textBoxF.SetValue(TextBox.HeightProperty, (double)25);
-            textBoxF.SetValue(TextBox.FontSizeProperty, (double)15);
-            textBoxF.SetValue(TextBox.VerticalAlignmentProperty, VerticalAlignment.Center);
-            textBoxF.SetValue(TextBox.HorizontalAlignmentProperty, HorizontalAlignment.Left);
+            textBoxF.SetValue(Control.BackgroundProperty, Application.Current.Resources["Transparent"]);
+            textBoxF.SetValue(Control.BorderThicknessProperty, new Thickness(0));
+            textBoxF.SetValue(FrameworkElement.WidthProperty, (double)115);
+            textBoxF.SetValue(FrameworkElement.HeightProperty, (double)25);
+            textBoxF.SetValue(Control.FontSizeProperty, (double)15);
+            textBoxF.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+            textBoxF.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
             textBoxF.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
-            textBoxF.SetValue(TextBox.MarginProperty, new Thickness(5, 0, 0, 0));
+            textBoxF.SetValue(FrameworkElement.MarginProperty, new Thickness(5, 0, 0, 0));
 
             FrameworkElementFactory buttonF = new FrameworkElementFactory(typeof(Button));
-            buttonF.SetValue(Button.WidthProperty, (double)30);
-            buttonF.SetValue(Button.HeightProperty, (double)30);
-            buttonF.SetValue(Button.ContentProperty, "+");
-            buttonF.SetValue(Button.BackgroundProperty, Application.Current.Resources["Transparent"]);
-            buttonF.SetValue(Button.BorderThicknessProperty, new Thickness(0));
-            buttonF.SetValue(Button.VerticalAlignmentProperty, VerticalAlignment.Center);
-            buttonF.SetValue(Button.HorizontalAlignmentProperty, HorizontalAlignment.Right);
+            buttonF.SetValue(FrameworkElement.WidthProperty, (double)30);
+            buttonF.SetValue(FrameworkElement.HeightProperty, (double)30);
+            buttonF.SetValue(ContentControl.ContentProperty, "+");
+            buttonF.SetValue(Control.BackgroundProperty, Application.Current.Resources["Transparent"]);
+            buttonF.SetValue(Control.BorderThicknessProperty, new Thickness(0));
+            buttonF.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+            buttonF.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right);
 
             FrameworkElementFactory stackPanelF = new FrameworkElementFactory(typeof(StackPanel));
             stackPanelF.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
-            stackPanelF.SetValue(StackPanel.WidthProperty, (double)145);
+            stackPanelF.SetValue(FrameworkElement.WidthProperty, (double)145);
             stackPanelF.AppendChild(textBoxF);
             stackPanelF.AppendChild(buttonF);
 
             FrameworkElementFactory mainBorderF = new FrameworkElementFactory(typeof(Border));
-            mainBorderF.SetValue(Border.HeightProperty, (double)30);
-            mainBorderF.SetValue(Border.WidthProperty, (double)145);
+            mainBorderF.SetValue(FrameworkElement.HeightProperty, (double)30);
+            mainBorderF.SetValue(FrameworkElement.WidthProperty, (double)145);
             mainBorderF.SetValue(Border.BorderBrushProperty, Application.Current.Resources["BackgroundMediumBrush"]);
             mainBorderF.SetValue(Border.BackgroundProperty, Application.Current.Resources["BackgroundLightBrush"]);
             mainBorderF.SetValue(Border.CornerRadiusProperty, new CornerRadius(10));

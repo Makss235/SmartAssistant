@@ -3,11 +3,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
+namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates
 {
-    public class NameDGTemplate : DataTemplate
+    public class NameDGTemplateColumn : DataTemplate
     {
-        public NameDGTemplate()
+        public NameDGTemplateColumn()
         {
             ProgramElement programElement = new ProgramElement();
             Binding nameBinding = new Binding(nameof(programElement.Name));
@@ -15,9 +15,9 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             FrameworkElementFactory nameDGFactory = new FrameworkElementFactory(typeof(TextBox));
             //nameDGFactory.SetBinding(TextBox.TextProperty, nameBinding);
-            nameDGFactory.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
-            nameDGFactory.SetValue(TextBox.WidthProperty, (double)100);
-            nameDGFactory.SetValue(TextBox.StyleProperty, new DGNameAndPathTextBoxStyle(nameBinding));
+            nameDGFactory.SetValue(Control.BorderThicknessProperty, new Thickness(0));
+            nameDGFactory.SetValue(FrameworkElement.WidthProperty, (double)100);
+            nameDGFactory.SetValue(FrameworkElement.StyleProperty, new DGNameAndPathTextBoxStyle(nameBinding));
 
             VisualTree = nameDGFactory;
         }
