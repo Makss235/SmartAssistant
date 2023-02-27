@@ -73,6 +73,7 @@ namespace SmartAssistant.Infrastructure.Styles
             mouseOverT.Setters.Add(new Setter(TextBox.BackgroundProperty, mouseOverBackground));
             mouseOverT.Setters.Add(new Setter(TextBox.BorderBrushProperty, mouseOverBorderBrush));
 
+            Triggers.Add(mouseOverT);
             Setters.Add(new Setter(Control.BorderBrushProperty, borderBrush));
             //Setters.Add(new Setter(Control.MinHeightProperty, (double)50));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(TextBox))

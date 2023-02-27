@@ -132,8 +132,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 //FontFamily = new FontFamily("Segoe UI Semibold"),
                 Style = new RoundedTextBox(
                     (double)15,
-                    new CornerRadius(10),
-                    new Thickness(1),
+                    new CornerRadius(20),
+                    new Thickness(2),
                     new Thickness(0, 0, 60, 0),
                     (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
                     (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
@@ -148,20 +148,22 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             Button button = new Button()
             {
                 Content = "+",
+                FontSize = 60,
+                Padding = new Thickness(0, -17, 0, 0),
                 Margin = new Thickness(10, 5, 28, 20),
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Width = 60,
                 Height = 60,
                 Style = new RoundedButton(
-                    new CornerRadius(10), 
-                    new Thickness(0),
+                    new CornerRadius(0, 20, 20, 0), 
+                    new Thickness(2),
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
                     (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
                     (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["Transparent"],
                     (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["Transparent"])
+                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"])
                 //Background = Application.Current.Resources["Transparent"] as SolidColorBrush,
                 //BorderThickness = new Thickness(0)
             };
