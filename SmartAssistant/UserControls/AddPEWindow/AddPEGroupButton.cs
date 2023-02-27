@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Styles;
+using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.UserControls.Base;
 using System;
 using System.Windows;
@@ -9,7 +10,7 @@ namespace SmartAssistant.UserControls.AddPEWindow
 {
     public class AddPEGroupButton : GroupButton
     {
-        internal static event Action<byte> AddPEButtonPressed;
+        public override event Action<byte> ButtonPressed;
 
         public AddPEGroupButton(string title, bool isActive, byte id) :
             base(title, isActive, id)
@@ -40,7 +41,7 @@ namespace SmartAssistant.UserControls.AddPEWindow
 
         protected override void OnClickCommandExecuted(object sender)
         {
-            AddPEButtonPressed?.Invoke(ID);
+            ButtonPressed?.Invoke(ID);
         }
     }
 }

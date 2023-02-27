@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace SmartAssistant
 {
@@ -33,19 +34,19 @@ namespace SmartAssistant
                 Property = Button.IsMouseOverProperty,
                 Value = true
             };
-            mouseOverTrigger.Setters.Add(new Setter(Button.BorderBrushProperty, BasicColors.BackgroundDarkBrush));
+            mouseOverTrigger.Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush));
 
             Trigger mousePressedTrigger = new Trigger
             {
                 Property = Button.IsPressedProperty,
                 Value = true
             };
-            mousePressedTrigger.Setters.Add(new Setter(Button.BorderBrushProperty, BasicColors.ButtonPressedBrush));
+            mousePressedTrigger.Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["ButtonPressedBrush"] as SolidColorBrush));
 
             Triggers.Add(mouseOverTrigger);
             Triggers.Add(mousePressedTrigger);
-            Setters.Add(new Setter(Button.BorderBrushProperty, BasicColors.BackgroundMediumBrush));
-            Setters.Add(new Setter(Button.BackgroundProperty, BasicColors.TransparentBrush));
+            Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush));
+            Setters.Add(new Setter(Button.BackgroundProperty, Application.Current.Resources["TransparentBrush"] as SolidColorBrush));
             Setters.Add(new Setter(Button.TemplateProperty, new ControlTemplate(typeof(Button))
             {
                 VisualTree = borderFactory

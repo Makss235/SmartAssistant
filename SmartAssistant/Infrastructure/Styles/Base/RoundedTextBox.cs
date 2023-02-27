@@ -8,28 +8,28 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace SmartAssistant.Infrastructure.Styles
+namespace SmartAssistant.Infrastructure.Styles.Base
 {
     public class RoundedTextBox : Style
     {
         public RoundedTextBox(
             double fontSize,
-            CornerRadius cornerRadius, 
+            CornerRadius cornerRadius,
             Thickness borderThickness,
             Thickness padding,
             SolidColorBrush background,
             SolidColorBrush borderBrush,
             SolidColorBrush mouseOverBackground,
-            SolidColorBrush mouseOverBorderBrush) 
+            SolidColorBrush mouseOverBorderBrush)
         {
             FrameworkElementFactory textBoxF = new FrameworkElementFactory(typeof(TextBox));
-            textBoxF.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
-            textBoxF.SetValue(TextBox.BackgroundProperty, Application.Current.Resources["Transparent"]);
+            textBoxF.SetValue(Control.BorderThicknessProperty, new Thickness(0));
+            textBoxF.SetValue(Control.BackgroundProperty, Application.Current.Resources["Transparent"]);
             textBoxF.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
-            textBoxF.SetValue(TextBox.PaddingProperty, padding);
-            textBoxF.SetValue(TextBox.VerticalContentAlignmentProperty, VerticalAlignment.Center);
-            textBoxF.SetValue(TextBox.FontSizeProperty, fontSize);
-            textBoxF.SetValue(TextBox.FontFamilyProperty, new FontFamily("Segoe UI Semibold"));
+            textBoxF.SetValue(Control.PaddingProperty, padding);
+            textBoxF.SetValue(Control.VerticalContentAlignmentProperty, VerticalAlignment.Center);
+            textBoxF.SetValue(Control.FontSizeProperty, fontSize);
+            textBoxF.SetValue(Control.FontFamilyProperty, new FontFamily("Segoe UI Semibold"));
             textBoxF.SetBinding(TextBox.TextProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
@@ -47,17 +47,17 @@ namespace SmartAssistant.Infrastructure.Styles
                 RelativeSource = RelativeSource.TemplatedParent,
                 Path = new PropertyPath("BorderBrush")
             });
-            borderF.SetBinding(Border.HeightProperty, new Binding
+            borderF.SetBinding(FrameworkElement.HeightProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
                 Path = new PropertyPath("Height")
             });
-            borderF.SetBinding(Border.MinHeightProperty, new Binding
+            borderF.SetBinding(FrameworkElement.MinHeightProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
                 Path = new PropertyPath("MinHeight")
             });
-            borderF.SetBinding(Border.MaxHeightProperty, new Binding
+            borderF.SetBinding(FrameworkElement.MaxHeightProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
                 Path = new PropertyPath("MaxHeight")
@@ -67,11 +67,11 @@ namespace SmartAssistant.Infrastructure.Styles
 
             Trigger mouseOverT = new Trigger
             {
-                Property = TextBox.IsMouseOverProperty,
+                Property = UIElement.IsMouseOverProperty,
                 Value = true
             };
-            mouseOverT.Setters.Add(new Setter(TextBox.BackgroundProperty, mouseOverBackground));
-            mouseOverT.Setters.Add(new Setter(TextBox.BorderBrushProperty, mouseOverBorderBrush));
+            mouseOverT.Setters.Add(new Setter(Control.BackgroundProperty, mouseOverBackground));
+            mouseOverT.Setters.Add(new Setter(Control.BorderBrushProperty, mouseOverBorderBrush));
 
             Setters.Add(new Setter(Control.BorderBrushProperty, borderBrush));
             //Setters.Add(new Setter(Control.MinHeightProperty, (double)50));

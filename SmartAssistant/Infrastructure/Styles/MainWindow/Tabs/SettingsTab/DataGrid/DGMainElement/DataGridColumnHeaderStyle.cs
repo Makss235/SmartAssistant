@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataGrid.DGMainElement
 {
@@ -31,8 +32,8 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataG
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(2, 3, 2, 3));
-            borderFactory.SetValue(Border.BackgroundProperty, BasicColors.SelectionLightBrush);
-            borderFactory.SetValue(Border.BorderBrushProperty, BasicColors.ButtonMouseOverBrush);
+            borderFactory.SetValue(Border.BackgroundProperty, Application.Current.Resources["SelectionLightBrush"] as SolidColorBrush);
+            borderFactory.SetValue(Border.BorderBrushProperty, Application.Current.Resources["ButtonMouseOverBrush"] as SolidColorBrush);
 
             borderFactory.AppendChild(gridFactory);
 
@@ -53,7 +54,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataG
 
             Setters.Add(new Setter(Control.VerticalContentAlignmentProperty, VerticalAlignment.Center));
             Setters.Add(new Setter(Control.HorizontalContentAlignmentProperty, HorizontalAlignment.Center));
-            Setters.Add(new Setter(Control.ForegroundProperty, BasicColors.ButtonMouseOverBrush));
+            Setters.Add(new Setter(Control.ForegroundProperty, Application.Current.Resources["ButtonMouseOverBrush"] as SolidColorBrush));
             Setters.Add(new Setter(FrameworkElement.MinHeightProperty, ColumnHeaderMinHeight));
             Setters.Add(new Setter(FrameworkElement.MinWidthProperty, ColumnHeaderMinWidth));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(DataGridColumnHeader))
@@ -70,7 +71,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataG
             double ThumbWidth = 8;
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
-            borderFactory.SetValue(Border.BackgroundProperty, BasicColors.TransparentBrush);
+            borderFactory.SetValue(Border.BackgroundProperty, Application.Current.Resources["TransparentBrush"] as SolidColorBrush);
             borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(0));
 
             Setters.Add(new Setter(FrameworkElement.CursorProperty, Cursors.SizeWE));

@@ -6,7 +6,6 @@ using System.Windows;
 using SmartAssistant.Data.ProgramsData;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using SmartAssistant.Windows.AddPEWindow;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -24,7 +23,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         private StackPanel ICProgramSettings()
         {
             InitializePECollection();
-            MainFieldRow.privet += AddPEHandler;
+            Windows.AddPEWindow.AddPEWindow.AddPEDone += AddPEHandler;
 
             titleProgramsTextBlock = new TextBlock()
             {

@@ -8,9 +8,22 @@ using System.Windows.Media.Effects;
 
 namespace SmartAssistant.Windows.AddPEWindow
 {
-    public class AddPEWindow : Window
+    public partial class AddPEWindow : Window
     {
+        private InputBinding mouseMoveIB;
+        private DropShadowEffect dropShadowEffect;
+
+        private RowDefinition menuButtonsRowDefinition;
+        private RowDefinition mainFieldRowDefinition;
+        private Grid mainGrid;
+        private Border mainBorder;
+
         public AddPEWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
         {
             Width = 550;
             Height = 400;
@@ -23,28 +36,33 @@ namespace SmartAssistant.Windows.AddPEWindow
             Background = new SolidColorBrush(Colors.Transparent);
             AllowsTransparency = true;
 
-            Grid mainGrid = new Grid();
+            dropShadowEffect = new DropShadowEffect()
+            {
+                ShadowDepth = 5,
+                BlurRadius = 20,
+                Opacity = 0.65
+            };
+            Effect = dropShadowEffect;
 
-            RowDefinition menuButtonsRowDefinition = new RowDefinition()
+            menuButtonsRowDefinition = new RowDefinition()
             { Height = new GridLength(90, GridUnitType.Pixel) };
-            mainGrid.RowDefinitions.Add(menuButtonsRowDefinition);
 
-            RowDefinition mainFieldRowDefinition = new RowDefinition()
+            mainFieldRowDefinition = new RowDefinition()
             { Height = new GridLength(260, GridUnitType.Pixel) };
+
+            Grid.SetRow(ICAddPEButtonsRow(), 0);
+            Grid.SetRow(ICMainFieldRow(), 1);
+
+            mainGrid = new Grid();
+            mainGrid.RowDefinitions.Add(menuButtonsRowDefinition);
             mainGrid.RowDefinitions.Add(mainFieldRowDefinition);
+            mainGrid.Children.Add(addPEButtonsStackPanel);
+            mainGrid.Children.Add(mainFieldGrid);
 
-            AddPEButtonsRow menuButtonsRow = new AddPEButtonsRow();
-            Grid.SetRow(menuButtonsRow, 0);
-            mainGrid.Children.Add(menuButtonsRow);
-
-            MainFieldRow mainFieldRow = new MainFieldRow();
-            Grid.SetRow(mainFieldRow, 1);
-            mainGrid.Children.Add(mainFieldRow);
-
-            InputBinding mouseMoveIB = new InputBinding(new DragMoveCommand(this), new MouseGesture()
+            mouseMoveIB = new InputBinding(new DragMoveCommand(this), new MouseGesture()
             { MouseAction = MouseAction.LeftClick });
 
-            Border mainBorder = new Border()
+            mainBorder = new Border()
             {
                 Background = new SolidColorBrush(Colors.AliceBlue),
                 CornerRadius = new CornerRadius(20, 20, 20, 20),
@@ -56,15 +74,7 @@ namespace SmartAssistant.Windows.AddPEWindow
             mainBorder.InputBindings.Add(mouseMoveIB);
             mainBorder.Child = mainGrid;
 
-            DropShadowEffect dropShadowEffect = new DropShadowEffect()
-            {
-                ShadowDepth = 5,
-                BlurRadius = 20,
-                Opacity = 0.65
-            };
-
             Content = mainBorder;
-            Effect = dropShadowEffect;
         }
     }
 }
