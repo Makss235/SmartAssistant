@@ -20,6 +20,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
         private Grid mainGrid;
 
         public event Action<byte> TabNavigationButtonPressed;
+        public event Action<bool> CorrectnessTextChanged;
 
         #region IsNormalName : bool - Нормальное имя
 
@@ -142,15 +143,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 
         private void CheckIsNormalText()
         {
-            // TODO: Veser изменение цвета кнопок
-            if (IsNormalName)
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("incorrect");
-            }
+            CorrectnessTextChanged?.Invoke(IsNormalName);
         }
 
         private void EnteredNameChanged()

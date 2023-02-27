@@ -28,6 +28,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
         private Grid mainGrid;
 
         public event Action<byte> TabNavigationButtonPressed;
+        public event Action<bool> CorrectnessTextChanged;
 
         public ObservableCollection<string> CallingNames { get; set; }
 
@@ -129,8 +130,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                     (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
                     (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
                     (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"]
-                    )
+                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"])
             };
             enterCallingNameTextBox.SetBinding(TextBox.TextProperty, enteredCallingNameBinding);
             Grid.SetRow(enterCallingNameTextBox, 1);
@@ -239,15 +239,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
         private void CheckIsNormalText()
         {
-            // TODO: Veser изменение цвета
-            if (IsNormalCallingName)
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("incorrect");
-            }
+            CorrectnessTextChanged?.Invoke(IsNormalCallingName);
         }
 
         private void EnteredCallingNameChanged()

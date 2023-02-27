@@ -30,11 +30,13 @@ namespace SmartAssistant.Windows.AddPEWindow
             addNameTab = new AddNameTab(id: 0, width: 500,
                 height: 260, visibility: Visibility.Visible);
             addNameTab.TabNavigationButtonPressed += TabNavigationButtonPressedHandler;
+            addNameTab.CorrectnessTextChanged += AddNameTab_CorrectnessTextChanged;
             tabs.Add(addNameTab);
 
             addCallingNamesTab = new AddCallingNamesTab(id: 1, width: 500,
                 height: 260, visibility: Visibility.Hidden);
             addCallingNamesTab.TabNavigationButtonPressed += TabNavigationButtonPressedHandler;
+            addCallingNamesTab.CorrectnessTextChanged += AddCallingNamesTab_CorrectnessTextChanged;
             tabs.Add(addCallingNamesTab);
 
             addPathTab = new AddPathTab(id: 2, width: 500,
@@ -48,6 +50,16 @@ namespace SmartAssistant.Windows.AddPEWindow
             mainFieldGrid.Children.Add(addCallingNamesTab);
             mainFieldGrid.Children.Add(addPathTab);
             return mainFieldGrid;
+        }
+
+        private void AddCallingNamesTab_CorrectnessTextChanged(bool obj)
+        {
+            addCallingNamesButton.IsCorrect = obj;
+        }
+
+        private void AddNameTab_CorrectnessTextChanged(bool obj)
+        {
+            addNameButton.IsCorrect = obj;
         }
 
         private void TabNavigationButtonPressedHandler(byte id)

@@ -123,14 +123,8 @@ namespace SmartAssistant.UserControls.MainWindow
 
         private void StateChange()
         {
-            if (IsActive)
-            {
-                ActiveState();
-            }
-            else
-            {
-                InactiveState();
-            }
+            if (IsActive) ActiveState();
+            else InactiveState();
         }
 
         private void ActiveState()
