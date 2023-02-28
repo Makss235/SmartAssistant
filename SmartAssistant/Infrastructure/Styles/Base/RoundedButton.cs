@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace SmartAssistant.Infrastructure.Styles
+namespace SmartAssistant.Infrastructure.Styles.Base
 {
     public class RoundedButton : Style
     {
@@ -21,12 +21,12 @@ namespace SmartAssistant.Infrastructure.Styles
         /// <param name="mouseOverBorderBrush">Цвет границы при наведении мыши</param>
         public RoundedButton(
             CornerRadius cornerRadius,
-            Thickness borderThickness, 
-            SolidColorBrush backgroundBrush, 
-            SolidColorBrush foregroundBrush, 
-            SolidColorBrush borderBrush, 
-            SolidColorBrush mouseOverBackgroundBrush, 
-            SolidColorBrush mouseOverForegroundBrush, 
+            Thickness borderThickness,
+            SolidColorBrush backgroundBrush,
+            SolidColorBrush foregroundBrush,
+            SolidColorBrush borderBrush,
+            SolidColorBrush mouseOverBackgroundBrush,
+            SolidColorBrush mouseOverForegroundBrush,
             SolidColorBrush mouseOverBorderBrush
             )
 

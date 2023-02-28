@@ -1,5 +1,4 @@
-﻿using SmartAssistant.UserControls.AddPEWindow;
-using SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab;
+﻿using SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab;
 using SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab;
 using SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab;
 using SmartAssistant.UserControls.Base;
@@ -11,38 +10,61 @@ using System.Windows.Controls;
 
 namespace SmartAssistant.Windows.AddPEWindow
 {
-    public class MainFieldRow : Grid
+    public partial class AddPEWindow : Window
     {
+        private List<Tab> tabs;
+
         private AddNameTab addNameTab;
         private AddCallingNamesTab addCallingNamesTab;
         private AddPathTab addPathTab;
-        private List<Tab> tabs;
+        private Grid mainFieldGrid;
 
-        public static event Action<byte> abc;
-        public static event Action<ProgramElement> privet;
+        public static event Action<ProgramElement> AddPEDone;
+        public event Action<byte> MovingToTabEvent;
 
-        public MainFieldRow()
+        private Grid ICMainFieldRow()
         {
-            AddPEGroupButton.AddPEButtonPressed += ChangeVisibilityTabs;
-            TabNavigationButton.OnButtonPressed += ChangeVisibilityTabs;
-            abc += ChangeVisibilityTabs;
             tabs = new List<Tab>();
 
             // TODO: Makss width and height dependent from Settings
             addNameTab = new AddNameTab(id: 0, width: 500,
                 height: 260, visibility: Visibility.Visible);
+            addNameTab.TabNavigationButtonPressed += TabNavigationButtonPressedHandler;
+            addNameTab.CorrectnessTextChanged += AddNameTab_CorrectnessTextChanged;
             tabs.Add(addNameTab);
+
             addCallingNamesTab = new AddCallingNamesTab(id: 1, width: 500,
                 height: 260, visibility: Visibility.Hidden);
+            addCallingNamesTab.TabNavigationButtonPressed += TabNavigationButtonPressedHandler;
+            addCallingNamesTab.CorrectnessTextChanged += AddCallingNamesTab_CorrectnessTextChanged;
             tabs.Add(addCallingNamesTab);
+
             addPathTab = new AddPathTab(id: 2, width: 500,
                 height: 260, visibility: Visibility.Hidden);
+            addPathTab.TabNavigationButtonPressed += TabNavigationButtonPressedHandler;
             tabs.Add(addPathTab);
             addPathTab.DoneButtonPressed += AddPathTab_DoneButtonPressed;
 
-            Children.Add(addNameTab);
-            Children.Add(addCallingNamesTab);
-            Children.Add(addPathTab);
+            mainFieldGrid = new Grid();
+            mainFieldGrid.Children.Add(addNameTab);
+            mainFieldGrid.Children.Add(addCallingNamesTab);
+            mainFieldGrid.Children.Add(addPathTab);
+            return mainFieldGrid;
+        }
+
+        private void AddCallingNamesTab_CorrectnessTextChanged(bool obj)
+        {
+            addCallingNamesButton.IsCorrect = obj;
+        }
+
+        private void AddNameTab_CorrectnessTextChanged(bool obj)
+        {
+            addNameButton.IsCorrect = obj;
+        }
+
+        private void TabNavigationButtonPressedHandler(byte id)
+        {
+            MovingToTabEvent?.Invoke(id);
         }
 
         private void AddPathTab_DoneButtonPressed()
@@ -54,40 +76,17 @@ namespace SmartAssistant.Windows.AddPEWindow
                     if (!Equals(addPathTab.EnteredPath, string.IsNullOrEmpty))
                     {
                         ProgramElement programElement = new ProgramElement(
-                            addNameTab.EnteredName, 
-                            addCallingNamesTab.CallingNames, 
+                            addNameTab.EnteredName,
+                            addCallingNamesTab.CallingNames,
                             addPathTab.EnteredPath);
-                        privet?.Invoke(programElement);
+                        AddPEDone?.Invoke(programElement);
+                        Close();
                     }
-                    else
-                    {
-                        abc?.Invoke(addPathTab.ID);
-                    }
+                    else MovingToTabEvent?.Invoke(addPathTab.ID);
                 }
-                else
-                {
-                    abc?.Invoke(addCallingNamesTab.ID);
-                }
+                else MovingToTabEvent?.Invoke(addCallingNamesTab.ID);
             }
-            else
-            {
-                abc?.Invoke(addNameTab.ID);
-            }
-        }
-
-        private void ChangeVisibilityTabs(byte id)
-        {
-            for (int i = 0; i < tabs.Count; i++)
-            {
-                if (id == tabs[i].ID)
-                {
-                    tabs[i].Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    tabs[i].Visibility = Visibility.Hidden;
-                }
-            }
+            else MovingToTabEvent?.Invoke(addNameTab.ID);
         }
     }
 }

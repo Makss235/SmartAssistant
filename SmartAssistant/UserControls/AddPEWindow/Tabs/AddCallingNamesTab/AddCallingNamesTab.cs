@@ -1,7 +1,7 @@
-﻿using SmartAssistant.Infrastructure.Styles;
+﻿using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.UserControls.Base;
+using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,12 +10,27 @@ using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 {
-    public class AddCallingNamesTab : Tab, INotifyCollectionChanged
+    public class AddCallingNamesTab : Tab
     {
-        private ListBox ListBox;
+        private Binding enteredCallingNameBinding;
 
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
-        public ObservableCollection<string> CallingNames;
+        private ListBox addCaliingNamesListBox;
+        private TextBlock indicatorCallingNameTextBlock;
+        private TextBox enterCallingNameTextBox;
+        private Button addCallingNameButton;
+        private TabNavigationButton previousTabButton;
+        private TabNavigationButton nextTabButton;
+        private RowDefinition indicatorRowDefinition;
+        private RowDefinition enterRowDefinition;
+        private Grid addCallingNameGrid;
+        private ColumnDefinition listBoxColumnDefinition;
+        private ColumnDefinition addCallingNameColumnDefinition;
+        private Grid mainGrid;
+
+        public event Action<byte> TabNavigationButtonPressed;
+        public event Action<bool> CorrectnessTextChanged;
+
+        public ObservableCollection<string> CallingNames { get; set; }
 
         #region IsNormalCallingName : bool - Нормальное называемое имя
 
@@ -50,19 +65,13 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
         {
             CallingNames = new ObservableCollection<string>();
             PropertyChanged += AddCallingNamesTab_PropertyChanged;
-            CollectionChanged += AddCallingNamesTab_CollectionChanged;
 
-            Grid mainGrid = new Grid();
+            InitializeComponent();
+        }
 
-            ColumnDefinition headingMenuColumnDefinition = new ColumnDefinition()
-            { Width = new GridLength(200, GridUnitType.Pixel) };
-            mainGrid.ColumnDefinitions.Add(headingMenuColumnDefinition);
-
-            ColumnDefinition headingMenuColumnDefinition1 = new ColumnDefinition()
-            { Width = new GridLength(300, GridUnitType.Pixel) };
-            mainGrid.ColumnDefinitions.Add(headingMenuColumnDefinition1);
-
-            ListBox = new ListBox()
+        private void InitializeComponent()
+        {
+            addCaliingNamesListBox = new ListBox()
             {
                 Margin = new Thickness(20, 10, 10, 28),
                 ItemsSource = CallingNames,
@@ -85,20 +94,9 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                     (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"]
                     )
             };
-            Grid.SetColumn(ListBox, 0);
+            Grid.SetColumn(addCaliingNamesListBox, 0);
 
-            Grid grid = new Grid();
-            Grid.SetColumn(grid, 1);
-
-            RowDefinition menuButtonsRowDefinition = new RowDefinition()
-            { Height = new GridLength(85, GridUnitType.Pixel) };
-            grid.RowDefinitions.Add(menuButtonsRowDefinition);
-
-            RowDefinition mainFieldRowDefinition = new RowDefinition()
-            { Height = new GridLength(175, GridUnitType.Pixel) };
-            grid.RowDefinitions.Add(mainFieldRowDefinition);
-
-            TextBlock textBlock = new TextBlock()
+            indicatorCallingNameTextBlock = new TextBlock()
             {
                 Text = "Введите, как будете\nзвать программу:",
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -107,17 +105,16 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 FontSize = 15,
                 FontFamily = new FontFamily("Segoe UI Semibold")
             };
-            Grid.SetRow(textBlock, 0);
-            grid.Children.Add(textBlock);
-            
-            Binding enteredCallingNameBinding = new Binding(nameof(EnteredCallingName))
+            Grid.SetRow(indicatorCallingNameTextBlock, 0);
+
+            enteredCallingNameBinding = new Binding(nameof(EnteredCallingName))
             {
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 Mode = BindingMode.TwoWay,
                 Source = this
             };
 
-            TextBox textBox2 = new TextBox()
+            enterCallingNameTextBox = new TextBox()
             {
                 // TODO: Makss привязка ширины к глобальной
                 Margin = new Thickness(10, 5, 20, 20),
@@ -125,11 +122,6 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Width = 260,
                 Height = 60,
-                //VerticalContentAlignment = VerticalAlignment.Center,
-                //Padding = new Thickness(0, 0, 60, 0),
-                //TextWrapping = TextWrapping.Wrap,
-                //FontSize = 15, 
-                //FontFamily = new FontFamily("Segoe UI Semibold"),
                 Style = new RoundedTextBox(
                     (double)15,
                     new CornerRadius(20),
@@ -138,14 +130,12 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                     (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
                     (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
                     (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"]
-                    )
+                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"])
             };
-            textBox2.SetBinding(TextBox.TextProperty, enteredCallingNameBinding);
-            Grid.SetRow(textBox2, 1);
-            grid.Children.Add(textBox2);
+            enterCallingNameTextBox.SetBinding(TextBox.TextProperty, enteredCallingNameBinding);
+            Grid.SetRow(enterCallingNameTextBox, 1);
 
-            Button button = new Button()
+            addCallingNameButton = new Button()
             {
                 Content = "+",
                 FontSize = 60,
@@ -167,42 +157,64 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 //Background = Application.Current.Resources["Transparent"] as SolidColorBrush,
                 //BorderThickness = new Thickness(0)
             };
-            button.Click += Button_Click;
-            Panel.SetZIndex(button, 10);
-            Grid.SetRow(button, 1);
-            grid.Children.Add(button);
+            addCallingNameButton.Click += AddCallingNameButton_Click;
+            Panel.SetZIndex(addCallingNameButton, 10);
+            Grid.SetRow(addCallingNameButton, 1);
 
-            TabNavigationButton previousTabButton =
-            new TabNavigationButton("Назад", NavigateButton.TypeButton.Previous, ID)
+            previousTabButton = new TabNavigationButton("Назад", TypeButton.Previous, ID)
             {
                 Margin = new Thickness(10, 0, 0, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left
             };
+            previousTabButton.ButtonPressed += NavigationButtonPressed;
             Grid.SetRow(previousTabButton, 1);
-            grid.Children.Add(previousTabButton);
 
-            TabNavigationButton nextTabButton =
-            new TabNavigationButton("Далее", NavigateButton.TypeButton.Next, ID)
+            nextTabButton = new TabNavigationButton("Далее", TypeButton.Next, ID)
             {
                 Margin = new Thickness(0, 0, 28, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Right
             };
+            nextTabButton.ButtonPressed += NavigationButtonPressed;
             Grid.SetRow(nextTabButton, 1);
-            grid.Children.Add(nextTabButton);
 
-            mainGrid.Children.Add(ListBox);
-            mainGrid.Children.Add(grid);
+            indicatorRowDefinition = new RowDefinition()
+            { Height = new GridLength(85, GridUnitType.Pixel) };
+
+            enterRowDefinition = new RowDefinition()
+            { Height = new GridLength(175, GridUnitType.Pixel) };
+
+            addCallingNameGrid = new Grid();
+            Grid.SetColumn(addCallingNameGrid, 1);
+            addCallingNameGrid.RowDefinitions.Add(indicatorRowDefinition);
+            addCallingNameGrid.RowDefinitions.Add(enterRowDefinition);
+            addCallingNameGrid.Children.Add(indicatorCallingNameTextBlock);
+            addCallingNameGrid.Children.Add(enterCallingNameTextBox);
+            addCallingNameGrid.Children.Add(addCallingNameButton);
+            addCallingNameGrid.Children.Add(previousTabButton);
+            addCallingNameGrid.Children.Add(nextTabButton);
+
+            listBoxColumnDefinition = new ColumnDefinition()
+            { Width = new GridLength(200, GridUnitType.Pixel) };
+
+            addCallingNameColumnDefinition = new ColumnDefinition()
+            { Width = new GridLength(300, GridUnitType.Pixel) };
+
+            mainGrid = new Grid();
+            mainGrid.ColumnDefinitions.Add(listBoxColumnDefinition);
+            mainGrid.ColumnDefinitions.Add(addCallingNameColumnDefinition);
+            mainGrid.Children.Add(addCaliingNamesListBox);
+            mainGrid.Children.Add(addCallingNameGrid);
             Content = mainGrid;
         }
 
-        private void AddCallingNamesTab_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        private void NavigationButtonPressed(byte id)
         {
-
+            TabNavigationButtonPressed?.Invoke(id);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddCallingNameButton_Click(object sender, RoutedEventArgs e)
         {
             var enteredCallingNameArray = new string[1] { EnteredCallingName };
             if (enteredCallingNameArray.Intersect(CallingNames.ToList()).ToArray().Count() == 0 
@@ -229,15 +241,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
         private void CheckIsNormalText()
         {
-            // TODO: Veser изменение цвета
-            if (IsNormalCallingName)
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("incorrect");
-            }
+            CorrectnessTextChanged?.Invoke(IsNormalCallingName);
         }
 
         private void EnteredCallingNameChanged()
@@ -246,12 +250,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             if (enteredCallingNameArray.Intersect(CallingNames.ToList()).Count() == 0)
             {
                 IsNormalCallingName = true;
-                //MessageBox.Show("true");
             }
             else
             {
                 IsNormalCallingName = false;
-                //MessageBox.Show("false");
             }
         }
     }

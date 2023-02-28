@@ -10,11 +10,11 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
     {
         private SendMessageBy sendMessageBy;
 
+        public string Message { get; set; }
         public HorizontalAlignment MessageAlignment { get; set; }
         public SolidColorBrush MessageBackground { get; set; }
         public SolidColorBrush MessageForeground { get; set; }
         public SolidColorBrush MessageBorderBrush { get; set; }
-        public string Message { get; set; }
 
         public MessageChat(string message, SendMessageBy sendMessageBy)
         {

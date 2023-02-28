@@ -14,7 +14,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
                                 string message)
         {
             FrameworkElementFactory textBoxFactory = new FrameworkElementFactory(typeof(TextBlock));
-            textBoxFactory.SetValue(TextBlock.BackgroundProperty, BasicColors.TransparentBrush);
+            textBoxFactory.SetValue(TextBlock.BackgroundProperty, Application.Current.Resources["TransparentBrush"] as SolidColorBrush);
             textBoxFactory.SetValue(TextBlock.TextProperty, message);
             textBoxFactory.SetValue(TextBlock.MarginProperty, new Thickness(10, 5, 10, 7));
             textBoxFactory.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);

@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Styles;
+using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.UserControls.Base;
 using System;
 using System.Windows;
@@ -9,10 +10,10 @@ namespace SmartAssistant.UserControls.AddPEWindow
 {
     public class TabNavigationButton : NavigateButton, INotifyButtonPressed<byte>
     {
-        public static event Action<byte> OnButtonPressed;
+        public override event Action<byte> ButtonPressed;
 
-        public TabNavigationButton(string title, TypeButton type, byte id) : 
-            base(title, type, id)
+        public TabNavigationButton(string title, TypeButton type, byte id)
+            : base(title, type, id)
         {
             Button tabNavigateButton = new Button()
             {
@@ -36,11 +37,11 @@ namespace SmartAssistant.UserControls.AddPEWindow
 
         protected override void OnClickCommandExecuted(object sender)
         {
-            if (Type == TypeButton.Next) OnButtonPressed?.Invoke((byte)(ID + 1));
+            if (Type == TypeButton.Next) ButtonPressed?.Invoke((byte)(ID + 1));
             else if (Type == TypeButton.Previous)
             {
                 if (ID == 0) throw new Exception();
-                else OnButtonPressed?.Invoke((byte)(ID - 1));
+                else ButtonPressed?.Invoke((byte)(ID - 1));
             }
         }
     }

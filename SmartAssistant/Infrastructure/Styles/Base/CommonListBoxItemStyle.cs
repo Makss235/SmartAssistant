@@ -1,35 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace SmartAssistant.Infrastructure.Styles
+namespace SmartAssistant.Infrastructure.Styles.Base
 {
     public class CommonListBoxItemStyle : Style
     {
         public CommonListBoxItemStyle(
             CornerRadius cornerRadius,
             Thickness borderThickness,
-            SolidColorBrush background, 
-            SolidColorBrush borderBrush, 
-            SolidColorBrush mouseOverBackground, 
+            SolidColorBrush background,
+            SolidColorBrush borderBrush,
+            SolidColorBrush mouseOverBackground,
             SolidColorBrush mouseOverBorderBrush,
             //SolidColorBrush ISISAFBackground,
             //SolidColorBrush ISISAFBorderBrush,
             SolidColorBrush ISISATBackground,
-            SolidColorBrush ISISATBorderBrush) 
+            SolidColorBrush ISISATBorderBrush)
         {
             FrameworkElementFactory contentPresenterF = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenterF.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-            contentPresenterF.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
-            contentPresenterF.SetValue(ContentPresenter.SnapsToDevicePixelsProperty, true);
-            contentPresenterF.SetValue(ContentPresenter.MarginProperty, new Thickness(4, 1, 4, 1));
+            contentPresenterF.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenterF.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+            contentPresenterF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
+            contentPresenterF.SetValue(FrameworkElement.MarginProperty, new Thickness(4, 1, 4, 1));
 
             FrameworkElementFactory borderF = new FrameworkElementFactory(typeof(Border));
             borderF.SetValue(Border.BorderThicknessProperty, borderThickness);
@@ -49,11 +44,11 @@ namespace SmartAssistant.Infrastructure.Styles
 
             Trigger mouseOverT = new Trigger
             {
-                Property = ListBoxItem.IsMouseOverProperty,
+                Property = UIElement.IsMouseOverProperty,
                 Value = true
             };
-            mouseOverT.Setters.Add(new Setter(ListBoxItem.BackgroundProperty, mouseOverBackground));
-            mouseOverT.Setters.Add(new Setter(ListBoxItem.BorderBrushProperty, mouseOverBorderBrush));
+            mouseOverT.Setters.Add(new Setter(Control.BackgroundProperty, mouseOverBackground));
+            mouseOverT.Setters.Add(new Setter(Control.BorderBrushProperty, mouseOverBorderBrush));
 
             //MultiTrigger ISISAFT = new MultiTrigger
             //{
@@ -85,18 +80,18 @@ namespace SmartAssistant.Infrastructure.Styles
                 Setters =
                 {
                     new Setter
-                    { Property = ListBoxItem.BackgroundProperty, Value = ISISATBackground },
+                    { Property = Control.BackgroundProperty, Value = ISISATBackground },
                     new Setter
-                    { Property = ListBoxItem.BorderBrushProperty, Value = ISISATBorderBrush }
+                    { Property = Control.BorderBrushProperty, Value = ISISATBorderBrush }
                 }
             };
 
             Triggers.Add(mouseOverT);
             ////Triggers.Add(ISISAFT);
             Triggers.Add(ISISATT);
-            Setters.Add(new Setter(ListBoxItem.BackgroundProperty, background));
-            Setters.Add(new Setter(ListBoxItem.BorderBrushProperty, borderBrush));
-            Setters.Add(new Setter(ListBoxItem.TemplateProperty, new ControlTemplate(typeof(ListBoxItem))
+            Setters.Add(new Setter(Control.BackgroundProperty, background));
+            Setters.Add(new Setter(Control.BorderBrushProperty, borderBrush));
+            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(ListBoxItem))
             {
                 VisualTree = borderF
             }));

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace SmartAssistant.Infrastructure.Styles.MainWindow
 {
@@ -28,12 +29,12 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
                 Property = UIElement.IsMouseOverProperty,
                 Value = true
             };
-            trigger.Setters.Add(new Setter(Control.BackgroundProperty, BasicColors.BackgroundLightBrush));
-            trigger.Setters.Add(new Setter(Control.ForegroundProperty, BasicColors.BackgroundDarkBrush));
+            trigger.Setters.Add(new Setter(Control.BackgroundProperty, Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush));
+            trigger.Setters.Add(new Setter(Control.ForegroundProperty, Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush));
 
             Triggers.Add(trigger);
-            Setters.Add(new Setter(Control.BackgroundProperty, BasicColors.BackgroundMediumBrush));
-            Setters.Add(new Setter(Control.ForegroundProperty, BasicColors.ForegroundWhiteColor));
+            Setters.Add(new Setter(Control.BackgroundProperty, Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush));
+            Setters.Add(new Setter(Control.ForegroundProperty, Application.Current.Resources["ForegroundWhiteColor"] as SolidColorBrush));
             Setters.Add(new Setter(Control.FontWeightProperty, FontWeights.Bold));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(Button))
             {

@@ -40,7 +40,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
             MouseOverTrigger.Setters.Add(new Setter(Control.BackgroundProperty, TriggerBackGroundColor));
 
             Triggers.Add(MouseOverTrigger);
-            Setters.Add(new Setter(Control.BackgroundProperty, BasicColors.BackgroundMediumBrush));
+            Setters.Add(new Setter(Control.BackgroundProperty, Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush));
             Setters.Add(new Setter(FrameworkElement.WidthProperty, ButtonWidth));
             Setters.Add(new Setter(FrameworkElement.HeightProperty, ButtonHeight));
             Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top));

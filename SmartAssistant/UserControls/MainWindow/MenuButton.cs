@@ -22,10 +22,10 @@ namespace SmartAssistant.UserControls.MainWindow
         private Grid roundingGrid;
         private Grid mainGrid;
 
-        public static event Action<byte> MenuButtonPressedEvent;
+        public override event Action<byte> ButtonPressed;
 
-        public MenuButton(string title, bool isActive, byte id) : 
-            base(title, isActive, id)
+        public MenuButton(string title, bool isActive, byte id) 
+            : base(title, isActive, id)
         {
             InitializeComponent();
 
@@ -68,7 +68,7 @@ namespace SmartAssistant.UserControls.MainWindow
 
             roundingPath = new Path()
             {
-                Fill = BasicColors.BackgroundLightBrush,
+                Fill = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush,
                 Stretch = Stretch.Fill,
                 Data = roundingGeometry,
                 HorizontalAlignment = HorizontalAlignment.Right,
@@ -98,7 +98,7 @@ namespace SmartAssistant.UserControls.MainWindow
 
         protected override void OnClickCommandExecuted(object sender)
         {
-            MenuButtonPressedEvent?.Invoke(ID);
+            ButtonPressed?.Invoke(ID);
         }
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
@@ -123,14 +123,8 @@ namespace SmartAssistant.UserControls.MainWindow
 
         private void StateChange()
         {
-            if (IsActive)
-            {
-                ActiveState();
-            }
-            else
-            {
-                InactiveState();
-            }
+            if (IsActive) ActiveState();
+            else InactiveState();
         }
 
         private void ActiveState()

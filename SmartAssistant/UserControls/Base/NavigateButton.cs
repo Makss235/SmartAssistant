@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
@@ -6,8 +7,16 @@ using System.Windows.Input;
 
 namespace SmartAssistant.UserControls.Base
 {
+    public enum TypeButton
+    {
+        Previous,
+        Next
+    }
+
     public abstract class NavigateButton : UserControl, INotifyPropertyChanged
     {
+        public abstract event Action<byte> ButtonPressed;
+
         #region NPC
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,12 +35,6 @@ namespace SmartAssistant.UserControls.Base
         }
 
         #endregion
-
-        public enum TypeButton
-        {
-            Previous,
-            Next
-        }
 
         #region Title : string - Заголовок кнопки
 

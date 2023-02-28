@@ -12,30 +12,75 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
 {
     public class AboutTab : Tab
     {
+        private AboutProgramTabLoc loc;
+        private Style styleTextBlock;
+
+        private TextBlock titleTextBlock;
+
+        private TextBlock nameProgramLocTextBlock;
+        private TextBlock nameProgramTextBlock;
+        private StackPanel nameProgramStackPanel;
+
+        private TextBlock nameBuildLocTextBlock;
+        private TextBlock nameBuildTextBlock;
+        private StackPanel nameBuildStackPanel;
+
+        private TextBlock versionLocTextBlock;
+        private TextBlock versionTextBlock;
+        private StackPanel versionStackPanel;
+
+        private TextBlock authorsLocTextBlock;
+        private TextBlock makssAuthorTextBlock;
+        private TextBlock mrVeserAuthorTextBlock;
+        private TextBlock flowenyAuthorTextBlock;
+        private StackPanel authorsStackPanel1;
+        private StackPanel authorsStackPanel;
+
+        private TextBlock downloadLinkLocTextBlock;
+        private Hyperlink downloadHyperlink;
+        private TextBlock downloadHyperlinkTextBlock;
+        private Label downloadQRLabel;
+        private StackPanel downloadHyperlinkStackPanel;
+        private TextBlock GitHubLinkLocTextBlock;
+        private StackPanel linksStackPanel;
+
+        private TextBlock warningTextBlock;
+        private StackPanel mainStackPanel;
+        private Grid mainGrid;
+
         public AboutTab(byte id, double width, double height, Visibility visibility)
             : base(id, width, height, visibility)
         {
-            Style styleTextBlock = new Style();
-            styleTextBlock.Setters.Add(new Setter(TextBlock.FontSizeProperty, (double)15));
-            styleTextBlock.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
-            styleTextBlock.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
-            Style = styleTextBlock;
+            loc = Localize.JsonObject.MainWindowLoc.TabsLoc.AboutProgramTabLoc;
 
-            var loc = Localize.JsonObject.MainWindowLoc.TabsLoc.AboutProgramTabLoc;
+            InitializeStyle();
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            titleTextBlock = new TextBlock()
+            {
+                Text = loc.TitleLoc,
+                FontSize = 20,
+                Margin = new Thickness(0, 15, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
 
             #region NameProgram
 
-            TextBlock nameProgramLocTextBlock = new TextBlock()
+            nameProgramLocTextBlock = new TextBlock()
             {
                 Text = loc.NameProgramLoc
             };
-            TextBlock nameProgramTextBlock = new TextBlock()
+            nameProgramTextBlock = new TextBlock()
             {
+                // TODO: Makss localize
                 Text = "Привет, Иван!",
                 Margin = new Thickness(10, 0, 0, 0)
             };
 
-            StackPanel nameProgramStackPanel = new StackPanel()
+            nameProgramStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
                 Margin = new Thickness(0, 10, 0, 0),
@@ -47,17 +92,17 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
 
             #region NameBuild
 
-            TextBlock nameBuildLocTextBlock = new TextBlock()
+            nameBuildLocTextBlock = new TextBlock()
             {
                 Text = loc.NameBuildLoc
             };
-            TextBlock nameBuildTextBlock = new TextBlock()
+            nameBuildTextBlock = new TextBlock()
             {
                 Text = "SmartAssistant",
                 Margin = new Thickness(10, 0, 0, 0)
             };
 
-            StackPanel nameBuildStackPanel = new StackPanel()
+            nameBuildStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
                 Margin = new Thickness(0, 10, 0, 0),
@@ -69,17 +114,17 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
 
             #region Version
 
-            TextBlock versionLocTextBlock = new TextBlock()
+            versionLocTextBlock = new TextBlock()
             {
                 Text = loc.VersionLoc
             };
-            TextBlock versionTextBlock = new TextBlock()
+            versionTextBlock = new TextBlock()
             {
                 Text = "0.0.2.1",
                 Margin = new Thickness(10, 0, 0, 0)
             };
 
-            StackPanel versionStackPanel = new StackPanel()
+            versionStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
                 Margin = new Thickness(0, 10, 0, 0),
@@ -91,20 +136,20 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
 
             #region Authors
 
-            TextBlock authorsLocTextBlock = new TextBlock()
+            authorsLocTextBlock = new TextBlock()
             {
                 Text = loc.AuthorsLoc.TitleLoc
             };
 
-            TextBlock makssAuthorTextBlock = new TextBlock()
+            makssAuthorTextBlock = new TextBlock()
             { Text = loc.AuthorsLoc.MakssLoc };
-            TextBlock mrVeserAuthorTextBlock = new TextBlock()
+            mrVeserAuthorTextBlock = new TextBlock()
             { Text = loc.AuthorsLoc.MrVeserLoc };
-            TextBlock flowenyAuthorTextBlock = new TextBlock()
+            flowenyAuthorTextBlock = new TextBlock()
             { Text = loc.AuthorsLoc.FlowenyLoc };
 
-            StackPanel authorsStackPanel1 = new StackPanel() 
-            { 
+            authorsStackPanel1 = new StackPanel()
+            {
                 Orientation = Orientation.Vertical,
                 Margin = new Thickness(10, 0, 0, 0),
             };
@@ -112,7 +157,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
             authorsStackPanel1.Children.Add(mrVeserAuthorTextBlock);
             authorsStackPanel1.Children.Add(flowenyAuthorTextBlock);
 
-            StackPanel authorsStackPanel = new StackPanel()
+            authorsStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
                 Margin = new Thickness(0, 10, 0, 0),
@@ -124,32 +169,35 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
 
             #region Links
 
-            TextBlock downloadLinkLocTextBlock = new TextBlock()
+            downloadLinkLocTextBlock = new TextBlock()
             {
                 Text = loc.DownloadLinkLoc
             };
-            Hyperlink downloadHyperlink = new Hyperlink()
+            downloadHyperlink = new Hyperlink()
             {
                 NavigateUri = new Uri("https://goo.su/YCMpX2")
             };
             downloadHyperlink.RequestNavigate += DownloadHyperlink_RequestNavigate;
             downloadHyperlink.Inlines.Add("https://goo.su/YCMpX2");
 
-            TextBlock downloadHyperlinkTextBlock = new TextBlock();
+            downloadHyperlinkTextBlock = new TextBlock();
             downloadHyperlinkTextBlock.Inlines.Add(downloadHyperlink);
 
-            Label downloadQRLabel = new Label()
+            downloadQRLabel = new Label()
             {
-                Content = new Image() { Source = new BitmapImage(
-                    new Uri("pack://application:,,,/Resources/QR.png", 
-                    UriKind.RelativeOrAbsolute)) },
+                Content = new Image()
+                {
+                    Source = new BitmapImage(
+                    new Uri("pack://application:,,,/Resources/QR.png",
+                    UriKind.RelativeOrAbsolute))
+                },
                 Width = 150,
                 Height = 150,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Margin = new Thickness(0, 5, 0, 0)
             };
 
-            StackPanel downloadHyperlinkStackPanel = new StackPanel()
+            downloadHyperlinkStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Vertical,
                 Margin = new Thickness(0, 10, 0, 0),
@@ -158,7 +206,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
             downloadHyperlinkStackPanel.Children.Add(downloadHyperlinkTextBlock);
             downloadHyperlinkStackPanel.Children.Add(downloadQRLabel);
 
-            TextBlock GitHubLinkLocTextBlock = new TextBlock()
+            GitHubLinkLocTextBlock = new TextBlock()
             {
                 Text = loc.GitHubLinkLoc,
                 TextAlignment = TextAlignment.Left,
@@ -169,33 +217,24 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
                 TextWrapping = TextWrapping.Wrap
             };
 
-            StackPanel linksStackPanel = new StackPanel() 
+            linksStackPanel = new StackPanel()
             { Orientation = Orientation.Horizontal };
             linksStackPanel.Children.Add(downloadHyperlinkStackPanel);
             linksStackPanel.Children.Add(GitHubLinkLocTextBlock);
 
             #endregion
 
-            TextBlock warningTextBlock = new TextBlock() 
-            { 
+            warningTextBlock = new TextBlock()
+            {
                 Text = loc.WarningLoc,
                 TextAlignment = TextAlignment.Center,
                 Margin = new Thickness(0, 10, 0, 0),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 TextWrapping = TextWrapping.Wrap
-
             };
 
-            TextBlock titleTextBlock = new TextBlock()
+            mainStackPanel = new StackPanel()
             {
-                Text = loc.TitleLoc,
-                FontSize = 20,
-                Margin = new Thickness(0, 15, 0, 0),
-                HorizontalAlignment = HorizontalAlignment.Center
-            };
-
-            StackPanel mainStackPanel = new StackPanel() 
-            { 
                 Orientation = Orientation.Vertical,
                 Margin = new Thickness(20, 0, 20, 10)
             };
@@ -207,9 +246,18 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
             mainStackPanel.Children.Add(linksStackPanel);
             mainStackPanel.Children.Add(warningTextBlock);
 
-            Grid mainGrid = new Grid();
+            mainGrid = new Grid();
             mainGrid.Children.Add(mainStackPanel);
             Content = mainGrid;
+        }
+
+        private void InitializeStyle()
+        {
+            styleTextBlock = new Style();
+            styleTextBlock.Setters.Add(new Setter(TextBlock.FontSizeProperty, (double)15));
+            styleTextBlock.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
+            styleTextBlock.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
+            Style = styleTextBlock;
         }
 
         private void DownloadHyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)

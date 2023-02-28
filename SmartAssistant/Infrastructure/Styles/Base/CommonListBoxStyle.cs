@@ -7,18 +7,18 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace SmartAssistant.Infrastructure.Styles
+namespace SmartAssistant.Infrastructure.Styles.Base
 {
     public class CommonListBoxStyle : Style
     {
-        public CommonListBoxStyle(CornerRadius cornerRadius, Thickness borderThickness, SolidColorBrush background, SolidColorBrush borderBrush) 
+        public CommonListBoxStyle(CornerRadius cornerRadius, Thickness borderThickness, SolidColorBrush background, SolidColorBrush borderBrush)
         {
             FrameworkElementFactory itemPresenterF = new FrameworkElementFactory(typeof(ItemsPresenter));
-            itemPresenterF.SetValue(ItemsPresenter.SnapsToDevicePixelsProperty, true);
+            itemPresenterF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
 
             FrameworkElementFactory scrollViewerF = new FrameworkElementFactory(typeof(ScrollViewer));
-            scrollViewerF.SetValue(ScrollViewer.PaddingProperty, new Thickness(1));
-            scrollViewerF.SetValue(ScrollViewer.FocusableProperty, true);
+            scrollViewerF.SetValue(Control.PaddingProperty, new Thickness(1));
+            scrollViewerF.SetValue(UIElement.FocusableProperty, true);
             scrollViewerF.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Disabled);
             scrollViewerF.SetValue(ScrollViewer.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto);
             scrollViewerF.SetValue(ScrollViewer.PanningModeProperty, PanningMode.Both);
@@ -31,11 +31,11 @@ namespace SmartAssistant.Infrastructure.Styles
             borderF.SetValue(Border.BorderBrushProperty, borderBrush);
             borderF.SetValue(Border.BorderThicknessProperty, borderThickness);
             borderF.SetValue(Border.PaddingProperty, new Thickness(1));
-            borderF.SetValue(Border.SnapsToDevicePixelsProperty, true);
+            borderF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
 
             borderF.AppendChild(scrollViewerF);
 
-            Setters.Add(new Setter(ListBox.TemplateProperty, new ControlTemplate(typeof(ListBox))
+            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(ListBox))
             {
                 VisualTree = borderF
             }));

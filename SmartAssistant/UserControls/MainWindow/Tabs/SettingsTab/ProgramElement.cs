@@ -48,7 +48,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
         #region Constructors
 
-        // TODO: Makss может стоит убрать первую колонку
         public ProgramElement(string name, ObservableCollection<string> callingName, string path)
         {
             Name = name;

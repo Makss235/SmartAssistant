@@ -18,7 +18,7 @@
     <!--Темный красный цвет для кнопки закрытия-->
     <SolidColorBrush x:Key="DarkRed" Color="#A30008"/>
     <!--Прозрачный цвет-->
-    <SolidColorBrush x:Key="Transparent" Color="Transparent"/>
+    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
     <!--Используется для background у DataGridRowHeader и для выделения ListBoxItem в CallingName в DataGrid-->
     <SolidColorBrush x:Key="SelectionLightBrush" Color="#daeafd"/>
     

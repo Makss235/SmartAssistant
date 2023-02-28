@@ -9,6 +9,8 @@ namespace SmartAssistant.UserControls.Base
 {
     public abstract class GroupButton : UserControl, INotifyPropertyChanged
     {
+        public abstract event Action<byte> ButtonPressed;
+
         #region NPC
 
         public event PropertyChangedEventHandler PropertyChanged;

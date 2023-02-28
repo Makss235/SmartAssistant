@@ -3,6 +3,7 @@ using SmartAssistant.UserControls.MainWindow;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SmartAssistant.Windows.MainWindow
 {
@@ -19,21 +20,24 @@ namespace SmartAssistant.Windows.MainWindow
 
         private Border ICLeftMenuCol()
         {
-            // TODO: RE Может не статическое событие
-            MenuButton.MenuButtonPressedEvent += MenuButtonPressedHandler;
             menuButtons = new List<MenuButton>();
 
             vAChatMenuButton = new MenuButton(
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.VAChatButtonTitleLoc,
                 isActive: true, id: 0);
+            vAChatMenuButton.ButtonPressed += MenuButtonPressedHandler;
             menuButtons.Add(vAChatMenuButton);
+
             settingsMenuButton = new MenuButton(
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.SettingsButtonTitleLoc,
                 isActive: false, id: 1);
+            settingsMenuButton.ButtonPressed += MenuButtonPressedHandler;
             menuButtons.Add(settingsMenuButton);
+
             aboutMenuButton = new MenuButton(
                 title: Localize.JsonObject.MainWindowLoc.MenuButtonsLoc.AboutProgramButtonTitleLoc,
                 isActive: false, id: 2);
+            aboutMenuButton.ButtonPressed += MenuButtonPressedHandler;
             menuButtons.Add(aboutMenuButton);
 
             menuButtonsStackPanel = new StackPanel()
@@ -53,7 +57,7 @@ namespace SmartAssistant.Windows.MainWindow
 
             leftMenuColBorder = new Border()
             {
-                Background = BasicColors.BackgroundMediumBrush,
+                Background = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush,
                 CornerRadius = new CornerRadius(1, 20, 20, 0),
                 Margin = new Thickness(-20, 0, 0, 0)
             };

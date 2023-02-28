@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.UserControls.Base;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,18 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 {
     public class AddNameTab : Tab
     {
+        private Binding enteredNameBinding;
+
+        private TextBlock indicatorNameTextBlock;
+        private TextBox enterNameTextBox;
+        private TabNavigationButton nextTabButton;
+        private RowDefinition indicatorRowDefinition;
+        private RowDefinition enterRowDefinition;
+        private Grid mainGrid;
+
+        public event Action<byte> TabNavigationButtonPressed;
+        public event Action<bool> CorrectnessTextChanged;
+
         #region IsNormalName : bool - Нормальное имя
 
         /// <summary>Содержаться ли в имени только буквы и цифры</summary>
@@ -41,20 +54,14 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             : base(id, width, height, visibility)
         {
             PropertyChanged += AddNameTab_PropertyChanged;
+            InitializeComponent();
+        }
 
-            Grid mainGrid = new Grid();
-
-            RowDefinition menuButtonsRowDefinition = new RowDefinition()
-            { Height = new GridLength(85, GridUnitType.Pixel) };
-            mainGrid.RowDefinitions.Add(menuButtonsRowDefinition);
-
-            RowDefinition mainFieldRowDefinition = new RowDefinition()
-            { Height = new GridLength(175, GridUnitType.Pixel) };
-            mainGrid.RowDefinitions.Add(mainFieldRowDefinition);
-
+        private void InitializeComponent()
+        {
             // TODO: Makss localize
             // TODO: Veser styles
-            TextBlock indicatorNameTextBlock = new TextBlock()
+            indicatorNameTextBlock = new TextBlock()
             {
                 Text = "Название программы:",
                 FontSize = 15,
@@ -66,14 +73,14 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             };
             Grid.SetRow(indicatorNameTextBlock, 0);
 
-            Binding enteredNameBinding = new Binding(nameof(EnteredName))
+            enteredNameBinding = new Binding(nameof(EnteredName))
             {
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 Mode = BindingMode.TwoWay,
                 Source = this
             };
 
-            TextBox enterNameTextBox = new TextBox()
+            enterNameTextBox = new TextBox()
             {
                 Margin = new Thickness(50, 10, 0, 0),
                 BorderThickness = new Thickness(0, 0, 0, 3),
@@ -92,19 +99,33 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             enterNameTextBox.SetBinding(TextBox.TextProperty, enteredNameBinding);
             Grid.SetRow(enterNameTextBox, 1);
 
-            TabNavigationButton nextTabButton =
-            new TabNavigationButton("Далее", NavigateButton.TypeButton.Next, ID)
+            nextTabButton = new TabNavigationButton("Далее", TypeButton.Next, ID)
             {
                 Margin = new Thickness(0, 0, 28, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Right
             };
+            nextTabButton.ButtonPressed += NextTabButton_ButtonPressed;
             Grid.SetRow(nextTabButton, 1);
-            mainGrid.Children.Add(nextTabButton);
 
+            indicatorRowDefinition = new RowDefinition()
+            { Height = new GridLength(85, GridUnitType.Pixel) };
+
+            enterRowDefinition = new RowDefinition()
+            { Height = new GridLength(175, GridUnitType.Pixel) };
+
+            mainGrid = new Grid();
+            mainGrid.RowDefinitions.Add(indicatorRowDefinition);
+            mainGrid.RowDefinitions.Add(enterRowDefinition);
+            mainGrid.Children.Add(nextTabButton);
             mainGrid.Children.Add(indicatorNameTextBlock);
             mainGrid.Children.Add(enterNameTextBox);
             Content = mainGrid;
+        }
+
+        private void NextTabButton_ButtonPressed(byte id)
+        {
+            TabNavigationButtonPressed?.Invoke(id);
         }
 
         private void AddNameTab_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -122,28 +143,15 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 
         private void CheckIsNormalText()
         {
-            // TODO: Veser изменение цвета
-            if (IsNormalName)
-            {
-                //MessageBox.Show("correct");
-            }
-            else
-            {
-                MessageBox.Show("incorrect");
-            }
+            CorrectnessTextChanged?.Invoke(IsNormalName);
         }
 
         private void EnteredNameChanged()
         {
             if (!Regex.IsMatch(EnteredName, @"^[a-zA-Z0-9_]+$"))
-            {
                 IsNormalName = false;
-                return;
-            }
             else
-            {
                 IsNormalName = true;
-            }
         }
     }
 }
