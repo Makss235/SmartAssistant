@@ -16,6 +16,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         private DataGridTemplateColumn callingNamesDataGridColumn;
         private DataGridTemplateColumn pathDataGridColumn;
         private DataGrid programElenentsDataGrid;
+        private Button callAddPEWindowButton;
         private StackPanel programSettingsStackPanel;
 
         public ObservableCollection<ProgramElement> ProgramElements { get; private set; }
@@ -72,13 +73,28 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             programElenentsDataGrid.Columns.Add(callingNamesDataGridColumn);
             programElenentsDataGrid.Columns.Add(pathDataGridColumn);
 
+            callAddPEWindowButton = new Button()
+            {
+                Width = 60,
+                Height = 40,
+                Margin = new Thickness(10)
+            };
+            callAddPEWindowButton.Click += CallAddPEWindowButton_Click;
+
             programSettingsStackPanel = new StackPanel()
             {
                 Orientation = Orientation.Vertical
             };
             programSettingsStackPanel.Children.Add(titleProgramsTextBlock);
             programSettingsStackPanel.Children.Add(programElenentsDataGrid);
+            programSettingsStackPanel.Children.Add(callAddPEWindowButton);
             return programSettingsStackPanel;
+        }
+
+        private void CallAddPEWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.AddPEWindow.AddPEWindow addPEWindow = new Windows.AddPEWindow.AddPEWindow();
+            addPEWindow.Show();
         }
 
         private void InitializePECollection()

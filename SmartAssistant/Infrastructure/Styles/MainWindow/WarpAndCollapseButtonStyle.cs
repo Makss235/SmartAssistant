@@ -1,5 +1,4 @@
-﻿using SmartAssistant.Windows;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -8,6 +7,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
 {
     public class WarpAndCollapseProgramButtonStyle : Style
     {
+        // TODO: Veser нормальный конструктор
         public WarpAndCollapseProgramButtonStyle(double TopRight, double BottomLeft, double RightMargin, SolidColorBrush TriggerBackGroundColor)
         {
             const double ButtonWidth = 40;

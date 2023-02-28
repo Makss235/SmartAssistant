@@ -53,11 +53,8 @@ namespace SmartAssistant
             app.MainWindow = mainWin;
             StateManager.Initialize();
             SkillManager.Initialize();
-
-
-            AddPEWindow addPEWindow = new AddPEWindow();
+            
             mainWin.Show();
-            addPEWindow.Show();
             app.Run();
         }
     }

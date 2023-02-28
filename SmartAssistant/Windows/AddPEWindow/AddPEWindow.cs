@@ -1,5 +1,6 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Infrastructure.Styles.MainWindow;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,6 +16,7 @@ namespace SmartAssistant.Windows.AddPEWindow
 
         private RowDefinition menuButtonsRowDefinition;
         private RowDefinition mainFieldRowDefinition;
+        private Button collapseWindowButton;
         private Grid mainGrid;
         private Border mainBorder;
 
@@ -30,7 +32,7 @@ namespace SmartAssistant.Windows.AddPEWindow
             Title = Localize.JsonObject.MainWindowLoc.TitleLoc;
 
             ResizeMode = ResizeMode.NoResize;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             WindowStyle = WindowStyle.None;
             Background = new SolidColorBrush(Colors.Transparent);
@@ -53,11 +55,20 @@ namespace SmartAssistant.Windows.AddPEWindow
             Grid.SetRow(ICAddPEButtonsRow(), 0);
             Grid.SetRow(ICMainFieldRow(), 1);
 
+            collapseWindowButton = new Button()
+            {
+                Style = new WarpAndCollapseProgramButtonStyle(15, 0, 0, Application.Current.Resources["Red"] as SolidColorBrush),
+                Content = "X",
+                CommandParameter = true
+            };
+            collapseWindowButton.Click += CollapseWindowButton_Click;
+
             mainGrid = new Grid();
             mainGrid.RowDefinitions.Add(menuButtonsRowDefinition);
             mainGrid.RowDefinitions.Add(mainFieldRowDefinition);
             mainGrid.Children.Add(addPEButtonsStackPanel);
             mainGrid.Children.Add(mainFieldGrid);
+            mainGrid.Children.Add(collapseWindowButton);
 
             mouseMoveIB = new InputBinding(new DragMoveCommand(this), new MouseGesture()
             { MouseAction = MouseAction.LeftClick });
@@ -75,6 +86,11 @@ namespace SmartAssistant.Windows.AddPEWindow
             mainBorder.Child = mainGrid;
 
             Content = mainBorder;
+        }
+
+        private void CollapseWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
