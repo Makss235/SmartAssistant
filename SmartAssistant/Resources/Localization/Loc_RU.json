@@ -39,6 +39,29 @@
             "AboutProgramButtonTitleLoc": "О программе"
         }
     },
+    "AddPEWindowLoc": {
+        "TabsLoc": {
+            "NavigationButtonscLoc": {
+                "PreviousLoc": "",
+                "NextLoc": "",
+                "DoneLoc": ""
+            },
+            "AddNameTabLoc": {
+                "EnterNameLoc": ""
+            },
+            "AddCallingNamesTabLoc": {
+                "EnterCallingNameLoc": ""
+            },
+            "AddPathTabLoc": {
+                "EnterPathLoc": ""
+            }
+        },
+        "AddPEButtonsLoc": {
+            "AddNameButtonLoc": "",
+            "AddCallingNamesButtonLoc": "",
+            "AddPathButtonLoc": ""
+        }
+    },
     "TrayMenuLoc": {
         "TextLoc": "Скажите \"Привет, Иван!\"",
         "StateLoc": {

@@ -98,7 +98,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
             indicatorCallingNameTextBlock = new TextBlock()
             {
-                Text = "Введите, как будете\nзвать программу:",
+                Text = "Введите, как будете\nзвать программу:111",
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Margin = new Thickness(10, 10, 20, 0),
@@ -159,7 +159,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             Panel.SetZIndex(addCallingNameButton, 10);
             Grid.SetRow(addCallingNameButton, 1);
 
-            previousTabButton = new TabNavigationButton("Назад", TypeButton.Previous, ID)
+            previousTabButton = new TabNavigationButton("Назад111", TypeButton.Previous, ID)
             {
                 Margin = new Thickness(10, 0, 0, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -168,7 +168,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             previousTabButton.ButtonPressed += NavigationButtonPressed;
             Grid.SetRow(previousTabButton, 1);
 
-            nextTabButton = new TabNavigationButton("Далее", TypeButton.Next, ID)
+            nextTabButton = new TabNavigationButton("Далее111", TypeButton.Next, ID)
             {
                 Margin = new Thickness(0, 0, 28, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,

@@ -48,13 +48,13 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             // TODO: Makss localize
             indicatorPathTextBlock = new TextBlock()
             {
-                Text = "Путь программы:",
+                Text = "Путь программы:111",
                 FontSize = 15,
                 Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                ToolTip = new ToolTip() { Content = "Введите абсолютный путь\nдо exe-файла программы" }
+                ToolTip = new ToolTip() { Content = "Введите абсолютный путь\nдо exe-файла программы111" }
             };
             Grid.SetRow(indicatorPathTextBlock, 0);
 
@@ -84,7 +84,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             enterPathTextBox.SetBinding(TextBox.TextProperty, enteredPathBinding);
             Grid.SetRow(enterPathTextBox, 1);
 
-            previousTabButton = new TabNavigationButton("Назад", TypeButton.Previous, ID)
+            previousTabButton = new TabNavigationButton("Назад111", TypeButton.Previous, ID)
             {
                 Margin = new Thickness(20, 0, 0, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -101,7 +101,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 VerticalAlignment = VerticalAlignment.Bottom,
                 Margin = new Thickness(10, 5, 28, 28),
                 HorizontalAlignment = HorizontalAlignment.Right,
-                Content = "Готово",
+                Content = "Готово111",
                 Style = new RoundedButton(
                     new CornerRadius(10),
                     new Thickness(1),

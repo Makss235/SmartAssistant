@@ -63,13 +63,13 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             // TODO: Veser styles
             indicatorNameTextBlock = new TextBlock()
             {
-                Text = "Название программы:",
+                Text = "Название программы:111",
                 FontSize = 15,
                 Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                ToolTip = new ToolTip() { Content = "Введите название программы\nлатиницей и без спец. символов" }
+                ToolTip = new ToolTip() { Content = "Введите название программы\nлатиницей и без спец. символов111" }
             };
             Grid.SetRow(indicatorNameTextBlock, 0);
 
@@ -99,7 +99,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             enterNameTextBox.SetBinding(TextBox.TextProperty, enteredNameBinding);
             Grid.SetRow(enterNameTextBox, 1);
 
-            nextTabButton = new TabNavigationButton("Далее", TypeButton.Next, ID)
+            nextTabButton = new TabNavigationButton("Далее111", TypeButton.Next, ID)
             {
                 Margin = new Thickness(0, 0, 28, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,

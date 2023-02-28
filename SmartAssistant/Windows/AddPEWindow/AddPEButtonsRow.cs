@@ -20,17 +20,17 @@ namespace SmartAssistant.Windows.AddPEWindow
             MovingToTabEvent += MovingToTabHandler;
 
             // TODO: Makss localize
-            addNameButton = new AddPEGroupButton("Название", true, 0)
+            addNameButton = new AddPEGroupButton("Название111", true, 0)
             { Margin = new Thickness(0, 0, 20, 0) };
             addNameButton.ButtonPressed += MovingToTabHandler;
             addPEGroupButtons.Add(addNameButton);
 
-            addCallingNamesButton = new AddPEGroupButton("Как будете звать?", false, 1)
+            addCallingNamesButton = new AddPEGroupButton("Как будете звать111?", false, 1)
             { Margin = new Thickness(0, 0, 20, 0) };
             addCallingNamesButton.ButtonPressed += MovingToTabHandler;
             addPEGroupButtons.Add(addCallingNamesButton);
 
-            addPathButton = new AddPEGroupButton("Путь", false, 2)
+            addPathButton = new AddPEGroupButton("Путь111", false, 2)
             { Margin = new Thickness(0, 0, 20, 0) };
             addPathButton.ButtonPressed += MovingToTabHandler;
             addPEGroupButtons.Add(addPathButton);
