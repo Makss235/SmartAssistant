@@ -138,24 +138,24 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             addCallingNameButton = new Button()
             {
                 Content = "+",
-                FontSize = 60,
-                Padding = new Thickness(0, -17, 0, 0),
+                FontSize = 30,
+                Padding = new Thickness(0, 0, 0, 8),
                 Margin = new Thickness(10, 5, 28, 20),
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Width = 60,
                 Height = 60,
-                Style = new RoundedButton(
-                    new CornerRadius(0, 20, 20, 0), 
-                    new Thickness(2),
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"])
-                //Background = Application.Current.Resources["Transparent"] as SolidColorBrush,
-                //BorderThickness = new Thickness(0)
+                //Style = new RoundedButton(
+                //    new CornerRadius(0, 20, 20, 0), 
+                //    new Thickness(2),
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"]),
+                Background = Application.Current.Resources["Transparent"] as SolidColorBrush,
+                BorderThickness = new Thickness(0)
             };
             addCallingNameButton.Click += AddCallingNameButton_Click;
             Panel.SetZIndex(addCallingNameButton, 10);
