@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Styles;
+using SmartAssistant.Infrastructure.Styles.AddPEWindow;
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.UserControls.Base;
 using System;
@@ -45,17 +46,17 @@ namespace SmartAssistant.UserControls.AddPEWindow
                 FontSize = 13,
                 Height = 50,
                 Content = Title,
-                Style = new RoundedButton
-                (
-                    new CornerRadius(25),
-                    new Thickness(1),
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"]
-                ),
+                Style = new AddPEMenuButton(),//new RoundedButton
+                //(
+                //    new CornerRadius(25),
+                //    new Thickness(1),
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"]
+                //),
                 Command = ClickCommand
             };
             Content = groupButton;
@@ -78,7 +79,11 @@ namespace SmartAssistant.UserControls.AddPEWindow
         {
             // TODO: Veser сделать изменение цвета
             if (IsCorrect) groupButton.Background = (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"];
-            else groupButton.Background = (SolidColorBrush)Application.Current.Resources["Red"];
+            else 
+            {
+                groupButton.Background = (SolidColorBrush)Application.Current.Resources["Red"];
+                groupButton.BorderBrush = (SolidColorBrush)Application.Current.Resources["Red"];
+            }
         }
 
         private void StateChange()

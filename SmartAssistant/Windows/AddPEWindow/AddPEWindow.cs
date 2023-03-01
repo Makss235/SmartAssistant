@@ -57,9 +57,10 @@ namespace SmartAssistant.Windows.AddPEWindow
 
             collapseWindowButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(15, 0, 0, Application.Current.Resources["Red"] as SolidColorBrush),
+                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 15, 0, 15), Application.Current.Resources["Red"] as SolidColorBrush),
                 Content = "X",
-                CommandParameter = true
+                Margin = new Thickness(0),
+                CommandParameter = true,
             };
             collapseWindowButton.Click += CollapseWindowButton_Click;
 
