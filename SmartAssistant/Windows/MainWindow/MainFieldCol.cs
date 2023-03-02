@@ -40,16 +40,18 @@ namespace SmartAssistant.Windows.MainWindow
             // TODO: Veser картинки на кнопки закрытия и сворачивания программы
             wrapProgramButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(0, 20, 40, Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush),
+                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 0, 0, 17), Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush),
                 Content = "-",
+                Margin = new Thickness(0, -0.3, 39.5, 0),
                 Command = new CloseApplicationCommand(),
                 CommandParameter = false
             };
 
             collapseProgramButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(15, 0, 0, Application.Current.Resources["Red"] as SolidColorBrush),
+                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 17, 0, 0), Application.Current.Resources["Red"] as SolidColorBrush),
                 Content = "X",
+                Margin = new Thickness(0, -0.3, -0.3, 0),
                 Command = new CloseApplicationCommand(),
                 CommandParameter = true
             };

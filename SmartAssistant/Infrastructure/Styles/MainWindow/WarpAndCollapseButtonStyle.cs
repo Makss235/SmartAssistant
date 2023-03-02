@@ -8,17 +8,14 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
     public class WarpAndCollapseProgramButtonStyle : Style
     {
         // TODO: Veser нормальный конструктор
-        public WarpAndCollapseProgramButtonStyle(double TopRight, double BottomLeft, double RightMargin, SolidColorBrush TriggerBackGroundColor)
+        public WarpAndCollapseProgramButtonStyle(CornerRadius cornerRadius, SolidColorBrush TriggerBackGroundColor)
         {
-            const double ButtonWidth = 40;
-            const double ButtonHeight = 36;
-
             FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
             contentPresenterFactory.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
             contentPresenterFactory.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
-            borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(0, TopRight, 0, BottomLeft));
+            borderFactory.SetValue(Border.CornerRadiusProperty, cornerRadius);
             borderFactory.SetBinding(Border.BorderThicknessProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
@@ -41,12 +38,11 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
 
             Triggers.Add(MouseOverTrigger);
             Setters.Add(new Setter(Control.BackgroundProperty, Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush));
-            Setters.Add(new Setter(FrameworkElement.WidthProperty, ButtonWidth));
-            Setters.Add(new Setter(FrameworkElement.HeightProperty, ButtonHeight));
+            Setters.Add(new Setter(FrameworkElement.WidthProperty, (double)40));
+            Setters.Add(new Setter(FrameworkElement.HeightProperty, (double)36));
             Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top));
             Setters.Add(new Setter(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right));
             Setters.Add(new Setter(Control.BorderThicknessProperty, new Thickness(0)));
-            Setters.Add(new Setter(FrameworkElement.MarginProperty, new Thickness(0, 0, RightMargin, 0)));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(Button))
             {
                 VisualTree = borderFactory

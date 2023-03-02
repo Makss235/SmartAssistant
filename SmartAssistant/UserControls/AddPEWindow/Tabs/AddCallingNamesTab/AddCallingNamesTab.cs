@@ -145,17 +145,15 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 HorizontalAlignment = HorizontalAlignment.Right,
                 Width = 60,
                 Height = 60,
-                //Style = new RoundedButton(
-                //    new CornerRadius(0, 20, 20, 0), 
-                //    new Thickness(2),
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"]),
-                Background = Application.Current.Resources["Transparent"] as SolidColorBrush,
-                BorderThickness = new Thickness(0)
+                Style = new RoundedButton(
+                    new CornerRadius(0, 20, 20, 0),
+                    new Thickness(0),
+                    (SolidColorBrush)Application.Current.Resources["Transparent"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
+                    (SolidColorBrush)Application.Current.Resources["Transparent"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"],
+                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"]),
             };
             addCallingNameButton.Click += AddCallingNameButton_Click;
             Panel.SetZIndex(addCallingNameButton, 10);
