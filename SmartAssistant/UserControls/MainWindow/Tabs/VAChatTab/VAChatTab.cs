@@ -1,6 +1,7 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
 using SmartAssistant.Models;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System.Collections.ObjectModel;
 using System.Windows;

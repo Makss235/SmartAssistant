@@ -1,5 +1,6 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,7 +20,7 @@ namespace SmartAssistant.Windows.MainWindow
             {
                 // TODO: RE возможен стиль
                 Text = Localize.JsonObject.MainWindowLoc.TitleLoc,
-                Foreground = Application.Current.Resources["ForegroundWhiteColor"] as SolidColorBrush,
+                Foreground = ResApp.GetResources<SolidColorBrush>("BackgroundLightBrush"),
                 Background = new SolidColorBrush(Colors.Transparent),
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 14,

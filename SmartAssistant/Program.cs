@@ -6,9 +6,8 @@ using SmartAssistant.Data.SettingsData;
 using SmartAssistant.Data.SitesData;
 using SmartAssistant.Data.TriggersData;
 using SmartAssistant.Data.WordsData;
-using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Models;
-using SmartAssistant.Windows.AddPEWindow;
+using SmartAssistant.Windows.AddCNWindow;
 using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
@@ -16,7 +15,6 @@ using System.Windows;
 namespace SmartAssistant
 {
     //TODO: Виктор стили mainWindow и других окон
-    //TODO: Максим окно добавления программы
 
     internal class Program
     {
@@ -55,6 +53,8 @@ namespace SmartAssistant
             SkillManager.Initialize();
             
             mainWin.Show();
+            AddCNWindow addCallingNameWindow = new AddCNWindow(new Point(mainWin.Left, mainWin.Top));
+            addCallingNameWindow.Show();
             app.Run();
         }
     }

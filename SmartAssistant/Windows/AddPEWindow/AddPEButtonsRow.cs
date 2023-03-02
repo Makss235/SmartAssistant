@@ -48,12 +48,10 @@ namespace SmartAssistant.Windows.AddPEWindow
 
         private void MovingToTabHandler(byte id)
         {
-            // TODO: Makss реакция на нажатие кнопки
             for (int i = 0; i < addPEGroupButtons.Count; i++)
             {
                 if (id == addPEGroupButtons[i].ID)
                 {
-                    //MessageBox.Show(id.ToString());
                     addPEGroupButtons[i].IsActive = true;
                     tabs[i].Visibility = Visibility.Visible;
                 }
