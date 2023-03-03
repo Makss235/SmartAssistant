@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Styles.Base;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
 using System.Windows;
@@ -69,7 +70,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             {
                 Margin = new Thickness(50, 10, 0, 0),
                 BorderThickness = new Thickness(0, 0, 0, 3),
-                BorderBrush = Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush,
+                BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
                 FontSize = 15,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Width = 300,
@@ -77,7 +78,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 Padding = new Thickness(0, 0, 0, 2),
                 VerticalContentAlignment = VerticalAlignment.Bottom,
                 TextWrapping = TextWrapping.Wrap,
-                Background = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush,
+                Background = ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Left
             };
@@ -105,12 +106,12 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 Style = new RoundedButton(
                     new CornerRadius(10),
                     new Thickness(1),
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"])
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"))
             };
             doneButton.Click += DoneButton_Click;
             Grid.SetRow(doneButton, 1);

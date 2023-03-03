@@ -4,6 +4,9 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataGrid.DGSimpleElement;
 using SmartAssistant.UserControls.Base;
+using SmartAssistant.Infrastructure.Commands.Base;
+using System.Windows.Media;
+using SmartAssistant.Resources;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates
 {
@@ -46,7 +49,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
             //callingNameDGVerticalStackPanelFactory.AppendChild(callingNameDGDeleteButton);
 
             FrameworkElementFactory textBoxF = new FrameworkElementFactory(typeof(TextBox));
-            textBoxF.SetValue(Control.BackgroundProperty, Application.Current.Resources["Transparent"]);
+            textBoxF.SetValue(Control.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
             textBoxF.SetValue(Control.BorderThicknessProperty, new Thickness(0));
             textBoxF.SetValue(FrameworkElement.WidthProperty, (double)115);
             textBoxF.SetValue(FrameworkElement.HeightProperty, (double)25);
@@ -60,7 +63,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
             buttonF.SetValue(FrameworkElement.WidthProperty, (double)30);
             buttonF.SetValue(FrameworkElement.HeightProperty, (double)30);
             buttonF.SetValue(ContentControl.ContentProperty, "+");
-            buttonF.SetValue(Control.BackgroundProperty, Application.Current.Resources["Transparent"]);
+            buttonF.SetValue(Control.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
             buttonF.SetValue(Control.BorderThicknessProperty, new Thickness(0));
             buttonF.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
             buttonF.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right);
@@ -74,8 +77,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
             FrameworkElementFactory mainBorderF = new FrameworkElementFactory(typeof(Border));
             mainBorderF.SetValue(FrameworkElement.HeightProperty, (double)30);
             mainBorderF.SetValue(FrameworkElement.WidthProperty, (double)145);
-            mainBorderF.SetValue(Border.BorderBrushProperty, Application.Current.Resources["BackgroundMediumBrush"]);
-            mainBorderF.SetValue(Border.BackgroundProperty, Application.Current.Resources["BackgroundLightBrush"]);
+            mainBorderF.SetValue(Border.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"));
+            mainBorderF.SetValue(Border.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush"));
             mainBorderF.SetValue(Border.CornerRadiusProperty, new CornerRadius(10));
             mainBorderF.SetValue(Border.BorderThicknessProperty, new Thickness(1));
             mainBorderF.AppendChild(stackPanelF);

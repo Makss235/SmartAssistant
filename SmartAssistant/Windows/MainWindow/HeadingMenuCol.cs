@@ -20,11 +20,10 @@ namespace SmartAssistant.Windows.MainWindow
             {
                 // TODO: RE возможен стиль
                 Text = Localize.JsonObject.MainWindowLoc.TitleLoc,
-                Foreground = ResApp.GetResources<SolidColorBrush>("BackgroundLightBrush"),
-                Background = new SolidColorBrush(Colors.Transparent),
+                Foreground = ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                Background = ResApp.GetResources<SolidColorBrush>("Transparent"),
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 14,
-                FontWeight = FontWeights.SemiBold,
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Margin = new Thickness(0, 25, 0, 0),
@@ -40,7 +39,7 @@ namespace SmartAssistant.Windows.MainWindow
 
             headingMenuColBorder = new Border()
             {
-                Background = Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush,
+                Background = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
                 CornerRadius = new CornerRadius(20)
             };
             headingMenuColBorder.InputBindings.Add(dragMoveIB);

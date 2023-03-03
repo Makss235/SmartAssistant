@@ -16,8 +16,8 @@
     <Style x:Key="DGColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="{DynamicResource ButtonMouseOverBrush}"/>
-        <Setter Property="Background" Value="{DynamicResource SelectionLightBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource DarkerBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource FadedBrush}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="MinHeight" Value="25"/>
         <Setter Property="Padding" Value="10"/>
@@ -26,7 +26,7 @@
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                     <Grid>
                         <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{DynamicResource ButtonMouseOverBrush}"
+                                BorderBrush="{DynamicResource DarkerBrush}"
                                 BorderThickness="2 3 2 3">
                             <Grid Margin="{TemplateBinding Padding}">
                                 <Grid.ColumnDefinitions>

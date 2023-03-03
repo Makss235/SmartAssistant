@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Styles.MainWindow;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using SmartAssistant.Windows;
 using System;
@@ -68,7 +69,7 @@ namespace SmartAssistant.UserControls.MainWindow
 
             roundingPath = new Path()
             {
-                Fill = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush,
+                Fill = ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                 Stretch = Stretch.Fill,
                 Data = roundingGeometry,
                 HorizontalAlignment = HorizontalAlignment.Right,
@@ -130,15 +131,15 @@ namespace SmartAssistant.UserControls.MainWindow
         private void ActiveState()
         {
             roundingPath.Visibility = Visibility.Visible;
-            button.Background = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
-            titleMenuButton.Foreground = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
+            button.Background = ResApp.GetResources<SolidColorBrush>("CommonLightBrush");
+            titleMenuButton.Foreground = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
         }
 
         private void InactiveState()
         {
             roundingPath.Visibility = Visibility.Hidden;
-            button.Background = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
-            titleMenuButton.Foreground = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
+            button.Background = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
+            titleMenuButton.Foreground = ResApp.GetResources<SolidColorBrush>("CommonLightBrush");
         }
     }
 }

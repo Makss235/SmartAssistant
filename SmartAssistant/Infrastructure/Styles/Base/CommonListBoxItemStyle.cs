@@ -15,8 +15,6 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             SolidColorBrush borderBrush,
             SolidColorBrush mouseOverBackground,
             SolidColorBrush mouseOverBorderBrush,
-            //SolidColorBrush ISISAFBackground,
-            //SolidColorBrush ISISAFBorderBrush,
             SolidColorBrush ISISATBackground,
             SolidColorBrush ISISATBorderBrush)
         {
@@ -44,29 +42,11 @@ namespace SmartAssistant.Infrastructure.Styles.Base
 
             Trigger mouseOverT = new Trigger
             {
-                Property = UIElement.IsMouseOverProperty,
+                Property = ListBoxItem.IsMouseOverProperty,
                 Value = true
             };
             mouseOverT.Setters.Add(new Setter(Control.BackgroundProperty, mouseOverBackground));
             mouseOverT.Setters.Add(new Setter(Control.BorderBrushProperty, mouseOverBorderBrush));
-
-            //MultiTrigger ISISAFT = new MultiTrigger
-            //{
-            //    Conditions =
-            //    {
-            //        new Condition
-            //        { Property = Selector.IsSelectionActiveProperty, Value = false },
-            //        new Condition
-            //        { Property = ListBoxItem.IsSelectedProperty, Value = true }
-            //    },
-            //    Setters =
-            //    {
-            //        new Setter
-            //        { Property = ListBoxItem.BackgroundProperty, Value = ISISAFBackground },
-            //        new Setter
-            //        { Property = ListBoxItem.BorderBrushProperty, Value = ISISAFBorderBrush }
-            //    }
-            //};
 
             MultiTrigger ISISATT = new MultiTrigger
             {
@@ -87,7 +67,6 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             };
 
             Triggers.Add(mouseOverT);
-            ////Triggers.Add(ISISAFT);
             Triggers.Add(ISISATT);
             Setters.Add(new Setter(Control.BackgroundProperty, background));
             Setters.Add(new Setter(Control.BorderBrushProperty, borderBrush));

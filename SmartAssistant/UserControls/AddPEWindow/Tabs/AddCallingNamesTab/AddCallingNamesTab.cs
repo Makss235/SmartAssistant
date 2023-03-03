@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Styles.Base;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
 using System.Collections.ObjectModel;
@@ -78,20 +79,18 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 Style = new CommonListBoxStyle(
                     new CornerRadius(10),
                     new Thickness(2),
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"]
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")
                     ),
                 ItemContainerStyle = new CommonListBoxItemStyle(
                     new CornerRadius(10),
                     new Thickness(2),
-                    (SolidColorBrush)Application.Current.Resources["Transparent"],
-                    (SolidColorBrush)Application.Current.Resources["Transparent"],
-                    (SolidColorBrush)Application.Current.Resources["Transparent"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    //(SolidColorBrush)Application.Current.Resources["Transparent"],
-                    //(SolidColorBrush)Application.Current.Resources["Transparent"],
-                    (SolidColorBrush)Application.Current.Resources["SelectionLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"]
+                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("FadedBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")
                     )
             };
             Grid.SetColumn(addCaliingNamesListBox, 0);
@@ -127,10 +126,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                     new CornerRadius(20),
                     new Thickness(2),
                     new Thickness(0, 0, 60, 0),
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"])
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"))
             };
             enterCallingNameTextBox.SetBinding(TextBox.TextProperty, enteredCallingNameBinding);
             Grid.SetRow(enterCallingNameTextBox, 1);
@@ -148,12 +147,12 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 Style = new RoundedButton(
                     new CornerRadius(0, 20, 20, 0),
                     new Thickness(0),
-                    (SolidColorBrush)Application.Current.Resources["Transparent"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["Transparent"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundDarkBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"]),
+                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush")),
             };
             addCallingNameButton.Click += AddCallingNameButton_Click;
             Panel.SetZIndex(addCallingNameButton, 10);

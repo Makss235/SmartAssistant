@@ -1,6 +1,7 @@
 ﻿using SmartAssistant.Infrastructure.Styles;
 using SmartAssistant.Infrastructure.Styles.AddPEWindow;
 using SmartAssistant.Infrastructure.Styles.Base;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
 using System.Windows;
@@ -78,11 +79,11 @@ namespace SmartAssistant.UserControls.AddPEWindow
         private void CorrectChange()
         {
             // TODO: Veser сделать изменение цвета
-            if (IsCorrect) groupButton.Background = (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"];
+            if (IsCorrect) groupButton.Background = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
             else 
             {
-                groupButton.Background = (SolidColorBrush)Application.Current.Resources["Red"];
-                groupButton.BorderBrush = (SolidColorBrush)Application.Current.Resources["Red"];
+                groupButton.Background = ResApp.GetResources<SolidColorBrush>("Red");
+                groupButton.BorderBrush = ResApp.GetResources<SolidColorBrush>("Red");
             }
         }
 

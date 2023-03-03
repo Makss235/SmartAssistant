@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using SmartAssistant.Resources;
 using SmartAssistant.Windows;
 
 namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
@@ -14,7 +15,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
                                 string message)
         {
             FrameworkElementFactory textBoxFactory = new FrameworkElementFactory(typeof(TextBlock));
-            textBoxFactory.SetValue(TextBlock.BackgroundProperty, Application.Current.Resources["TransparentBrush"] as SolidColorBrush);
+            textBoxFactory.SetValue(TextBlock.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
             textBoxFactory.SetValue(TextBlock.TextProperty, message);
             textBoxFactory.SetValue(TextBlock.MarginProperty, new Thickness(10, 5, 10, 7));
             textBoxFactory.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
@@ -31,7 +32,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
             messageTextBoxFactory.AppendChild(textBoxFactory);
 
             TargetType = typeof(TextBox);
-            Setters.Add(new Setter(TextBox.BackgroundProperty, Application.Current.Resources["Transparent"]));
+            Setters.Add(new Setter(TextBox.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent")));
             Setters.Add(new Setter(TextBox.ForegroundProperty, messageForeground));
             Setters.Add(new Setter(TextBox.BorderThicknessProperty, new Thickness(0)));
             Setters.Add(new Setter(TextBox.MarginProperty, new Thickness(8, 5, 8, 5)));

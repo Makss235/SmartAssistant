@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using SmartAssistant.Infrastructure.Styles.Base;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.AddPEWindow;
 
 namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
@@ -25,12 +26,12 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
                 Conditions =
                 {
                     new Condition{ Property = Button.IsMouseOverProperty, Value = true},
-                    new Condition{ Property = Button.BackgroundProperty, Value = Application.Current.Resources["Red"]}
+                    new Condition{ Property = Button.BackgroundProperty, Value = ResApp.GetResources<SolidColorBrush>("Red")}
                 },
                 Setters =
                 {
-                    new Setter{ Property = Button.ForegroundProperty, Value = Application.Current.Resources["BackgroundLightBrush"]},
-                    new Setter{ Property = Button.BorderBrushProperty, Value = Application.Current.Resources["DarkRed"]},
+                    new Setter{ Property = Button.ForegroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonLightBrush")},
+                    new Setter{ Property = Button.BorderBrushProperty, Value = ResApp.GetResources<SolidColorBrush>("DarkRed")},
                 }
             };
 
@@ -41,9 +42,9 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
             //};
             //tr.Setters.Add(new Setter(Button.BorderBrushProperty, Brushes.Yellow));
 
-            commonB.mouseOverT.Setters.Add(new Setter(Button.BackgroundProperty, Application.Current.Resources["BackgroundLightBrush"]));
-            commonB.mouseOverT.Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["BackgroundMediumBrush"]));
-            commonB.mouseOverT.Setters.Add(new Setter(Button.ForegroundProperty, Application.Current.Resources["BackgroundMediumBrush"]));
+            commonB.mouseOverT.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+            commonB.mouseOverT.Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            commonB.mouseOverT.Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
 
             //commonB.pressedT.Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["BackgroundDarkBrush"]));
 
@@ -52,9 +53,9 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
             Triggers.Add(mouseOverBackgroundRedT);
             //Triggers.Add(tr);
             Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
-            Setters.Add(new Setter(Button.BackgroundProperty, Application.Current.Resources["BackgroundMediumBrush"]));
-            Setters.Add(new Setter(Button.ForegroundProperty, Application.Current.Resources["BackgroundLightBrush"]));
-            Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["BackgroundMediumBrush"]));
+            Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+            Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
             Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
             Setters.Add(new Setter(Button.TemplateProperty, new ControlTemplate(typeof(Button))
             {

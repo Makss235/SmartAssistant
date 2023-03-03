@@ -1,5 +1,6 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.MainWindow;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using SmartAssistant.UserControls.MainWindow.Tabs.AboutTab;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
@@ -40,7 +41,7 @@ namespace SmartAssistant.Windows.MainWindow
             // TODO: Veser картинки на кнопки закрытия и сворачивания программы
             wrapProgramButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 0, 0, 17), Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush),
+                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 0, 0, 17), ResApp.GetResources<SolidColorBrush>("CommonDarkBrush")),
                 Content = "-",
                 Margin = new Thickness(0, -0.3, 39.5, 0),
                 Command = new CloseApplicationCommand(),
@@ -49,7 +50,7 @@ namespace SmartAssistant.Windows.MainWindow
 
             collapseProgramButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 17, 0, 0), Application.Current.Resources["Red"] as SolidColorBrush),
+                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 17, 0, 0), ResApp.GetResources<SolidColorBrush>("Red")),
                 Content = "X",
                 Margin = new Thickness(0, -0.3, -0.3, 0),
                 Command = new CloseApplicationCommand(),
@@ -69,11 +70,11 @@ namespace SmartAssistant.Windows.MainWindow
 
             mainFieldColBorder = new Border()
             {
-                Background = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush,
+                Background = ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                 CornerRadius = new CornerRadius(0, 20, 20, 0),
                 Margin = new Thickness(-20, 0, 0, 0),
                 BorderThickness = new Thickness(4),
-                BorderBrush = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush
+                BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")
             };
             mainFieldColBorder.InputBindings.Add(dragMoveIB);
             mainFieldColBorder.Child = mainFieldGrid;

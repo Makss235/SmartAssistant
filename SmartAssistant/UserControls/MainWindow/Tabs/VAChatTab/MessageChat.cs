@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
+using SmartAssistant.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -24,16 +25,16 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             if (sendMessageBy == SendMessageBy.ByMe)
             {
                 MessageAlignment = HorizontalAlignment.Right;
-                MessageBackground = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush;
-                MessageForeground = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush;
-                MessageBorderBrush = Application.Current.Resources["Transparent"] as SolidColorBrush;
+                MessageBackground = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
+                MessageForeground = ResApp.GetResources<SolidColorBrush>("CommonLightBrush");
+                MessageBorderBrush = ResApp.GetResources<SolidColorBrush>("Transparent");
             }
             else
             {
                 MessageAlignment = HorizontalAlignment.Left;
-                MessageBackground = Application.Current.Resources["SelectionLightBrush"] as SolidColorBrush;
-                MessageForeground = Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush;
-                MessageBorderBrush = Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush;
+                MessageBackground = ResApp.GetResources<SolidColorBrush>("FadedBrush");
+                MessageForeground = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush");
+                MessageBorderBrush = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush");
             }
             
             Text = Message;

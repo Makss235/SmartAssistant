@@ -1,6 +1,7 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.MainWindow;
+using SmartAssistant.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -57,7 +58,7 @@ namespace SmartAssistant.Windows.AddPEWindow
 
             collapseWindowButton = new Button()
             {
-                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 15, 0, 15), Application.Current.Resources["Red"] as SolidColorBrush),
+                Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 15, 0, 15), ResApp.GetResources<SolidColorBrush>("Red")),
                 Content = "X",
                 Margin = new Thickness(0),
                 CommandParameter = true,
@@ -79,7 +80,7 @@ namespace SmartAssistant.Windows.AddPEWindow
                 Background = new SolidColorBrush(Colors.AliceBlue),
                 CornerRadius = new CornerRadius(20, 20, 20, 20),
                 BorderThickness = new Thickness(4),
-                BorderBrush = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush,
+                BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                 Width = 500,
                 Height = 350
             };

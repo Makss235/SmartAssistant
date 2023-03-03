@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartAssistant.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
         {
             FrameworkElementFactory textBoxF = new FrameworkElementFactory(typeof(TextBox));
             textBoxF.SetValue(Control.BorderThicknessProperty, new Thickness(0));
-            textBoxF.SetValue(Control.BackgroundProperty, Application.Current.Resources["Transparent"]);
+            textBoxF.SetValue(Control.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
             textBoxF.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
             textBoxF.SetValue(Control.PaddingProperty, padding);
             textBoxF.SetValue(Control.VerticalContentAlignmentProperty, VerticalAlignment.Center);

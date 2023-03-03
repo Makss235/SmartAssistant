@@ -6,6 +6,8 @@ using System.Windows;
 using SmartAssistant.Data.ProgramsData;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using SmartAssistant.Infrastructure.Styles.Base;
+using SmartAssistant.Resources;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -64,7 +66,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Margin = new Thickness(10, 0, 15, 0),
                 ItemsSource = ProgramElements,
-                CellStyle = Application.Current.Resources["DGCellStyle1"] as Style,
+                CellStyle = Application.Current.Resources["DGCellStyle"] as Style,
                 ColumnHeaderStyle = Application.Current.Resources["DGColumnHeaderStyle"] as Style,
                 RowStyle = Application.Current.Resources["DGRowStyle"] as Style,
                 Style = Application.Current.Resources["DGStyle"] as Style,
@@ -77,7 +79,16 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             {
                 Width = 60,
                 Height = 40,
-                Margin = new Thickness(10)
+                Margin = new Thickness(10),
+                Style = new RoundedButton(
+                    new CornerRadius(20),
+                    new Thickness(2),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"))
             };
             callAddPEWindowButton.Click += CallAddPEWindowButton_Click;
 
