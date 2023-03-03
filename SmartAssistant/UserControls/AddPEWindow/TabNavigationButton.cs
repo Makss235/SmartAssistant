@@ -1,5 +1,6 @@
 ﻿using SmartAssistant.Infrastructure.Styles;
 using SmartAssistant.Infrastructure.Styles.Base;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
 using System.Windows;
@@ -24,12 +25,12 @@ namespace SmartAssistant.UserControls.AddPEWindow
                 Style = new RoundedButton(
                     new CornerRadius(10),
                     new Thickness(1),
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"])
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"))
             };
 
             Content = tabNavigateButton;

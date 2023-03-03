@@ -2,15 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--Цвет, когда нажимаешь мышью на кнопку-->
-    <SolidColorBrush x:Key="ButtonPressedBrush" Color="#003b80"/>
+    <SolidColorBrush x:Key="DarkestBrush" Color="#003b80"/>
     <!--Цвет, когда курсор наведен на кнопку-->
-    <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="#0053b3"/>
+    <SolidColorBrush x:Key="DarkerBrush" Color="#0053b3"/>
     <!--Темный цвет заднего фона (и плашки с названием программы слева)-->
-    <SolidColorBrush x:Key="BackgroundDarkBrush" Color="#0077ff"/>
+    <SolidColorBrush x:Key="CommonDarkBrush" Color="#0077ff"/>
     <!--Средний цвет заднего фона-->
-    <SolidColorBrush x:Key="BackgroundMediumBrush" Color="#3392ff"/>
+    <SolidColorBrush x:Key="CommonMediumBrush" Color="#3392ff"/>
     <!--Светлый цвет заднего фона-->
-    <SolidColorBrush x:Key="BackgroundLightBrush" Color="AliceBlue"/>
+    <SolidColorBrush x:Key="CommonLightBrush" Color="AliceBlue"/>
     <!--Черный цвет-->
     <SolidColorBrush x:Key="Black" Color="Black"/>
     <!--Красный цвет для кнопки закрытия-->
@@ -20,6 +20,6 @@
     <!--Прозрачный цвет-->
     <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
     <!--Используется для background у DataGridRowHeader и для выделения ListBoxItem в CallingName в DataGrid-->
-    <SolidColorBrush x:Key="SelectionLightBrush" Color="#daeafd"/>
+    <SolidColorBrush x:Key="FadedBrush" Color="#daeafd"/>
     
 </ResourceDictionary>

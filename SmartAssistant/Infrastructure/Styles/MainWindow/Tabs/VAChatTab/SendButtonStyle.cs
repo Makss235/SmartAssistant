@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Windows;
+﻿using SmartAssistant.Resources;
+using SmartAssistant.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -34,19 +35,19 @@ namespace SmartAssistant
                 Property = Button.IsMouseOverProperty,
                 Value = true
             };
-            mouseOverTrigger.Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush));
+            mouseOverTrigger.Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonDarkBrush")));
 
             Trigger mousePressedTrigger = new Trigger
             {
                 Property = Button.IsPressedProperty,
                 Value = true
             };
-            mousePressedTrigger.Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["ButtonPressedBrush"] as SolidColorBrush));
+            mousePressedTrigger.Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("DarkerBrush")));
 
             Triggers.Add(mouseOverTrigger);
             Triggers.Add(mousePressedTrigger);
-            Setters.Add(new Setter(Button.BorderBrushProperty, Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush));
-            Setters.Add(new Setter(Button.BackgroundProperty, Application.Current.Resources["TransparentBrush"] as SolidColorBrush));
+            Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
             Setters.Add(new Setter(Button.TemplateProperty, new ControlTemplate(typeof(Button))
             {
                 VisualTree = borderFactory

@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Windows;
+﻿using SmartAssistant.Resources;
+using SmartAssistant.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,8 +12,8 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
         public MenuButtonStyle()
         {
             FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenterFactory.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-            contentPresenterFactory.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+            contentPresenterFactory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetBinding(Border.BackgroundProperty, new Binding
@@ -29,14 +30,14 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
                 Property = UIElement.IsMouseOverProperty,
                 Value = true
             };
-            trigger.Setters.Add(new Setter(Control.BackgroundProperty, Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush));
-            trigger.Setters.Add(new Setter(Control.ForegroundProperty, Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush));
+            trigger.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush"))); 
+            trigger.Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonDarkBrush")));
 
             Triggers.Add(trigger);
-            Setters.Add(new Setter(Control.BackgroundProperty, Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush));
-            Setters.Add(new Setter(Control.ForegroundProperty, Application.Current.Resources["ForegroundWhiteColor"] as SolidColorBrush));
-            Setters.Add(new Setter(Control.FontWeightProperty, FontWeights.Bold));
-            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(Button))
+            Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"))); 
+            Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush"))); 
+            Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
+            Setters.Add(new Setter(Button.TemplateProperty, new ControlTemplate(typeof(Button))
             {
                 VisualTree = borderFactory
             }));

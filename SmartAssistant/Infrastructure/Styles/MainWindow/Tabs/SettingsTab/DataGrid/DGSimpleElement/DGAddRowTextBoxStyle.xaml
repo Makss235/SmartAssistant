@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="DGAddRowTextBoxStyle" TargetType="{x:Type TextBox}">
-        <Setter Property="Background" Value="{DynamicResource BackgroundLightBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundMediumBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource CommonLightBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource CommonMediumBrush}"/>
         <Setter Property="Foreground" Value="Yellow"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
@@ -44,10 +44,10 @@
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BackgroundDarkBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CommonDarkBrush}"/>
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BackgroundDarkBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CommonDarkBrush}"/>
                             <Setter Property="Visibility" TargetName="TransparentText" Value="Hidden"/>
                         </Trigger>
                         <Trigger Property="Text" Value="">
@@ -76,10 +76,10 @@
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BackgroundDarkBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CommonDarkBrush}"/>
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BackgroundDarkBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource CommonDarkBrush}"/>
                             <Setter Property="Visibility" TargetName="TransparentText" Value="Hidden"/>
                         </Trigger>
                         <Trigger Property="Text" Value="">
@@ -108,10 +108,10 @@
                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource BackgroundDarkBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource CommonDarkBrush}"/>
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource BackgroundDarkBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource CommonDarkBrush}"/>
                             <Setter Property="Visibility" TargetName="TransparentText" Value="Hidden"/>
                         </Trigger>
                         <Trigger Property="Text" Value="">

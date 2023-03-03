@@ -45,7 +45,7 @@ namespace SmartAssistant.Windows.AddCNWindow
 
             enterCNTextBox = new TextBox()
             {
-                Background = ResApp.GetResources<SolidColorBrush>("TransparentBrush"),
+                Background = ResApp.GetResources<SolidColorBrush>("Transparent"),
                 BorderThickness = new Thickness(0),
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -59,7 +59,7 @@ namespace SmartAssistant.Windows.AddCNWindow
 
             addCNButton = new Button()
             {
-                Background = ResApp.GetResources<SolidColorBrush>("TransparentBrush"),
+                Background = ResApp.GetResources<SolidColorBrush>("Transparent"),
                 BorderThickness= new Thickness(0),
                 Content = "+",
                 Padding = new Thickness(0, 0, 4, 8),
@@ -80,12 +80,12 @@ namespace SmartAssistant.Windows.AddCNWindow
 
             mainBorder = new Border()
             {
-                Background = ResApp.GetResources<SolidColorBrush>("BackgroundLightBrush"),
+                Background = ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                 CornerRadius = new CornerRadius(20),
                 Width = 400,
                 Height = 50,
                 //BorderThickness = new Thickness(3),
-                //BorderBrush = ResApp.GetResources<SolidColorBrush>("BackgroundMediumBrush")
+                //BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")
             };
             mainBorder.InputBindings.Add(dragMoveIB);
             mainBorder.Child = mainGrid;

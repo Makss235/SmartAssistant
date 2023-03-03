@@ -71,7 +71,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             chatItemsControl.ItemsSource = messagesChat;
 
             chatScrollViewer = new ScrollViewer()
-            { Margin = new Thickness(0, 40, 8, 100) };
+            { 
+                Margin = new Thickness(0, 40, 8, 100),
+                Style = ResApp.GetResources<Style>("ScrollViewerStyle")
+            };
             chatScrollViewer.Content = chatItemsControl;
 
             typingMessageTextBox = new TextBox()

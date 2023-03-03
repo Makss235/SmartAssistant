@@ -3,9 +3,9 @@
 
     <Style x:Key="DGAddRowButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}"/>
-        <Setter Property="Background" Value="{DynamicResource BackgroundMediumBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundDarkBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource BackgroundLightBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource CommonMediumBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource CommonDarkBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource CommonLightBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
@@ -23,12 +23,12 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{DynamicResource BackgroundLightBrush}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ButtonMouseOverBrush}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource BackgroundDarkBrush}"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource CommonLightBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource DarkerBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource CommonDarkBrush}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ButtonPressedBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource DarkestBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Background" TargetName="border" Value="Yellow"/>

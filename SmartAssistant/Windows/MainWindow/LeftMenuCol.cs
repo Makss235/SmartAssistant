@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Data.LocalizationData;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.MainWindow;
 using System.Collections.Generic;
 using System.Windows;
@@ -57,7 +58,7 @@ namespace SmartAssistant.Windows.MainWindow
 
             leftMenuColBorder = new Border()
             {
-                Background = Application.Current.Resources["BackgroundMediumBrush"] as SolidColorBrush,
+                Background = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                 CornerRadius = new CornerRadius(1, 20, 20, 0),
                 Margin = new Thickness(-20, 0, 0, 0)
             };

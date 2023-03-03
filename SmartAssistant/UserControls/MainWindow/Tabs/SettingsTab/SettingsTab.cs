@@ -1,5 +1,6 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Data.ProgramsData;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             mainScrollViewer = new ScrollViewer()
             {
                 Margin = new Thickness(0, 45, 8, 25),
-                Visibility = Visibility.Visible
+                Visibility = Visibility.Visible,
+                Style = ResApp.GetResources<Style>("ScrollViewerStyle"),
             };
             mainScrollViewer.Content = settingsStackPanel;
 

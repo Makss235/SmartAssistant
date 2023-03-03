@@ -1,4 +1,5 @@
-﻿using SmartAssistant.UserControls.Base;
+﻿using SmartAssistant.Resources;
+using SmartAssistant.UserControls.Base;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -84,7 +85,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             {
                 Margin = new Thickness(50, 10, 0, 0),
                 BorderThickness = new Thickness(0, 0, 0, 3),
-                BorderBrush = Application.Current.Resources["BackgroundDarkBrush"] as SolidColorBrush,
+                BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
                 FontSize = 15,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Width = 300,
@@ -92,7 +93,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 Padding = new Thickness(0, 0, 0, 2),
                 VerticalContentAlignment = VerticalAlignment.Bottom,
                 TextWrapping = TextWrapping.Wrap,
-                Background = Application.Current.Resources["BackgroundLightBrush"] as SolidColorBrush,
+                Background = ResApp.GetResources<SolidColorBrush>("Transparent"),
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Left
             };

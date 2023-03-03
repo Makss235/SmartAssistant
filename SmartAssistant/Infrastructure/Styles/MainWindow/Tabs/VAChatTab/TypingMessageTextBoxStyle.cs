@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Windows;
+﻿using SmartAssistant.Resources;
+using SmartAssistant.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,9 +13,9 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
         {
             FrameworkElementFactory textBoxF = new FrameworkElementFactory(typeof(TextBox));
             textBoxF.SetValue(TextBox.BorderThicknessProperty, new Thickness(0));
-            textBoxF.SetValue(TextBox.BackgroundProperty, Application.Current.Resources["Transparent"]);
+            textBoxF.SetValue(TextBox.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
             textBoxF.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
-            textBoxF.SetValue(TextBox.PaddingProperty, new Thickness(15, 0, 15, 4));
+            textBoxF.SetValue(TextBox.PaddingProperty, new Thickness(15, 4, 15, 4));
             textBoxF.SetValue(TextBox.VerticalContentAlignmentProperty, VerticalAlignment.Center);
             textBoxF.SetValue(TextBox.FontSizeProperty, (double)16);
             textBoxF.SetValue(TextBox.FontFamilyProperty, new FontFamily("Segoe UI Semibold"));
@@ -40,7 +41,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
             //});
 
             FrameworkElementFactory borderF = new FrameworkElementFactory(typeof(Border));
-            borderF.SetValue(Border.BackgroundProperty, Application.Current.Resources["BackgroundLightBrush"]);
+            borderF.SetValue(Border.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush"));
             borderF.SetValue(Border.BorderThicknessProperty, new Thickness(2));
             //borderF.SetValue(Border.HeightProperty, (double)50);
             borderF.SetValue(Border.WidthProperty, (double)Width - 120);
@@ -73,9 +74,10 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
                 Property = TextBox.IsMouseOverProperty,
                 Value = true
             };
-            mouseOverT.Setters.Add(new Setter(TextBox.BorderBrushProperty, Application.Current.Resources["BackgroundDarkBrush"]));
+            mouseOverT.Setters.Add(new Setter(TextBox.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonDarkBrush")));
 
-            Setters.Add(new Setter(Control.BorderBrushProperty, Application.Current.Resources["BackgroundMediumBrush"]));
+            Triggers.Add(mouseOverT);
+            Setters.Add(new Setter(Control.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
             Setters.Add(new Setter(Control.MinHeightProperty, (double)50));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(TextBox))
             {
