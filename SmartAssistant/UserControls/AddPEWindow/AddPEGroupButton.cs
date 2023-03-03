@@ -79,12 +79,8 @@ namespace SmartAssistant.UserControls.AddPEWindow
         private void CorrectChange()
         {
             // TODO: Veser сделать изменение цвета
-            if (IsCorrect) groupButton.Background = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
-            else 
-            {
-                groupButton.Background = ResApp.GetResources<SolidColorBrush>("Red");
-                groupButton.BorderBrush = ResApp.GetResources<SolidColorBrush>("Red");
-            }
+            if (IsCorrect) groupButton.BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
+            else groupButton.BorderBrush = ResApp.GetResources<SolidColorBrush>("Red");
         }
 
         private void StateChange()

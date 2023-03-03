@@ -66,10 +66,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 Margin = new Thickness(10, 0, 15, 0),
                 ItemsSource = ProgramElements,
-                CellStyle = Application.Current.Resources["DGCellStyle"] as Style,
-                ColumnHeaderStyle = Application.Current.Resources["DGColumnHeaderStyle"] as Style,
-                RowStyle = Application.Current.Resources["DGRowStyle"] as Style,
-                Style = Application.Current.Resources["DGStyle"] as Style,
+                CellStyle = ResApp.GetResources<Style>("DGCellStyle"),
+                ColumnHeaderStyle = ResApp.GetResources<Style>("DGColumnHeaderStyle"),
+                RowStyle = ResApp.GetResources<Style>("DGRowStyle"),
+                Style = ResApp.GetResources<Style>("DGStyle"),
             };
             programElenentsDataGrid.Columns.Add(nameDataGridColumn);
             programElenentsDataGrid.Columns.Add(callingNamesDataGridColumn);
@@ -79,14 +79,17 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             {
                 Width = 60,
                 Height = 40,
+                FontSize = 25,
+                Content = "+",
+                Padding = new Thickness(0, -5, 0, 0),
                 Margin = new Thickness(10),
                 Style = new RoundedButton(
                     new CornerRadius(20),
                     new Thickness(2),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
-                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
-                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"))
             };
