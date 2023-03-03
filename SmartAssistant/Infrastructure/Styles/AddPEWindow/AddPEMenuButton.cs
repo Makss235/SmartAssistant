@@ -14,7 +14,7 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
 {
     public class AddPEMenuButton : Style
     {
-        public AddPEMenuButton() 
+        public AddPEMenuButton()
         {
             CommonButton commonB = new CommonButton();
 
