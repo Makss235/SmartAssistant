@@ -33,26 +33,6 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
             messageTextBoxFactory.SetValue(Border.RenderTransformOriginProperty, new Point(1, 1));
             messageTextBoxFactory.AppendChild(textBoxFactory);
 
-
-
-
-            ScaleTransform a = new ScaleTransform();
-
-            DoubleAnimation animation = new DoubleAnimation
-            {
-                Duration = TimeSpan.FromMilliseconds(100),
-                From = 0,
-                To = 1,
-            };
-
-            EventTrigger animationT = new EventTrigger
-            {
-                RoutedEvent = TextBox.LoadedEvent,
-
-            };
-            //animationT.Actions.Add();
-
-
             TargetType = typeof(TextBox);
             Setters.Add(new Setter(TextBox.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent")));
             Setters.Add(new Setter(TextBox.ForegroundProperty, messageForeground));

@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
+﻿using SmartAssistant.Infrastructure.Animations.MainWindow.Tabs.VAChatTab;
+using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
 using SmartAssistant.Resources;
 using System;
 using System.Windows;
@@ -18,7 +19,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         public SolidColorBrush MessageBackground { get; set; }
         public SolidColorBrush MessageForeground { get; set; }
         public SolidColorBrush MessageBorderBrush { get; set; }
-        Storyboard sb;
 
         public MessageChat(string message, SendMessageBy sendMessageBy)
         {
@@ -40,33 +40,11 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 MessageBorderBrush = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush");
             }
 
-            ScaleTransform scale = new ScaleTransform(1.0, 1.0);
-            RenderTransformOrigin = new Point(1.0, 1.0);
-            RenderTransform = scale;
-
-            DoubleAnimation anim = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromMilliseconds(100),
-            };
-
-            sb = new Storyboard();
-            sb.Children.Add(anim);
-
-            Storyboard.SetTargetProperty(anim, new PropertyPath("RenderTransform.ScaleY"));
-            Storyboard.SetTarget(anim, this);
-
             Text = Message;
             Style = new MessageChatStyle(MessageBackground, MessageForeground, MessageBorderBrush, Message);
             Margin = new Thickness(0, 5, 1, 0);
             HorizontalAlignment = MessageAlignment;
-            Loaded += animstart;
-        }
-
-        private void animstart(Object sender, RoutedEventArgs e)
-        {
-            sb.Begin();
+            Loaded += new GrowMessageAnimation(this).growAnimationStart;
         }
     }
 }

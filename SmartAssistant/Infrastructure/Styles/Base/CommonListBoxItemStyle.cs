@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SmartAssistant.Resources;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
@@ -18,11 +19,18 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             SolidColorBrush ISISATBackground,
             SolidColorBrush ISISATBorderBrush)
         {
-            FrameworkElementFactory contentPresenterF = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenterF.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-            contentPresenterF.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
-            contentPresenterF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
-            contentPresenterF.SetValue(FrameworkElement.MarginProperty, new Thickness(4, 1, 4, 1));
+            FrameworkElementFactory textBlockF = new FrameworkElementFactory(typeof(TextBlock));
+            textBlockF.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            textBlockF.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
+            textBlockF.SetValue(TextBlock.SnapsToDevicePixelsProperty, true);
+            textBlockF.SetValue(TextBlock.MarginProperty, new Thickness(4, 1, 4, 1));
+            textBlockF.SetValue(TextBlock.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
+            textBlockF.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
+            textBlockF.SetBinding(TextBlock.TextProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("Content")
+            });
 
             FrameworkElementFactory borderF = new FrameworkElementFactory(typeof(Border));
             borderF.SetValue(Border.BorderThicknessProperty, borderThickness);
@@ -38,7 +46,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
                 Path = new PropertyPath("BorderBrush")
             });
 
-            borderF.AppendChild(contentPresenterF);
+            borderF.AppendChild(textBlockF);
 
             Trigger mouseOverT = new Trigger
             {

@@ -121,7 +121,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Width = 260,
                 Height = 60,
-                Padding = new Thickness(5, 0, 5, 0),
+                Padding = new Thickness(10, 0, -25, 0),
                 Style = new RoundedTextBox(
                     15,
                     new CornerRadius(20),
