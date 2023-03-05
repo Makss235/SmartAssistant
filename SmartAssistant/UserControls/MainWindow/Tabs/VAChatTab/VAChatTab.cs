@@ -66,7 +66,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             chatItemsControl = new ItemsControl()
             {
                 Margin = new Thickness(10, 0, 10, 0),
-                FontFamily = new FontFamily("Segoe UI Semibold")
+                FontFamily = new FontFamily("Segoe UI Semibold"),
+                Style = new ItemsControlStyle()
             };
             chatItemsControl.ItemsSource = messagesChat;
 

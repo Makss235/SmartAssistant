@@ -1,9 +1,10 @@
 ﻿using SmartAssistant.Resources;
-using SmartAssistant.Windows;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
 {
