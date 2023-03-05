@@ -18,13 +18,15 @@ namespace SmartAssistant.UserControls.AddPEWindow
         {
             Button tabNavigateButton = new Button()
             {
-                Width = 80,
-                Height = 50,
+                //Width = 80,
+                //Height = 50,
                 Content = Title,
                 Command = ClickCommand,
                 Style = new RoundedButton(
+                    1,
+                    80,
+                    50,
                     new CornerRadius(10),
-                    new Thickness(1),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),

@@ -36,6 +36,11 @@ namespace SmartAssistant.Infrastructure.Styles.Base
                 RelativeSource = RelativeSource.TemplatedParent,
                 Path = new PropertyPath("Text")
             });
+            textBoxF.SetBinding(TextBox.MarginProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("Padding")
+            });
 
             FrameworkElementFactory borderF = new FrameworkElementFactory(typeof(Border));
             borderF.SetValue(Border.BackgroundProperty, background);
@@ -76,7 +81,6 @@ namespace SmartAssistant.Infrastructure.Styles.Base
 
             Triggers.Add(mouseOverT);
             Setters.Add(new Setter(Control.BorderBrushProperty, borderBrush));
-            //Setters.Add(new Setter(Control.MinHeightProperty, (double)50));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(TextBox))
             {
                 VisualTree = borderF

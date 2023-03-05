@@ -47,17 +47,7 @@ namespace SmartAssistant.UserControls.AddPEWindow
                 FontSize = 13,
                 Height = 50,
                 Content = Title,
-                Style = new AddPEMenuButton(),//new RoundedButton
-                //(
-                //    new CornerRadius(25),
-                //    new Thickness(1),
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundLightBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"],
-                //    (SolidColorBrush)Application.Current.Resources["BackgroundMediumBrush"]
-                //),
+                Style = new AddPEMenuButtonStyle(this.ActualHeight),
                 Command = ClickCommand
             };
             Content = groupButton;
