@@ -1,13 +1,13 @@
 {
     "MainWindowLoc": {
         "TitleLoc": "Привет, Иван!",
-        "TabsLoc": {
+        "MainWindowTabsLoc": {
             "VAChatTabLoc": {
                 "LabelWritingLoc": "Написать сообщение..."
             },
             "SettingsTabLoc": {
                 "TitleLoc": "Настройки",
-                "OpenProgramLoc": {
+                "ProgramSettingsLoc": {
                     "TitleLoc": "Открытие программ",
                     "DataGridColumnsLoc": {
                         "NameLoc": "Название программы",
@@ -29,7 +29,7 @@
                     "FlowenyLoc": "Floweny (Шестаков Кирилл)"
                 },
                 "DownloadLinkLoc": "Ссылка для скачивания:",
-                "GitHubLinkLoc": "Ссылка на репозиторий GitHub с исходным кодом программы появится вместе с бета-версией (февраль-март 2023г.)",
+                "GitHubLinkLoc": "Ссылка на репозиторий GitHub с исходным кодом программы появится вместе с бета-версией.",
                 "WarningLoc": "Программа находиться на стадии альфа-версии, поэтому большая часть функционала недоступна. С будущими обновлениями мы добавим новые фишки."
             }
         },
@@ -40,26 +40,26 @@
         }
     },
     "AddPEWindowLoc": {
-        "TabsLoc": {
-            "NavigationButtonscLoc": {
-                "PreviousLoc": "",
-                "NextLoc": "",
-                "DoneLoc": ""
+        "AddPEWindowTabsLoc": {
+            "NavigationButtonsLoc": {
+                "PreviousButtonLoc": "Назад",
+                "NextButtonLoc": "Далее",
+                "DoneButtonLoc": "Готово"
             },
             "AddNameTabLoc": {
-                "EnterNameLoc": ""
+                "EnterNameLoc": "Название программы:"
             },
             "AddCallingNamesTabLoc": {
-                "EnterCallingNameLoc": ""
+                "EnterCallingNameLoc": "Введите, как будете звать программу:"
             },
             "AddPathTabLoc": {
-                "EnterPathLoc": ""
+                "EnterPathLoc": "Путь программы:"
             }
         },
         "AddPEButtonsLoc": {
-            "AddNameButtonLoc": "",
-            "AddCallingNamesButtonLoc": "",
-            "AddPathButtonLoc": ""
+            "AddNameButtonLoc": "Название",
+            "AddCallingNamesButtonLoc": "Как будете звать?",
+            "AddPathButtonLoc": "Путь"
         }
     },
     "TrayMenuLoc": {

@@ -27,7 +27,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         {
             titleSettingsTextBlock = new TextBlock()
             {
-                Text = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.TitleLoc,
+                Text = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 20,
                 Margin = new Thickness(0, 10, 0, 0),

@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Infrastructure.Styles.Base;
+﻿using SmartAssistant.Data.LocalizationData;
+using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
@@ -11,6 +12,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
 {
     public class AddPathTab : Tab
     {
+        private AddPEWindowTabsLoc addPEWindowTabsLoc;
+
         private Binding enteredPathBinding;
 
         private TextBlock indicatorPathTextBlock;
@@ -41,6 +44,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
         public AddPathTab(byte id, double width, double height, Visibility visibility)
             : base(id, width, height, visibility)
         {
+            addPEWindowTabsLoc = Localize.JsonObject.AddPEWindowLoc.AddPEWindowTabsLoc;
             InitializeComponent();
         }
 
@@ -49,13 +53,13 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             // TODO: Makss localize
             indicatorPathTextBlock = new TextBlock()
             {
-                Text = "Путь программы:111",
+                Text = addPEWindowTabsLoc.AddPathTabLoc.EnterPathLoc,
                 FontSize = 15,
                 Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                ToolTip = new ToolTip() { Content = "Введите абсолютный путь\nдо exe-файла программы111" }
+                //ToolTip = new ToolTip() { Content = "Введите абсолютный путь\nдо exe-файла программы111" }
             };
             Grid.SetRow(indicatorPathTextBlock, 0);
 
@@ -85,7 +89,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             enterPathTextBox.SetBinding(TextBox.TextProperty, enteredPathBinding);
             Grid.SetRow(enterPathTextBox, 1);
 
-            previousTabButton = new TabNavigationButton("Назад111", TypeButton.Previous, ID)
+            previousTabButton = new TabNavigationButton(addPEWindowTabsLoc.NavigationButtonsLoc.PreviousButtonLoc, TypeButton.Previous, ID)
             {
                 Margin = new Thickness(20, 0, 0, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -102,7 +106,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 VerticalAlignment = VerticalAlignment.Bottom,
                 Margin = new Thickness(10, 5, 28, 28),
                 HorizontalAlignment = HorizontalAlignment.Right,
-                Content = "Готово111",
+                Content = addPEWindowTabsLoc.NavigationButtonsLoc.DoneButtonLoc,
                 Style = new RoundedButton(
                     1,
                     80,

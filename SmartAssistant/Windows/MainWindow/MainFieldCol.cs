@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Infrastructure.Styles.MainWindow;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
@@ -43,7 +44,7 @@ namespace SmartAssistant.Windows.MainWindow
             {
                 Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 0, 0, 17), ResApp.GetResources<SolidColorBrush>("CommonDarkBrush")),
                 Content = "-",
-                Margin = new Thickness(0, -0.3, 39.5, 0),
+                Margin = new Thickness(0, 0, 39.5, 0),
                 Command = new CloseApplicationCommand(),
                 CommandParameter = false
             };
@@ -52,7 +53,7 @@ namespace SmartAssistant.Windows.MainWindow
             {
                 Style = new WarpAndCollapseProgramButtonStyle(new CornerRadius(0, 17, 0, 0), ResApp.GetResources<SolidColorBrush>("Red")),
                 Content = "X",
-                Margin = new Thickness(0, -0.3, -0.3, 0),
+                Margin = new Thickness(0, 0, 0, 0),
                 Command = new CloseApplicationCommand(),
                 CommandParameter = true
             };

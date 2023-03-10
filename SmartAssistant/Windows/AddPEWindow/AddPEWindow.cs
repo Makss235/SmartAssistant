@@ -12,6 +12,8 @@ namespace SmartAssistant.Windows.AddPEWindow
 {
     public partial class AddPEWindow : Window
     {
+        private AddPEWindowLoc addPEWindowLoc;
+
         private InputBinding mouseMoveIB;
         private DropShadowEffect dropShadowEffect;
 
@@ -23,6 +25,8 @@ namespace SmartAssistant.Windows.AddPEWindow
 
         public AddPEWindow()
         {
+            addPEWindowLoc = Localize.JsonObject.AddPEWindowLoc;
+
             InitializeComponent();
         }
 

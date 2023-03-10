@@ -51,7 +51,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
         public AboutTab(byte id, double width, double height, Visibility visibility)
             : base(id, width, height, visibility)
         {
-            loc = Localize.JsonObject.MainWindowLoc.TabsLoc.AboutProgramTabLoc;
+            loc = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.AboutProgramTabLoc;
 
             InitializeStyle();
             InitializeComponent();

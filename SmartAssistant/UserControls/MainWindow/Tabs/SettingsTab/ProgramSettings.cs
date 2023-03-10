@@ -30,7 +30,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             titleProgramsTextBlock = new TextBlock()
             {
-                Text = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.TitleLoc,
+                Text = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.TitleLoc,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
                 FontSize = 16,
                 Margin = new Thickness(20, 10, 0, 10),
@@ -40,19 +40,19 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             nameDataGridColumn = new DataGridTemplateColumn()
             {
-                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.NameLoc,
+                Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.NameLoc,
                 CellTemplate = new NameDGTemplateColumn(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
             };
             callingNamesDataGridColumn = new DataGridTemplateColumn()
             {
-                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.CallingNamesLoc,
+                Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.CallingNamesLoc,
                 CellTemplate = new CallingNamesDGTemplateColumn(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star)
             };
             pathDataGridColumn = new DataGridTemplateColumn()
             {
-                Header = Localize.JsonObject.MainWindowLoc.TabsLoc.SettingsTabLoc.OpenProgramLoc.DataGridColumnsLoc.PathLoc,
+                Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.PathLoc,
                 CellTemplate = new PathDGTemplateColumn(),
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star)
             };

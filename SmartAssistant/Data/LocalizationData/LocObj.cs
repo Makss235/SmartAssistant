@@ -3,17 +3,18 @@
     public class LocObj
     {
         public MainWindowLoc MainWindowLoc { get; set; }
+        public AddPEWindowLoc AddPEWindowLoc { get; set; }
         public TrayMenuLoc TrayMenuLoc { get; set; }
     }
 
     public class MainWindowLoc
     {
         public string TitleLoc { get; set; }
-        public TabsLoc TabsLoc { get; set; }
+        public MainWindowTabsLoc MainWindowTabsLoc { get; set; }
         public MenuButtonsLoc MenuButtonsLoc { get; set; }
     }
 
-    public class TabsLoc
+    public class MainWindowTabsLoc
     {
         public VAChatTabLoc VAChatTabLoc { get; set; }
         public SettingsTabLoc SettingsTabLoc { get; set; }
@@ -28,11 +29,11 @@
     public class SettingsTabLoc
     {
         public string TitleLoc { get; set; }
-        public OpenProgramLoc OpenProgramLoc { get; set; }
+        public ProgramSettingsLoc ProgramSettingsLoc { get; set; }
         public string WarningLoc { get; set; }
     }
 
-    public class OpenProgramLoc
+    public class ProgramSettingsLoc
     {
         public string TitleLoc { get; set; }
         public DataGridColumnsLoc DataGridColumnsLoc { get; set; }
@@ -70,6 +71,49 @@
         public string VAChatButtonTitleLoc { get; set; }
         public string SettingsButtonTitleLoc { get; set; }
         public string AboutProgramButtonTitleLoc { get; set; }
+    }
+
+    public class AddPEWindowLoc
+    {
+        public AddPEWindowTabsLoc AddPEWindowTabsLoc { get; set; }
+        public AddPEButtonsLoc AddPEButtonsLoc { get; set; }
+    }
+
+    public class AddPEWindowTabsLoc
+    {
+        public NavigationButtonsLoc NavigationButtonsLoc { get; set; }
+        public AddNameTabLoc AddNameTabLoc { get; set; }
+        public AddCallingNamesTabLoc AddCallingNamesTabLoc { get; set; }
+        public AddPathTabLoc AddPathTabLoc { get; set; }
+    }
+
+    public class NavigationButtonsLoc
+    {
+        public string PreviousButtonLoc { get; set; }
+        public string NextButtonLoc { get; set; }
+        public string DoneButtonLoc { get; set; }
+    }
+
+    public class AddNameTabLoc
+    {
+        public string EnterNameLoc { get; set; }
+    }
+    
+    public class AddCallingNamesTabLoc
+    {
+        public string EnterCallingNameLoc { get; set; }
+    }
+    
+    public class AddPathTabLoc
+    {
+        public string EnterPathLoc { get; set; }
+    }
+
+    public class AddPEButtonsLoc
+    {
+        public string AddNameButtonLoc { get; set; }
+        public string AddCallingNamesButtonLoc { get; set; }
+        public string AddPathButtonLoc { get; set; }
     }
 
     public class TrayMenuLoc

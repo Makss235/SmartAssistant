@@ -72,8 +72,8 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             mouseOverTrigger.Setters.Add(new Setter(Control.ForegroundProperty, mouseOverForegroundBrush));
             mouseOverTrigger.Setters.Add(new Setter(Control.BorderBrushProperty, mouseOverBorderBrush));
             mouseOverTrigger.Setters.Add(new Setter(Control.BorderThicknessProperty, new Thickness(thicknessNumber)));
-            mouseOverTrigger.Setters.Add(new Setter(Control.WidthProperty, width - thicknessNumber));
-            mouseOverTrigger.Setters.Add(new Setter(Control.HeightProperty, height - thicknessNumber));
+            //mouseOverTrigger.Setters.Add(new Setter(Control.WidthProperty, width - thicknessNumber));
+            //mouseOverTrigger.Setters.Add(new Setter(Control.HeightProperty, height - thicknessNumber));
 
             Triggers.Add(mouseOverTrigger);
             Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0)));

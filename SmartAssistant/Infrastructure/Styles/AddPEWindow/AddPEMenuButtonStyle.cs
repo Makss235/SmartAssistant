@@ -61,7 +61,7 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
                     new Setter{ Property = Button.BackgroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")},
                     new Setter{ Property = Button.ForegroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonLightBrush")},
                     new Setter{ Property = Button.BorderThicknessProperty, Value = new Thickness(0)},
-                    new Setter{ Property = Button.HeightProperty, Value = actualHeight + 2},
+                    //new Setter{ Property = Button.HeightProperty, Value = actualHeight + 2},
                 }
             };
 
@@ -77,7 +77,7 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
                     new Setter{ Property = Button.BackgroundProperty, Value = ResApp.GetResources<SolidColorBrush>("Red")},
                     new Setter{ Property = Button.ForegroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonLightBrush")},
                     new Setter{ Property = Button.BorderThicknessProperty, Value = new Thickness(0)},
-                    new Setter{ Property = Button.HeightProperty, Value = actualHeight + 2},
+                    //new Setter{ Property = Button.HeightProperty, Value = actualHeight + 2},
                 }
             };
 

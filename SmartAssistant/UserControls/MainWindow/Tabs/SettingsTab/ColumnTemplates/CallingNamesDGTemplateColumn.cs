@@ -10,12 +10,12 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
     {
         public CallingNamesDGTemplateColumn()
         {
-            ProgramElement forTitleProgramObj = new ProgramElement();
+            ProgramElement forTitleProgramElement = new ProgramElement();
 
             FrameworkElementFactory callingNameDGListBoxF = new FrameworkElementFactory(typeof(ListBox));
             callingNameDGListBoxF.SetValue(ListBox.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("TransparentBrush"));
             callingNameDGListBoxF.SetValue(ListBox.BorderThicknessProperty, new Thickness(0));
-            callingNameDGListBoxF.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
+            callingNameDGListBoxF.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(nameof(forTitleProgramElement.CallingNames)));
 
             //TODO: Максим SelectedCallingName
             //callingNameDGListBoxFactory.SetBinding(ListBox.SelectedItemProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));

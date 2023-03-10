@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Infrastructure.Styles.Base;
+﻿using SmartAssistant.Data.LocalizationData;
+using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
@@ -13,6 +14,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 {
     public class AddCallingNamesTab : Tab
     {
+        private AddPEWindowTabsLoc addPEWindowTabsLoc;
+
         private Binding enteredCallingNameBinding;
 
         private ListBox addCaliingNamesListBox;
@@ -66,6 +69,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
         {
             CallingNames = new ObservableCollection<string>();
             PropertyChanged += AddCallingNamesTab_PropertyChanged;
+            addPEWindowTabsLoc = Localize.JsonObject.AddPEWindowLoc.AddPEWindowTabsLoc;
 
             InitializeComponent();
         }
@@ -97,12 +101,14 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
             indicatorCallingNameTextBlock = new TextBlock()
             {
-                Text = "Введите, как будете\nзвать программу:111",
+                Text = addPEWindowTabsLoc.AddCallingNamesTabLoc.EnterCallingNameLoc,
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Margin = new Thickness(10, 10, 20, 0),
                 FontSize = 15,
-                FontFamily = new FontFamily("Segoe UI Semibold")
+                FontFamily = new FontFamily("Segoe UI Semibold"),
+                Width = 200,
+                TextWrapping = TextWrapping.Wrap
             };
             Grid.SetRow(indicatorCallingNameTextBlock, 0);
 
@@ -161,7 +167,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             Panel.SetZIndex(addCallingNameButton, 10);
             Grid.SetRow(addCallingNameButton, 1);
 
-            previousTabButton = new TabNavigationButton("Назад111", TypeButton.Previous, ID)
+            previousTabButton = new TabNavigationButton(addPEWindowTabsLoc.NavigationButtonsLoc.PreviousButtonLoc, TypeButton.Previous, ID)
             {
                 Margin = new Thickness(10, 0, 0, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -170,7 +176,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             previousTabButton.ButtonPressed += NavigationButtonPressed;
             Grid.SetRow(previousTabButton, 1);
 
-            nextTabButton = new TabNavigationButton("Далее111", TypeButton.Next, ID)
+            nextTabButton = new TabNavigationButton(addPEWindowTabsLoc.NavigationButtonsLoc.NextButtonLoc, TypeButton.Next, ID)
             {
                 Margin = new Thickness(0, 0, 28, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,

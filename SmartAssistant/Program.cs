@@ -14,8 +14,6 @@ using System.Windows;
 
 namespace SmartAssistant
 {
-    //TODO: Виктор стили mainWindow и других окон
-
     internal class Program
     {
         [STAThread]

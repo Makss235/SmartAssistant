@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Resources;
+﻿using SmartAssistant.Data.LocalizationData;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
 using System.Text.RegularExpressions;
@@ -11,6 +12,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 {
     public class AddNameTab : Tab
     {
+        private AddPEWindowTabsLoc addPEWindowTabsLoc;
+
         private Binding enteredNameBinding;
 
         private TextBlock indicatorNameTextBlock;
@@ -55,6 +58,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             : base(id, width, height, visibility)
         {
             PropertyChanged += AddNameTab_PropertyChanged;
+            addPEWindowTabsLoc = Localize.JsonObject.AddPEWindowLoc.AddPEWindowTabsLoc;
             InitializeComponent();
         }
 
@@ -64,13 +68,13 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             // TODO: Veser styles
             indicatorNameTextBlock = new TextBlock()
             {
-                Text = "Название программы:111",
+                Text = addPEWindowTabsLoc.AddNameTabLoc.EnterNameLoc,
                 FontSize = 15,
                 Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                ToolTip = new ToolTip() { Content = "Введите название программы\nлатиницей и без спец. символов111" }
+                //ToolTip = new ToolTip() { Content = "Введите название программы\nлатиницей и без спец. символов111" }
             };
             Grid.SetRow(indicatorNameTextBlock, 0);
 
@@ -100,7 +104,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             enterNameTextBox.SetBinding(TextBox.TextProperty, enteredNameBinding);
             Grid.SetRow(enterNameTextBox, 1);
 
-            nextTabButton = new TabNavigationButton("Далее111", TypeButton.Next, ID)
+            nextTabButton = new TabNavigationButton(addPEWindowTabsLoc.NavigationButtonsLoc.NextButtonLoc, TypeButton.Next, ID)
             {
                 Margin = new Thickness(0, 0, 28, 28),
                 VerticalAlignment = VerticalAlignment.Bottom,
