@@ -21,6 +21,7 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
             FrameworkElementFactory borderF = commonB.borderF;
             borderF.SetValue(Border.CornerRadiusProperty, new CornerRadius(25));
 
+
             MultiTrigger mouseOverBDNotRedT = new MultiTrigger
             {
                 Conditions =
@@ -35,8 +36,8 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
                 }
             };
 
-            MultiTrigger mouseOverBDRedT = new MultiTrigger 
-            { 
+            MultiTrigger mouseOverBDRedT = new MultiTrigger
+            {
                 Conditions =
                 {
                     new Condition{ Property = Button.IsMouseOverProperty, Value = true},

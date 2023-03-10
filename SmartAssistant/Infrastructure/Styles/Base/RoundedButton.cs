@@ -20,10 +20,8 @@ namespace SmartAssistant.Infrastructure.Styles.Base
         /// <param name="mouseOverForegroundBrush">Цвет шрифта при наведении мыши</param>
         /// <param name="mouseOverBorderBrush">Цвет границы при наведении мыши</param>
         public RoundedButton(
-            double thicknessNumber,
-            double width,
-            double height,
             CornerRadius cornerRadius,
+            Thickness borderThickness,
             SolidColorBrush backgroundBrush,
             SolidColorBrush foregroundBrush,
             SolidColorBrush borderBrush,
@@ -59,7 +57,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
                 Path = new PropertyPath("BorderThickness")
             });
             borderFactory.SetValue(Border.CornerRadiusProperty, cornerRadius);
-            borderFactory.SetValue(Border.BorderThicknessProperty, new Thickness(thicknessNumber));
+            borderFactory.SetValue(Border.BorderThicknessProperty, borderThickness);
 
             borderFactory.AppendChild(contentPresenterFactory);
 
@@ -71,14 +69,10 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             mouseOverTrigger.Setters.Add(new Setter(Control.BackgroundProperty, mouseOverBackgroundBrush));
             mouseOverTrigger.Setters.Add(new Setter(Control.ForegroundProperty, mouseOverForegroundBrush));
             mouseOverTrigger.Setters.Add(new Setter(Control.BorderBrushProperty, mouseOverBorderBrush));
-            mouseOverTrigger.Setters.Add(new Setter(Control.BorderThicknessProperty, new Thickness(thicknessNumber)));
-            //mouseOverTrigger.Setters.Add(new Setter(Control.WidthProperty, width - thicknessNumber));
-            //mouseOverTrigger.Setters.Add(new Setter(Control.HeightProperty, height - thicknessNumber));
+            mouseOverTrigger.Setters.Add(new Setter(Control.BorderThicknessProperty, borderThickness));
 
             Triggers.Add(mouseOverTrigger);
             Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0)));
-            Setters.Add(new Setter(Control.WidthProperty, width));
-            Setters.Add(new Setter(Control.HeightProperty, height));
             Setters.Add(new Setter(Control.BackgroundProperty, backgroundBrush));
             Setters.Add(new Setter(Control.ForegroundProperty, foregroundBrush));
             Setters.Add(new Setter(Control.BorderBrushProperty, borderBrush));
