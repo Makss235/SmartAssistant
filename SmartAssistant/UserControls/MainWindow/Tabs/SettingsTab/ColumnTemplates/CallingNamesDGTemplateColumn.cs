@@ -16,7 +16,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
             FrameworkElementFactory callingNameDGListBoxF = new FrameworkElementFactory(typeof(ListBox));
             callingNameDGListBoxF.SetValue(ListBox.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("TransparentBrush"));
             callingNameDGListBoxF.SetValue(ListBox.BorderThicknessProperty, new Thickness(0));
-            callingNameDGListBoxF.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));
+            callingNameDGListBoxF.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(nameof(forTitleProgramElement.CallingNames)));
             callingNameDGListBoxF.SetValue(ListBox.StyleProperty, new CommonListBoxStyle(
                 new CornerRadius(0),
                 new Thickness(0),
