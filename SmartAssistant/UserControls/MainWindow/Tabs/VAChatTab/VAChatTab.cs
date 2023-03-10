@@ -1,4 +1,5 @@
-﻿using SmartAssistant.Infrastructure.Commands;
+﻿using SmartAssistant.Infrastructure.Animations.Base;
+using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
 using SmartAssistant.Models;
 using SmartAssistant.Resources;
@@ -8,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 {
@@ -21,6 +23,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         private TextBox typingMessageTextBox;
         private Button sendMessageButton;
         private Grid mainGrid;
+        //private Trigger beginAnimT;
 
         public enum SendMessageBy
         {
@@ -54,6 +57,18 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             StateManager.SpeechStateVerifiedEvent += SendMessageByMeVoice;
             SkillManager.AnswerChangedEvent += SendMessageByBot;
 
+            this.Style = ResApp.GetResources<Style>("TabStyle");
+
+            //EventTrigger tr = new EventTrigger
+            //{
+            //    //Property = VisibilityProperty,
+            //    //Value = Visibility.Visible,
+            //    RoutedEvent = Tab.MouseEnterEvent,
+            //};
+            //var BeginSB = new BeginStoryboard();
+            //BeginSB.Storyboard = new TabsAppearAnimation(this).tabsAppearAnimSB;
+            //tr.EnterActions.Add(BeginSB);
+            //Triggers.Add(tr);
             InitializeComponent();
         }
 

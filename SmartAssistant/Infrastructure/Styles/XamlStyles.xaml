@@ -17,5 +17,7 @@
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/MainWindow/Tabs/SettingsTab/DataGrid/DGSimpleElement/DGCallingNameColumn/DGCallingNameTextBoxStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/Base/ScrollViewer/ScrollBarStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Styles/Base/ScrollViewer/ScrollViewerStyle.xaml"/>
+
+        <ResourceDictionary Source="pack://application:,,,/SmartAssistant;component/Infrastructure/Animations/Base/TabAppearAnimXaml.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

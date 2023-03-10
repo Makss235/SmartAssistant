@@ -20,6 +20,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         public SettingsTab(byte id, double width, double height, Visibility visibility)
             : base(id, width, height, visibility)
         {
+            this.Style = ResApp.GetResources<Style>("TabStyle");
             InitializeComponent();
         }
 

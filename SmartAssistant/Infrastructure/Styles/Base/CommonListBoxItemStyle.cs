@@ -12,6 +12,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
         public CommonListBoxItemStyle(
             CornerRadius cornerRadius,
             Thickness borderThickness,
+            SolidColorBrush foreground,
             SolidColorBrush background,
             SolidColorBrush borderBrush,
             SolidColorBrush mouseOverBackground,
@@ -26,6 +27,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             textBlockF.SetValue(TextBlock.MarginProperty, new Thickness(4, 1, 4, 1));
             textBlockF.SetValue(TextBlock.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
             textBlockF.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
+            textBlockF.SetValue(TextBlock.ForegroundProperty, foreground);
             textBlockF.SetBinding(TextBlock.TextProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,

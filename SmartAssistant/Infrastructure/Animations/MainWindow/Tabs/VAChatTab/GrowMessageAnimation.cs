@@ -15,7 +15,6 @@ namespace SmartAssistant.Infrastructure.Animations.MainWindow.Tabs.VAChatTab
         private Storyboard growAnimationSB;
         public GrowMessageAnimation(TextBox animatedTB) 
         {
-            //ScaleTransform scale = new ScaleTransform(1.0, 1.0);
             animatedTB.RenderTransformOrigin = new Point(1.0, 1.0);
             animatedTB.RenderTransform = new ScaleTransform(1.0, 1.0);
 
