@@ -14,23 +14,13 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
 {
     public class AddPEMenuButtonStyle : Style
     {
-        public AddPEMenuButtonStyle(double actualHeight, bool isCorrect)
+        public AddPEMenuButtonStyle(double actualHeight)
         {
             CommonButton commonB = new CommonButton();
 
             FrameworkElementFactory borderF = commonB.borderF;
             borderF.SetValue(Border.CornerRadiusProperty, new CornerRadius(25));
 
-            SolidColorBrush background;
-
-            if (isCorrect)
-            {
-                background = Brushes.Yellow;
-            }
-            else
-            {
-                background = Brushes.Green;
-            }
 
             MultiTrigger mouseOverBDNotRedT = new MultiTrigger
             {
@@ -92,12 +82,12 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
                 }
             };
 
-            //Triggers.Add(mouseOverBDNotRedT);
-            //Triggers.Add(mouseOverBDRedT);
-            //Triggers.Add(BDNotRedT);
-            //Triggers.Add(BDRedT);
+            Triggers.Add(mouseOverBDNotRedT);
+            Triggers.Add(mouseOverBDRedT);
+            Triggers.Add(BDNotRedT);
+            Triggers.Add(BDRedT);
             Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
-            Setters.Add(new Setter(Button.BackgroundProperty, background/*ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")*/));
+            Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
             Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
             Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
             Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
