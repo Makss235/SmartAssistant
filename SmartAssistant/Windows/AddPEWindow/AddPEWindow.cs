@@ -2,6 +2,7 @@
 using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.MainWindow;
 using SmartAssistant.Resources;
+using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,6 +13,7 @@ namespace SmartAssistant.Windows.AddPEWindow
 {
     public partial class AddPEWindow : Window
     {
+        private SettingsTab sender;
         private AddPEWindowLoc addPEWindowLoc;
 
         private InputBinding mouseMoveIB;
@@ -23,8 +25,9 @@ namespace SmartAssistant.Windows.AddPEWindow
         private Grid mainGrid;
         private Border mainBorder;
 
-        public AddPEWindow()
+        public AddPEWindow(SettingsTab sender)
         {
+            this.sender = sender;
             addPEWindowLoc = Localize.JsonObject.AddPEWindowLoc;
 
             InitializeComponent();

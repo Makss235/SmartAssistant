@@ -33,7 +33,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
         private Grid mainGrid;
 
         public event Action<byte> TabNavigationButtonPressed;
-        public event Action<bool> CorrectnessTextChanged;
+        public event Action<byte, bool> CorrectnessTextChanged;
 
         public ObservableCollection<string> CallingNames { get; set; }
 
@@ -217,6 +217,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
         private void NavigationButtonPressed(byte id)
         {
+            CheckIsNormalText();
             TabNavigationButtonPressed?.Invoke(id);
         }
 
@@ -247,13 +248,14 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
         private void CheckIsNormalText()
         {
-            CorrectnessTextChanged?.Invoke(IsNormalCallingName);
+            CorrectnessTextChanged?.Invoke(ID, IsNormalCallingName);
         }
 
         private void EnteredCallingNameChanged()
         {
             var enteredCallingNameArray = new string[1] { EnteredCallingName };
-            if (enteredCallingNameArray.Intersect(CallingNames.ToList()).Count() == 0)
+            if (enteredCallingNameArray.Intersect(CallingNames.ToList()).Count() == 0 &&
+                EnteredCallingName.All(c => Char.IsLetterOrDigit(c) || c == ' '))
             {
                 IsNormalCallingName = true;
             }

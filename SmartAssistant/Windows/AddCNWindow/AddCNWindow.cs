@@ -55,7 +55,6 @@ namespace SmartAssistant.Windows.AddCNWindow
                 FontSize = 15,
                 Padding = new Thickness(0, 0, 30, 0)
             };
-            enterCNTextBox.Focus();
 
             addCNButton = new Button()
             {
@@ -89,6 +88,7 @@ namespace SmartAssistant.Windows.AddCNWindow
             };
             mainBorder.InputBindings.Add(dragMoveIB);
             mainBorder.Child = mainGrid;
+            enterCNTextBox.Focus();
 
             Content = mainBorder;
         }

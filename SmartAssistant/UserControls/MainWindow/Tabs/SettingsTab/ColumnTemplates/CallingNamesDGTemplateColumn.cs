@@ -24,15 +24,15 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
                 ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
             callingNameDGListBoxF.SetValue(ListBox.ItemContainerStyleProperty, new CommonListBoxItemStyle(
-                new CornerRadius(10),
-                new Thickness(2),
+                new CornerRadius(3),
+                new Thickness(1),
                 ResApp.GetResources<SolidColorBrush>("DarkerBrush"),
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
-                ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
-                ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
-                ResApp.GetResources<SolidColorBrush>("Transparent")));
+                ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
+                ResApp.GetResources<SolidColorBrush>("FadedBrush"),
+                ResApp.GetResources<SolidColorBrush>("CommonDarkBrush")));
 
             //TODO: Максим SelectedCallingName
             //callingNameDGListBoxFactory.SetBinding(ListBox.SelectedItemProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));

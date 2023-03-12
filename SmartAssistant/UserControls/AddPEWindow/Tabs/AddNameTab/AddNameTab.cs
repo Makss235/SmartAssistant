@@ -24,12 +24,12 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
         private Grid mainGrid;
 
         public event Action<byte> TabNavigationButtonPressed;
-        public event Action<bool> CorrectnessTextChanged;
+        public event Action<byte, bool> CorrectnessTextChanged;
 
         #region IsNormalName : bool - Нормальное имя
 
         /// <summary>Содержаться ли в имени только буквы и цифры</summary>
-        private bool _IsNormalName;
+        private bool _IsNormalName = false;
 
         /// <summary>Содержаться ли в имени только буквы и цифры</summary>
         public bool IsNormalName
@@ -130,6 +130,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 
         private void NextTabButton_ButtonPressed(byte id)
         {
+            CheckIsNormalText();
             TabNavigationButtonPressed?.Invoke(id);
         }
 
@@ -148,12 +149,12 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 
         private void CheckIsNormalText()
         {
-            CorrectnessTextChanged?.Invoke(IsNormalName);
+            CorrectnessTextChanged?.Invoke(ID, IsNormalName);
         }
 
         private void EnteredNameChanged()
         {
-            if (!Regex.IsMatch(EnteredName, @"^[a-zA-Z0-9_]+$"))
+            if (!Regex.IsMatch(EnteredName.ToLower(), @"^[\w]+$"))
                 IsNormalName = false;
             else
                 IsNormalName = true;
