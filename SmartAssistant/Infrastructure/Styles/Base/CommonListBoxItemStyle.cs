@@ -20,6 +20,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             SolidColorBrush ISISATBackground,
             SolidColorBrush ISISATBorderBrush)
         {
+
             FrameworkElementFactory textBlockF = new FrameworkElementFactory(typeof(TextBlock));
             textBlockF.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Center);
             textBlockF.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);

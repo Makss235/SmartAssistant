@@ -28,10 +28,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
                 ResApp.GetResources<SolidColorBrush>("DarkerBrush"),
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
+                ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
-                ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                 ResApp.GetResources<SolidColorBrush>("FadedBrush"),
-                ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+                ResApp.GetResources<SolidColorBrush>("Transparent")));
 
             //TODO: Максим SelectedCallingName
             //callingNameDGListBoxFactory.SetBinding(ListBox.SelectedItemProperty, new Binding(nameof(forTitleProgramObj.CallingNames)));

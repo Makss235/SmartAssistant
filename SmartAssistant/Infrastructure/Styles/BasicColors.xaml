@@ -21,5 +21,7 @@
     <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
     <!--Используется для background у DataGridRowHeader и для выделения ListBoxItem в CallingName в DataGrid-->
     <SolidColorBrush x:Key="FadedBrush" Color="#daeafd"/>
-    
+    <!-- -->
+    <SolidColorBrush x:Key="FadedDarkBrush" Color="#add0fb"/>
+
 </ResourceDictionary>

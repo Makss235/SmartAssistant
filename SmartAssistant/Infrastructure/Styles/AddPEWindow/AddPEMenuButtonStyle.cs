@@ -14,7 +14,7 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
 {
     public class AddPEMenuButtonStyle : Style
     {
-        public AddPEMenuButtonStyle(double actualHeight)
+        public AddPEMenuButtonStyle()
         {
             CommonButton commonB = new CommonButton();
 
@@ -82,10 +82,10 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
                 }
             };
 
-            Triggers.Add(mouseOverBDNotRedT);
-            Triggers.Add(mouseOverBDRedT);
-            Triggers.Add(BDNotRedT);
-            Triggers.Add(BDRedT);
+            //Triggers.Add(mouseOverBDNotRedT);
+            //Triggers.Add(mouseOverBDRedT);
+            //Triggers.Add(BDNotRedT);
+            //Triggers.Add(BDRedT);
             Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
             Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
             Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
@@ -95,6 +95,28 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
             {
                 VisualTree = borderF
             }));
+        }
+
+        public AddPEMenuButtonStyle(Trigger tr, Trigger tr2)
+        {
+
+            CommonButton commonB = new CommonButton();
+
+            FrameworkElementFactory borderF = commonB.borderF;
+            borderF.SetValue(Border.CornerRadiusProperty, new CornerRadius(25));
+
+            Triggers.Add(tr);
+            Triggers.Add(tr2);
+            Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
+            Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+            Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
+            Setters.Add(new Setter(Button.TemplateProperty, new ControlTemplate(typeof(Button))
+            {
+                VisualTree = borderF
+            }));
+            
         }
     }
 }

@@ -13,6 +13,14 @@ namespace SmartAssistant.Infrastructure.Styles.Base
     {
         public CommonListBoxStyle(CornerRadius cornerRadius, Thickness borderThickness, SolidColorBrush background, SolidColorBrush borderBrush)
         {
+            ContextMenu contextMenuLB = new ContextMenu 
+            { 
+                Style = new CommonContextMenuStyle(),
+                ItemContainerStyle = new CommonContextMenuItemStyle()
+            };
+            contextMenuLB.Items.Add(new MenuItem { Header = "AAA" });
+            contextMenuLB.Items.Add(new MenuItem { Header = "BBB" });
+
             FrameworkElementFactory itemPresenterF = new FrameworkElementFactory(typeof(ItemsPresenter));
             itemPresenterF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
 
@@ -35,6 +43,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
 
             borderF.AppendChild(scrollViewerF);
 
+            Setters.Add(new Setter(ListBox.ContextMenuProperty, contextMenuLB));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(ListBox))
             {
                 VisualTree = borderF
