@@ -14,8 +14,8 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
             FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
             contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
             contentPresenterFactory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-            contentPresenterFactory.SetValue(ContentPresenter.WidthProperty, (double)30);
-            contentPresenterFactory.SetValue(ContentPresenter.HeightProperty, (double)30);
+            contentPresenterFactory.SetValue(ContentPresenter.WidthProperty, textWidth);
+            contentPresenterFactory.SetValue(ContentPresenter.HeightProperty, textHeight);
             contentPresenterFactory.SetBinding(ContentPresenter.MarginProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
@@ -39,10 +39,10 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
 
             Trigger MouseOverTrigger = new Trigger
             {
-                Property = UIElement.IsMouseOverProperty,
+                Property = Button.IsMouseOverProperty,
                 Value = true
             };
-            MouseOverTrigger.Setters.Add(new Setter(Control.BackgroundProperty, TriggerBackGroundColor));
+            MouseOverTrigger.Setters.Add(new Setter(Button.BackgroundProperty, TriggerBackGroundColor));
 
             Triggers.Add(MouseOverTrigger);
             Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));

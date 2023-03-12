@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
 using System;
 using System.Windows;
@@ -66,7 +67,17 @@ namespace SmartAssistant.Windows.AddCNWindow
                 Width = 50,
                 Height = 50,
                 VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Right
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Style = new RoundedButton(
+                    new CornerRadius(0, 20, 20, 0),
+                    new Thickness(0),
+                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
+                    ResApp.GetResources<SolidColorBrush>("Transparent")
+                    )
             };
             addCNButton.Click += AddCNButton_Click;
 

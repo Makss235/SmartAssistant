@@ -116,10 +116,12 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Row="1"/>
                         <RepeatButton x:Name="PART_LineUpButton" Command="{x:Static ScrollBar.LineUpCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource ScrollBarButton}">
                             <Path x:Name="ArrowTop" 
-                                      Data="M 0,4 C0,4 0,6 0,6 0,6 3.5,2.5 3.5,2.5 3.5,2.5 7,6 7,6 7,6 7,4 7,4 7,4 3.5,0.5 3.5,0.5 3.5,0.5 0,4 0,4 z" 
-                                      Fill="{DynamicResource CommonDarkBrush}" 
-                                      Margin="3,4,3,3" 
-                                      Stretch="Uniform"/>
+                                  Data="M 0,4 C0,4 0,6 0,6 0,6 3.5,2.5 3.5,2.5 3.5,2.5 7,6 7,6 7,6 7,4 7,4 7,4 3.5,0.5 3.5,0.5 3.5,0.5 0,4 0,4 z" 
+                                  Fill="{DynamicResource CommonDarkBrush}" 
+                                  Margin="-0.4, 0, 0.4, 0" 
+                                  Width="8"
+                                  Height="8"
+                                  Stretch="Uniform"/>
                         </RepeatButton>
                         <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
                             <Track.DecreaseRepeatButton>
@@ -134,10 +136,12 @@
                         </Track>
                         <RepeatButton x:Name="PART_LineDownButton" Command="{x:Static ScrollBar.LineDownCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="2" Style="{StaticResource ScrollBarButton}">
                             <Path x:Name="ArrowBottom" 
-                                      Data="M 0,2.5 C0,2.5 0,0.5 0,0.5 0,0.5 3.5,4 3.5,4 3.5,4 7,0.5 7,0.5 7,0.5 7,2.5 7,2.5 7,2.5 3.5,6 3.5,6 3.5,6 0,2.5 0,2.5 z" 
-                                      Fill="{DynamicResource CommonDarkBrush}" 
-                                      Margin="3,4,3,3" 
-                                      Stretch="Uniform"/>
+                                  Data="M 0,2.5 C0,2.5 0,0.5 0,0.5 0,0.5 3.5,4 3.5,4 3.5,4 7,0.5 7,0.5 7,0.5 7,2.5 7,2.5 7,2.5 3.5,6 3.5,6 3.5,6 0,2.5 0,2.5 z" 
+                                  Fill="{DynamicResource CommonDarkBrush}" 
+                                  Margin="-0.4, 0, 0.4, 0" 
+                                  Width="8"
+                                  Height="8"
+                                  Stretch="Uniform"/>
                         </RepeatButton>
                     </Grid>
                     <ControlTemplate.Triggers>

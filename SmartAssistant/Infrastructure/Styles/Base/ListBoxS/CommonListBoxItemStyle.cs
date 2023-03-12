@@ -22,10 +22,11 @@ namespace SmartAssistant.Infrastructure.Styles.Base.ListBoxS
         {
 
             FrameworkElementFactory textBlockF = new FrameworkElementFactory(typeof(TextBlock));
-            textBlockF.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-            textBlockF.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
-            textBlockF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
-            textBlockF.SetValue(FrameworkElement.MarginProperty, new Thickness(4, 1, 4, 1));
+            textBlockF.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            textBlockF.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
+            textBlockF.SetValue(TextBlock.SnapsToDevicePixelsProperty, true);
+            textBlockF.SetValue(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI Semibold"));
+            textBlockF.SetValue(TextBlock.MarginProperty, new Thickness(4, 2, 4, 3));
             textBlockF.SetValue(TextBlock.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
             textBlockF.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
             textBlockF.SetValue(TextBlock.ForegroundProperty, foreground);
@@ -81,6 +82,8 @@ namespace SmartAssistant.Infrastructure.Styles.Base.ListBoxS
             Triggers.Add(ISISATT);
             Setters.Add(new Setter(Control.BackgroundProperty, background));
             Setters.Add(new Setter(Control.BorderBrushProperty, borderBrush));
+            Setters.Add(new Setter(Control.FontSizeProperty, (double)12));
+            Setters.Add(new Setter(ListBoxItem.MarginProperty, new Thickness(0, 0, 0, 3)));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(ListBoxItem))
             {
                 VisualTree = borderF

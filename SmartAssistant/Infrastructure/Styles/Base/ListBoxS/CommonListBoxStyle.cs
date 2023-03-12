@@ -23,11 +23,12 @@ namespace SmartAssistant.Infrastructure.Styles.Base.ListBoxS
             contextMenuLB.Items.Add(new MenuItem { Header = "BBB" });
 
             FrameworkElementFactory itemPresenterF = new FrameworkElementFactory(typeof(ItemsPresenter));
-            itemPresenterF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
+            itemPresenterF.SetValue(ItemsPresenter.SnapsToDevicePixelsProperty, true);
+            itemPresenterF.SetValue(ItemsPresenter.MarginProperty, new Thickness(0, 3, 0, 0));
 
             FrameworkElementFactory scrollViewerF = new FrameworkElementFactory(typeof(ScrollViewer));
-            scrollViewerF.SetValue(Control.PaddingProperty, new Thickness(1));
-            scrollViewerF.SetValue(UIElement.FocusableProperty, true);
+            scrollViewerF.SetValue(ScrollViewer.PaddingProperty, new Thickness(1));
+            scrollViewerF.SetValue(ScrollViewer.FocusableProperty, true);
             scrollViewerF.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Disabled);
             scrollViewerF.SetValue(ScrollViewer.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto);
             scrollViewerF.SetValue(ScrollViewer.PanningModeProperty, PanningMode.Both);
@@ -40,12 +41,12 @@ namespace SmartAssistant.Infrastructure.Styles.Base.ListBoxS
             borderF.SetValue(Border.BorderBrushProperty, borderBrush);
             borderF.SetValue(Border.BorderThicknessProperty, borderThickness);
             borderF.SetValue(Border.PaddingProperty, new Thickness(1));
-            borderF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
+            borderF.SetValue(Border.SnapsToDevicePixelsProperty, true);
 
             borderF.AppendChild(scrollViewerF);
 
             Setters.Add(new Setter(ListBox.ContextMenuProperty, contextMenuLB));
-            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(ListBox))
+            Setters.Add(new Setter(ListBox.TemplateProperty, new ControlTemplate(typeof(ListBox))
             {
                 VisualTree = borderF
             }));
