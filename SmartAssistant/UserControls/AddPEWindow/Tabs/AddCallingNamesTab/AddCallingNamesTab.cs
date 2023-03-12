@@ -92,10 +92,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                     ResApp.GetResources<SolidColorBrush>("Black"),
                     ResApp.GetResources<SolidColorBrush>("Transparent"),
                     ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
                     ResApp.GetResources<SolidColorBrush>("Transparent"),
-                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
-                    ResApp.GetResources<SolidColorBrush>("FadedBrush"),
-                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")
+                    ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
+                    ResApp.GetResources<SolidColorBrush>("Transparent")
                     )
             };
             Grid.SetColumn(addCaliingNamesListBox, 0);
