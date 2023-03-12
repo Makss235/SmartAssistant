@@ -30,7 +30,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
                 ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
                 ResApp.GetResources<SolidColorBrush>("Transparent"),
-                ResApp.GetResources<SolidColorBrush>("FadedBrush"),
+                ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
                 ResApp.GetResources<SolidColorBrush>("Transparent")));
 
             //TODO: Максим SelectedCallingName

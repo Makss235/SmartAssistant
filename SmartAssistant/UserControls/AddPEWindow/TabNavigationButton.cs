@@ -27,7 +27,7 @@ namespace SmartAssistant.UserControls.AddPEWindow
                     new Thickness(1),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
-                    ResApp.GetResources<SolidColorBrush>("Transparent"),
+                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"))

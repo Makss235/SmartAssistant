@@ -21,75 +21,20 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
             FrameworkElementFactory borderF = commonB.borderF;
             borderF.SetValue(Border.CornerRadiusProperty, new CornerRadius(25));
 
-
-            MultiTrigger mouseOverBDNotRedT = new MultiTrigger
+            Trigger MOTrueT = new Trigger
             {
-                Conditions =
-                {
-                    new Condition{ Property = Button.IsMouseOverProperty, Value = true},
-                    new Condition{ Property = Button.BorderBrushProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")}
-                },
-                Setters =
-                {
-                    new Setter{ Property = Button.BackgroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonLightBrush")},
-                    new Setter{ Property = Button.ForegroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")},
-                }
+                Property = Button.IsMouseOverProperty,
+                Value = true
             };
-
-            MultiTrigger mouseOverBDRedT = new MultiTrigger
-            {
-                Conditions =
-                {
-                    new Condition{ Property = Button.IsMouseOverProperty, Value = true},
-                    new Condition{ Property = Button.BorderBrushProperty, Value = ResApp.GetResources<SolidColorBrush>("Red")}
-                },
-                Setters =
-                {
-                    new Setter{ Property = Button.BackgroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonLightBrush")},
-                    new Setter{ Property = Button.ForegroundProperty, Value = ResApp.GetResources<SolidColorBrush>("Red")},
-                }
-            };
-
-            MultiTrigger BDNotRedT = new MultiTrigger
-            {
-                Conditions =
-                {
-                    new Condition{ Property = Button.IsMouseOverProperty, Value = false},
-                    new Condition{ Property = Button.BorderBrushProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")}
-                },
-                Setters =
-                {
-                    new Setter{ Property = Button.BackgroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")},
-                    new Setter{ Property = Button.ForegroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonLightBrush")},
-                    new Setter{ Property = Button.BorderThicknessProperty, Value = new Thickness(0)},
-                    //new Setter{ Property = Button.HeightProperty, Value = actualHeight + 2},
-                }
-            };
-
-            MultiTrigger BDRedT = new MultiTrigger
-            {
-                Conditions =
-                {
-                    new Condition{ Property = Button.IsMouseOverProperty, Value = false},
-                    new Condition{ Property = Button.BorderBrushProperty, Value = ResApp.GetResources<SolidColorBrush>("Red")}
-                },
-                Setters =
-                {
-                    new Setter{ Property = Button.BackgroundProperty, Value = ResApp.GetResources<SolidColorBrush>("Red")},
-                    new Setter{ Property = Button.ForegroundProperty, Value = ResApp.GetResources<SolidColorBrush>("CommonLightBrush")},
-                    new Setter{ Property = Button.BorderThicknessProperty, Value = new Thickness(0)},
-                    //new Setter{ Property = Button.HeightProperty, Value = actualHeight + 2},
-                }
-            };
-
-            //Triggers.Add(mouseOverBDNotRedT);
-            //Triggers.Add(mouseOverBDRedT);
-            //Triggers.Add(BDNotRedT);
-            //Triggers.Add(BDRedT);
+            MOTrueT.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+            MOTrueT.Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            MOTrueT.Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            
+            Triggers.Add(MOTrueT);
             Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
             Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
             Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
-            Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
             Setters.Add(new Setter(Button.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
             Setters.Add(new Setter(Button.TemplateProperty, new ControlTemplate(typeof(Button))
             {
@@ -97,7 +42,7 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
             }));
         }
 
-        public AddPEMenuButtonStyle(Trigger tr, Trigger tr2)
+        public AddPEMenuButtonStyle(Trigger MOTrueT, Trigger MOFalseT)
         {
 
             CommonButton commonB = new CommonButton();
@@ -105,8 +50,8 @@ namespace SmartAssistant.Infrastructure.Styles.AddPEWindow
             FrameworkElementFactory borderF = commonB.borderF;
             borderF.SetValue(Border.CornerRadiusProperty, new CornerRadius(25));
 
-            Triggers.Add(tr);
-            Triggers.Add(tr2);
+            Triggers.Add(MOTrueT);
+            Triggers.Add(MOFalseT);
             Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(2)));
             Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
             Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));

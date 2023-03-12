@@ -13,7 +13,8 @@ namespace SmartAssistant.UserControls.AddPEWindow
     public class AddPEGroupButton : GroupButton
     {
         private Button groupButton;
-        Trigger tr;
+        Trigger MOTrueT;
+        Trigger MOFalseT;
 
         public override event Action<byte> ButtonPressed;
 
@@ -73,37 +74,43 @@ namespace SmartAssistant.UserControls.AddPEWindow
             if (IsCorrect) 
             {
                 //groupButton.Background = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
-                tr = new Trigger
+                MOTrueT = new Trigger
                 {
                     Property = Button.IsMouseOverProperty,
                     Value = true
                 };
-                tr.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
-                Trigger tr2 = new Trigger
+                MOTrueT.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+                MOTrueT.Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+                MOTrueT.Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+                MOFalseT = new Trigger
                 {
                     Property = Button.IsMouseOverProperty,
                     Value = false
                 };
-                tr2.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+                MOFalseT.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+                MOFalseT.Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
 
-                groupButton.Style = new AddPEMenuButtonStyle(tr, tr2);
+                groupButton.Style = new AddPEMenuButtonStyle(MOTrueT, MOFalseT);
             }
             else
             {
                 //groupButton.Background = ResApp.GetResources<SolidColorBrush>("Red");
-                tr = new Trigger
+                MOTrueT = new Trigger
                 {
                     Property = Button.IsMouseOverProperty,
                     Value = true
                 };
-                tr.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
-                Trigger tr2 = new Trigger
+                MOTrueT.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+                MOTrueT.Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("Red")));
+                MOTrueT.Setters.Add(new Setter(Button.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("Red")));
+                MOFalseT = new Trigger
                 {
                     Property = Button.IsMouseOverProperty,
                     Value = false
                 };
-                tr2.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Red")));
-                groupButton.Style = new AddPEMenuButtonStyle(tr, tr2);
+                MOFalseT.Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Red")));
+                MOFalseT.Setters.Add(new Setter(Button.BorderBrushProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+                groupButton.Style = new AddPEMenuButtonStyle(MOTrueT, MOFalseT);
             }
         }
 

@@ -92,9 +92,9 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                     ResApp.GetResources<SolidColorBrush>("Black"),
                     ResApp.GetResources<SolidColorBrush>("Transparent"),
                     ResApp.GetResources<SolidColorBrush>("Transparent"),
-                    ResApp.GetResources<SolidColorBrush>("FadedBrush"),
+                    ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
                     ResApp.GetResources<SolidColorBrush>("Transparent"),
-                    ResApp.GetResources<SolidColorBrush>("FadedBrush"),
+                    ResApp.GetResources<SolidColorBrush>("FadedDarkBrush"),
                     ResApp.GetResources<SolidColorBrush>("Transparent")
                     )
             };
