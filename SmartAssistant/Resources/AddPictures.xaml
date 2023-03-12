@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Image x:Key="CollapseButton" Source="Collapse_Button.png"/>
+    <Image x:Key="CollapseButton2" Source="Collapse_Button.png"/>
+    <Image x:Key="WrapButton" Source="Wrap_Button.png"/>
+
+</ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartAssistant.Infrastructure.Styles.Base.ContextMenuS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,14 +8,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace SmartAssistant.Infrastructure.Styles.Base
+namespace SmartAssistant.Infrastructure.Styles.Base.ListBoxS
 {
     public class CommonListBoxStyle : Style
     {
         public CommonListBoxStyle(CornerRadius cornerRadius, Thickness borderThickness, SolidColorBrush background, SolidColorBrush borderBrush)
         {
-            ContextMenu contextMenuLB = new ContextMenu 
-            { 
+            ContextMenu contextMenuLB = new ContextMenu
+            {
                 Style = new CommonContextMenuStyle(),
                 ItemContainerStyle = new CommonContextMenuItemStyle()
             };

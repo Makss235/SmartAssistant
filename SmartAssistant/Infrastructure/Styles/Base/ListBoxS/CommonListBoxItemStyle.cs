@@ -5,7 +5,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace SmartAssistant.Infrastructure.Styles.Base
+namespace SmartAssistant.Infrastructure.Styles.Base.ListBoxS
 {
     public class CommonListBoxItemStyle : Style
     {
@@ -22,10 +22,10 @@ namespace SmartAssistant.Infrastructure.Styles.Base
         {
 
             FrameworkElementFactory textBlockF = new FrameworkElementFactory(typeof(TextBlock));
-            textBlockF.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-            textBlockF.SetValue(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center);
-            textBlockF.SetValue(TextBlock.SnapsToDevicePixelsProperty, true);
-            textBlockF.SetValue(TextBlock.MarginProperty, new Thickness(4, 1, 4, 1));
+            textBlockF.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            textBlockF.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+            textBlockF.SetValue(UIElement.SnapsToDevicePixelsProperty, true);
+            textBlockF.SetValue(FrameworkElement.MarginProperty, new Thickness(4, 1, 4, 1));
             textBlockF.SetValue(TextBlock.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent"));
             textBlockF.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
             textBlockF.SetValue(TextBlock.ForegroundProperty, foreground);
@@ -53,7 +53,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
 
             Trigger mouseOverT = new Trigger
             {
-                Property = ListBoxItem.IsMouseOverProperty,
+                Property = UIElement.IsMouseOverProperty,
                 Value = true
             };
             mouseOverT.Setters.Add(new Setter(Control.BackgroundProperty, mouseOverBackground));

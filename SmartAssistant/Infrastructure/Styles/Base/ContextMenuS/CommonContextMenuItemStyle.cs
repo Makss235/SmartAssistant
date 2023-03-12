@@ -9,15 +9,15 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace SmartAssistant.Infrastructure.Styles.Base
+namespace SmartAssistant.Infrastructure.Styles.Base.ContextMenuS
 {
     public class CommonContextMenuItemStyle : Style
     {
-        public CommonContextMenuItemStyle() 
+        public CommonContextMenuItemStyle()
         {
             FrameworkElementFactory contentPresenterF = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenterF.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Left);
-            contentPresenterF.SetValue(ContentPresenter.MarginProperty, new Thickness(3, 0, 0, 0));
+            contentPresenterF.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
+            contentPresenterF.SetValue(FrameworkElement.MarginProperty, new Thickness(3, 0, 0, 0));
             contentPresenterF.SetBinding(ContentPresenter.ContentProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
@@ -25,7 +25,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             });
 
             FrameworkElementFactory borderF = new FrameworkElementFactory(typeof(Border));
-            borderF.SetBinding(Border.MinWidthProperty, new Binding
+            borderF.SetBinding(FrameworkElement.MinWidthProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
                 Path = new PropertyPath("MinWidth")
@@ -38,19 +38,19 @@ namespace SmartAssistant.Infrastructure.Styles.Base
 
             borderF.AppendChild(contentPresenterF);
 
-            Trigger mouseOverT = new Trigger 
-            { 
-                Property = MenuItem.IsMouseOverProperty,
+            Trigger mouseOverT = new Trigger
+            {
+                Property = UIElement.IsMouseOverProperty,
                 Value = true
             };
-            mouseOverT.Setters.Add(new Setter(MenuItem.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
-            mouseOverT.Setters.Add(new Setter(MenuItem.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
+            mouseOverT.Setters.Add(new Setter(Control.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            mouseOverT.Setters.Add(new Setter(Control.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("CommonLightBrush")));
 
             Triggers.Add(mouseOverT);
-            Setters.Add(new Setter(MenuItem.MinWidthProperty, (double)50));
-            Setters.Add(new Setter(MenuItem.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("DarkerBrush")));
-            Setters.Add(new Setter(MenuItem.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("FadedDarkBrush")));
-            Setters.Add(new Setter(MenuItem.TemplateProperty, new ControlTemplate(typeof(MenuItem))
+            Setters.Add(new Setter(FrameworkElement.MinWidthProperty, (double)50));
+            Setters.Add(new Setter(Control.ForegroundProperty, ResApp.GetResources<SolidColorBrush>("DarkerBrush")));
+            Setters.Add(new Setter(Control.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("FadedDarkBrush")));
+            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(MenuItem))
             {
                 VisualTree = borderF
             }));

@@ -1,5 +1,6 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Infrastructure.Styles.Base;
+using SmartAssistant.Infrastructure.Styles.Base.ListBoxS;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
@@ -129,15 +130,15 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 Width = 260,
                 Height = 60,
                 Padding = new Thickness(10, 0, -25, 0),
-                Style = new RoundedTextBox(
-                    15,
-                    new CornerRadius(20),
-                    new Thickness(2),
-                    new Thickness(0, 0, 60, 0),
-                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
-                    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
-                    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
-                    ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"))
+                //Style = new RoundedTextBox(
+                //    15,
+                //    new CornerRadius(20),
+                //    new Thickness(2),
+                //    new Thickness(0, 0, 60, 0),
+                //    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                //    ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                //    ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                //    ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"))
             };
             enterCallingNameTextBox.SetBinding(TextBox.TextProperty, enteredCallingNameBinding);
             Grid.SetRow(enterCallingNameTextBox, 1);
