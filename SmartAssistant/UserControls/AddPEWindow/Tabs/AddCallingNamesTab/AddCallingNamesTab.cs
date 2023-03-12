@@ -32,7 +32,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
         private Grid mainGrid;
 
         public event Action<byte> TabNavigationButtonPressed;
-        public event Action<bool> CorrectnessTextChanged;
+        public event Action<byte, bool> CorrectnessTextChanged;
 
         public ObservableCollection<string> CallingNames { get; set; }
 
@@ -128,12 +128,11 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Width = 260,
                 Height = 60,
-                Padding = new Thickness(10, 0, -25, 0),
                 Style = new RoundedTextBox(
                     15,
                     new CornerRadius(20),
                     new Thickness(2),
-                    new Thickness(0, 0, 60, 0),
+                    new Thickness(10, 0, 60, 0),
                     ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
@@ -216,6 +215,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
         private void NavigationButtonPressed(byte id)
         {
+            CheckIsNormalText();
             TabNavigationButtonPressed?.Invoke(id);
         }
 
@@ -246,13 +246,14 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
         private void CheckIsNormalText()
         {
-            CorrectnessTextChanged?.Invoke(IsNormalCallingName);
+            CorrectnessTextChanged?.Invoke(ID, IsNormalCallingName);
         }
 
         private void EnteredCallingNameChanged()
         {
             var enteredCallingNameArray = new string[1] { EnteredCallingName };
-            if (enteredCallingNameArray.Intersect(CallingNames.ToList()).Count() == 0)
+            if (enteredCallingNameArray.Intersect(CallingNames.ToList()).Count() == 0 &&
+                EnteredCallingName.All(c => Char.IsLetterOrDigit(c) || c == ' '))
             {
                 IsNormalCallingName = true;
             }

@@ -1,6 +1,4 @@
-﻿using SmartAssistant.Infrastructure.Styles;
-using SmartAssistant.Infrastructure.Styles.AddPEWindow;
-using SmartAssistant.Infrastructure.Styles.Base;
+﻿using SmartAssistant.Infrastructure.Styles.AddPEWindow;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;

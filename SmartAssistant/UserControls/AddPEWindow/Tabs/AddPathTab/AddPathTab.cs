@@ -26,6 +26,21 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
 
         public event Action<byte> TabNavigationButtonPressed;
         public event Action DoneButtonPressed;
+        public event Action<byte, bool> CorrectnessTextChanged;
+
+        #region IsNormalPath : bool - Нормальный путь
+
+        /// <summary>Не пуста ли строка</summary>
+        private bool _IsNormalPath = false;
+
+        /// <summary>Не пуста ли строка</summary>
+        public bool IsNormalPath
+        {
+            get => _IsNormalPath;
+            set => SetProperty(ref _IsNormalPath, value);
+        }
+
+        #endregion
 
         #region EnteredPath : string - Введенный путь
 
@@ -44,13 +59,13 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
         public AddPathTab(byte id, double width, double height, Visibility visibility)
             : base(id, width, height, visibility)
         {
+            PropertyChanged += AddPathTab_PropertyChanged;
             addPEWindowTabsLoc = Localize.JsonObject.AddPEWindowLoc.AddPEWindowTabsLoc;
             InitializeComponent();
         }
 
         private void InitializeComponent()
         {
-            // TODO: Makss localize
             indicatorPathTextBlock = new TextBlock()
             {
                 Text = addPEWindowTabsLoc.AddPathTabLoc.EnterPathLoc,
@@ -139,12 +154,44 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
 
         private void PreviousTabButton_ButtonPressed(byte id)
         {
+            CheckIsNormalText();
             TabNavigationButtonPressed?.Invoke(id);
         }
 
         private void DoneButton_Click(object sender, RoutedEventArgs e)
         {
+            CheckIsNormalText();
             DoneButtonPressed?.Invoke();
+        }
+
+        private void AddPathTab_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(IsNormalPath):
+                    CheckIsNormalText();
+                    break;
+                case nameof(EnteredPath):
+                    EnteredPathChanged();
+                    break;
+            }
+        }
+
+        private void CheckIsNormalText()
+        {
+            CorrectnessTextChanged?.Invoke(ID, IsNormalPath);
+        }
+
+        private void EnteredPathChanged()
+        {
+            if (string.IsNullOrEmpty(EnteredPath))
+            {
+                IsNormalPath = false;
+            }
+            else
+            {
+                IsNormalPath = true;
+            }
         }
     }
 }

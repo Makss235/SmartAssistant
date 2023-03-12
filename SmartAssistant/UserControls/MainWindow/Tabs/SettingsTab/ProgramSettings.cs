@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
+using System;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -21,12 +22,13 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         private Button callAddPEWindowButton;
         private StackPanel programSettingsStackPanel;
 
+        public event Action<bool, bool, bool> AddPEChecked;
+
         public ObservableCollection<ProgramElement> ProgramElements { get; private set; }
 
         private StackPanel ICProgramSettings()
         {
             InitializePECollection();
-            Windows.AddPEWindow.AddPEWindow.AddPEDone += AddPEHandler;
 
             titleProgramsTextBlock = new TextBlock()
             {
@@ -107,7 +109,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
         private void CallAddPEWindowButton_Click(object sender, RoutedEventArgs e)
         {
-            Windows.AddPEWindow.AddPEWindow addPEWindow = new Windows.AddPEWindow.AddPEWindow();
+            Windows.AddPEWindow.AddPEWindow addPEWindow = new Windows.AddPEWindow.AddPEWindow(this);
+            addPEWindow.AddPEDone += AddPEHandler;
             addPEWindow.Show();
         }
 
@@ -140,9 +143,34 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             Serialize();
         }
 
-        private void AddPEHandler(ProgramElement programElement)
+        private void AddPEHandler(ProgramElement pe)
         {
-            ProgramElements.Add(programElement);
+            bool resultCheckName = true;
+            bool resultCheckCN = true;
+            for (int i = 0; i < ProgramElements.Count; i++)
+            {
+                ProgramElement currentPE = ProgramElements[i];
+                if (currentPE.Name == pe.Name)
+                {
+                    resultCheckName = false;
+                }
+                for (int j = 0; j < pe.CallingNames.Count; j++)
+                {
+                    for (int k = 0; k < currentPE.CallingNames.Count; k++)
+                    {
+                        if (currentPE.CallingNames[k] == pe.CallingNames[j])
+                        {
+                            resultCheckCN = false;
+                        }
+                    }
+                }
+            }
+
+            AddPEChecked?.Invoke(resultCheckName, resultCheckCN, true);
+            if (resultCheckName && resultCheckCN)
+            {
+                ProgramElements.Add(pe);
+            }
         }
     }
 }
