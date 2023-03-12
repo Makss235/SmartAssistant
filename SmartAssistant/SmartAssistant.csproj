@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Collapse_Button.png" />
     <None Remove="Resources\QR.png" />
+    <None Remove="Resources\Wrap_Button.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,9 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Collapse_Button.png" />
     <Resource Include="Resources\QR.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Wrap_Button.png" />
   </ItemGroup>
 
   <ItemGroup>

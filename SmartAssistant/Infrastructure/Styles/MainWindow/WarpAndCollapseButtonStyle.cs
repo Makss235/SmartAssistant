@@ -9,11 +9,18 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
     public class WarpAndCollapseProgramButtonStyle : Style
     {
         // TODO: Veser нормальный конструктор
-        public WarpAndCollapseProgramButtonStyle(CornerRadius cornerRadius, SolidColorBrush TriggerBackGroundColor)
+        public WarpAndCollapseProgramButtonStyle(CornerRadius cornerRadius ,double textWidth, double textHeight, SolidColorBrush TriggerBackGroundColor)
         {
             FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenterFactory.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
-            contentPresenterFactory.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
+            contentPresenterFactory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenterFactory.SetValue(ContentPresenter.WidthProperty, (double)30);
+            contentPresenterFactory.SetValue(ContentPresenter.HeightProperty, (double)30);
+            contentPresenterFactory.SetBinding(ContentPresenter.MarginProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("Padding")
+            });
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetValue(Border.CornerRadiusProperty, cornerRadius);
@@ -38,13 +45,13 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow
             MouseOverTrigger.Setters.Add(new Setter(Control.BackgroundProperty, TriggerBackGroundColor));
 
             Triggers.Add(MouseOverTrigger);
-            Setters.Add(new Setter(Control.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
-            Setters.Add(new Setter(FrameworkElement.WidthProperty, (double)40));
-            Setters.Add(new Setter(FrameworkElement.HeightProperty, (double)36));
-            Setters.Add(new Setter(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top));
-            Setters.Add(new Setter(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right));
-            Setters.Add(new Setter(Control.BorderThicknessProperty, new Thickness(0)));
-            Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(Button))
+            Setters.Add(new Setter(Button.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")));
+            Setters.Add(new Setter(Button.WidthProperty, (double)40));
+            Setters.Add(new Setter(Button.HeightProperty, (double)36));
+            Setters.Add(new Setter(Button.VerticalAlignmentProperty, VerticalAlignment.Top));
+            Setters.Add(new Setter(Button.HorizontalAlignmentProperty, HorizontalAlignment.Right));
+            Setters.Add(new Setter(Button.BorderThicknessProperty, new Thickness(0)));
+            Setters.Add(new Setter(Button.TemplateProperty, new ControlTemplate(typeof(Button))
             {
                 VisualTree = borderFactory
             }));
