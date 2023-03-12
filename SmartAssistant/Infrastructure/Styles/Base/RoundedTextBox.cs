@@ -34,6 +34,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base
             textBoxF.SetBinding(TextBox.TextProperty, new Binding
             {
                 RelativeSource = RelativeSource.TemplatedParent,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
                 Path = new PropertyPath("Text")
             });
             textBoxF.SetBinding(TextBox.MarginProperty, new Binding
