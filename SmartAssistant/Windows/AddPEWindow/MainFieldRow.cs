@@ -47,7 +47,6 @@ namespace SmartAssistant.Windows.AddPEWindow
             addPathTab.CorrectnessTextChanged += TabCorrectnessTextChanged;
             addPathTab.DoneButtonPressed += AddPathTab_DoneButtonPressed;
             tabs.Add(addPathTab);
-            
 
             mainFieldGrid = new Grid();
             mainFieldGrid.Children.Add(addNameTab);
@@ -103,11 +102,19 @@ namespace SmartAssistant.Windows.AddPEWindow
             {
                 addNameTab.IsNormalName = arg1;
                 MovingToTabEvent?.Invoke(addNameTab.ID);
+
+                var point = new Point(Left + 70, Top + 115);
+                PopupToolTip popupToolTip = new PopupToolTip(point, "Это имя уже занято");
+                popupToolTip.Show(5000);
             }
             else if (!arg2)
             {
                 addCallingNamesTab.IsNormalCallingName = arg2;
                 MovingToTabEvent?.Invoke(addCallingNamesTab.ID);
+
+                var point = new Point(Left + 240, Top + 110);
+                PopupToolTip popupToolTip = new PopupToolTip(point, "Это имя уже занято");
+                popupToolTip.Show(5000);
             }
             else if (!arg3)
             {

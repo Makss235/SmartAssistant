@@ -56,19 +56,8 @@ namespace SmartAssistant
             SkillManager.Initialize();
             
             mainWin.Show();
-            AddCNWindow addCallingNameWindow = new AddCNWindow(new Point(mainWin.Left, mainWin.Top));
-            addCallingNameWindow.Show();
-
-            //PopupToolTip popupToolTip = new PopupToolTip("lllllllllllll", new Point(300, 500));
-            //popupToolTip.IsOpen = true;
-
-            //DispatcherTimer _popupTimer = new DispatcherTimer(DispatcherPriority.Normal);
-            //_popupTimer.Interval = TimeSpan.FromMilliseconds(2000);
-            //_popupTimer.Tick += (obj, e) =>
-            //{
-            //    popupToolTip.IsOpen = false;
-            //};
-            //_popupTimer.Start();
+            //AddCNWindow addCallingNameWindow = new AddCNWindow(new Point(mainWin.Left, mainWin.Top));
+            //addCallingNameWindow.Show();
 
             app.Run();
         }

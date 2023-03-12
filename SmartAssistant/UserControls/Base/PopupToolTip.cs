@@ -1,21 +1,25 @@
 ﻿using SmartAssistant.Resources;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
+using System.Windows.Threading;
 
 namespace SmartAssistant.UserControls.Base
 {
     public class PopupToolTip : Popup, INotifyPropertyChanged
     {
-        private DropShadowEffect dropShadowEffect;
+        private DispatcherTimer popupTimer;
 
         private TextBlock popupTextBlock;
         private Grid mainGrid;
         private Border mainBorder;
+
+        /// <summary>Стартовая позиция</summary>
+        public Point StartPoint { get; set; }
 
         /// <summary>Текст</summary>
         public string Text { get; set; }
@@ -69,8 +73,9 @@ namespace SmartAssistant.UserControls.Base
 
         #endregion
 
-        public PopupToolTip(string text, Point point)
+        public PopupToolTip(Point point, string text)
         {
+            StartPoint = point;
             Text = text;
             Background = ResApp.GetResources<SolidColorBrush>("CommonLightBrush");
             Foreground = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush");
@@ -83,12 +88,17 @@ namespace SmartAssistant.UserControls.Base
             HorizontalContentAlignment = HorizontalAlignment.Left;
             CornerRadius = new CornerRadius(5);
 
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
             AllowsTransparency = true;
-            PlacementRectangle = new Rect(point.X, point.Y, 0, 0);
+            PlacementRectangle = new Rect(StartPoint.X, StartPoint.Y, 0, 0);
 
             popupTextBlock = new TextBlock()
             {
-                Text = text,
+                Text = Text,
                 Foreground = Foreground,
                 Background = Brushes.Transparent,
                 FontSize = FontSize,
@@ -113,6 +123,24 @@ namespace SmartAssistant.UserControls.Base
             mainBorder.Child = mainGrid;
 
             Child = mainBorder;
+        }
+
+        public void Show(double milliseconds)
+        {
+            IsOpen = true;
+
+            popupTimer = new DispatcherTimer(DispatcherPriority.Normal);
+            popupTimer.Interval = TimeSpan.FromMilliseconds(milliseconds);
+            popupTimer.Tick += (obj, e) =>
+            {
+                IsOpen = false;
+            };
+            popupTimer.Start();
+        }
+
+        public void Close()
+        {
+            IsOpen = false;
         }
     }
 }
