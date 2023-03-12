@@ -22,17 +22,17 @@ namespace SmartAssistant.Windows.AddPEWindow
             // TODO: Makss localize
             addNameButton = new AddPEGroupButton(addPEWindowLoc.AddPEButtonsLoc.AddNameButtonLoc, true, 0)
             { Margin = new Thickness(0, 0, 20, 0) };
-            addNameButton.ButtonPressed += MovingToTabHandler;
+            addNameButton.ButtonPressed += ButtonPressedHandler;
             addPEGroupButtons.Add(addNameButton);
 
             addCallingNamesButton = new AddPEGroupButton(addPEWindowLoc.AddPEButtonsLoc.AddCallingNamesButtonLoc, false, 1)
             { Margin = new Thickness(0, 0, 20, 0) };
-            addCallingNamesButton.ButtonPressed += MovingToTabHandler;
+            addCallingNamesButton.ButtonPressed += ButtonPressedHandler;
             addPEGroupButtons.Add(addCallingNamesButton);
 
             addPathButton = new AddPEGroupButton(addPEWindowLoc.AddPEButtonsLoc.AddPathButtonLoc, false, 2)
             { Margin = new Thickness(0, 0, 20, 0) };
-            addPathButton.ButtonPressed += MovingToTabHandler;
+            addPathButton.ButtonPressed += ButtonPressedHandler;
             addPEGroupButtons.Add(addPathButton);
 
             addPEButtonsStackPanel = new StackPanel()
@@ -44,6 +44,11 @@ namespace SmartAssistant.Windows.AddPEWindow
             addPEButtonsStackPanel.Children.Add(addCallingNamesButton);
             addPEButtonsStackPanel.Children.Add(addPathButton);
             return addPEButtonsStackPanel;
+        }
+
+        private void ButtonPressedHandler(byte id)
+        {
+            MovingToTabEvent?.Invoke(id);
         }
 
         private void MovingToTabHandler(byte id)

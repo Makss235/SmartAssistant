@@ -11,6 +11,11 @@ using SmartAssistant.Windows.AddCNWindow;
 using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Controls;
+using System.Windows.Media;
+using SmartAssistant.UserControls.Base;
+using System.Windows.Threading;
 
 namespace SmartAssistant
 {
@@ -53,6 +58,18 @@ namespace SmartAssistant
             mainWin.Show();
             AddCNWindow addCallingNameWindow = new AddCNWindow(new Point(mainWin.Left, mainWin.Top));
             addCallingNameWindow.Show();
+
+            //PopupToolTip popupToolTip = new PopupToolTip("lllllllllllll", new Point(300, 500));
+            //popupToolTip.IsOpen = true;
+
+            //DispatcherTimer _popupTimer = new DispatcherTimer(DispatcherPriority.Normal);
+            //_popupTimer.Interval = TimeSpan.FromMilliseconds(2000);
+            //_popupTimer.Tick += (obj, e) =>
+            //{
+            //    popupToolTip.IsOpen = false;
+            //};
+            //_popupTimer.Start();
+
             app.Run();
         }
     }
