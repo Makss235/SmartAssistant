@@ -40,6 +40,7 @@ namespace SmartAssistant
             //STT.CCSTTF cCSTTF = new STT.CCSTTF();
             //cCSTTF.Start();
             //CloseApplicationCommand.CloseApplicationEvent += cCSTTF.Stop;
+            TTS.Initialize();
 
 
             Application app = new Application();

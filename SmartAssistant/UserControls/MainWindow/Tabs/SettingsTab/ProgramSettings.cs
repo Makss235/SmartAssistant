@@ -9,6 +9,7 @@ using System.Collections.Specialized;
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
 using System;
+using SmartAssistant.UserControls.Base;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -28,6 +29,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
         private StackPanel ICProgramSettings()
         {
+            var point = new Point(10, 10);
+            PopupToolTip popupToolTip = new PopupToolTip(point, "Это имя уже занято");
+            popupToolTip.Show(5000);
+
             InitializePECollection();
 
             titleProgramsTextBlock = new TextBlock()
