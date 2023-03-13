@@ -69,7 +69,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             indicatorNameTextBlock = new TextBlock()
             {
                 Text = addPEWindowTabsLoc.AddNameTabLoc.EnterNameLoc,
-                FontSize = 15,
+                FontSize = 17,
                 Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -90,10 +90,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 Margin = new Thickness(50, 10, 0, 0),
                 BorderThickness = new Thickness(0, 0, 0, 3),
                 BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
-                FontSize = 15,
+                FontSize = 17,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                Width = 300,
-                MaxHeight = 60,
+                Width = 350,
+                MaxHeight = 45,
                 Padding = new Thickness(0, 0, 0, 2),
                 VerticalContentAlignment = VerticalAlignment.Bottom,
                 TextWrapping = TextWrapping.Wrap,

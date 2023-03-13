@@ -69,7 +69,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             indicatorPathTextBlock = new TextBlock()
             {
                 Text = addPEWindowTabsLoc.AddPathTabLoc.EnterPathLoc,
-                FontSize = 15,
+                FontSize = 17,
                 Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -90,9 +90,9 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 Margin = new Thickness(50, 10, 0, 0),
                 BorderThickness = new Thickness(0, 0, 0, 3),
                 BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
-                FontSize = 15,
+                FontSize = 17,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                Width = 300,
+                Width = 350,
                 MaxHeight = 60,
                 Padding = new Thickness(0, 0, 0, 2),
                 VerticalContentAlignment = VerticalAlignment.Bottom,
@@ -121,6 +121,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 VerticalAlignment = VerticalAlignment.Bottom,
                 Margin = new Thickness(10, 5, 28, 28),
                 HorizontalAlignment = HorizontalAlignment.Right,
+                FontSize = 15,
                 Content = addPEWindowTabsLoc.NavigationButtonsLoc.DoneButtonLoc,
                 Style = new RoundedButton(
                     new CornerRadius(10),
