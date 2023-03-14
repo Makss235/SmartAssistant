@@ -1,15 +1,14 @@
 ﻿using SmartAssistant.Data.LocalizationData;
-using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows;
 using SmartAssistant.Data.ProgramsData;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
+using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates;
 using System;
-using SmartAssistant.UserControls.Base;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -29,10 +28,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
         private StackPanel ICProgramSettings()
         {
-            var point = new Point(10, 10);
-            PopupToolTip popupToolTip = new PopupToolTip(point, "Это имя уже занято");
-            popupToolTip.Show(5000);
-
             InitializePECollection();
 
             titleProgramsTextBlock = new TextBlock()

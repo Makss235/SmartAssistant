@@ -3,11 +3,11 @@ using SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab;
 using SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab;
 using SmartAssistant.UserControls.Base;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
+using SmartAssistant.UserControls.Widgets;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace SmartAssistant.Windows.AddPEWindow
 {
@@ -104,7 +104,7 @@ namespace SmartAssistant.Windows.AddPEWindow
                 MovingToTabEvent?.Invoke(addNameTab.ID);
 
                 var point = new Point(Left + 70, Top + 115);
-                PopupToolTip popupToolTip = new PopupToolTip(point, "Это имя уже занято");
+                ToolTipText popupToolTip = new ToolTipText(point, "Это имя уже занято");
                 popupToolTip.Show(5000);
             }
             else if (!arg2)
@@ -112,8 +112,8 @@ namespace SmartAssistant.Windows.AddPEWindow
                 addCallingNamesTab.IsNormalCallingName = arg2;
                 MovingToTabEvent?.Invoke(addCallingNamesTab.ID);
 
-                var point = new Point(Left + 240, Top + 110);
-                PopupToolTip popupToolTip = new PopupToolTip(point, "Это имя уже занято");
+                var point = new Point(Left + 225, Top + 110);
+                ToolTipText popupToolTip = new ToolTipText(point, "Одно или несколько имен уже заняты", 250);
                 popupToolTip.Show(5000);
             }
             else if (!arg3)
