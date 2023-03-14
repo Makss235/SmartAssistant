@@ -113,7 +113,7 @@ namespace SmartAssistant.Windows.AddPEWindow
                 MovingToTabEvent?.Invoke(addCallingNamesTab.ID);
 
                 var point = new Point(Left + 225, Top + 110);
-                ToolTipText popupToolTip = new ToolTipText(point, "Одно или несколько имен уже заняты", 250);
+                ToolTipText popupToolTip = new ToolTipText(point, "Одно или несколько имен уже используются", 250);
                 popupToolTip.Show(5000);
             }
             else if (!arg3)

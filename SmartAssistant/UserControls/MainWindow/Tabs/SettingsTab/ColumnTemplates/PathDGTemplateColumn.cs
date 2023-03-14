@@ -16,7 +16,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
             FrameworkElementFactory pathDGFactory = new FrameworkElementFactory(typeof(TextBox));
             pathDGFactory.SetBinding(TextBox.TextProperty, pathBinding);
             pathDGFactory.SetValue(Control.BorderThicknessProperty, new Thickness(0));
-            pathDGFactory.SetValue(FrameworkElement.WidthProperty, (double)100);
+            pathDGFactory.SetValue(FrameworkElement.MarginProperty, new Thickness(10, 5, 10, 5));
             pathDGFactory.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
             pathDGFactory.SetValue(FrameworkElement.StyleProperty, new DGNameAndPathTextBoxStyle(pathBinding));
 

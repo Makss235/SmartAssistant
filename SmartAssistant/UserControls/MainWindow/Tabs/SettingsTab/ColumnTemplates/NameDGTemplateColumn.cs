@@ -16,7 +16,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplate
             FrameworkElementFactory nameDGFactory = new FrameworkElementFactory(typeof(TextBox));
             //nameDGFactory.SetBinding(TextBox.TextProperty, nameBinding);
             nameDGFactory.SetValue(Control.BorderThicknessProperty, new Thickness(0));
-            nameDGFactory.SetValue(FrameworkElement.WidthProperty, (double)100);
+            nameDGFactory.SetValue(FrameworkElement.MarginProperty, new Thickness(10, 5, 10, 5));
             nameDGFactory.SetValue(FrameworkElement.StyleProperty, new DGNameAndPathTextBoxStyle(nameBinding));
 
             VisualTree = nameDGFactory;

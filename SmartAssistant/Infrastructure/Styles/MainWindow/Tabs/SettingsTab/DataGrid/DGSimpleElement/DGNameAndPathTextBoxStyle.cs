@@ -19,7 +19,7 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.SettingsTab.DataG
             textBlockFactory.SetValue(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Left);
             textBlockFactory.SetValue(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI Semibold"));
             textBlockFactory.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
-            textBlockFactory.SetValue(TextBlock.FontSizeProperty, (double)12.5);
+            textBlockFactory.SetValue(TextBlock.FontSizeProperty, (double)14);
             textBlockFactory.SetBinding(TextBlock.TextProperty, text);
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));

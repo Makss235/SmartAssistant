@@ -21,6 +21,7 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="MinHeight" Value="25"/>
         <Setter Property="Padding" Value="10"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
