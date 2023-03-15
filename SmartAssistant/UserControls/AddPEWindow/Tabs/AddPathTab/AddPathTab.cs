@@ -2,19 +2,25 @@
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
+using SmartAssistant.UserControls.Widgets;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
 {
     public class AddPathTab : Tab
     {
         private AddPEWindowTabsLoc addPEWindowTabsLoc;
-
         private Binding enteredPathBinding;
+
+        private ToolTipText enterPathToolTip;
+        private DispatcherTimer enterPathTTShowTimer;
 
         private TextBlock indicatorPathTextBlock;
         private TextBox enterPathTextBox;
@@ -66,6 +72,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
 
         private void InitializeComponent()
         {
+            enterPathToolTip = new ToolTipText(new Point(0, 0),
+                "Введите абсолютный путь exe-файла запуска программы")
+            { Placement = PlacementMode.MousePoint };
+
             indicatorPathTextBlock = new TextBlock()
             {
                 Text = addPEWindowTabsLoc.AddPathTabLoc.EnterPathLoc,
@@ -73,9 +83,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                FontFamily = new FontFamily("Segoe UI Semibold"),
-                //ToolTip = new ToolTip() { Content = "Введите абсолютный путь\nдо exe-файла программы111" }
+                FontFamily = new FontFamily("Segoe UI Semibold")
             };
+            indicatorPathTextBlock.MouseEnter += EnterPath_MouseEnter;
+            indicatorPathTextBlock.MouseLeave += EnterPath_MouseLeave;
             Grid.SetRow(indicatorPathTextBlock, 0);
 
             enteredPathBinding = new Binding(nameof(EnteredPath))
@@ -102,6 +113,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
                 HorizontalAlignment = HorizontalAlignment.Left
             };
             enterPathTextBox.SetBinding(TextBox.TextProperty, enteredPathBinding);
+            enterPathTextBox.MouseEnter += EnterPath_MouseEnter;
+            enterPathTextBox.MouseLeave += EnterPath_MouseLeave;
             Grid.SetRow(enterPathTextBox, 1);
 
             previousTabButton = new TabNavigationButton(addPEWindowTabsLoc.NavigationButtonsLoc.PreviousButtonLoc, TypeButton.Previous, ID)
@@ -151,6 +164,23 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab
             mainGrid.Children.Add(doneButton);
 
             Content = mainGrid;
+        }
+
+        private void EnterPath_MouseLeave(object sender, MouseEventArgs e)
+        {
+            enterPathToolTip.Close();
+            if (enterPathTTShowTimer != null) enterPathTTShowTimer.Stop();
+        }
+
+        private void EnterPath_MouseEnter(object sender, MouseEventArgs e)
+        {
+            enterPathTTShowTimer = new DispatcherTimer(DispatcherPriority.Normal);
+            enterPathTTShowTimer.Interval = TimeSpan.FromMilliseconds(1000);
+            enterPathTTShowTimer.Tick += (obj, e) =>
+            {
+                enterPathToolTip.Show();
+            };
+            enterPathTTShowTimer.Start();
         }
 
         private void PreviousTabButton_ButtonPressed(byte id)

@@ -62,17 +62,20 @@ namespace SmartAssistant.UserControls.Widgets
             Content = new TextBlockStyled(Text, maxWidth);
         }
 
-        public void Show(double milliseconds)
+        public void Show(double milliseconds = -1)
         {
             IsOpen = true;
 
-            popupTimer = new DispatcherTimer(DispatcherPriority.Normal);
-            popupTimer.Interval = TimeSpan.FromMilliseconds(milliseconds);
-            popupTimer.Tick += (obj, e) =>
+            if (milliseconds > 0)
             {
-                IsOpen = false;
-            };
-            popupTimer.Start();
+                popupTimer = new DispatcherTimer(DispatcherPriority.Normal);
+                popupTimer.Interval = TimeSpan.FromMilliseconds(milliseconds);
+                popupTimer.Tick += (obj, e) =>
+                {
+                    IsOpen = false;
+                };
+                popupTimer.Start();
+            }
         }
 
         public void Close()

@@ -15,6 +15,11 @@ namespace SmartAssistant.Windows.AddPEWindow
     {
         private List<Tab> tabs;
 
+        private ToolTipText errorNameCheckToolTip;
+        private ToolTipText errorNameDoneToolTip;
+        private ToolTipText errorCNCheckToolTip;
+        private ToolTipText errorCNDoneToolTip;
+
         private AddNameTab addNameTab;
         private AddCallingNamesTab addCallingNamesTab;
         private AddPathTab addPathTab;
@@ -91,32 +96,43 @@ namespace SmartAssistant.Windows.AddPEWindow
                 {
                     addCallingNamesTab.IsNormalCallingName = false;
                     MovingToTabEvent?.Invoke(addCallingNamesTab.ID);
+
+                    var startPointToolTip = new Point(Left + 225, Top + 110);
+                    errorCNDoneToolTip = new ToolTipText(startPointToolTip, "Вы не указали имена программы", 270);
+                    errorCNDoneToolTip.Show(5000);
                 }
             }
-            else MovingToTabEvent?.Invoke(addNameTab.ID);
-        }
-
-        private void SettingsTab_AddPEChecked(bool arg1, bool arg2, bool arg3)
-        {
-            if (!arg1)
+            else
             {
-                addNameTab.IsNormalName = arg1;
                 MovingToTabEvent?.Invoke(addNameTab.ID);
 
-                var point = new Point(Left + 70, Top + 115);
-                ToolTipText popupToolTip = new ToolTipText(point, "Это имя уже занято");
-                popupToolTip.Show(5000);
+                var startPointToolTip = new Point(Left + 70, Top + 115);
+                errorNameDoneToolTip = new ToolTipText(startPointToolTip, "Вы не указали название программы");
+                errorNameDoneToolTip.Show(5000);
             }
-            else if (!arg2)
+        }
+
+        private void SettingsTab_AddPEChecked(bool resultNameChecked, bool resultCNChecked, bool resultPathChecked)
+        {
+            if (!resultNameChecked)
             {
-                addCallingNamesTab.IsNormalCallingName = arg2;
+                addNameTab.IsNormalName = resultNameChecked;
+                MovingToTabEvent?.Invoke(addNameTab.ID);
+
+                var startPointToolTip = new Point(Left + 70, Top + 115);
+                errorCNCheckToolTip = new ToolTipText(startPointToolTip, "Это название уже занято");
+                errorCNCheckToolTip.Show(5000);
+            }
+            else if (!resultCNChecked)
+            {
+                addCallingNamesTab.IsNormalCallingName = resultCNChecked;
                 MovingToTabEvent?.Invoke(addCallingNamesTab.ID);
 
-                var point = new Point(Left + 225, Top + 110);
-                ToolTipText popupToolTip = new ToolTipText(point, "Одно или несколько имен уже используются", 250);
-                popupToolTip.Show(5000);
+                var startPointToolTip = new Point(Left + 225, Top + 110);
+                errorNameCheckToolTip = new ToolTipText(startPointToolTip, "Одно или несколько имен уже используются", 270);
+                errorNameCheckToolTip.Show(5000);
             }
-            else if (!arg3)
+            else if (!resultPathChecked)
             {
                 addPathTab.IsNormalPath = false;
             }

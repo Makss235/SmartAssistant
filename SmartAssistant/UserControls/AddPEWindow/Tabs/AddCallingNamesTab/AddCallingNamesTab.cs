@@ -88,8 +88,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush")
                     ),
                 ItemContainerStyle = new CommonListBoxItemStyle(
-                    new CornerRadius(10),
-                    new Thickness(2),
+                    new CornerRadius(3),
+                    new Thickness(1),
                     ResApp.GetResources<SolidColorBrush>("DarkestBrush"),
                     ResApp.GetResources<SolidColorBrush>("Transparent"),
                     ResApp.GetResources<SolidColorBrush>("Transparent"),

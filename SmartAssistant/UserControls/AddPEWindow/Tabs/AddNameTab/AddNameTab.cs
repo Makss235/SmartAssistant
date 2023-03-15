@@ -1,14 +1,16 @@
 ﻿using SmartAssistant.Data.LocalizationData;
-using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
+using SmartAssistant.UserControls.Widgets;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
+using System.Windows.Threading;
 
 namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 {
@@ -17,10 +19,12 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
         private AddPEWindowTabsLoc addPEWindowTabsLoc;
         private Binding enteredNameBinding;
 
+        private ToolTipText enterNameToolTip;
+        private DispatcherTimer enterNameTTShowTimer;
+
         private TextBlock indicatorNameTextBlock;
         private TextBox enterNameTextBox;
         private TabNavigationButton nextTabButton;
-        private RowDefinition tooltipRowDefinition;
         private RowDefinition indicatorRowDefinition;
         private RowDefinition enterRowDefinition;
         private Grid mainGrid;
@@ -66,6 +70,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 
         private void InitializeComponent()
         {
+            enterNameToolTip = new ToolTipText(new Point(0, 0), 
+                "Введите название программы латиницей и без спец. символов") 
+            { Placement = PlacementMode.MousePoint };
+
             indicatorNameTextBlock = new TextBlock()
             {
                 Text = addPEWindowTabsLoc.AddNameTabLoc.EnterNameLoc,
@@ -74,9 +82,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                //ToolTip = new ToolTip() { Content = "Введите название программы\nлатиницей и без спец. символов111" }
             };
-            Grid.SetRow(indicatorNameTextBlock, 1);
+            indicatorNameTextBlock.MouseEnter += EnterName_MouseEnter;
+            indicatorNameTextBlock.MouseLeave += EnterName_MouseLeave;
+            Grid.SetRow(indicatorNameTextBlock, 0);
 
             enteredNameBinding = new Binding(nameof(EnteredName))
             {
@@ -102,7 +111,9 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 HorizontalAlignment = HorizontalAlignment.Left
             };
             enterNameTextBox.SetBinding(TextBox.TextProperty, enteredNameBinding);
-            Grid.SetRow(enterNameTextBox, 2);
+            enterNameTextBox.MouseEnter += EnterName_MouseEnter;
+            enterNameTextBox.MouseLeave += EnterName_MouseLeave;
+            Grid.SetRow(enterNameTextBox, 1);
 
             nextTabButton = new TabNavigationButton(addPEWindowTabsLoc.NavigationButtonsLoc.NextButtonLoc, TypeButton.Next, ID)
             {
@@ -111,26 +122,38 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 HorizontalAlignment = HorizontalAlignment.Right
             };
             nextTabButton.ButtonPressed += NextTabButton_ButtonPressed;
-            Grid.SetRow(nextTabButton, 2);
-
-            tooltipRowDefinition = new RowDefinition()
-            { Height = new GridLength(50, GridUnitType.Pixel) };
+            Grid.SetRow(nextTabButton, 1);
 
             indicatorRowDefinition = new RowDefinition()
-            { Height = new GridLength(35, GridUnitType.Pixel) };
+            { Height = new GridLength(85, GridUnitType.Pixel) };
 
             enterRowDefinition = new RowDefinition()
             { Height = new GridLength(175, GridUnitType.Pixel) };
 
             mainGrid = new Grid();
-            mainGrid.RowDefinitions.Add(tooltipRowDefinition);
             mainGrid.RowDefinitions.Add(indicatorRowDefinition);
             mainGrid.RowDefinitions.Add(enterRowDefinition);
             mainGrid.Children.Add(nextTabButton);
-            //mainGrid.Children.Add(toolTipGrid);
             mainGrid.Children.Add(indicatorNameTextBlock);
             mainGrid.Children.Add(enterNameTextBox);
             Content = mainGrid;
+        }
+
+        private void EnterName_MouseLeave(object sender, MouseEventArgs e)
+        {
+            enterNameToolTip.Close();
+            if (enterNameTTShowTimer != null) enterNameTTShowTimer.Stop();
+        }
+
+        private void EnterName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            enterNameTTShowTimer = new DispatcherTimer(DispatcherPriority.Normal);
+            enterNameTTShowTimer.Interval = TimeSpan.FromMilliseconds(1000);
+            enterNameTTShowTimer.Tick += (obj, e) =>
+            {
+                enterNameToolTip.Show();
+            };
+            enterNameTTShowTimer.Start();
         }
 
         private void NextTabButton_ButtonPressed(byte id)
