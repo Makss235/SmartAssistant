@@ -22,6 +22,7 @@ namespace SmartAssistant.UserControls.AddPEWindow
                 Height = 50,
                 Content = Title,
                 Command = ClickCommand,
+                FontSize = 15,
                 Style = new RoundedButton(
                     new CornerRadius(10),
                     new Thickness(1),

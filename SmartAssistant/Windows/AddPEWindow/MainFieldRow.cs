@@ -3,17 +3,22 @@ using SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab;
 using SmartAssistant.UserControls.AddPEWindow.Tabs.AddPathTab;
 using SmartAssistant.UserControls.Base;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
+using SmartAssistant.UserControls.Widgets;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace SmartAssistant.Windows.AddPEWindow
 {
     public partial class AddPEWindow : Window
     {
         private List<Tab> tabs;
+
+        private ToolTipText errorNameCheckToolTip;
+        private ToolTipText errorNameDoneToolTip;
+        private ToolTipText errorCNCheckToolTip;
+        private ToolTipText errorCNDoneToolTip;
 
         private AddNameTab addNameTab;
         private AddCallingNamesTab addCallingNamesTab;
@@ -47,7 +52,6 @@ namespace SmartAssistant.Windows.AddPEWindow
             addPathTab.CorrectnessTextChanged += TabCorrectnessTextChanged;
             addPathTab.DoneButtonPressed += AddPathTab_DoneButtonPressed;
             tabs.Add(addPathTab);
-            
 
             mainFieldGrid = new Grid();
             mainFieldGrid.Children.Add(addNameTab);
@@ -92,24 +96,43 @@ namespace SmartAssistant.Windows.AddPEWindow
                 {
                     addCallingNamesTab.IsNormalCallingName = false;
                     MovingToTabEvent?.Invoke(addCallingNamesTab.ID);
+
+                    var startPointToolTip = new Point(Left + 225, Top + 110);
+                    errorCNDoneToolTip = new ToolTipText(startPointToolTip, "Вы не указали имена программы", 270);
+                    errorCNDoneToolTip.Show(5000);
                 }
             }
-            else MovingToTabEvent?.Invoke(addNameTab.ID);
+            else
+            {
+                MovingToTabEvent?.Invoke(addNameTab.ID);
+
+                var startPointToolTip = new Point(Left + 70, Top + 115);
+                errorNameDoneToolTip = new ToolTipText(startPointToolTip, "Вы не указали название программы");
+                errorNameDoneToolTip.Show(5000);
+            }
         }
 
-        private void SettingsTab_AddPEChecked(bool arg1, bool arg2, bool arg3)
+        private void SettingsTab_AddPEChecked(bool resultNameChecked, bool resultCNChecked, bool resultPathChecked)
         {
-            if (!arg1)
+            if (!resultNameChecked)
             {
-                addNameTab.IsNormalName = arg1;
+                addNameTab.IsNormalName = resultNameChecked;
                 MovingToTabEvent?.Invoke(addNameTab.ID);
+
+                var startPointToolTip = new Point(Left + 70, Top + 115);
+                errorCNCheckToolTip = new ToolTipText(startPointToolTip, "Это название уже занято");
+                errorCNCheckToolTip.Show(5000);
             }
-            else if (!arg2)
+            else if (!resultCNChecked)
             {
-                addCallingNamesTab.IsNormalCallingName = arg2;
+                addCallingNamesTab.IsNormalCallingName = resultCNChecked;
                 MovingToTabEvent?.Invoke(addCallingNamesTab.ID);
+
+                var startPointToolTip = new Point(Left + 225, Top + 110);
+                errorNameCheckToolTip = new ToolTipText(startPointToolTip, "Одно или несколько имен уже используются", 270);
+                errorNameCheckToolTip.Show(5000);
             }
-            else if (!arg3)
+            else if (!resultPathChecked)
             {
                 addPathTab.IsNormalPath = false;
             }

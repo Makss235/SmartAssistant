@@ -1,20 +1,26 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
+using SmartAssistant.UserControls.Widgets;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 {
     public class AddNameTab : Tab
     {
         private AddPEWindowTabsLoc addPEWindowTabsLoc;
-
         private Binding enteredNameBinding;
+
+        private ToolTipText enterNameToolTip;
+        private DispatcherTimer enterNameTTShowTimer;
 
         private TextBlock indicatorNameTextBlock;
         private TextBox enterNameTextBox;
@@ -64,18 +70,21 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
 
         private void InitializeComponent()
         {
-            // TODO: Makss localize
-            // TODO: Veser styles
+            enterNameToolTip = new ToolTipText(new Point(0, 0), 
+                "Введите название программы латиницей и без спец. символов") 
+            { Placement = PlacementMode.MousePoint };
+
             indicatorNameTextBlock = new TextBlock()
             {
                 Text = addPEWindowTabsLoc.AddNameTabLoc.EnterNameLoc,
-                FontSize = 15,
+                FontSize = 17,
                 Margin = new Thickness(50, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Bottom,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                //ToolTip = new ToolTip() { Content = "Введите название программы\nлатиницей и без спец. символов111" }
             };
+            indicatorNameTextBlock.MouseEnter += EnterName_MouseEnter;
+            indicatorNameTextBlock.MouseLeave += EnterName_MouseLeave;
             Grid.SetRow(indicatorNameTextBlock, 0);
 
             enteredNameBinding = new Binding(nameof(EnteredName))
@@ -90,10 +99,10 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 Margin = new Thickness(50, 10, 0, 0),
                 BorderThickness = new Thickness(0, 0, 0, 3),
                 BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush"),
-                FontSize = 15,
+                FontSize = 17,
                 FontFamily = new FontFamily("Segoe UI Semibold"),
-                Width = 300,
-                MaxHeight = 60,
+                Width = 350,
+                MaxHeight = 45,
                 Padding = new Thickness(0, 0, 0, 2),
                 VerticalContentAlignment = VerticalAlignment.Bottom,
                 TextWrapping = TextWrapping.Wrap,
@@ -102,6 +111,8 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
                 HorizontalAlignment = HorizontalAlignment.Left
             };
             enterNameTextBox.SetBinding(TextBox.TextProperty, enteredNameBinding);
+            enterNameTextBox.MouseEnter += EnterName_MouseEnter;
+            enterNameTextBox.MouseLeave += EnterName_MouseLeave;
             Grid.SetRow(enterNameTextBox, 1);
 
             nextTabButton = new TabNavigationButton(addPEWindowTabsLoc.NavigationButtonsLoc.NextButtonLoc, TypeButton.Next, ID)
@@ -126,6 +137,23 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddNameTab
             mainGrid.Children.Add(indicatorNameTextBlock);
             mainGrid.Children.Add(enterNameTextBox);
             Content = mainGrid;
+        }
+
+        private void EnterName_MouseLeave(object sender, MouseEventArgs e)
+        {
+            enterNameToolTip.Close();
+            if (enterNameTTShowTimer != null) enterNameTTShowTimer.Stop();
+        }
+
+        private void EnterName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            enterNameTTShowTimer = new DispatcherTimer(DispatcherPriority.Normal);
+            enterNameTTShowTimer.Interval = TimeSpan.FromMilliseconds(1000);
+            enterNameTTShowTimer.Tick += (obj, e) =>
+            {
+                enterNameToolTip.Show();
+            };
+            enterNameTTShowTimer.Start();
         }
 
         private void NextTabButton_ButtonPressed(byte id)

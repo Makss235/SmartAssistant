@@ -20,6 +20,7 @@ namespace SmartAssistant.Infrastructure.Commands
                     CloseApplicationEvent?.Invoke();
                     Application.Current.Shutdown();
                 }
+                else Application.Current.MainWindow.WindowState = WindowState.Minimized;
             }
         }
     }

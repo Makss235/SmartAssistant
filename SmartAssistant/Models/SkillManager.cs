@@ -17,6 +17,12 @@ namespace SmartAssistant.Models
         static SkillManager()
         {
             StateManager.SpeechStateVerifiedEvent += DefineSkills;
+            AnswerChangedEvent += SpeakAnswer;
+        }
+
+        private static void SpeakAnswer(string obj)
+        {
+            TTS.Speak(obj);
         }
 
         public static void Initialize() { }

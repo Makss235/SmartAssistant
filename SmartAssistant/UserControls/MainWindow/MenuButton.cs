@@ -1,7 +1,6 @@
 ﻿using SmartAssistant.Infrastructure.Styles.MainWindow;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
-using SmartAssistant.Windows;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -9,12 +8,15 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 
 namespace SmartAssistant.UserControls.MainWindow
 {
     public class MenuButton : GroupButton
     {
+        private DropShadowEffect dropShadowEffect;
+
         private TextBlock titleMenuButton;
         private StackPanel titleAndIconStackPanel;
         private Button button;
@@ -43,6 +45,13 @@ namespace SmartAssistant.UserControls.MainWindow
             { Orientation = Orientation.Horizontal };
             titleAndIconStackPanel.Children.Add(titleMenuButton);
 
+            dropShadowEffect = new DropShadowEffect()
+            {
+                ShadowDepth = 4,
+                BlurRadius = 15,
+                Opacity = 0.6
+            };
+
             button = new Button()
             {
                 Height = 45,
@@ -50,6 +59,7 @@ namespace SmartAssistant.UserControls.MainWindow
                 Width = 220,
                 Style = new MenuButtonStyle()
             };
+            //button.Effect = dropShadowEffect;
             button.MouseEnter += Button_MouseEnter;
             button.MouseLeave += Button_MouseLeave;
             IAddChild addChild = button;

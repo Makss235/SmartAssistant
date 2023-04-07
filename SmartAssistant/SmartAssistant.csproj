@@ -55,4 +55,8 @@
     <Folder Include="Infrastructure\Styles\AddCNWindow\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Speech" Version="7.0.0" />
+  </ItemGroup>
+
 </Project>

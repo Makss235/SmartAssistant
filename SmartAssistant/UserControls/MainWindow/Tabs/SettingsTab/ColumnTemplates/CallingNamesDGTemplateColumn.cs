@@ -1,5 +1,4 @@
-﻿using SmartAssistant.Infrastructure.Styles.Base;
-using SmartAssistant.Infrastructure.Styles.Base.ListBoxS;
+﻿using SmartAssistant.Infrastructure.Styles.Base.ListBoxS;
 using SmartAssistant.Resources;
 using System.Windows;
 using System.Windows.Controls;

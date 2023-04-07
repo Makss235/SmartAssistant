@@ -82,7 +82,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base.ListBoxS
             Triggers.Add(ISISATT);
             Setters.Add(new Setter(Control.BackgroundProperty, background));
             Setters.Add(new Setter(Control.BorderBrushProperty, borderBrush));
-            Setters.Add(new Setter(Control.FontSizeProperty, (double)12));
+            Setters.Add(new Setter(Control.FontSizeProperty, (double)14));
             Setters.Add(new Setter(ListBoxItem.MarginProperty, new Thickness(0, 0, 0, 3)));
             Setters.Add(new Setter(Control.TemplateProperty, new ControlTemplate(typeof(ListBoxItem))
             {

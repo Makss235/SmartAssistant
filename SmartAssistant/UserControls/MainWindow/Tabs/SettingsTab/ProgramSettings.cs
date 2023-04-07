@@ -1,14 +1,14 @@
 ﻿using SmartAssistant.Data.LocalizationData;
-using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows;
 using SmartAssistant.Data.ProgramsData;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
+using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates;
 using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {

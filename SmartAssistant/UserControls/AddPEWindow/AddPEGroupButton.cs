@@ -44,7 +44,7 @@ namespace SmartAssistant.UserControls.AddPEWindow
             {
                 MinWidth = 50,
                 Padding = new Thickness(20, 0, 20, 0),
-                FontSize = 13,
+                FontSize = 15,
                 Height = 50,
                 Content = Title,
                 Style = new AddPEMenuButtonStyle(),
