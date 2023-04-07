@@ -14,6 +14,19 @@ namespace SmartAssistant
             FrameworkElementFactory contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
             contentPresenterFactory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
             contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
+            contentPresenterFactory.SetValue(ContentPresenter.WidthProperty, (double)30);
+            contentPresenterFactory.SetValue(ContentPresenter.HeightProperty, (double)30);
+            contentPresenterFactory.SetBinding(ContentPresenter.ContentProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                Path = new PropertyPath("Content"),
+            });
+            contentPresenterFactory.SetBinding(ContentPresenter.MarginProperty, new Binding
+            {
+                RelativeSource = RelativeSource.TemplatedParent,
+                Path = new PropertyPath("Padding")
+            });
 
             FrameworkElementFactory borderFactory = new FrameworkElementFactory(typeof(Border));
             borderFactory.SetBinding(Border.BorderBrushProperty, new Binding

@@ -112,7 +112,9 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 Width = 50,
                 Margin = new Thickness(20, 20, 30, 20),
                 Command = SendMessageByMeCommand,
-                Style = new SendButtonStyle()
+                Style = new SendButtonStyle(),
+                //Padding = new Thickness(5, 0, 0, 0),
+                //Content = ResApp.GetResources<Image>("MicrophoneButton")
             };
 
             mainGrid = new Grid();
@@ -153,11 +155,13 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         {
             if (typingMessageTextBox.Text == string.Empty)
             {
-                sendMessageButton.Background = new SolidColorBrush(Colors.Black);
+                sendMessageButton.Content = ResApp.GetResources<Image>("SendButton");
+                sendMessageButton.Padding = new Thickness(5, 0, 0, 0);
             }
             else
             {
-                sendMessageButton.Background = new SolidColorBrush(Colors.Yellow);
+                sendMessageButton.Content = ResApp.GetResources<Image>("MicrophoneButton");
+                sendMessageButton.Padding = new Thickness(0);
             }
         }
     }

@@ -4,5 +4,7 @@
     <Image x:Key="CollapseButton" Source="Collapse_Button.png"/>
     <Image x:Key="CollapseButton2" Source="Collapse_Button.png"/>
     <Image x:Key="WrapButton" Source="Wrap_Button.png"/>
+    <Image x:Key="MicrophoneButton" Source="Microphone_Button.png"/>
+    <Image x:Key="SendButton" Source="Send_Button.png"/>
 
 </ResourceDictionary>
