@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using SmartAssistant.UserControls.Widgets;
 
 namespace TestWPF
 {
@@ -12,7 +13,10 @@ namespace TestWPF
         [STAThread]
         static void Main(string[] args)
         {
-
+            var main = new MainWindow();
+            main.Show();
+            var app = new Application();
+            app.Run();
         }
     }
 }
