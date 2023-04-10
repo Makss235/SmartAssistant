@@ -1,4 +1,5 @@
 ﻿using SmartAssistant.Data.LocalizationData;
+using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
 using System;
 using System.Diagnostics;
@@ -253,7 +254,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
 
         private void InitializeStyle()
         {
-            styleTextBlock = new Style();
+            styleTextBlock = new Style(typeof(UserControl)) { BasedOn = ResApp.GetResources<Style>("TabStyle") };
             styleTextBlock.Setters.Add(new Setter(TextBlock.FontSizeProperty, (double)15));
             styleTextBlock.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
             styleTextBlock.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));

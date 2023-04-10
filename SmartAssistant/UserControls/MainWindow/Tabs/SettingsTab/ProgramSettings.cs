@@ -3,6 +3,7 @@ using SmartAssistant.Data.ProgramsData;
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates;
+using SmartAssistant.UserControls.Widgets;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -104,6 +105,10 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             programSettingsStackPanel.Children.Add(titleProgramsTextBlock);
             programSettingsStackPanel.Children.Add(programElenentsDataGrid);
             programSettingsStackPanel.Children.Add(callAddPEWindowButton);
+
+            ExpanderStyled a = new ExpanderStyled();
+            programSettingsStackPanel.Children.Add(a);
+
             return programSettingsStackPanel;
         }
 
