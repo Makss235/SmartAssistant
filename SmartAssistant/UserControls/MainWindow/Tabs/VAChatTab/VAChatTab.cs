@@ -82,6 +82,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             {
                 Margin = new Thickness(10, 0, 10, 0),
                 FontFamily = new FontFamily("Segoe UI Semibold"),
+                Background = Brushes.Transparent,
                 Style = new ItemsControlStyle()
             };
             chatItemsControl.ItemsSource = messagesChat;
@@ -89,7 +90,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
             chatScrollViewer = new ScrollViewer()
             { 
                 Margin = new Thickness(0, 40, 8, 100),
-                Style = ResApp.GetResources<Style>("ScrollViewerStyle")
+                Style = ResApp.GetResources<Style>("ScrollViewerStyle"),
+                Background = Brushes.Transparent,
             };
             chatScrollViewer.Content = chatItemsControl;
 

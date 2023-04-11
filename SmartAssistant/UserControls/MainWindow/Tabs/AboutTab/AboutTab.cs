@@ -1,6 +1,7 @@
 ﻿using SmartAssistant.Data.LocalizationData;
 using SmartAssistant.Resources;
 using SmartAssistant.UserControls.Base;
+using SmartAssistant.UserControls.Widgets;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -246,6 +247,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
             mainStackPanel.Children.Add(authorsStackPanel);
             mainStackPanel.Children.Add(linksStackPanel);
             mainStackPanel.Children.Add(warningTextBlock);
+
 
             mainGrid = new Grid();
             mainGrid.Children.Add(mainStackPanel);

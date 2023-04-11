@@ -1,6 +1,7 @@
 ﻿using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Infrastructure.Styles.MainWindow;
+using SmartAssistant.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,53 +32,24 @@ namespace SmartAssistant.UserControls.Widgets
         public event Action<bool> Expanded;
 
         private StackPanel mainStackPanel;
-        private Label headerLabel;
+        private Border headerBorder;
         private Button headerButton;
         private Grid roundedGrid;
-        public Grid contentGrid;
-        //public static readonly DependencyProperty ContentWidthProperty;
+        private UIElement contentGrid;
 
         public ExpanderStyled()
         {
-            //ContentWidthProperty = DependencyProperty.Register("MyAss", typeof(double), typeof(ExpanderStyled));
             InitialazeComponent();
-
-            //MouseBinding mouseBinding = new MouseBinding();
-            //mouseBinding.MouseAction = MouseAction.LeftClick;
-            //mouseBinding.Command = new LambdaCommand((s) => HeaderContent = new TextBlock() { Text = "hhhhhh"}, (s) => true);
-            
-            //var s = new Button() 
-            //{ 
-            //    Content = "kkk" 
-            //};
-
-            //s.Click += S_Click;
-            //HeaderContent = s;
-            //ExpanderContent = new UserControl();
-
-            //StackPanel stackPanel = new StackPanel();
-            //stackPanel.Children.Add(HeaderContent);
-            //stackPanel.Children.Add(ExpanderContent);
-
-            //Content = stackPanel;
         }
-
-        //static ExpanderStyled()
-        //{
-        //    ContentWidthProperty = DependencyProperty.Register("MyAss", typeof(double), typeof(ExpanderStyled));
-        //}
-        //public double MyAss
-        //{
-        //    get { return (double)GetValue(ContentWidthProperty); }
-        //    set { SetValue(ContentWidthProperty, value); }
-        //}
 
         private void InitialazeComponent()
         {
-            headerLabel = new Label
+            headerBorder = new Border
             {
-                Content = "AAA",
-                Background = Brushes.Yellow,
+                Background = ResApp.GetResources<SolidColorBrush>("Transparent"),
+                BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                BorderThickness = new Thickness(2),
+                CornerRadius = new CornerRadius(4),
                 Width = 200,
                 Height = 30,
                 VerticalAlignment = VerticalAlignment.Top,
@@ -86,27 +58,27 @@ namespace SmartAssistant.UserControls.Widgets
 
             headerButton = new Button
             {
-                Background = Brushes.Transparent,
-                BorderBrush = Brushes.Transparent,
-                BorderThickness = new Thickness(0),
-                Width = 200,
-                Height = 30,
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Style = new MenuButtonStyle()
+                Content = "BBB",
+                Background = ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
+                Foreground = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                Width = 192,
+                Height = 22,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Style = new TransparentButton()
             };
-            headerButton.PreviewMouseLeftButtonDown += HeaderLabel_PLMBD;
-            headerButton.MouseEnter += HeaderLabel_ME;
             headerButton.MouseLeave += HeaderLabel_ML;
+            headerButton.MouseEnter += HeaderLabel_ME;
+            headerButton.PreviewMouseLeftButtonDown += HeaderLabel_PLMBD;
 
-            contentGrid = new Grid
+            contentGrid = new UIElement
             {
-                Background = Brushes.Green,
-                Width = 180,
-                Height = 100,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(20, 2, 0, 0),
+                //Background = Brushes.Green,
+                //Width = 180,
+                //Height = 100,
+                //HorizontalAlignment = HorizontalAlignment.Left,
+                //VerticalAlignment = VerticalAlignment.Top,
+                //Margin = new Thickness(20, 2, 0, 0),
             };
 
             roundedGrid = new Grid
@@ -114,7 +86,7 @@ namespace SmartAssistant.UserControls.Widgets
                 Width = 200,
                 Height = 30,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Children = { headerLabel, headerButton }
+                Children = { headerBorder, headerButton }
             };
 
             mainStackPanel = new StackPanel
@@ -129,12 +101,12 @@ namespace SmartAssistant.UserControls.Widgets
 
         private void HeaderLabel_ML(object sender, MouseEventArgs e)
         {
-            headerLabel.Background = Brushes.Yellow;
+            headerButton.Foreground = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
         }
 
         private void HeaderLabel_ME(object sender, MouseEventArgs e)
         {
-            headerLabel.Background = Brushes.Blue;
+            headerButton.Foreground = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush");
         }
 
         private void HeaderLabel_PLMBD(object sender, MouseButtonEventArgs e)
@@ -148,10 +120,5 @@ namespace SmartAssistant.UserControls.Widgets
                 contentGrid.Visibility = Visibility.Visible;
             }
         }
-
-        //private void S_Click(object sender, RoutedEventArgs e)
-        //{
-        //    HeaderContent.Visibility = Visibility.Hidden;
-        //}
     }
 }
