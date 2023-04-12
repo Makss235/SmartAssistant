@@ -248,9 +248,17 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.AboutTab
             mainStackPanel.Children.Add(linksStackPanel);
             mainStackPanel.Children.Add(warningTextBlock);
 
+            //SButton a = new SButton{ 
+            //    Width = 50, 
+            //    Height = 50, 
+            //    ButContent = "MyGegg", 
+            //    ButBackground = Brushes.Green, 
+            //    ButCornerRadius = new CornerRadius(10) 
+            //};
 
             mainGrid = new Grid();
             mainGrid.Children.Add(mainStackPanel);
+            //mainGrid.Children.Add(a);
             Content = mainGrid;
         }
 
