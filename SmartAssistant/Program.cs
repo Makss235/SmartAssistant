@@ -16,6 +16,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using SmartAssistant.UserControls.Base;
 using System.Windows.Threading;
+using SmartAssistant.Windows;
 
 namespace SmartAssistant
 {
@@ -57,6 +58,8 @@ namespace SmartAssistant
             SkillManager.Initialize();
             
             mainWin.Show();
+            TestWindow testWindow = new TestWindow();
+            testWindow.Show();
             //AddCNWindow addCallingNameWindow = new AddCNWindow(new Point(mainWin.Left, mainWin.Top));
             //addCallingNameWindow.Show();
 
