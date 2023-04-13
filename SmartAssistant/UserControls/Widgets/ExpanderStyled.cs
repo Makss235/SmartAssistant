@@ -65,7 +65,7 @@ namespace SmartAssistant.UserControls.Widgets
                 Height = 22,
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Style = new TransparentButton()
+                //Style = new TransparentButton()
             };
             headerButton.MouseLeave += HeaderLabel_ML;
             headerButton.MouseEnter += HeaderLabel_ME;

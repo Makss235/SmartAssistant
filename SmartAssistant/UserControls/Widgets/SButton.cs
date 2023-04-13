@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.Widgets
 {
@@ -29,26 +28,66 @@ namespace SmartAssistant.UserControls.Widgets
 
         #endregion
 
+        #region ButtonContent : UIElement - Контент кнопки
+
+        /// <summary>Контент кнопки</summary>
         private UIElement _ButtonContent;
 
-        public UIElement ButtonContent { get { return _ButtonContent; } set { _ButtonContent = value; BackgroundBorder.Child = _ButtonContent; } }
+        /// <summary>Контент кнопки</summary>
+        public UIElement ButtonContent
+        {
+            get => _ButtonContent;
+            set => SetProperty(ref _ButtonContent, value);
+        }
+
+        #endregion
+
         public BackgroundBorder BackgroundBorder { get; set; }
 
         public SButton()
         {
+            PropertyChanged += SButton_PropertyChanged;
             InitializeComponent();
+        }
+
+        private void SButton_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(BackgroundBorder):
+                    BackgroundBorder_PropertyChanged();
+                    break;
+                case nameof(ButtonContent):
+                    ButtonContent_PropertyChanged();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ButtonContent_PropertyChanged()
+        {
+            BackgroundBorder.Child = ButtonContent;
+        }
+
+        private void BackgroundBorder_PropertyChanged()
+        {
+
         }
 
         private void InitializeComponent()
         {
             BackgroundBorder = new BackgroundBorder(ButtonContent);
-            ButtonContent = new TextBlock() { Text = "hhh" };
+            ButtonContent = new TextBlock() 
+            { 
+                Text = "Button",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                FontSize = 15
+            };
 
-            Background = new SolidColorBrush(Colors.Transparent);
-            BorderThickness = new Thickness(0);
-
-            Width = 100;
-            Height = 100;
+            Width = 150;
+            Height = 50;
 
             Content = BackgroundBorder;
         }

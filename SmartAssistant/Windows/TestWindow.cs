@@ -13,7 +13,7 @@ namespace SmartAssistant.Windows
     {
         public TestWindow()
         {
-            SButton sButton = new SButton(); 
+            SButton sButton = new SButton();
             Content = sButton;
         }
     }

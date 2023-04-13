@@ -7,23 +7,14 @@ namespace SmartAssistant.UserControls.Widgets.Base
 {
     public class BackgroundBorder : Border
     {
-        private UIElement uIElement;
-
         public BackgroundBorder()
         {
-            ContentPresenter contentPresenter = new ContentPresenter()
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-            };
-            Child = contentPresenter;
             InitializeComponent();
         }
 
         public BackgroundBorder(UIElement uIElement)
         {
-            this.uIElement = uIElement;
-            Child = this.uIElement;
+            Child = uIElement;
             InitializeComponent();
         }
 
@@ -33,7 +24,6 @@ namespace SmartAssistant.UserControls.Widgets.Base
             BorderThickness = new Thickness(3);
             BorderBrush = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
             Background = new SolidColorBrush(Colors.AliceBlue);
- 
         }
     }
 }
