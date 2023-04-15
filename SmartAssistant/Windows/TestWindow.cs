@@ -1,6 +1,5 @@
 ﻿using SmartAssistant.UserControls.Widgets;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace SmartAssistant.Windows
 {
@@ -8,9 +7,13 @@ namespace SmartAssistant.Windows
     {
         public TestWindow()
         {
-            SExpander sExpander = new SExpander();
-            sExpander.HorizontalAlignment = HorizontalAlignment.Left;
-            sExpander.VerticalAlignment = VerticalAlignment.Top;
+            SExpander sExpander = new SExpander()
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                HeaderContent = "jjjjjjjjjjjjj",
+                BodyContent = "djfbkjdf"
+            };
             Content = sExpander;
         }
     }
