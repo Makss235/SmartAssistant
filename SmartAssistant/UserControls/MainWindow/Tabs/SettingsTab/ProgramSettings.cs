@@ -2,8 +2,6 @@
 using SmartAssistant.Data.ProgramsData;
 using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
-using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab.ColumnTemplates;
-using SmartAssistant.UserControls.Widgets;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -16,10 +14,11 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
     public partial class SettingsTab
     {
         private TextBlock titleProgramsTextBlock;
-        private DataGridTemplateColumn nameDataGridColumn;
-        private DataGridTemplateColumn callingNamesDataGridColumn;
-        private DataGridTemplateColumn pathDataGridColumn;
-        private DataGrid programElenentsDataGrid;
+        //private DataGridTemplateColumn nameDataGridColumn;
+        //private DataGridTemplateColumn callingNamesDataGridColumn;
+        //private DataGridTemplateColumn pathDataGridColumn;
+        //private DataGrid programElenentsDataGrid;
+        private StackPanel programsStackPanel;
         private Button callAddPEWindowButton;
         private StackPanel programSettingsStackPanel;
 
@@ -31,6 +30,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         {
             InitializePECollection();
 
+            Programs.Serialized += Programs_Serialized;
+
             titleProgramsTextBlock = new TextBlock()
             {
                 Text = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.TitleLoc,
@@ -39,44 +40,51 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 Margin = new Thickness(20, 10, 0, 10),
             };
 
-            #region Columns
+            //#region Columns
 
-            nameDataGridColumn = new DataGridTemplateColumn()
-            {
-                Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.NameLoc,
-                CellTemplate = new NameDGTemplateColumn(),
-                Width = new DataGridLength(1, DataGridLengthUnitType.Star),
-            };
-            callingNamesDataGridColumn = new DataGridTemplateColumn()
-            {
-                Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.CallingNamesLoc,
-                CellTemplate = new CallingNamesDGTemplateColumn(),
-                Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-            };
-            pathDataGridColumn = new DataGridTemplateColumn()
-            {
-                Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.PathLoc,
-                CellTemplate = new PathDGTemplateColumn(),
-                Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-            };
+            //nameDataGridColumn = new DataGridTemplateColumn()
+            //{
+            //    Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.NameLoc,
+            //    CellTemplate = new NameDGTemplateColumn(),
+            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star),
+            //};
+            //callingNamesDataGridColumn = new DataGridTemplateColumn()
+            //{
+            //    Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.CallingNamesLoc,
+            //    CellTemplate = new CallingNamesDGTemplateColumn(),
+            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star)
+            //};
+            //pathDataGridColumn = new DataGridTemplateColumn()
+            //{
+            //    Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.PathLoc,
+            //    CellTemplate = new PathDGTemplateColumn(),
+            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star)
+            //};
 
-            #endregion
+            //#endregion
 
-            programElenentsDataGrid = new DataGrid()
+            //programElenentsDataGrid = new DataGrid()
+            //{
+            //    AutoGenerateColumns = false,
+            //    CanUserAddRows = false,
+            //    FontFamily = new FontFamily("Segoe UI Semibold"),
+            //    Margin = new Thickness(10, 0, 15, 0),
+            //    ItemsSource = ProgramElements,
+            //    CellStyle = ResApp.GetResources<Style>("DGCellStyle"),
+            //    ColumnHeaderStyle = ResApp.GetResources<Style>("DGColumnHeaderStyle"),
+            //    RowStyle = ResApp.GetResources<Style>("DGRowStyle"),
+            //    Style = ResApp.GetResources<Style>("DGStyle"),
+            //};
+            //programElenentsDataGrid.Columns.Add(nameDataGridColumn);
+            //programElenentsDataGrid.Columns.Add(callingNamesDataGridColumn);
+            //programElenentsDataGrid.Columns.Add(pathDataGridColumn);
+
+            programsStackPanel = new StackPanel();
+
+            for (int i = 0; i < Programs.JsonObject.Count; i++)
             {
-                AutoGenerateColumns = false,
-                CanUserAddRows = false,
-                FontFamily = new FontFamily("Segoe UI Semibold"),
-                Margin = new Thickness(10, 0, 15, 0),
-                ItemsSource = ProgramElements,
-                CellStyle = ResApp.GetResources<Style>("DGCellStyle"),
-                ColumnHeaderStyle = ResApp.GetResources<Style>("DGColumnHeaderStyle"),
-                RowStyle = ResApp.GetResources<Style>("DGRowStyle"),
-                Style = ResApp.GetResources<Style>("DGStyle"),
-            };
-            programElenentsDataGrid.Columns.Add(nameDataGridColumn);
-            programElenentsDataGrid.Columns.Add(callingNamesDataGridColumn);
-            programElenentsDataGrid.Columns.Add(pathDataGridColumn);
+                programsStackPanel.Children.Add(new PE(Programs.JsonObject[i]));
+            }
 
             callAddPEWindowButton = new Button()
             {
@@ -103,13 +111,21 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 Orientation = Orientation.Vertical
             };
             programSettingsStackPanel.Children.Add(titleProgramsTextBlock);
-            programSettingsStackPanel.Children.Add(programElenentsDataGrid);
+            //programSettingsStackPanel.Children.Add(programElenentsDataGrid);
+            programSettingsStackPanel.Children.Add(programsStackPanel);
             programSettingsStackPanel.Children.Add(callAddPEWindowButton);
 
-            SExpander a = new SExpander();
-            programSettingsStackPanel.Children.Add(a);
-
             return programSettingsStackPanel;
+        }
+
+        private void Programs_Serialized()
+        {
+            programsStackPanel.Children.Clear();
+
+            for (int i = 0; i < Programs.JsonObject.Count; i++)
+            {
+                programsStackPanel.Children.Add(new PE(Programs.JsonObject[i]));
+            }
         }
 
         private void CallAddPEWindowButton_Click(object sender, RoutedEventArgs e)

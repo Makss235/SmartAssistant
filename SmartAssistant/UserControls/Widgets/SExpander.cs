@@ -27,7 +27,13 @@ namespace SmartAssistant.UserControls.Widgets
             set => SetProperty(ref _BodyContent, value);
         }
 
-        public bool IsExpanded { get; set; }
+        private bool _IsExpanded = true;
+
+        public bool IsExpanded
+        {
+            get => _IsExpanded;
+            set => SetProperty(ref _IsExpanded, value);
+        }
 
         public event Action<bool> Expanded;
 
@@ -40,6 +46,7 @@ namespace SmartAssistant.UserControls.Widgets
         public SExpander()
         {
             InitialazeComponent();
+            PropertyChanged += SExpander_PropertyChanged;
         }
 
         #region NPC
@@ -60,6 +67,19 @@ namespace SmartAssistant.UserControls.Widgets
         }
 
         #endregion
+
+        private void SExpander_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(IsExpanded):
+                    bodyContentPresenter.Visibility = 
+                        IsExpanded ? Visibility.Visible : Visibility.Collapsed;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         private void InitialazeComponent()
         {
@@ -101,6 +121,7 @@ namespace SmartAssistant.UserControls.Widgets
                 Margin = new Thickness(30, 0, 5, 0),
                 Content = _BodyContent
             };
+            bodyContentPresenter.Visibility = IsExpanded ? Visibility.Visible : Visibility.Collapsed;
             bodyContentPresenter.SetBinding(
                 ContentPresenter.ContentProperty,
                 new Binding("BodyContent") { Source = this });

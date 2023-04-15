@@ -1,4 +1,5 @@
-﻿using SmartAssistant.UserControls.Widgets;
+﻿using SmartAssistant.Data.ProgramsData;
+using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
 using System.Windows;
 
 namespace SmartAssistant.Windows
@@ -7,14 +8,8 @@ namespace SmartAssistant.Windows
     {
         public TestWindow()
         {
-            SExpander sExpander = new SExpander()
-            {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                HeaderContent = "jjjjjjjjjjjjj",
-                BodyContent = "djfbkjdf"
-            };
-            Content = sExpander;
+            PE pE = new PE(Programs.JsonObject[2]);
+            Content = pE;
         }
     }
 }
