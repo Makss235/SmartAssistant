@@ -106,7 +106,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             programSettingsStackPanel.Children.Add(programElenentsDataGrid);
             programSettingsStackPanel.Children.Add(callAddPEWindowButton);
 
-            ExpanderStyled a = new ExpanderStyled();
+            SExpander a = new SExpander();
             programSettingsStackPanel.Children.Add(a);
 
             return programSettingsStackPanel;

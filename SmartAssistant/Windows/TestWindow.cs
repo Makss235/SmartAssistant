@@ -1,9 +1,4 @@
 ﻿using SmartAssistant.UserControls.Widgets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,8 +8,10 @@ namespace SmartAssistant.Windows
     {
         public TestWindow()
         {
-            SButton sButton = new SButton();
-            Content = sButton;
+            SExpander sExpander = new SExpander();
+            sExpander.HorizontalAlignment = HorizontalAlignment.Left;
+            sExpander.VerticalAlignment = VerticalAlignment.Top;
+            Content = sExpander;
         }
     }
 }

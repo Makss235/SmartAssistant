@@ -7,7 +7,7 @@ namespace TestWPF
     {
         public MainWindow()
         {
-            var a = new ExpanderStyled();
+            var a = new SExpander();
             Content = a;
         }
     }

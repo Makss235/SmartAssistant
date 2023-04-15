@@ -86,8 +86,8 @@ namespace SmartAssistant.UserControls.Widgets
                 FontSize = 15
             };
 
-            Width = 150;
-            Height = 50;
+            //Width = 150;
+            //Height = 50;
 
             Content = BackgroundBorder;
         }
