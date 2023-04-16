@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using System.Windows;
+using SmartAssistant.Windows.AddCNWindow;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -19,10 +21,18 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             set => SetProperty(ref _Path, value);
         }
 
+        private AddCNWindow addCNWindow;
+
+        private ListBox listBox;
+        private SExpander sExpander1;
+
         public PE(ProgramObj programObj)
         {
             ProgramNames = new ObservableCollection<string>(programObj.CallingNames);
             Path = programObj.Path;
+
+            addCNWindow = new AddCNWindow(new Point(100, 100));
+            addCNWindow.AddCallingNameEvent += AddCNWindow_AddCallingNameEvent;
 
             InitializeComponent();
         }
@@ -48,24 +58,59 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
         private void InitializeComponent()
         {
-            StackPanel stackPanel = new StackPanel();
+            MenuItem menuItem = new MenuItem()
+            {
+                Header = "Удалить"
+            };
+            menuItem.Click += (se, e) =>
+            {
+                listBox.Items.Remove(listBox.SelectedItem);
+                if (listBox.Items.Count == 0)
+                {
+                    sExpander1.Visibility = Visibility.Collapsed;
+                }
+            };
+            MenuItem menuItem1 = new MenuItem()
+            {
+                Header = "Добавить"
+            };
+            menuItem1.Click += (se, e) => addCNWindow.Show();
+
+            ContextMenu contextMenu = new ContextMenu();
+            contextMenu.Items.Add(menuItem1);
+            contextMenu.Items.Add(menuItem);
+
+            listBox = new ListBox();
+            listBox.ContextMenu = contextMenu;
+            sExpander1 = new SExpander()
+            {
+                HeaderContent = "Другие названия программы.loc",
+                IsExpanded = false,
+                BodyContent = listBox
+            };
 
             if (ProgramNames.Count > 1)
-            {
-                ListBox listBox = new ListBox();
                 for (int i = 1; i < ProgramNames.Count; i++)
-                {
                     listBox.Items.Add(ProgramNames[i]);
-                }
+            else
+                sExpander1.Visibility = Visibility.Collapsed;
 
-                SExpander sExpander1 = new SExpander()
-                {
-                    HeaderContent = "Другие названия программы.loc",
-                    IsExpanded = false,
-                    BodyContent = listBox
-                };
-                stackPanel.Children.Add(sExpander1);
-            }
+            Button button = new Button()
+            {
+                Content = "+",
+                Height = 25,
+                Margin = new Thickness(5, 2, 0, 0),
+                VerticalAlignment = VerticalAlignment.Top,
+            };
+            button.Click += Button_Click;
+
+            StackPanel sp = new StackPanel();
+            sp.Orientation = Orientation.Horizontal;
+            sp.Children.Add(sExpander1);
+            sp.Children.Add(button);
+
+            StackPanel stackPanel = new StackPanel();
+            stackPanel.Children.Add(sp);
             stackPanel.Children.Add(new TextBlock() { Text = Path });
 
             SExpander sExpander = new SExpander()
@@ -79,6 +124,18 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             };
 
             Content = sExpander;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            addCNWindow.Show();
+        }
+
+        private void AddCNWindow_AddCallingNameEvent(string obj)
+        {
+            listBox.Items.Add(obj);
+            sExpander1.IsExpanded = true; 
+            sExpander1.Visibility = Visibility.Visible;
         }
     }
 }

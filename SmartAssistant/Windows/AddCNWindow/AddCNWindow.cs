@@ -20,12 +20,19 @@ namespace SmartAssistant.Windows.AddCNWindow
         private Grid mainGrid;
         private Border mainBorder;
 
-        public static event Action<string> AddCallingNameEvent;
+        public event Action<string> AddCallingNameEvent;
 
         public AddCNWindow(Point point)
         {
             Width = 450;
             Height = 110;
+
+            KeyBinding keyBinding = new KeyBinding()
+            {
+                Command = new LambdaCommand((s) => AddCallingName(), (s) => true),
+                Key = Key.Enter
+            };
+            InputBindings.Add(keyBinding);
 
             ResizeMode = ResizeMode.NoResize;
             WindowStartupLocation = WindowStartupLocation.Manual;
@@ -61,9 +68,9 @@ namespace SmartAssistant.Windows.AddCNWindow
             {
                 Background = ResApp.GetResources<SolidColorBrush>("Transparent"),
                 BorderThickness= new Thickness(0),
-                Content = "+",
+                Content = "\"галк\nочка\"",
                 Padding = new Thickness(0, 0, 4, 8),
-                FontSize = 30,
+                FontSize = 12,
                 Width = 50,
                 Height = 50,
                 VerticalAlignment = VerticalAlignment.Top,
@@ -79,7 +86,7 @@ namespace SmartAssistant.Windows.AddCNWindow
                     ResApp.GetResources<SolidColorBrush>("Transparent")
                     )
             };
-            addCNButton.Click += AddCNButton_Click;
+            addCNButton.Click += (s, e) => AddCallingName();
 
             mainGrid = new Grid();
             mainGrid.Children.Add(enterCNTextBox);
@@ -104,11 +111,12 @@ namespace SmartAssistant.Windows.AddCNWindow
             Content = mainBorder;
         }
 
-        private void AddCNButton_Click(object sender, RoutedEventArgs e)
+        private void AddCallingName()
         {
             if (enterCNTextBox.Text.Length != 0)
             {
                 AddCallingNameEvent?.Invoke(enterCNTextBox.Text);
+                Hide();
             }
         }
     }

@@ -4,7 +4,6 @@ using SmartAssistant.Infrastructure.Styles.Base;
 using SmartAssistant.Resources;
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -111,7 +110,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 Orientation = Orientation.Vertical
             };
             programSettingsStackPanel.Children.Add(titleProgramsTextBlock);
-            //programSettingsStackPanel.Children.Add(programElenentsDataGrid);
             programSettingsStackPanel.Children.Add(programsStackPanel);
             programSettingsStackPanel.Children.Add(callAddPEWindowButton);
 
@@ -138,30 +136,15 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         private void InitializePECollection()
         {
             ProgramElements = new ObservableCollection<ProgramElement>();
-            ProgramElements.CollectionChanged += ProgramElements_CollectionChanged;
+            ProgramElements.CollectionChanged += (s, e) => Serialize();
 
             foreach (var programObj in Programs.JsonObject)
             {
                 var programElement = new ProgramElement(programObj);
-                programElement.PropertyChanged += ProgramElement_PropertyChanged;
-                programElement.CallingNames.CollectionChanged += CallingNames_CollectionChanged;
+                programElement.PropertyChanged += (s, e) => Serialize();
+                programElement.CallingNames.CollectionChanged += (s, e) => Serialize();
                 ProgramElements.Add(programElement);
             }
-        }
-
-        private void CallingNames_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            Serialize();
-        }
-
-        private void ProgramElement_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            Serialize();
-        }
-
-        private void ProgramElements_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-        {
-            Serialize();
         }
 
         private void AddPEHandler(ProgramElement pe)
