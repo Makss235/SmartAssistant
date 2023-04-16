@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows;
 using SmartAssistant.Windows.AddCNWindow;
+using SmartAssistant.Infrastructure.Commands;
+using System;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -20,6 +22,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             get => _Path;
             set => SetProperty(ref _Path, value);
         }
+
+        public event Action<PE> A;
 
         private AddCNWindow addCNWindow;
 
@@ -113,12 +117,24 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             stackPanel.Children.Add(sp);
             stackPanel.Children.Add(new TextBlock() { Text = Path });
 
+            MenuItem menuItem2 = new MenuItem()
+            {
+                Header = "Удалить",
+                Command = new LambdaCommand((s) => A?.Invoke(this), (s) => true)
+            };
+
+            ContextMenu contextMenu1 = new ContextMenu();
+            contextMenu1.Items.Add(menuItem2);
+
+            TextBlock textBlock = new TextBlock()
+            {
+                Text = ProgramNames[0],
+                ContextMenu = contextMenu1
+            };
+
             SExpander sExpander = new SExpander()
             {
-                HeaderContent = new TextBlock()
-                {
-                    Text = ProgramNames[0]
-                },
+                HeaderContent = textBlock,
                 BodyContent = stackPanel,
                 IsExpanded = false
             };

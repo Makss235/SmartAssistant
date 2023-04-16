@@ -82,7 +82,9 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             for (int i = 0; i < Programs.JsonObject.Count; i++)
             {
-                programsStackPanel.Children.Add(new PE(Programs.JsonObject[i]));
+                PE pE = new PE(Programs.JsonObject[i]);
+                pE.A += (s) => programsStackPanel.Children.Remove(s);
+                programsStackPanel.Children.Add(pE);
             }
 
             callAddPEWindowButton = new Button()
