@@ -58,8 +58,8 @@ namespace SmartAssistant
             SkillManager.Initialize();
             
             mainWin.Show();
-            TestWindow testWindow = new TestWindow();
-            testWindow.Show();
+            //TestWindow testWindow = new TestWindow();
+            //testWindow.Show();
             //AddCNWindow addCallingNameWindow = new AddCNWindow(new Point(mainWin.Left, mainWin.Top));
             //addCallingNameWindow.Show();
 

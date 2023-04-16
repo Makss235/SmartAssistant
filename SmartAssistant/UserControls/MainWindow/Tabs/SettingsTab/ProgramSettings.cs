@@ -88,14 +88,14 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             callAddPEWindowButton = new Button()
             {
-                Width = 60,
-                Height = 40,
-                FontSize = 25,
+                Width = 50,
+                Height = 50,
+                FontSize = 30,
                 Content = "+",
                 Padding = new Thickness(0, -5, 0, 0),
                 Margin = new Thickness(10),
                 Style = new RoundedButton(
-                    new CornerRadius(20),
+                    new CornerRadius(25),
                     new Thickness(2),
                     ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
                     ResApp.GetResources<SolidColorBrush>("CommonLightBrush"),
