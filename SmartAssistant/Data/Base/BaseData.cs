@@ -7,6 +7,8 @@ namespace SmartAssistant.Data.Base
 {
     public class BaseData<T> where T : class
     {
+        public static event Action Serialized;
+
         protected string resourcesDirectory;
         protected string fullPathFileName;
         protected string fullFileName;
@@ -47,6 +49,7 @@ namespace SmartAssistant.Data.Base
                 };
                 await JsonSerializer.SerializeAsync(fs, JsonObject, options);
             }
+            Serialized?.Invoke();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SmartAssistant.UserControls.Widgets;
+﻿using SmartAssistant.Data.ProgramsData;
+using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -47,6 +48,9 @@ namespace SmartAssistant.Windows
                 Children = {  new TextBox() { Margin = new Thickness(200)}, myPolygon }
             };
 
+            PE pE = new PE(Programs.JsonObject[2]);
+            //Content = pE;
+
             Content = grid;
         }
 
@@ -57,6 +61,7 @@ namespace SmartAssistant.Windows
                 myPolygon.Fill = Brushes.Green;
             else if (myPolygon.Fill == Brushes.Green)
                 myPolygon.Fill = Brushes.Pink;
+            
         }
     }
 }
