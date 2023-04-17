@@ -19,7 +19,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
         private Binding enteredCallingNameBinding;
 
-        private ListBox addCaliingNamesListBox;
+        private ListBox addCallingNamesListBox;
         private TextBlock indicatorCallingNameTextBlock;
         private TextBox enterCallingNameTextBox;
         private Button addCallingNameButton;
@@ -77,7 +77,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
 
         private void InitializeComponent()
         {
-            addCaliingNamesListBox = new ListBox()
+            addCallingNamesListBox = new ListBox()
             {
                 Margin = new Thickness(20, 10, 10, 28),
                 ItemsSource = CallingNames,
@@ -99,7 +99,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
                     ResApp.GetResources<SolidColorBrush>("CommonDarkBrush")
                     )
             };
-            Grid.SetColumn(addCaliingNamesListBox, 0);
+            Grid.SetColumn(addCallingNamesListBox, 0);
 
             indicatorCallingNameTextBlock = new TextBlock()
             {
@@ -209,7 +209,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
             mainGrid = new Grid();
             mainGrid.ColumnDefinitions.Add(listBoxColumnDefinition);
             mainGrid.ColumnDefinitions.Add(addCallingNameColumnDefinition);
-            mainGrid.Children.Add(addCaliingNamesListBox);
+            mainGrid.Children.Add(addCallingNamesListBox);
             mainGrid.Children.Add(addCallingNameGrid);
             Content = mainGrid;
         }
@@ -224,7 +224,7 @@ namespace SmartAssistant.UserControls.AddPEWindow.Tabs.AddCallingNamesTab
         {
             var enteredCallingNameArray = new string[1] { EnteredCallingName };
             if (enteredCallingNameArray.Intersect(CallingNames.ToList()).ToArray().Count() == 0 
-                && !Equals(EnteredCallingName, string.IsNullOrEmpty))
+                && !Equals(EnteredCallingName, string.IsNullOrEmpty) && IsNormalCallingName)
             {
                 Application.Current.Dispatcher.Invoke(() => 
                     CallingNames.Add(EnteredCallingName));

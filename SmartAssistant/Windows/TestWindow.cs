@@ -1,5 +1,6 @@
 ﻿using SmartAssistant.Data.ProgramsData;
 using SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab;
+using SmartAssistant.UserControls.Widgets;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
