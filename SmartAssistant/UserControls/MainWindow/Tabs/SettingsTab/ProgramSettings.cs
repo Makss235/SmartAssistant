@@ -13,10 +13,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
     public partial class SettingsTab
     {
         private TextBlock titleProgramsTextBlock;
-        //private DataGridTemplateColumn nameDataGridColumn;
-        //private DataGridTemplateColumn callingNamesDataGridColumn;
-        //private DataGridTemplateColumn pathDataGridColumn;
-        //private DataGrid programElenentsDataGrid;
         private StackPanel programsStackPanel;
         private Button callAddPEWindowButton;
         private StackPanel programSettingsStackPanel;
@@ -38,45 +34,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 FontSize = 16,
                 Margin = new Thickness(20, 10, 0, 10),
             };
-
-            //#region Columns
-
-            //nameDataGridColumn = new DataGridTemplateColumn()
-            //{
-            //    Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.NameLoc,
-            //    CellTemplate = new NameDGTemplateColumn(),
-            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star),
-            //};
-            //callingNamesDataGridColumn = new DataGridTemplateColumn()
-            //{
-            //    Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.CallingNamesLoc,
-            //    CellTemplate = new CallingNamesDGTemplateColumn(),
-            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-            //};
-            //pathDataGridColumn = new DataGridTemplateColumn()
-            //{
-            //    Header = Localize.JsonObject.MainWindowLoc.MainWindowTabsLoc.SettingsTabLoc.ProgramSettingsLoc.DataGridColumnsLoc.PathLoc,
-            //    CellTemplate = new PathDGTemplateColumn(),
-            //    Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-            //};
-
-            //#endregion
-
-            //programElenentsDataGrid = new DataGrid()
-            //{
-            //    AutoGenerateColumns = false,
-            //    CanUserAddRows = false,
-            //    FontFamily = new FontFamily("Segoe UI Semibold"),
-            //    Margin = new Thickness(10, 0, 15, 0),
-            //    ItemsSource = ProgramElements,
-            //    CellStyle = ResApp.GetResources<Style>("DGCellStyle"),
-            //    ColumnHeaderStyle = ResApp.GetResources<Style>("DGColumnHeaderStyle"),
-            //    RowStyle = ResApp.GetResources<Style>("DGRowStyle"),
-            //    Style = ResApp.GetResources<Style>("DGStyle"),
-            //};
-            //programElenentsDataGrid.Columns.Add(nameDataGridColumn);
-            //programElenentsDataGrid.Columns.Add(callingNamesDataGridColumn);
-            //programElenentsDataGrid.Columns.Add(pathDataGridColumn);
 
             programsStackPanel = new StackPanel();
 

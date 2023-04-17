@@ -26,6 +26,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
         public event Action<PE> A;
 
         private AddCNWindow addCNWindow;
+        private ObservableCollection<string> s;
 
         private ListBox listBox;
         private SExpander sExpander1;
@@ -84,21 +85,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             contextMenu.Items.Add(menuItem1);
             contextMenu.Items.Add(menuItem);
 
-            listBox = new ListBox();
-            listBox.ContextMenu = contextMenu;
-            sExpander1 = new SExpander()
-            {
-                HeaderContent = "Другие названия программы.loc",
-                IsExpanded = false,
-                BodyContent = listBox
-            };
-
-            if (ProgramNames.Count > 1)
-                for (int i = 1; i < ProgramNames.Count; i++)
-                    listBox.Items.Add(ProgramNames[i]);
-            else
-                sExpander1.Visibility = Visibility.Collapsed;
-
             Button button = new Button()
             {
                 Content = "+",
@@ -110,11 +96,26 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
             StackPanel sp = new StackPanel();
             sp.Orientation = Orientation.Horizontal;
-            sp.Children.Add(sExpander1);
+            sp.Children.Add(new TextBlock() { Text = "Другие названия программы.loc" });
             sp.Children.Add(button);
 
+            listBox = new ListBox();
+            listBox.ContextMenu = contextMenu;
+            sExpander1 = new SExpander()
+            {
+                HeaderContent = sp,
+                IsExpanded = false,
+                BodyContent = listBox
+            };
+
+            if (ProgramNames.Count > 1)
+                for (int i = 1; i < ProgramNames.Count; i++)
+                    listBox.Items.Add(ProgramNames[i]);
+            else
+                sExpander1.Visibility = Visibility.Collapsed;
+
             StackPanel stackPanel = new StackPanel();
-            stackPanel.Children.Add(sp);
+            stackPanel.Children.Add(sExpander1);
             stackPanel.Children.Add(new TextBlock() { Text = Path });
 
             MenuItem menuItem2 = new MenuItem()
