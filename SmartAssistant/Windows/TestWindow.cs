@@ -13,9 +13,9 @@ namespace SmartAssistant.Windows
         Polygon myPolygon;
         public TestWindow()
         {
-            SExpander sExpander = new SExpander();
-            sExpander.HorizontalAlignment = HorizontalAlignment.Left;
-            sExpander.VerticalAlignment = VerticalAlignment.Top;
+            //SExpander sExpander = new SExpander();
+            //sExpander.HorizontalAlignment = HorizontalAlignment.Left;
+            //sExpander.VerticalAlignment = VerticalAlignment.Top;
 
             Line myLine = new Line
             {
@@ -61,7 +61,6 @@ namespace SmartAssistant.Windows
                 myPolygon.Fill = Brushes.Green;
             else if (myPolygon.Fill == Brushes.Green)
                 myPolygon.Fill = Brushes.Pink;
-            
         }
     }
 }

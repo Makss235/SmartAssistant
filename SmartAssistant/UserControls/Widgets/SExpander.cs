@@ -1,4 +1,5 @@
-﻿using SmartAssistant.UserControls.Widgets.Base;
+﻿using SmartAssistant.Resources;
+using SmartAssistant.UserControls.Widgets.Base;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -6,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace SmartAssistant.UserControls.Widgets
 {
@@ -42,6 +44,7 @@ namespace SmartAssistant.UserControls.Widgets
         private TransparentButton headerTButton;
         private ContentPresenter bodyContentPresenter;
         private StackPanel expanderStackPanel;
+        private Polygon headerTriangle;
 
         public SExpander()
         {
@@ -79,18 +82,35 @@ namespace SmartAssistant.UserControls.Widgets
                 default:
                     break;
             }
+            
         }
 
         private void InitialazeComponent()
         {
             FontSize = 15;
             FontFamily = new FontFamily("Times new roman");
+            //Foreground = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush");
 
-            BackgroundBorder backgroundBorder = new BackgroundBorder()
+            headerTriangle = new Polygon
             {
-                Width = 20,
-                Height = 20
+                Stroke = ResApp.GetResources<SolidColorBrush>("CommonMediumBrush"),
+                Fill = ResApp.GetResources<SolidColorBrush>("Transparent"),
+                StrokeThickness = 1,
+                Stretch = Stretch.Fill,
+                Height = 10,
+                Width = 10,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center,
+                Points = new PointCollection { new Point(0, 0), new Point(1, 0), new Point(1, 1) },
+                RenderTransformOrigin = new Point(1, 1),
+                LayoutTransform = new RotateTransform { Angle = 45 }
             };
+
+            //BackgroundBorder backgroundBorder = new BackgroundBorder()
+            //{
+            //    Width = 20,
+            //    Height = 20
+            //};
 
             headerContentPresenter = new ContentPresenter()
             {
@@ -107,14 +127,18 @@ namespace SmartAssistant.UserControls.Widgets
                 Orientation = Orientation.Horizontal,
                 Height = 30
             };
-            headerStackPanel.Children.Add(backgroundBorder);
+            headerStackPanel.Children.Add(headerTriangle);
             headerStackPanel.Children.Add(headerContentPresenter);
 
             headerTButton = new TransparentButton()
             {
-                Content = headerStackPanel
+                Content = headerStackPanel,
+                ContextMenu = new ContextMenu() { },
             };
             headerTButton.Click += HeaderTButton_Click;
+            headerTButton.MouseEnter += HeaderTButton_ME;
+            headerTButton.MouseLeave += HeaderTButton_ML;
+
 
             bodyContentPresenter = new ContentPresenter()
             {
@@ -132,21 +156,35 @@ namespace SmartAssistant.UserControls.Widgets
 
             Content = expanderStackPanel;
         }
-
+        
         private void HeaderTButton_Click(object sender, RoutedEventArgs e)
         {
             if (bodyContentPresenter.Visibility == Visibility.Collapsed)
             {
                 bodyContentPresenter.Visibility = Visibility.Visible;
+                headerTriangle.LayoutTransform = new RotateTransform { Angle = 90 };
+                headerTriangle.Fill = headerTriangle.Stroke;
+                headerTriangle.Margin = new Thickness(4.2, 0, 0, 0);
                 IsExpanded = true;
                 Expanded?.Invoke(IsExpanded);
             }
             else if (bodyContentPresenter.Visibility == Visibility.Visible)
             {
                 bodyContentPresenter.Visibility = Visibility.Collapsed;
+                headerTriangle.LayoutTransform = new RotateTransform { Angle = 45 };
+                headerTriangle.Margin = new Thickness(0);
                 IsExpanded = false;
                 Expanded?.Invoke(IsExpanded);
             }
+        }
+        private void HeaderTButton_ME(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            headerTriangle.Fill = headerTriangle.Stroke;
+        }
+        private void HeaderTButton_ML(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if(!IsExpanded)
+                headerTriangle.Fill = ResApp.GetResources<SolidColorBrush>("Transparent");
         }
     }
 }
