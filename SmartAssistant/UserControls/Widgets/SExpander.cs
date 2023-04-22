@@ -1,5 +1,5 @@
 ﻿using SmartAssistant.Resources;
-using SmartAssistant.UserControls.Widgets.Base;
+using SmartAssistant.UserControls.Widgets.Button;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -41,7 +41,7 @@ namespace SmartAssistant.UserControls.Widgets
 
         private ContentPresenter headerContentPresenter;
         private StackPanel headerStackPanel;
-        private TransparentButton headerTButton;
+        private TButton headerTButton;
         private ContentPresenter bodyContentPresenter;
         private StackPanel expanderStackPanel;
         private Polygon headerTriangle;
@@ -130,7 +130,7 @@ namespace SmartAssistant.UserControls.Widgets
             headerStackPanel.Children.Add(headerTriangle);
             headerStackPanel.Children.Add(headerContentPresenter);
 
-            headerTButton = new TransparentButton()
+            headerTButton = new TButton()
             {
                 Content = headerStackPanel,
                 ContextMenu = new ContextMenu() { },

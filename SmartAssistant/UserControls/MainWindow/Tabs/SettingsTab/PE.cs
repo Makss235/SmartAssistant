@@ -1,13 +1,14 @@
 ﻿using SmartAssistant.Data.ProgramsData;
+using SmartAssistant.Infrastructure.Commands;
 using SmartAssistant.UserControls.Widgets;
+using SmartAssistant.UserControls.Widgets.SCM;
+using SmartAssistant.Windows.AddCNWindow;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Controls;
 using System.Windows;
-using SmartAssistant.Windows.AddCNWindow;
-using SmartAssistant.Infrastructure.Commands;
-using System;
+using System.Windows.Controls;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -81,7 +82,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             };
             menuItem1.Click += (se, e) => addCNWindow.Show();
 
-            ContextMenu contextMenu = new ContextMenu();
+            SContextMenu contextMenu = new SContextMenu();
             contextMenu.Items.Add(menuItem1);
             contextMenu.Items.Add(menuItem);
 

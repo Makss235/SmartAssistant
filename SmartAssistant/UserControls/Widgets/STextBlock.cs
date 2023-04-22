@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.Widgets
 {
-    public class TextBlockStyled : UserControl, INotifyPropertyChanged
+    public class STextBlock : UserControl, INotifyPropertyChanged
     {
         private Binding textBinding;
         //private Binding maxWidthBinding;
@@ -66,7 +66,7 @@ namespace SmartAssistant.UserControls.Widgets
 
         #endregion
 
-        public TextBlockStyled(string text = "", double maxWidth = 300)
+        public STextBlock(string text = "", double maxWidth = 300)
         {
             Text = text;
             MaxWidth = maxWidth;

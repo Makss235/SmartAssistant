@@ -2,11 +2,11 @@
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace SmartAssistant.UserControls.Widgets
+namespace SmartAssistant.UserControls.Widgets.Button
 {
-    public class TransparentButton : ButtonBase
+    public class TButton : ButtonBase
     {
-        public TransparentButton()
+        public TButton()
         {
             Content = new Border()
             { Background = new SolidColorBrush(Colors.Transparent) };

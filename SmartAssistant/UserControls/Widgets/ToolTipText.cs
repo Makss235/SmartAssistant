@@ -59,7 +59,7 @@ namespace SmartAssistant.UserControls.Widgets
             };
             Effect = dropShadowEffect;
 
-            Content = new TextBlockStyled(Text, maxWidth);
+            Content = new STextBlock(Text, maxWidth);
         }
 
         public void Show(double milliseconds = -1)

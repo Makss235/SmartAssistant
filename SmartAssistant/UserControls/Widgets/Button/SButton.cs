@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace SmartAssistant.UserControls.Widgets
+namespace SmartAssistant.UserControls.Widgets.Button
 {
     public class SButton : ButtonBase, INotifyPropertyChanged
     {
@@ -78,8 +78,8 @@ namespace SmartAssistant.UserControls.Widgets
         private void InitializeComponent()
         {
             BackgroundBorder = new BackgroundBorder(ButtonContent);
-            ButtonContent = new TextBlock() 
-            { 
+            ButtonContent = new TextBlock()
+            {
                 Text = "Button",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
