@@ -17,7 +17,7 @@ namespace SmartAssistant.Infrastructure.Styles.Base.ListBoxS
             ContextMenu contextMenuLB = new ContextMenu
             {
                 Style = new CommonContextMenuStyle(),
-                ItemContainerStyle = new CommonContextMenuItemStyle()
+                ItemContainerStyle = new CommonContextMenuItemStyle(new CornerRadius(5))
             };
             contextMenuLB.Items.Add(new MenuItem { Header = "AAA" });
             contextMenuLB.Items.Add(new MenuItem { Header = "BBB" });

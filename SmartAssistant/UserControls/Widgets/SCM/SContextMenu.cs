@@ -1,5 +1,6 @@
-﻿using System.Windows.Controls;
-using System.Windows.Media;
+﻿using SmartAssistant.Infrastructure.Styles.Base.ContextMenuS;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace SmartAssistant.UserControls.Widgets.SCM
 {
@@ -8,6 +9,8 @@ namespace SmartAssistant.UserControls.Widgets.SCM
         public SContextMenu()
         {
             Template = new ContextMenuTemplate();
+            ItemContainerStyle = new CommonContextMenuItemStyle(new CornerRadius(5));
+            
         }
     }
 }

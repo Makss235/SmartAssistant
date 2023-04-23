@@ -1,5 +1,6 @@
 ﻿using SmartAssistant.Data.ProgramsData;
 using SmartAssistant.Infrastructure.Commands;
+using SmartAssistant.Infrastructure.Styles.Base.ContextMenuS;
 using SmartAssistant.UserControls.Widgets;
 using SmartAssistant.UserControls.Widgets.SCM;
 using SmartAssistant.Windows.AddCNWindow;
@@ -9,6 +10,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 {
@@ -89,7 +91,6 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
             Button button = new Button()
             {
                 Content = "+",
-                Height = 25,
                 Margin = new Thickness(5, 2, 0, 0),
                 VerticalAlignment = VerticalAlignment.Top,
             };
@@ -124,6 +125,8 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
                 Header = "Удалить",
                 Command = new LambdaCommand((s) => A?.Invoke(this), (s) => true)
             };
+
+            //SMenuItem menuItem2 = new SMenuItem();
 
             ContextMenu contextMenu1 = new ContextMenu();
             contextMenu1.Items.Add(menuItem2);

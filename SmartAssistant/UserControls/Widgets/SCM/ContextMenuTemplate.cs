@@ -15,10 +15,9 @@ namespace SmartAssistant.UserControls.Widgets.SCM
         public ContextMenuTemplate()
         {
             FrameworkElementFactory itemsPresenterF = new FrameworkElementFactory(typeof(ItemsPresenter));
+            itemsPresenterF.SetValue(ItemsPresenter.MarginProperty, new Thickness(5));
 
             FrameworkElementFactory factory = new FrameworkElementFactory(typeof(BackgroundBorder));
-            factory.SetValue(Border.WidthProperty, (double)200);
-            factory.SetValue(Border.HeightProperty, (double)200);
 
             factory.AppendChild(itemsPresenterF);
 
