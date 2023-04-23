@@ -9,7 +9,7 @@ namespace SmartAssistant.UserControls.Widgets.SCM
         public SContextMenu()
         {
             Template = new ContextMenuTemplate();
-            ItemContainerStyle = new CommonContextMenuItemStyle(new CornerRadius(5));
+            //ItemContainerStyle = new CommonContextMenuItemStyle(new CornerRadius(5));
             
         }
     }

@@ -10,7 +10,7 @@ using System.Windows.Controls.Primitives;
 
 namespace SmartAssistant.UserControls.Widgets.SCM
 {
-    public class SMenuItem : ButtonBase
+    public class SMenuItem : MenuItem
     {
         private ContentPresenter contentPresenter;
         private Border mainBorder;
@@ -39,7 +39,7 @@ namespace SmartAssistant.UserControls.Widgets.SCM
                 Margin = new Thickness(-20)
             };
 
-            Content = mainBorder;
+            Template = new MenuItemTemplate();
         }
     }
 }

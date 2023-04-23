@@ -66,7 +66,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.SettingsTab
 
         private void InitializeComponent()
         {
-            MenuItem menuItem = new MenuItem()
+            SMenuItem menuItem = new SMenuItem()
             {
                 Header = "Удалить"
             };

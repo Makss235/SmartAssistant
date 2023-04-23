@@ -7,16 +7,9 @@ using SmartAssistant.Data.SitesData;
 using SmartAssistant.Data.TriggersData;
 using SmartAssistant.Data.WordsData;
 using SmartAssistant.Models;
-using SmartAssistant.Windows.AddCNWindow;
 using SmartAssistant.Windows.MainWindow;
 using System;
 using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Controls;
-using System.Windows.Media;
-using SmartAssistant.UserControls.Base;
-using System.Windows.Threading;
-using SmartAssistant.Windows;
 
 namespace SmartAssistant
 {
