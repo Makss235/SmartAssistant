@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\FuzzyString\FuzzyString.csproj" />
     <ProjectReference Include="..\..\STT\STT.csproj" />
   </ItemGroup>
