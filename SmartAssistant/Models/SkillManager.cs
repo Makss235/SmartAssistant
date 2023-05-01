@@ -3,7 +3,6 @@ using SmartAssistant.Data.WordsData;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Windows;
 
 namespace SmartAssistant.Models
 {
@@ -20,9 +19,9 @@ namespace SmartAssistant.Models
             AnswerChangedEvent += SpeakAnswer;
         }
 
-        private static void SpeakAnswer(string obj)
+        private static void SpeakAnswer(string text)
         {
-            TTS.Speak(obj);
+            TTS.Speak(text);
         }
 
         public static void Initialize() { }
@@ -48,9 +47,75 @@ namespace SmartAssistant.Models
                 }
             }
 
-            if (wordsList.Count > 1) DefineAnswersAndCallingSkills(wordsList, text);
-            else if (wordsList.Count == 1) DefineAnswerAndCallingSkill(wordsList[0], text);
+            DefineAnswer(wordsList, text);
+        }
+
+        private static void DefineAnswer(List<WordsObj> wordsObjs, string text)
+        {
+            if (wordsObjs.Count > 1)
+            {
+                List<OCS> results = new List<OCS>();
+                for (int i = 0; i < wordsObjs.Count; i++)
+                    results.Add(CallingSkill(wordsObjs[i], text));
+                foreach (var result in results)
+                {
+                    if (result.IsText)
+                    {
+                        AnswerChangedEvent?.Invoke(result.Text);
+                        return;
+                    }
+                    else
+                    {
+                        if (!result.Result)
+                        {
+                            NegativeMultiAnswer();
+                            return;
+                        }
+                    }
+                }
+                PositiveMultiAnswer();
+            }
+            else if (wordsObjs.Count == 1)
+            {
+                var wordsObj = wordsObjs[0];
+                OCS oCSResult = CallingSkill(wordsObj, text);
+                if (!oCSResult.IsText)
+                {
+                    if (oCSResult.Result) 
+                        PositiveSingleAnswer(wordsObj);
+                    else NegativeSingleAnswer(wordsObj);
+                }
+                else AnswerChangedEvent?.Invoke(oCSResult.Text);
+            }
             else NoDefinedAnswer();
+        }
+
+        private static void PositiveMultiAnswer()
+        {
+            var positiveAnswers = MultiAnswers.JsonObject.Positive;
+            string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
+            AnswerChangedEvent?.Invoke(resultPositiveAnswer);
+        }
+
+        private static void NegativeMultiAnswer()
+        {
+            var negativeAnswers = MultiAnswers.JsonObject.Negative;
+            string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
+            AnswerChangedEvent?.Invoke(resultNegativeAnswer);
+        }
+
+        private static void PositiveSingleAnswer(WordsObj wordsObj)
+        {
+            var positiveAnswers = wordsObj.Answers.Positive;
+            string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
+            AnswerChangedEvent?.Invoke(resultPositiveAnswer);
+        }
+
+        private static void NegativeSingleAnswer(WordsObj wordsObj)
+        {
+            var negativeAnswers = wordsObj.Answers.Negative;
+            string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
+            AnswerChangedEvent?.Invoke(resultNegativeAnswer);
         }
 
         private static void NoDefinedAnswer()
@@ -60,45 +125,7 @@ namespace SmartAssistant.Models
             AnswerChangedEvent?.Invoke(resultNoDefinedAnswer);
         }
 
-        private static void DefineAnswersAndCallingSkills(List<WordsObj> wordsObjs, string text)
-        {
-            List<bool> results = new List<bool>();
-            for (int i = 0; i < wordsObjs.Count; i++)
-                results.Add(CallingSkill(wordsObjs[i], text));
-            foreach (bool result in results)
-            {
-                if (!result)
-                {
-                    var negativeAnswers = MultiAnswers.JsonObject.Negative;
-                    string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
-                    AnswerChangedEvent?.Invoke(resultNegativeAnswer);
-                    return;
-                }
-            } 
-
-            var positiveAnswers = MultiAnswers.JsonObject.Positive;
-            string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
-            AnswerChangedEvent?.Invoke(resultPositiveAnswer);
-        }
-
-        private static void DefineAnswerAndCallingSkill(WordsObj wordsObj, string text)
-        {
-            bool result = CallingSkill(wordsObj, text);
-            if (result)
-            {
-                var positiveAnswers = wordsObj.Answers.Positive;
-                string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
-                AnswerChangedEvent?.Invoke(resultPositiveAnswer);
-            }
-            else
-            {
-                var negativeAnswers = wordsObj.Answers.Negative;
-                string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
-                AnswerChangedEvent?.Invoke(resultNegativeAnswer);
-            }
-        }
-
-        private static bool CallingSkill(WordsObj wordsObj, string text)
+        private static OCS CallingSkill(WordsObj wordsObj, string text)
         {
             Type type = Type.GetType(namespaceSkills + wordsObj.Parameters.ClassName + "Skill");
             object instance = Activator.CreateInstance(type);
@@ -106,18 +133,21 @@ namespace SmartAssistant.Models
             if (wordsObj.Parameters.MethodName == null)
                 wordsObj.Parameters.MethodName = nameMethodCallingDefault;
 
+            ICS inputCallingSkills = new ICS()
+            {
+                WordsObj = wordsObj,
+                Text = text,
+            };
+
             try
             {
                 var methodInfo = type.GetMethod(wordsObj.Parameters.MethodName);
-                return (bool)methodInfo.Invoke(instance, new object[]
-                {
-                    text,
-                    wordsObj
-                });
+                return (OCS)methodInfo.Invoke(instance, new object[]
+                { inputCallingSkills });
             }
             catch
             {
-                return false;
+                return new OCS() { Result = false};
             }
         }
     }

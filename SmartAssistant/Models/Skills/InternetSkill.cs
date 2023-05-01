@@ -1,38 +1,44 @@
 ﻿using SmartAssistant.Data.SitesData;
-using SmartAssistant.Data.WordsData;
 using System.Collections.Generic;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SmartAssistant.Models.Skills
 {
     public class InternetSkill
     {
-        public bool Search(string text, WordsObj wordsObj)
+        public OCS Search(ICS iCS)
         {
-            foreach (var requestString in wordsObj.TriggerWords)
+            OCS oCS = new OCS()
             {
-                int indexOfSearch = text.IndexOf(requestString);
+                IsText = false,
+                Result = false
+            };
+
+            foreach (var requestString in iCS.WordsObj.TriggerWords)
+            {
+                int indexOfSearch = iCS.Text.IndexOf(requestString);
                 if (indexOfSearch != -1)
                 {
                     try
                     {
-                        char[] charArraySearch = text.ToCharArray()
-                        [(indexOfSearch + requestString.Length + 1)..text.Length];
+                        char[] charArraySearch = iCS.Text.ToCharArray()
+                        [(indexOfSearch + requestString.Length + 1)..iCS.Text.Length];
                         System.Diagnostics.Process.Start(
                             @"C:\Program Files\Internet Explorer\iexplore.exe",
                             "https://yandex.ru/search/?text=" + string.Join("", charArraySearch));
-                        return true;
+                        oCS.Result = true;
+                        oCS.IsText = true;
+                        return oCS;
                     }
                     catch
                     {
-                        return false;
+                        return oCS;
                     }
                 }
             }
-            return false;
+            return oCS;
         }
 
-        public bool OpenSite(string text, WordsObj wordsObj)
+        public OCS OpenSite(ICS iCS)
         {
             List<bool> results = new List<bool>();
 
@@ -42,7 +48,7 @@ namespace SmartAssistant.Models.Skills
                 for (int j = 0; j < siteObj.Names.Count; j++)
                 {
                     FuzzyString.FuzzyString fuzzyString = new FuzzyString.FuzzyString();
-                    var fuzzy = fuzzyString.FuzzySentence(siteObj.Names[j], text);
+                    var fuzzy = fuzzyString.FuzzySentence(siteObj.Names[j], iCS.Text);
                     if (fuzzy.Length == siteObj.Names[j].Length)
                     {
                         try
@@ -59,11 +65,19 @@ namespace SmartAssistant.Models.Skills
                     }
                 }
             }
+            OCS oCS = new OCS();
+            oCS.IsText = false;
+
             foreach (bool result in results)
             {
-                if (!result) return false;
+                if (!result)
+                {
+                    oCS.Result = false;
+                    return oCS;
+                };
             }
-            return true;
+            oCS.Result = true;
+            return oCS;
         }
     }
 }

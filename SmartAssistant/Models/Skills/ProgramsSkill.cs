@@ -7,7 +7,7 @@ namespace SmartAssistant.Models.Skills
 {
     public class ProgramsSkill
     {
-        public bool OpenProgram(string text, WordsObj wordsObj)
+        public OCS OpenProgram(ICS iCS)
         {
             List<bool> results = new List<bool>();
 
@@ -16,7 +16,7 @@ namespace SmartAssistant.Models.Skills
                 foreach (var callingNameProgram in programObj.CallingNames)
                 {
                     FuzzyString.FuzzyString fuzzyString = new FuzzyString.FuzzyString();
-                    var fuzzy = fuzzyString.FuzzySentence(callingNameProgram, text);
+                    var fuzzy = fuzzyString.FuzzySentence(callingNameProgram, iCS.Text);
                     if (fuzzy.Length == callingNameProgram.Length)
                     {
                         try
@@ -32,11 +32,19 @@ namespace SmartAssistant.Models.Skills
                 }
             }
 
+            OCS oCS = new OCS();
+            oCS.IsText = false;
+
             foreach (bool result in results)
             {
-                if (!result) return false;
+                if (!result)
+                {
+                    oCS.Result = false;
+                    return oCS;
+                };
             }
-            return true;
+            oCS.Result = true;
+            return oCS;
         }
     }
 }

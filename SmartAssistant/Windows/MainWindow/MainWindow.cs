@@ -1,5 +1,4 @@
 ﻿using SmartAssistant.Data.LocalizationData;
-using SmartAssistant.Infrastructure.Commands;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
