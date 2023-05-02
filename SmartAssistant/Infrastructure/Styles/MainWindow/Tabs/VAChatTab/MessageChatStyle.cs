@@ -33,16 +33,16 @@ namespace SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab
             messageTextBoxFactory.SetValue(Border.RenderTransformOriginProperty, new Point(1, 1));
             messageTextBoxFactory.AppendChild(textBoxFactory);
 
-            TargetType = typeof(TextBox);
-            Setters.Add(new Setter(TextBox.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent")));
-            Setters.Add(new Setter(TextBox.ForegroundProperty, messageForeground));
-            Setters.Add(new Setter(TextBox.BorderThicknessProperty, new Thickness(0)));
-            Setters.Add(new Setter(TextBox.MarginProperty, new Thickness(8, 5, 8, 5)));
-            Setters.Add(new Setter(TextBox.TextWrappingProperty, TextWrapping.Wrap));
-            Setters.Add(new Setter(TextBox.FontSizeProperty, (double)18));
-            Setters.Add(new Setter(TextBox.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
-            Setters.Add(new Setter(TextBox.MinHeightProperty, (double)35));
-            Setters.Add(new Setter(TextBox.TemplateProperty, new ControlTemplate()
+            TargetType = typeof(UserControl);
+            Setters.Add(new Setter(UserControl.BackgroundProperty, ResApp.GetResources<SolidColorBrush>("Transparent")));
+            Setters.Add(new Setter(UserControl.ForegroundProperty, messageForeground));
+            Setters.Add(new Setter(UserControl.BorderThicknessProperty, new Thickness(0)));
+            Setters.Add(new Setter(UserControl.MarginProperty, new Thickness(8, 5, 8, 5)));
+            //Setters.Add(new Setter(UserControl.TextWrappingProperty, TextWrapping.Wrap));
+            Setters.Add(new Setter(UserControl.FontSizeProperty, (double)18));
+            Setters.Add(new Setter(UserControl.FontFamilyProperty, new FontFamily("Segoe UI Semibold")));
+            Setters.Add(new Setter(UserControl.MinHeightProperty, (double)35));
+            Setters.Add(new Setter(UserControl.TemplateProperty, new ControlTemplate()
             {
                 VisualTree = messageTextBoxFactory
             }));

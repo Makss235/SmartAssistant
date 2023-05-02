@@ -25,8 +25,13 @@ namespace SmartAssistant.Models.Skills
                         System.Diagnostics.Process.Start(
                             @"C:\Program Files\Internet Explorer\iexplore.exe",
                             "https://yandex.ru/search/?text=" + string.Join("", charArraySearch));
+
+                        Parce parce = new Parce();
+                        oCS.AnswerPresenter = parce;
+
                         oCS.Result = true;
                         oCS.IsText = true;
+                        oCS.AnswerSpeak = parce.Text;
                         return oCS;
                     }
                     catch

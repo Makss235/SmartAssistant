@@ -3,6 +3,8 @@ using SmartAssistant.Data.WordsData;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace SmartAssistant.Models
 {
@@ -11,12 +13,13 @@ namespace SmartAssistant.Models
         private static string namespaceSkills = "SmartAssistant.Models.Skills.";
         private static string nameMethodCallingDefault = "Calling";
 
-        public static event Action<string> AnswerChangedEvent;
+        public static event Action<string> AnswerSpeakChanged;
+        public static event Action<FrameworkElement> AnswerPresenterChanged;
 
         static SkillManager()
         {
             StateManager.SpeechStateVerifiedEvent += DefineSkills;
-            AnswerChangedEvent += SpeakAnswer;
+            AnswerSpeakChanged += SpeakAnswer;
         }
 
         private static void SpeakAnswer(string text)
@@ -61,7 +64,7 @@ namespace SmartAssistant.Models
                 {
                     if (result.IsText)
                     {
-                        AnswerChangedEvent?.Invoke(result.Text);
+                        AnswerSpeakChanged?.Invoke(result.AnswerSpeak as string);
                         return;
                     }
                     else
@@ -85,7 +88,7 @@ namespace SmartAssistant.Models
                         PositiveSingleAnswer(wordsObj);
                     else NegativeSingleAnswer(wordsObj);
                 }
-                else AnswerChangedEvent?.Invoke(oCSResult.Text);
+                else AnswerSpeakChanged?.Invoke(oCSResult.AnswerSpeak);
             }
             else NoDefinedAnswer();
         }
@@ -94,35 +97,35 @@ namespace SmartAssistant.Models
         {
             var positiveAnswers = MultiAnswers.JsonObject.Positive;
             string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
-            AnswerChangedEvent?.Invoke(resultPositiveAnswer);
+            AnswerSpeakChanged?.Invoke(resultPositiveAnswer);
         }
 
         private static void NegativeMultiAnswer()
         {
             var negativeAnswers = MultiAnswers.JsonObject.Negative;
             string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
-            AnswerChangedEvent?.Invoke(resultNegativeAnswer);
+            AnswerSpeakChanged?.Invoke(resultNegativeAnswer);
         }
 
         private static void PositiveSingleAnswer(WordsObj wordsObj)
         {
             var positiveAnswers = wordsObj.Answers.Positive;
             string resultPositiveAnswer = positiveAnswers[new Random().Next(positiveAnswers.Count)];
-            AnswerChangedEvent?.Invoke(resultPositiveAnswer);
+            AnswerSpeakChanged?.Invoke(resultPositiveAnswer);
         }
 
         private static void NegativeSingleAnswer(WordsObj wordsObj)
         {
             var negativeAnswers = wordsObj.Answers.Negative;
             string resultNegativeAnswer = negativeAnswers[new Random().Next(negativeAnswers.Count)];
-            AnswerChangedEvent?.Invoke(resultNegativeAnswer);
+            AnswerSpeakChanged?.Invoke(resultNegativeAnswer);
         }
 
         private static void NoDefinedAnswer()
         {
             var noDefinedAnswers = MultiAnswers.JsonObject.NoDefined;
             string resultNoDefinedAnswer = noDefinedAnswers[new Random().Next(noDefinedAnswers.Count)];
-            AnswerChangedEvent?.Invoke(resultNoDefinedAnswer);
+            AnswerSpeakChanged?.Invoke(resultNoDefinedAnswer);
         }
 
         private static OCS CallingSkill(WordsObj wordsObj, string text)
