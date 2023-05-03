@@ -1,11 +1,8 @@
-﻿using SmartAssistant.Infrastructure.Animations.MainWindow.Tabs.VAChatTab;
-using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
+﻿using SmartAssistant.Infrastructure.Styles.MainWindow.Tabs.VAChatTab;
 using SmartAssistant.Resources;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using static SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab.VAChatTab;
 
 namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
@@ -69,13 +66,14 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
                 MessageBorderBrush = ResApp.GetResources<SolidColorBrush>("CommonDarkBrush");
             }
 
-            ContentPresenter contentPresenter = new ContentPresenter();
-            contentPresenter.Content = message;
+            //ContentPresenter contentPresenter = new ContentPresenter();
+            //contentPresenter.Content = message;
 
-            Content = contentPresenter;
-            Style = new MessageChatStyle(MessageBackground, MessageForeground, MessageBorderBrush, Message);
+            Content = message;
+            //Style = new MessageChatStyle(MessageBackground, MessageForeground, MessageBorderBrush, Message);
             Margin = new Thickness(0, 5, 1, 0);
             HorizontalAlignment = MessageAlignment;
+            
             //Loaded += new GrowMessageAnimation(this).growAnimationStart;
         }
     }

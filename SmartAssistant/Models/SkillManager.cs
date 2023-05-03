@@ -64,7 +64,8 @@ namespace SmartAssistant.Models
                 {
                     if (result.IsText)
                     {
-                        AnswerSpeakChanged?.Invoke(result.AnswerSpeak as string);
+                        AnswerSpeakChanged?.Invoke(result.AnswerSpeak);
+                        AnswerPresenterChanged?.Invoke(result.AnswerPresenter);
                         return;
                     }
                     else
@@ -88,7 +89,11 @@ namespace SmartAssistant.Models
                         PositiveSingleAnswer(wordsObj);
                     else NegativeSingleAnswer(wordsObj);
                 }
-                else AnswerSpeakChanged?.Invoke(oCSResult.AnswerSpeak);
+                else
+                {
+                    AnswerSpeakChanged?.Invoke(oCSResult.AnswerSpeak);
+                    AnswerPresenterChanged?.Invoke(oCSResult.AnswerPresenter);
+                }
             }
             else NoDefinedAnswer();
         }
