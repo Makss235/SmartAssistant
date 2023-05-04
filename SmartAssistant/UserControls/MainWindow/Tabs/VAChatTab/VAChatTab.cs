@@ -154,7 +154,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                messagesChat.Add(new Message() { MessageObject = obj, SendMessageBy = SendMessageBy.ByBot });
+                messagesChat.Add(new Message(obj, SendMessageBy.ByBot) /*{ MessageObject = obj, SendMessageBy = SendMessageBy.ByBot }*/);
                 chatScrollViewer.ScrollToEnd();
             });
         }
@@ -228,7 +228,7 @@ namespace SmartAssistant.UserControls.MainWindow.Tabs.VAChatTab
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                messagesChat.Add(new Message() { MessageObject = text, SendMessageBy = sendMessageBy });
+                messagesChat.Add(new Message(text, sendMessageBy) /*{*/ /*MessageObject = text, SendMessageBy = sendMessageBy }*/);
                 chatScrollViewer.ScrollToEnd();
             });
         }
