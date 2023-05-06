@@ -1,5 +1,4 @@
 ﻿using SmartAssistant.Infrastructure.Commands.Base;
-using System;
 using System.Windows;
 
 namespace SmartAssistant.Infrastructure.Commands

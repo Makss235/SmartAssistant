@@ -34,7 +34,7 @@ namespace TestWPF
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string url = "https://yandex.ru/search/?text=%D1%87%D1%82%D0%BE+%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5+%D0%BA%D1%83%D1%80%D0%B8%D1%86%D0%B0+%D0%B8%D0%BB%D0%B8+%D1%8F%D0%B9%D1%86%D0%BE&lr=2";
+            string url = "https://yandex.ru/search/?text=%D1%87%D1%82%D0%BE+%D1%82%D0%B0%D0%BA%D0%BE%D0%B5+%D1%88%D0%B8%D0%B7%D0%B0&lr=2";
 
             HttpClient client = new HttpClient();
             string page = await client.GetStringAsync(url);
@@ -42,21 +42,34 @@ namespace TestWPF
             using var context = BrowsingContext.New(Configuration.Default);
             using var doc = await context.OpenAsync(req => req.Content(page));
 
-            var quickAnswerDocument = doc.GetElementsByClassName(
-                "serp-item serp-item_card serp-item_card-extra-shadow " +
-                "serp-item_card-no-padding-bottom has-branding " +
-                "has-branding__fact has-branding__show-hint");
-
-            if (quickAnswerDocument.Length != 0)
+            var quickAnswerDocument = doc.GetElementsByClassName("serp-item has-branding__show-hint");
+            if (quickAnswerDocument.Length > 0)
             {
-                quickAnswerDocument = quickAnswerDocument[0].
+                var quickAnswerDocument1 = quickAnswerDocument[0].
                     GetElementsByClassName("Fact");
-                var quickAnswerElements = quickAnswerDocument[0].Children;
+                if (quickAnswerDocument1.Length == 0)
+                {
+                    quickAnswerDocument1 = quickAnswerDocument[0].
+                        GetElementsByClassName("typo_text_fact");
+                }
+                var quickAnswerElements = quickAnswerDocument1[0].Children;
 
                 for (int i = 0; i < quickAnswerElements.Length; i++)
                 {
-                    if (quickAnswerElements[i].ClassName != "Fact-Source" &&
-                        quickAnswerElements[i].ClassName != "ExtraActions Typo Typo_text_s Typo_line_m Fact-Footer")
+                    if (quickAnswerElements[i].ClassName == "Fact-Summarize Typo Typo_text_xxl Typo_line_m")
+                    {
+                        quickAnswerSP.Children.Add(new TextBlock()
+                        {
+                            Text = quickAnswerElements[i].TextContent,
+                            MaxWidth = 400,
+                            TextWrapping = TextWrapping.Wrap,
+                            HorizontalAlignment = HorizontalAlignment.Left,
+                            FontSize = 20
+                        });
+                    }
+                    else if (quickAnswerElements[i].ClassName != "Fact-Source" &&
+                             quickAnswerElements[i].ClassName != 
+                             "ExtraActions Typo Typo_text_s Typo_line_m Fact-Footer")
                     {
                         var divSelectors = quickAnswerElements[i].QuerySelectorAll("div");
                         if (divSelectors.Length == 0)
@@ -73,34 +86,47 @@ namespace TestWPF
                     }
                     else if (quickAnswerElements[i].ClassName == "Fact-Source")
                     {
-                        var pageref = quickAnswerElements[i].GetElementsByClassName("Link Fact-SiteSource")[0].GetAttribute("href");
-                        var sitename = quickAnswerElements[i].GetElementsByClassName("Path-Item")[0].QuerySelector("b").TextContent;
-                        var pagename = quickAnswerElements[i].GetElementsByClassName("OneLine Fact-Title Typo Typo_text_xm Typo_line_m")[0].TextContent;
-
-                        quickAnswerSP.Children.Add(new TextBlock()
+                        var pathItem = quickAnswerElements[i].GetElementsByClassName("Path-Item");
+                        if (pathItem.Length != 0)
                         {
-                            Text = sitename,
-                            HorizontalAlignment = HorizontalAlignment.Left,
-                            FontSize = 15
-                        });
+                            if (pathItem[0].QuerySelector("b").TextContent != "" ||
+                                pathItem[0].QuerySelector("b").TextContent != null)
+                            {
+                                quickAnswerSP.Children.Add(new TextBlock()
+                                {
+                                    Text = pathItem[0].QuerySelector("b").TextContent,
+                                    HorizontalAlignment = HorizontalAlignment.Left,
+                                    FontSize = 15
+                                });
+                            }
+                        }
 
-                        var pagerefHyperlink = new Hyperlink()
+                        var pageref = quickAnswerElements[i].GetElementsByClassName("Link");
+                        if (pageref.Length != 0)
                         {
-                            NavigateUri = new Uri(pageref)
-                        };
-                        pagerefHyperlink.RequestNavigate += (s, e) =>
-                        Process.Start(new ProcessStartInfo(pageref)
-                        { UseShellExecute = true });
+                            var pagerefHyperlink = new Hyperlink()
+                            {
+                                NavigateUri = new Uri(pageref[0].GetAttribute("href"))
+                            };
+                            pagerefHyperlink.RequestNavigate += (s, e) =>
+                            Process.Start(new ProcessStartInfo(pageref[0].GetAttribute("href"))
+                            { UseShellExecute = true });
 
-                        pagerefHyperlink.Inlines.Add(pagename);
+                            var pagename = quickAnswerElements[i].GetElementsByClassName(
+                            "OneLine Fact-Title Typo Typo_text_xm Typo_line_m");
+                            if (pagename.Length != 0)
+                            {
+                                pagerefHyperlink.Inlines.Add(pagename[0].TextContent);
+                            }
 
-                        var pagerefHyperlinkTextBlock = new TextBlock()
-                        {
-                            HorizontalAlignment = HorizontalAlignment.Left,
-                            FontSize = 15
-                        };
-                        pagerefHyperlinkTextBlock.Inlines.Add(pagerefHyperlink);
-                        quickAnswerSP.Children.Add(pagerefHyperlinkTextBlock);
+                            var pagerefHyperlinkTextBlock = new TextBlock()
+                            {
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                                FontSize = 15
+                            };
+                            pagerefHyperlinkTextBlock.Inlines.Add(pagerefHyperlink);
+                            quickAnswerSP.Children.Add(pagerefHyperlinkTextBlock);
+                        }
                     }
                 }
             }
